@@ -1,17 +1,1183 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Ascndr">
+
+
+<!-- ════ HOME ════ -->
+<div id="home" class="page active">
+
+  <!-- Botón flecha → Trabajos: acorde al logo Ascndr -->
+  <a class="works-arrow" href="/trabajos" onclick="showPage('works'); return false;" aria-label="Ir a Trabajos" title="Trabajos">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Filtro para difuminar solo los bordes -->
+      <defs>
+        <filter id="edgeBlur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="0.4"></feGaussianBlur>
+        </filter>
+      </defs>
+
+      <!-- Flecha sólida un poco más fina, color crema del logo.
+           Duplicado borroso detrás (solo para difuminar el borde)
+           + versión nítida encima con el relleno real. -->
+      <path class="arrow-shape arrow-edge"
+            filter="url(#edgeBlur)"
+            d="M 15 44
+               L 20 49
+               L 44 25
+               L 44 44
+               L 51 44
+               L 51 13
+               L 20 13
+               L 20 20
+               L 39 20
+               L 15 44 Z"></path>
+
+      <path class="arrow-shape"
+            d="M 15 44
+               L 20 49
+               L 44 25
+               L 44 44
+               L 51 44
+               L 51 13
+               L 20 13
+               L 20 20
+               L 39 20
+               L 15 44 Z"></path>
+
+      <!-- Sparkle de 4 puntas — homenaje a la estrella junto a la 'A' del logo -->
+      <path class="arrow-sparkle"
+            d="M 53 3
+               L 54.2 9
+               L 60 10
+               L 54.2 11
+               L 53 17
+               L 51.8 11
+               L 46 10
+               L 51.8 9
+               Z"></path>
+    </svg>
+  </a>
+
+  <div class="logo-wrap">
+    <img src="/ascndr-logo.png" alt="Ascndr"/>
+    <div class="logo-line" aria-hidden="true"></div>
+  </div>
+
+  <div class="middle">
+    <p class="tagline">
+      Estudio creativo especializado en estrategia en redes<br/>
+      y dirección de proyectos digitales.
+    </p>
+    <div class="search-container">
+      <div class="pill-btn" id="pillBtn" onclick="activatePill()">
+        <span class="pill-label">¿Qué buscas?</span>
+        <input class="pill-input" id="pillInput" type="text" maxlength="150"
+               placeholder="¿Qué buscas?"
+               onkeydown="onPillKey(event)"/>
+        <span class="pill-arrow" onclick="handleArrow(event)">›</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <ul class="footer-nav">
+      <li><a href="/trabajos"   onclick="showPage('works'); return false;">Trabajos</a></li>
+      <li><span class="footer-sep"></span></li>
+      <li><a href="/terminos"   onclick="showPage('terms'); return false;">Términos</a></li>
+      <li><span class="footer-sep"></span></li>
+      <li><a href="/privacidad" onclick="showPage('privacy'); return false;">Privacidad</a></li>
+      <li><span class="footer-sep"></span></li>
+      <li><a href="/contacto"   onclick="openContactRoute(); return false;">Contacto</a></li>
+    </ul>
+    <p class="copyright">© Ascndr 2026 &nbsp;·&nbsp; Marca Registrada</p>
+  </footer>
+</div>
+
+<!-- ════ PRIVACY ════ -->
+<div id="privacy" class="page">
+  <a href="/" class="back-btn" onclick="showPage('home'); return false;">← Volver</a>
+  <h1 class="page-title">Política de Privacidad</h1>
+  <table class="info-table">
+    <tr><td class="lbl">Responsable</td><td class="val">Ascndr</td></tr>
+    <tr><td class="lbl">Finalidad</td><td class="val"><ul>
+      <li>Prestación de servicios de consultoría</li>
+      <li>Gestión de usuarios del sitio web</li>
+      <li>Comunicaciones comerciales relacionadas con nuestros servicios</li>
+    </ul></td></tr>
+    <tr><td class="lbl">Base Legal</td><td class="val">Consentimiento expreso e interés legítimo</td></tr>
+    <tr><td class="lbl">Destinatarios</td><td class="val">Los datos no se ceden a terceros, salvo obligación legal</td></tr>
+    <tr><td class="lbl">Derechos</td><td class="val">Acceso, rectificación y supresión de datos, así como otros derechos descritos en la información adicional</td></tr>
+  </table>
+  <h2 class="section-title">Compromiso con la Privacidad</h2>
+  <p class="body-text">En Ascndr trabajamos para ofrecer la mejor experiencia posible. Valoramos tu privacidad y creemos en la transparencia sobre cómo recopilamos y utilizamos los datos.</p>
+  <p class="body-text">En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley 34/2002 (LSSI), Ascndr informa a los usuarios de que sus datos personales serán incorporados a un fichero automatizado bajo su responsabilidad.</p>
+  <hr class="divider"/>
+  <h2 class="section-title">Uso de los Datos</h2>
+  <p class="body-text">Los datos recabados se utilizarán exclusivamente para responder a tu consulta y, con tu consentimiento expreso, para enviarte comunicaciones sobre nuestros servicios. En ningún caso se cederán a terceros sin tu consentimiento previo, salvo obligación legal.</p>
+  <hr class="divider"/>
+  <h2 class="section-title">Tus Derechos</h2>
+  <p class="body-text">Puedes ejercer en cualquier momento tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad contactando con nosotros o ante la <a href="https://www.aepd.es" target="_blank">AEPD</a>.</p>
+  <hr class="divider"/>
+  <h2 class="section-title">Cookies</h2>
+  <p class="body-text">Este sitio web no utiliza cookies de seguimiento ni de publicidad. Únicamente pueden existir cookies técnicas estrictamente necesarias para el funcionamiento del sitio.</p>
+  <p class="meta">Última actualización: abril 2026</p>
+</div>
+
+<!-- ════ TERMS ════ -->
+<div id="terms" class="page">
+  <a href="/" class="back-btn" onclick="showPage('home'); return false;">← Volver</a>
+  <h1 class="page-title">Términos y Condiciones</h1>
+  <h2 class="section-title">1. Información General</h2>
+  <p class="body-text">El presente sitio web es titularidad de Ascndr. El acceso y uso de este sitio implica la aceptación de los presentes términos en su totalidad.</p>
+  <hr class="divider"/>
+  <h2 class="section-title">2. Servicios</h2>
+  <p class="body-text">Ascndr ofrece servicios de consultoría creativa, gestión de redes sociales y dirección de proyectos multimedia. Los detalles y condiciones económicas se establecerán en el correspondiente contrato aceptado por ambas partes.</p>
+  <hr class="divider"/>
+  <h2 class="section-title">3. Propiedad Intelectual</h2>
+  <p class="body-text">Todos los contenidos de este sitio son propiedad de Ascndr y están protegidos por la legislación española e internacional de propiedad intelectual. Queda prohibida su reproducción sin autorización expresa.</p>
+  <hr class="divider"/>
+  <h2 class="section-title">4. Responsabilidad</h2>
+  <p class="body-text">Ascndr no será responsable de los daños derivados del uso incorrecto del sitio web o de la imposibilidad de acceso por causas ajenas a nuestra voluntad.</p>
+  <hr class="divider"/>
+  <h2 class="section-title">5. Legislación Aplicable</h2>
+  <p class="body-text">Los presentes términos se rigen por la legislación española. Para cualquier controversia las partes se someten a los Juzgados y Tribunales del domicilio del usuario.</p>
+  <p class="meta">Última actualización: abril 2026</p>
+</div>
+
+<!-- ════ WORKS / PORTFOLIO ════ -->
+<div id="works" class="page">
+  <a href="/" class="back-btn" onclick="showPage('home'); return false;">← Volver</a>
+
+  <!-- Hero -->
+  <div class="works-hero">
+    <div class="works-hero-left">
+      <div class="works-eyebrow">Portfolio · 2020 — 2026</div>
+      <h1 class="works-title">Trabajos<sup>©</sup></h1>
+    </div>
+    <div class="works-hero-right">
+      <span class="works-count"><strong id="worksCount">12</strong> / 12 proyectos</span>
+      <span class="works-count" style="color:#555">Seleccionados</span>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="works-filters" id="worksFilters">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="social">Redes Sociales</button>
+    <button class="filter-btn" data-filter="motion">Motion</button>
+    <button class="filter-btn" data-filter="photography">Fotografía</button>
+    <button class="filter-btn" data-filter="direction">Dirección Creativa</button>
+  </div>
+
+  <!-- Grid de proyectos -->
+  <div class="works-grid" id="worksGrid">
+
+    <!-- 1 -->
+    <article class="work-card size-lg" data-category="branding">
+      <div class="work-media" style="background-image:linear-gradient(135deg,#4a3b2e 0%,#1a1410 100%);"></div>
+      <span class="work-tag">Branding</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Identidad Visual</div>
+          <div class="work-name">Casa Helena — Restaurante</div>
+        </div>
+        <div class="work-year">MMXXV</div>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="work-card size-md-v" data-category="photography">
+      <div class="work-media" style="background-image:linear-gradient(160deg,#2b2b2b 0%,#0d0d0d 100%);"></div>
+      <span class="work-tag">Fotografía</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Editorial</div>
+          <div class="work-name">Serie "Luz Norte"</div>
+        </div>
+        <div class="work-year">MMXXV</div>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="work-card size-sm" data-category="social">
+      <div class="work-media" style="background-image:linear-gradient(145deg,#3a2e4a 0%,#15101c 100%);"></div>
+      <span class="work-tag">Redes</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Instagram · TikTok</div>
+          <div class="work-name">Lumi Skincare</div>
+        </div>
+        <div class="work-year">MMXXIV</div>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="work-card size-sm" data-category="motion">
+      <div class="work-media" style="background-image:linear-gradient(125deg,#1d3a3a 0%,#081616 100%);"></div>
+      <span class="work-tag">Motion</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Spot Publicitario</div>
+          <div class="work-name">Nórdico — 30s</div>
+        </div>
+        <div class="work-year">MMXXIV</div>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="work-card size-sm" data-category="direction">
+      <div class="work-media" style="background-image:linear-gradient(115deg,#4a3020 0%,#1a0f08 100%);"></div>
+      <span class="work-tag">Dirección</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Campaña</div>
+          <div class="work-name">Otoño · Mercado Vivo</div>
+        </div>
+        <div class="work-year">MMXXIV</div>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="work-card size-wide" data-category="branding">
+      <div class="work-media" style="background-image:linear-gradient(90deg,#2a2a35 0%,#0a0a12 100%);"></div>
+      <span class="work-tag">Branding</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Rebranding Completo</div>
+          <div class="work-name">Atlas Studio</div>
+        </div>
+        <div class="work-year">MMXXIV</div>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="work-card size-sm" data-category="photography">
+      <div class="work-media" style="background-image:linear-gradient(155deg,#3a2a2a 0%,#0f0808 100%);"></div>
+      <span class="work-tag">Fotografía</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Producto</div>
+          <div class="work-name">Ceramic Co.</div>
+        </div>
+        <div class="work-year">MMXXIII</div>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="work-card size-md" data-category="motion">
+      <div class="work-media" style="background-image:linear-gradient(135deg,#2d2d2d 0%,#0d0d0d 100%);"></div>
+      <span class="work-tag">Motion</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Reel · Brand Film</div>
+          <div class="work-name">Indigo — Manifiesto</div>
+        </div>
+        <div class="work-year">MMXXIII</div>
+      </div>
+    </article>
+
+    <!-- 9 -->
+    <article class="work-card size-md" data-category="social">
+      <div class="work-media" style="background-image:linear-gradient(165deg,#4a4a3a 0%,#15150f 100%);"></div>
+      <span class="work-tag">Redes</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Gestión · Estrategia</div>
+          <div class="work-name">Taller 27</div>
+        </div>
+        <div class="work-year">MMXXIII</div>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="work-card size-sm" data-category="direction">
+      <div class="work-media" style="background-image:linear-gradient(145deg,#302035 0%,#10081a 100%);"></div>
+      <span class="work-tag">Dirección</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Campaña Multimedia</div>
+          <div class="work-name">Vértice · SS23</div>
+        </div>
+        <div class="work-year">MMXXIII</div>
+      </div>
+    </article>
+
+    <!-- 11 -->
+    <article class="work-card size-sm" data-category="branding">
+      <div class="work-media" style="background-image:linear-gradient(135deg,#2a3a2a 0%,#0a140a 100%);"></div>
+      <span class="work-tag">Branding</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Packaging</div>
+          <div class="work-name">Verde Savia</div>
+        </div>
+        <div class="work-year">MMXXII</div>
+      </div>
+    </article>
+
+    <!-- 12 -->
+    <article class="work-card size-sm" data-category="photography">
+      <div class="work-media" style="background-image:linear-gradient(125deg,#4a4a4a 0%,#151515 100%);"></div>
+      <span class="work-tag">Fotografía</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Arquitectura</div>
+          <div class="work-name">Casa Luz</div>
+        </div>
+        <div class="work-year">MMXXII</div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="works-cta">
+    <div class="works-cta-text">
+      <h3>¿Tienes un proyecto en mente?</h3>
+      <p>Trabajamos con marcas que buscan construir algo memorable. Cuéntanos tu idea y la convertimos en realidad.</p>
+    </div>
+    <button class="works-cta-btn" onclick="openContactRoute()">Iniciar proyecto ›</button>
+  </div>
+
+  <p class="meta" style="text-align:center; margin-top:40px;">Portfolio · Actualizado abril 2026</p>
+</div>
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer" id="drawer">
+    <div id="drawerForm">
+      <button class="drawer-close" onclick="closeDrawer()">
+        <span class="modal-back-arrow">←</span> Volver
+      </button>
+      <h1 class="drawer-title">Contacto</h1>
+      <p class="drawer-sub">¿Tienes una idea en mente? Cuéntanos qué necesitas y te atenderemos lo antes posible.</p>
+
+      <div class="consulta-box">
+        <label class="consulta-box-label">Tu consulta</label>
+        <textarea id="drawerConsulta" placeholder='"asesoría sobre rrss"' maxlength="150"></textarea>
+      </div>
+
+      <div class="d-field-group">
+        <label class="d-field-label">Nombre <em>*</em></label>
+        <div class="d-input-wrap">
+          <span class="d-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </span>
+          <input class="d-input" id="drawerNombre" type="text" placeholder="Tu nombre"/>
+        </div>
+      </div>
+
+      <div class="d-field-group">
+        <label class="d-field-label">Email <em>*</em></label>
+        <div class="d-input-wrap">
+          <span class="d-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </span>
+          <input class="d-input" id="drawerEmail" type="email" placeholder="tu@email.com"/>
+        </div>
+      </div>
+
+      <div class="d-field-group">
+        <label class="d-field-label">Teléfono <em>opcional</em></label>
+        <div class="d-input-wrap">
+          <span class="d-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <input class="d-input" id="drawerTelefono" type="tel" placeholder="+34 600 000 000"/>
+        </div>
+      </div>
+
+      <!-- Honeypot antispam (oculto para humanos) -->
+      <input type="text" id="drawerWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
+
+      <button class="enviar-btn" id="drawerSendBtn" onclick="sendDrawer()">Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+      <p class="form-error" id="drawerError" style="display:none;margin-top:12px;font-size:11px;color:#c77;text-align:center;letter-spacing:.06em;"></p>
+    </div>
+    <div class="d-success" id="drawerSuccess">
+      <div class="d-success-icon">✦</div>
+      <h3>¡Mensaje recibido!</h3>
+      <p>Nos pondremos en contacto<br/>contigo muy pronto.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MODAL ════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div id="modalForm">
+      <button class="modal-back" onclick="closeModal()">
+        <span class="modal-back-arrow">←</span> Volver
+      </button>
+      <h1 class="modal-title">Contacto</h1>
+      <p class="modal-sub">¿Tienes un proyecto en mente? Cuéntanos qué necesitas y te responderemos lo antes posible.</p>
+
+      <div class="m-field-group">
+        <label class="m-field-label">Nombre</label>
+        <div class="m-input-wrap">
+          <span class="m-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </span>
+          <input class="m-input" id="mNombre" type="text" placeholder="Tu nombre"/>
+        </div>
+      </div>
+
+      <div class="m-field-group">
+        <label class="m-field-label">Email</label>
+        <div class="m-input-wrap">
+          <span class="m-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </span>
+          <input class="m-input" id="mEmail" type="email" placeholder="tu@email.com"/>
+        </div>
+      </div>
+
+      <div class="m-field-group">
+        <label class="m-field-label">Teléfono</label>
+        <div class="m-input-wrap">
+          <span class="m-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <input class="m-input" id="mTelefono" type="tel" placeholder="+34 600 000 000"/>
+        </div>
+      </div>
+
+      <!-- Honeypot antispam (oculto para humanos) -->
+      <input type="text" id="mWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
+
+      <button class="m-send-btn" id="mSendBtn" onclick="sendModal()">Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+      <p class="form-error" id="mError" style="display:none;margin-top:12px;font-size:11px;color:#c77;text-align:center;letter-spacing:.06em;"></p>
+
+      <hr class="m-divider"/>
+
+      <p class="m-direct-label">También puedes escribirnos directamente a:</p>
+      <a class="m-direct-email" href="mailto:frank@ascndrworld.com">frank@ascndrworld.com</a>
+    </div>
+    <div class="m-success" id="modalSuccess">
+      <div class="m-success-icon">✦</div>
+      <h3>¡Mensaje recibido!</h3>
+      <p>Nos pondremos en contacto<br/>contigo muy pronto.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════ COOKIE BANNER ════ -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <p class="cookie-text">
+    Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar tu experiencia. Puedes aceptarlas, rechazarlas o consultar más información en nuestra <a href="/privacidad" onclick="showPage('privacy'); return false;">política de privacidad</a>.
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-btn-reject" onclick="handleCookie('rejected')">Rechazar</button>
+    <button class="cookie-btn cookie-btn-accept" onclick="handleCookie('accepted')">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  /* ════ ROUTING: URLs amigables por sección ════ */
+  /* Mapa bidireccional entre id de página y ruta de URL */
+  const PAGE_ROUTES = {
+    home:    "/",
+    works:   "/trabajos",
+    terms:   "/terminos",
+    privacy: "/privacidad"
+  };
+  const ROUTE_TO_PAGE = Object.fromEntries(
+    Object.entries(PAGE_ROUTES).map(([id, path]) => [path, id])
+  );
+
+  function showPage(id, opts) {
+    opts = opts || {};
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.classList.add("active");
+    window.scrollTo(0,0);
+
+    /* Actualiza la URL sin recargar la página */
+    if (!opts.skipHistory) {
+      const path = PAGE_ROUTES[id] || "/";
+      const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+      if (currentPath !== path) {
+        history.pushState({ page: id }, "", path);
+      }
+    }
+  }
+
+  /* Contacto: abre el modal y refleja /contacto en la URL */
+  const _originalOpenModal = (typeof openModal === "function") ? openModal : null;
+  function openContactRoute() {
+    if (_originalOpenModal) _originalOpenModal();
+    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (currentPath !== "/contacto") {
+      history.pushState({ contact: true }, "", "/contacto");
+    }
+  }
+
+  /* Al cargar, lee la URL y muestra la sección correspondiente */
+  (function initRouteFromURL() {
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (path === "/contacto") {
+      showPage("home", { skipHistory: true });
+      if (_originalOpenModal) setTimeout(_originalOpenModal, 50);
+      return;
+    }
+    const pageId = ROUTE_TO_PAGE[path];
+    if (pageId && pageId !== "home") {
+      showPage(pageId, { skipHistory: true });
+    }
+  })();
+
+  /* Maneja los botones Atrás/Adelante del navegador */
+  window.addEventListener("popstate", () => {
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (path === "/contacto") {
+      showPage("home", { skipHistory: true });
+      if (_originalOpenModal) _originalOpenModal();
+      return;
+    }
+    const pageId = ROUTE_TO_PAGE[path] || "home";
+    showPage(pageId, { skipHistory: true });
+  });
+
+  /* ════ WORKS FILTERS ════ */
+  (function initWorksFilters() {
+    const filtersEl = document.getElementById("worksFilters");
+    if (!filtersEl) return;
+
+    const cards = document.querySelectorAll("#worksGrid .work-card");
+    const countEl = document.getElementById("worksCount");
+    const total = cards.length;
+
+    filtersEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+
+      // toggle active state
+      filtersEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = (filter === "all") || (card.dataset.category === filter);
+        card.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+
+      if (countEl) countEl.textContent = visible;
+    });
+
+    // inicializar contador
+    if (countEl) countEl.textContent = total;
+  })();
+
+  let pillActive = false;
+  function activatePill() {
+    if (pillActive) return;
+    pillActive = true;
+    const btn = document.getElementById("pillBtn");
+    btn.classList.add("expanded");
+    setTimeout(() => document.getElementById("pillInput").focus(), 220);
+    setTimeout(() => document.addEventListener("click", collapsePillOut), 150);
+  }
+  function collapsePillOut(e) {
+    const btn = document.getElementById("pillBtn");
+    const inp = document.getElementById("pillInput");
+    if (!btn.contains(e.target)) {
+      if (!inp.value.trim()) { pillActive = false; btn.classList.remove("expanded"); }
+      document.removeEventListener("click", collapsePillOut);
+    }
+  }
+  function handleArrow(e) {
+    e.stopPropagation();
+    if (!pillActive) { activatePill(); return; }
+    openDrawer();
+  }
+  function onPillKey(e) { if (e.key === "Enter") { e.preventDefault(); openDrawer(); } }
+
+  function openDrawer() {
+    const q = document.getElementById("pillInput").value.trim();
+    document.getElementById("drawerConsulta").value = q;
+    ["drawerNombre","drawerEmail","drawerTelefono"].forEach(id => document.getElementById(id).value = "");
+    document.getElementById("drawerWebsite").value = "";
+    const dErr = document.getElementById("drawerError");
+    if (dErr) dErr.style.display = "none";
+    const dBtn = document.getElementById("drawerSendBtn");
+    if (dBtn) {
+      dBtn.disabled = false;
+      dBtn.style.opacity = "";
+      dBtn.style.cursor = "";
+      dBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+    }
+    document.getElementById("drawerForm").style.display = "block";
+    document.getElementById("drawerSuccess").classList.remove("show");
+    document.getElementById("drawerOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0,0);
+  }
+  function closeDrawer() {
+    document.getElementById("drawerOverlay").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  /* ════ EmailJS config ════ */
+  const EMAILJS_SERVICE_ID    = "service_itdpucz";
+  const EMAILJS_TEMPLATE_A    = "template_1onca15"; // consulta (con {{consulta}})
+  const EMAILJS_TEMPLATE_B    = "template_a9a415g"; // contacto genérico
+
+  /* Valida formato básico de email */
+  function isValidEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  /* Envía con EmailJS. Devuelve una promesa. */
+  function sendEmail(templateId, params) {
+    if (typeof emailjs === "undefined" || !emailjs.send) {
+      return Promise.reject(new Error("SDK no cargado"));
+    }
+    return emailjs.send(EMAILJS_SERVICE_ID, templateId, params);
+  }
+
+  async function sendDrawer() {
+    const btn      = document.getElementById("drawerSendBtn");
+    const errorEl  = document.getElementById("drawerError");
+    const nombre   = document.getElementById("drawerNombre").value.trim();
+    const email    = document.getElementById("drawerEmail").value.trim();
+    const telefono = document.getElementById("drawerTelefono").value.trim();
+    const consulta = document.getElementById("drawerConsulta").value.trim();
+    const honeypot = document.getElementById("drawerWebsite").value;
+
+    /* Honeypot: si los bots lo rellenan, fingimos éxito y no enviamos nada */
+    if (honeypot) {
+      document.getElementById("drawerForm").style.display = "none";
+      document.getElementById("drawerSuccess").classList.add("show");
+      setTimeout(closeDrawer, 3000);
+      return;
+    }
+
+    /* Validación */
+    errorEl.style.display = "none";
+    if (!nombre || !email) {
+      errorEl.textContent = "Por favor completa tu nombre y email.";
+      errorEl.style.display = "block";
+      return;
+    }
+    if (!isValidEmail(email)) {
+      errorEl.textContent = "El email no parece válido. Revísalo.";
+      errorEl.style.display = "block";
+      return;
+    }
+
+    /* Estado de envío */
+    const btnTextOriginal = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.cursor = "wait";
+    btn.innerHTML = "Enviando...";
+
+    /* Elegir plantilla: si hay consulta, A; si no, B */
+    const hasConsulta = consulta.length > 0;
+    const templateId  = hasConsulta ? EMAILJS_TEMPLATE_A : EMAILJS_TEMPLATE_B;
+    const params      = {
+      name:     nombre,
+      email:    email,
+      phone:    telefono || "No facilitado",
+      consulta: hasConsulta ? consulta : "Sin consulta previa",
+      reply_to: email
+    };
+
+    try {
+      await sendEmail(templateId, params);
+      document.getElementById("drawerForm").style.display = "none";
+      document.getElementById("drawerSuccess").classList.add("show");
+      setTimeout(closeDrawer, 3000);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
+      errorEl.style.display = "block";
+      btn.disabled = false;
+      btn.style.opacity = "";
+      btn.style.cursor = "";
+      btn.innerHTML = btnTextOriginal;
+    }
+  }
+
+  function openModal() {
+    ["mNombre","mEmail","mTelefono"].forEach(id => document.getElementById(id).value = "");
+    document.getElementById("mWebsite").value = "";
+    const mErr = document.getElementById("mError");
+    if (mErr) mErr.style.display = "none";
+    const mBtn = document.getElementById("mSendBtn");
+    if (mBtn) {
+      mBtn.disabled = false;
+      mBtn.style.opacity = "";
+      mBtn.style.cursor = "";
+      mBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+    }
+    document.getElementById("modalForm").style.display = "block";
+    document.getElementById("modalSuccess").classList.remove("show");
+    document.getElementById("modalOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0,0);
+  }
+  function closeModal() {
+    document.getElementById("modalOverlay").classList.remove("open");
+    document.body.style.overflow = "";
+    /* Si la URL quedó en /contacto, la revertimos a la página visible */
+    if (window.location.pathname.replace(/\/+$/, "") === "/contacto") {
+      const activePage = document.querySelector(".page.active");
+      const id = activePage ? activePage.id : "home";
+      const path = PAGE_ROUTES[id] || "/";
+      history.replaceState({ page: id }, "", path);
+    }
+  }
+  async function sendModal() {
+    const btn      = document.getElementById("mSendBtn");
+    const errorEl  = document.getElementById("mError");
+    const nombre   = document.getElementById("mNombre").value.trim();
+    const email    = document.getElementById("mEmail").value.trim();
+    const telefono = document.getElementById("mTelefono").value.trim();
+    const honeypot = document.getElementById("mWebsite").value;
+
+    if (honeypot) {
+      document.getElementById("modalForm").style.display = "none";
+      document.getElementById("modalSuccess").classList.add("show");
+      setTimeout(closeModal, 3000);
+      return;
+    }
+
+    errorEl.style.display = "none";
+    if (!nombre || !email) {
+      errorEl.textContent = "Por favor completa tu nombre y email.";
+      errorEl.style.display = "block";
+      return;
+    }
+    if (!isValidEmail(email)) {
+      errorEl.textContent = "El email no parece válido. Revísalo.";
+      errorEl.style.display = "block";
+      return;
+    }
+
+    const btnTextOriginal = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.cursor = "wait";
+    btn.innerHTML = "Enviando...";
+
+    /* El modal siempre usa la plantilla B (contacto genérico) */
+    const params = {
+      name:     nombre,
+      email:    email,
+      phone:    telefono || "No facilitado",
+      consulta: "Sin consulta previa",
+      reply_to: email
+    };
+
+    try {
+      await sendEmail(EMAILJS_TEMPLATE_B, params);
+      document.getElementById("modalForm").style.display = "none";
+      document.getElementById("modalSuccess").classList.add("show");
+      setTimeout(closeModal, 3000);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
+      errorEl.style.display = "block";
+      btn.disabled = false;
+      btn.style.opacity = "";
+      btn.style.cursor = "";
+      btn.innerHTML = btnTextOriginal;
+    }
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") { closeDrawer(); closeModal(); }
+  });
+
+  /* ════ COOKIE BANNER ════ */
+  const COOKIE_KEY = "ascndr_cookie_consent";
+
+  function initCookieBanner() {
+    try {
+      if (localStorage.getItem(COOKIE_KEY)) return; // ya decidido, no mostrar
+    } catch (e) { /* localStorage bloqueado → mostrar igualmente */ }
+
+    const banner = document.getElementById("cookieBanner");
+    if (!banner) return;
+    // pequeño delay para que entre después del halo de bienvenida
+    setTimeout(() => banner.classList.add("visible"), 1200);
+  }
+
+  function handleCookie(choice) {
+    try { localStorage.setItem(COOKIE_KEY, choice); } catch (e) {}
+    const banner = document.getElementById("cookieBanner");
+    if (!banner) return;
+    banner.classList.remove("visible");
+    banner.classList.add("hiding");
+    setTimeout(() => banner.remove(), 600);
+  }
+
+  window.addEventListener("load", initCookieBanner);
+</script>
+
+</Layout>
+
+<script is:inline>
+
+  /* ════ ROUTING: URLs amigables por sección ════ */
+  /* Mapa bidireccional entre id de página y ruta de URL */
+  const PAGE_ROUTES = {
+    home:    "/",
+    works:   "/trabajos",
+    terms:   "/terminos",
+    privacy: "/privacidad"
+  };
+  const ROUTE_TO_PAGE = Object.fromEntries(
+    Object.entries(PAGE_ROUTES).map(([id, path]) => [path, id])
+  );
+
+  function showPage(id, opts) {
+    opts = opts || {};
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.classList.add("active");
+    window.scrollTo(0,0);
+
+    /* Actualiza la URL sin recargar la página */
+    if (!opts.skipHistory) {
+      const path = PAGE_ROUTES[id] || "/";
+      const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+      if (currentPath !== path) {
+        history.pushState({ page: id }, "", path);
+      }
+    }
+  }
+
+  /* Contacto: abre el modal y refleja /contacto en la URL */
+  const _originalOpenModal = (typeof openModal === "function") ? openModal : null;
+  function openContactRoute() {
+    if (_originalOpenModal) _originalOpenModal();
+    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (currentPath !== "/contacto") {
+      history.pushState({ contact: true }, "", "/contacto");
+    }
+  }
+
+  /* Al cargar, lee la URL y muestra la sección correspondiente */
+  (function initRouteFromURL() {
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (path === "/contacto") {
+      showPage("home", { skipHistory: true });
+      if (_originalOpenModal) setTimeout(_originalOpenModal, 50);
+      return;
+    }
+    const pageId = ROUTE_TO_PAGE[path];
+    if (pageId && pageId !== "home") {
+      showPage(pageId, { skipHistory: true });
+    }
+  })();
+
+  /* Maneja los botones Atrás/Adelante del navegador */
+  window.addEventListener("popstate", () => {
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (path === "/contacto") {
+      showPage("home", { skipHistory: true });
+      if (_originalOpenModal) _originalOpenModal();
+      return;
+    }
+    const pageId = ROUTE_TO_PAGE[path] || "home";
+    showPage(pageId, { skipHistory: true });
+  });
+
+  /* ════ WORKS FILTERS ════ */
+  (function initWorksFilters() {
+    const filtersEl = document.getElementById("worksFilters");
+    if (!filtersEl) return;
+
+    const cards = document.querySelectorAll("#worksGrid .work-card");
+    const countEl = document.getElementById("worksCount");
+    const total = cards.length;
+
+    filtersEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+
+      // toggle active state
+      filtersEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = (filter === "all") || (card.dataset.category === filter);
+        card.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+
+      if (countEl) countEl.textContent = visible;
+    });
+
+    // inicializar contador
+    if (countEl) countEl.textContent = total;
+  })();
+
+  let pillActive = false;
+  function activatePill() {
+    if (pillActive) return;
+    pillActive = true;
+    const btn = document.getElementById("pillBtn");
+    btn.classList.add("expanded");
+    setTimeout(() => document.getElementById("pillInput").focus(), 220);
+    setTimeout(() => document.addEventListener("click", collapsePillOut), 150);
+  }
+  function collapsePillOut(e) {
+    const btn = document.getElementById("pillBtn");
+    const inp = document.getElementById("pillInput");
+    if (!btn.contains(e.target)) {
+      if (!inp.value.trim()) { pillActive = false; btn.classList.remove("expanded"); }
+      document.removeEventListener("click", collapsePillOut);
+    }
+  }
+  function handleArrow(e) {
+    e.stopPropagation();
+    if (!pillActive) { activatePill(); return; }
+    openDrawer();
+  }
+  function onPillKey(e) { if (e.key === "Enter") { e.preventDefault(); openDrawer(); } }
+
+  function openDrawer() {
+    const q = document.getElementById("pillInput").value.trim();
+    document.getElementById("drawerConsulta").value = q;
+    ["drawerNombre","drawerEmail","drawerTelefono"].forEach(id => document.getElementById(id).value = "");
+    document.getElementById("drawerWebsite").value = "";
+    const dErr = document.getElementById("drawerError");
+    if (dErr) dErr.style.display = "none";
+    const dBtn = document.getElementById("drawerSendBtn");
+    if (dBtn) {
+      dBtn.disabled = false;
+      dBtn.style.opacity = "";
+      dBtn.style.cursor = "";
+      dBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+    }
+    document.getElementById("drawerForm").style.display = "block";
+    document.getElementById("drawerSuccess").classList.remove("show");
+    document.getElementById("drawerOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0,0);
+  }
+  function closeDrawer() {
+    document.getElementById("drawerOverlay").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  /* ════ EmailJS config ════ */
+  const EMAILJS_SERVICE_ID    = "service_itdpucz";
+  const EMAILJS_TEMPLATE_A    = "template_1onca15"; // consulta (con {{consulta}})
+  const EMAILJS_TEMPLATE_B    = "template_a9a415g"; // contacto genérico
+
+  /* Valida formato básico de email */
+  function isValidEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  /* Envía con EmailJS. Devuelve una promesa. */
+  function sendEmail(templateId, params) {
+    if (typeof emailjs === "undefined" || !emailjs.send) {
+      return Promise.reject(new Error("SDK no cargado"));
+    }
+    return emailjs.send(EMAILJS_SERVICE_ID, templateId, params);
+  }
+
+  async function sendDrawer() {
+    const btn      = document.getElementById("drawerSendBtn");
+    const errorEl  = document.getElementById("drawerError");
+    const nombre   = document.getElementById("drawerNombre").value.trim();
+    const email    = document.getElementById("drawerEmail").value.trim();
+    const telefono = document.getElementById("drawerTelefono").value.trim();
+    const consulta = document.getElementById("drawerConsulta").value.trim();
+    const honeypot = document.getElementById("drawerWebsite").value;
+
+    /* Honeypot: si los bots lo rellenan, fingimos éxito y no enviamos nada */
+    if (honeypot) {
+      document.getElementById("drawerForm").style.display = "none";
+      document.getElementById("drawerSuccess").classList.add("show");
+      setTimeout(closeDrawer, 3000);
+      return;
+    }
+
+    /* Validación */
+    errorEl.style.display = "none";
+    if (!nombre || !email) {
+      errorEl.textContent = "Por favor completa tu nombre y email.";
+      errorEl.style.display = "block";
+      return;
+    }
+    if (!isValidEmail(email)) {
+      errorEl.textContent = "El email no parece válido. Revísalo.";
+      errorEl.style.display = "block";
+      return;
+    }
+
+    /* Estado de envío */
+    const btnTextOriginal = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.cursor = "wait";
+    btn.innerHTML = "Enviando...";
+
+    /* Elegir plantilla: si hay consulta, A; si no, B */
+    const hasConsulta = consulta.length > 0;
+    const templateId  = hasConsulta ? EMAILJS_TEMPLATE_A : EMAILJS_TEMPLATE_B;
+    const params      = {
+      name:     nombre,
+      email:    email,
+      phone:    telefono || "No facilitado",
+      consulta: hasConsulta ? consulta : "Sin consulta previa",
+      reply_to: email
+    };
+
+    try {
+      await sendEmail(templateId, params);
+      document.getElementById("drawerForm").style.display = "none";
+      document.getElementById("drawerSuccess").classList.add("show");
+      setTimeout(closeDrawer, 3000);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
+      errorEl.style.display = "block";
+      btn.disabled = false;
+      btn.style.opacity = "";
+      btn.style.cursor = "";
+      btn.innerHTML = btnTextOriginal;
+    }
+  }
+
+  function openModal() {
+    ["mNombre","mEmail","mTelefono"].forEach(id => document.getElementById(id).value = "");
+    document.getElementById("mWebsite").value = "";
+    const mErr = document.getElementById("mError");
+    if (mErr) mErr.style.display = "none";
+    const mBtn = document.getElementById("mSendBtn");
+    if (mBtn) {
+      mBtn.disabled = false;
+      mBtn.style.opacity = "";
+      mBtn.style.cursor = "";
+      mBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+    }
+    document.getElementById("modalForm").style.display = "block";
+    document.getElementById("modalSuccess").classList.remove("show");
+    document.getElementById("modalOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0,0);
+  }
+  function closeModal() {
+    document.getElementById("modalOverlay").classList.remove("open");
+    document.body.style.overflow = "";
+    /* Si la URL quedó en /contacto, la revertimos a la página visible */
+    if (window.location.pathname.replace(/\/+$/, "") === "/contacto") {
+      const activePage = document.querySelector(".page.active");
+      const id = activePage ? activePage.id : "home";
+      const path = PAGE_ROUTES[id] || "/";
+      history.replaceState({ page: id }, "", path);
+    }
+  }
+  async function sendModal() {
+    const btn      = document.getElementById("mSendBtn");
+    const errorEl  = document.getElementById("mError");
+    const nombre   = document.getElementById("mNombre").value.trim();
+    const email    = document.getElementById("mEmail").value.trim();
+    const telefono = document.getElementById("mTelefono").value.trim();
+    const honeypot = document.getElementById("mWebsite").value;
+
+    if (honeypot) {
+      document.getElementById("modalForm").style.display = "none";
+      document.getElementById("modalSuccess").classList.add("show");
+      setTimeout(closeModal, 3000);
+      return;
+    }
+
+    errorEl.style.display = "none";
+    if (!nombre || !email) {
+      errorEl.textContent = "Por favor completa tu nombre y email.";
+      errorEl.style.display = "block";
+      return;
+    }
+    if (!isValidEmail(email)) {
+      errorEl.textContent = "El email no parece válido. Revísalo.";
+      errorEl.style.display = "block";
+      return;
+    }
+
+    const btnTextOriginal = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.cursor = "wait";
+    btn.innerHTML = "Enviando...";
+
+    /* El modal siempre usa la plantilla B (contacto genérico) */
+    const params = {
+      name:     nombre,
+      email:    email,
+      phone:    telefono || "No facilitado",
+      consulta: "Sin consulta previa",
+      reply_to: email
+    };
+
+    try {
+      await sendEmail(EMAILJS_TEMPLATE_B, params);
+      document.getElementById("modalForm").style.display = "none";
+      document.getElementById("modalSuccess").classList.add("show");
+      setTimeout(closeModal, 3000);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
+      errorEl.style.display = "block";
+      btn.disabled = false;
+      btn.style.opacity = "";
+      btn.style.cursor = "";
+      btn.innerHTML = btnTextOriginal;
+    }
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") { closeDrawer(); closeModal(); }
+  });
+
+  /* ════ COOKIE BANNER ════ */
+  const COOKIE_KEY = "ascndr_cookie_consent";
+
+  function initCookieBanner() {
+    try {
+      if (localStorage.getItem(COOKIE_KEY)) return; // ya decidido, no mostrar
+    } catch (e) { /* localStorage bloqueado → mostrar igualmente */ }
+
+    const banner = document.getElementById("cookieBanner");
+    if (!banner) return;
+    // pequeño delay para que entre después del halo de bienvenida
+    setTimeout(() => banner.classList.add("visible"), 1200);
+  }
+
+  function handleCookie(choice) {
+    try { localStorage.setItem(COOKIE_KEY, choice); } catch (e) {}
+    const banner = document.getElementById("cookieBanner");
+    if (!banner) return;
+    banner.classList.remove("visible");
+    banner.classList.add("hiding");
+    setTimeout(() => banner.remove(), 600);
+  }
+
+  window.addEventListener("load", initCookieBanner);
+
+</script>
