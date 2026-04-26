@@ -1515,3 +1515,13 @@
     font-size: 10.5px;
   }
 }
+
+@media (max-width: 480px) {
+  .tagline {
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    word-spacing: -1px;
+    padding: 0 20px;
+    line-height: 2;
+  }
+}
