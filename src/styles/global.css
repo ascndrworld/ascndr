@@ -1470,3 +1470,32 @@
       .works-cta-btn { width: 100%; text-align: center; }
     }
   
+
+.gallery-overlay { display:none; position:fixed; inset:0; background:var(--bg); z-index:400; overflow-y:auto; }
+.gallery-overlay.open { display:block; animation:fadeIn .25s ease; }
+.gallery-header { display:flex; align-items:center; justify-content:space-between; padding:32px 40px 24px; border-bottom:1px solid #252525; position:sticky; top:0; background:var(--bg); z-index:10; }
+.gallery-title { font-size:13px; font-weight:400; letter-spacing:.2em; color:var(--ink); text-transform:uppercase; }
+.gallery-title em { font-style:normal; color:#666; font-size:11px; }
+.gallery-close { background:none; border:none; color:#888; font-size:18px; cursor:pointer; padding:4px 8px; transition:color .2s; font-family:inherit; }
+.gallery-close:hover { color:var(--ink); }
+.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; padding:4px; }
+.gallery-item { aspect-ratio:1; overflow:hidden; cursor:pointer; background:#111; }
+.gallery-item-wide { grid-column:span 3; aspect-ratio:16/7; }
+.gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform .5s cubic-bezier(.22,1,.36,1),filter .4s ease; filter:brightness(.85); }
+.gallery-item:hover img { transform:scale(1.04); filter:brightness(1); }
+.lightbox-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:500; align-items:center; justify-content:center; }
+.lightbox-overlay.open { display:flex; animation:fadeIn .2s ease; }
+.lightbox-img { max-width:90vw; max-height:88vh; object-fit:contain; border-radius:2px; }
+.lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); background:none; border:none; color:rgba(255,255,244,.5); font-size:48px; cursor:pointer; padding:0 24px; transition:color .2s; line-height:1; font-weight:300; z-index:2; }
+.lightbox-nav:hover { color:var(--ink); }
+.lightbox-prev { left:0; }
+.lightbox-next { right:0; }
+.lightbox-close { position:absolute; top:24px; right:32px; background:none; border:none; color:#888; font-size:20px; cursor:pointer; transition:color .2s; font-family:inherit; }
+.lightbox-close:hover { color:var(--ink); }
+.lightbox-counter { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); font-size:10px; letter-spacing:.2em; color:#555; text-transform:uppercase; }
+@media (max-width:640px) {
+  .gallery-header { padding:22px 18px 18px; }
+  .gallery-grid { grid-template-columns:repeat(2,1fr); }
+  .gallery-item-wide { grid-column:span 2; aspect-ratio:16/9; }
+  .lightbox-nav { font-size:36px; padding:0 14px; }
+}

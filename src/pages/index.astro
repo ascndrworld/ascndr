@@ -174,6 +174,20 @@ import Layout from "../layouts/Layout.astro";
   <!-- Grid de proyectos -->
   <div class="works-grid" id="worksGrid">
 
+    <!-- Halloween Fest -->
+    <article class="work-card size-lg" data-category="direction" onclick="openGallery('halloween')" style="cursor:pointer;">
+      <div class="work-media" style="background-image:url('/images/halloween-fest/pulseras.jpg');"></div>
+      <span class="work-tag">Identidad Visual</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Dirección Creativa · Evento</div>
+          <div class="work-name">Halloween Fest</div>
+        </div>
+        <div class="work-year">MMXXIV — MMXXV</div>
+      </div>
+    </article>
+
     <!-- 1 -->
     <article class="work-card size-lg" data-category="branding">
       <div class="work-media" style="background-image:linear-gradient(135deg,#4a3b2e 0%,#1a1410 100%);"></div>
@@ -805,6 +819,51 @@ import Layout from "../layouts/Layout.astro";
 
   window.addEventListener("load", initCookieBanner);
 </script>
+
+
+<div class="gallery-overlay" id="galleryHalloween">
+  <div class="gallery-header">
+    <span class="gallery-title">Halloween Fest <em>· Identidad Visual</em></span>
+    <button class="gallery-close" onclick="closeGallery()">✕</button>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-item-wide" onclick="openLightbox(0)">
+      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="/images/halloween-fest/cartel-2025.jpg" alt="Cartel 2025" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel 3.0" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+      <img src="/images/halloween-fest/cartel-2024.jpg" alt="Cartel 2024" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(5)">
+      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(6)">
+      <img src="/images/halloween-fest/DSC03203.jpg" alt="Pulsera acceso" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(7)">
+      <img src="/images/halloween-fest/DSC03001.jpg" alt="Foto evento" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(8)">
+      <img src="/images/halloween-fest/DSC03202.jpg" alt="Acreditacion" loading="lazy"/>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightbox(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt=""/>
+  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightbox(1)">&#8250;</button>
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <span class="lightbox-counter" id="lightboxCounter"></span>
+</div>
 
 </Layout>
 
