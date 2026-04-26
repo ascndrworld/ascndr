@@ -1507,3 +1507,8 @@
 @media (max-width: 480px) {
   .tagline { font-size: 9.5px; letter-spacing: 0.13em; padding: 0 14px; line-height: 2; }
 }
+
+@media (max-width: 480px) {
+  .tagline br { display: none; }
+  .tagline { font-size: 10.5px; }
+}
