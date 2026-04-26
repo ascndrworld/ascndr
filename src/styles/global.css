@@ -1500,20 +1500,10 @@
   .lightbox-nav { font-size:36px; padding:0 14px; }
 }
 
-@media (max-width: 480px) {
-  .tagline {
-    font-size: 8.5px;
-    letter-spacing: 0.15em;
-    line-height: 2;
-    padding: 0 12px;
-    word-break: keep-all;
-  }
 }
 
-@media (max-width: 480px) {
-  .tagline {
-    font-size: 10.5px;
-  }
+}
+
 }
 
 @media (max-width: 480px) {
