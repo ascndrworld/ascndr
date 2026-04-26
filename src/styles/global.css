@@ -1509,3 +1509,9 @@
     word-break: keep-all;
   }
 }
+
+@media (max-width: 480px) {
+  .tagline {
+    font-size: 10.5px;
+  }
+}
