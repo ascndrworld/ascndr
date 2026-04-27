@@ -1512,3 +1512,7 @@
   .tagline br { display: none; }
   .tagline { font-size: 10.5px; }
 }
+
+@media (max-width: 480px) {
+  .tagline { word-spacing: 2px; padding: 0 10px; }
+}
