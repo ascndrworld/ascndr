@@ -833,21 +833,12 @@ import Layout from "../layouts/Layout.astro";
       <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial" loading="lazy"/>
     </div>
     <div class="gallery-item" onclick="openLightbox(2)">
-      <img src="/images/halloween-fest/cartel-2025.jpg" alt="Cartel 2025" loading="lazy"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(3)">
       <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel 3.0" loading="lazy"/>
     </div>
-    <div class="gallery-item" onclick="openLightbox(4)">
-      <img src="/images/halloween-fest/cartel-2024.jpg" alt="Cartel 2024" loading="lazy"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(5)">
+    <div class="gallery-item" onclick="openLightbox(3)">
       <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP" loading="lazy"/>
     </div>
-    <div class="gallery-item" onclick="openLightbox(6)">
-      <img src="/images/halloween-fest/DSC03203.jpg" alt="Pulsera acceso" loading="lazy"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(7)">
+    <div class="gallery-item" onclick="openLightbox(4)">
       <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditacion" loading="lazy"/>
     </div>
   </div>
@@ -862,7 +853,7 @@ import Layout from "../layouts/Layout.astro";
 
 
 <script is:inline>
-var hwImgs=["/images/halloween-fest/tickets.jpg","/images/halloween-fest/cartel-oficial.jpg","/images/halloween-fest/cartel-2025.jpg","/images/halloween-fest/cartel-3-0.jpg","/images/halloween-fest/cartel-2024.jpg","/images/halloween-fest/pulseras.jpg","/images/halloween-fest/DSC03203.jpg","/images/halloween-fest/acreditacion.jpg"];
+var hwImgs=["/images/halloween-fest/tickets.jpg","/images/halloween-fest/cartel-oficial.jpg","/images/halloween-fest/cartel-3-0.jpg","/images/halloween-fest/pulseras.jpg","/images/halloween-fest/acreditacion.jpg"];
 var lbIndex=0;
 function openGallery(){document.getElementById("galleryHalloween").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
 function closeGallery(){document.getElementById("galleryHalloween").classList.remove("open");document.body.style.overflow="";}
