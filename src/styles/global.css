@@ -1542,3 +1542,7 @@
     aspect-ratio: 4/3;
   }
 }
+
+.gallery-item img {
+  mix-blend-mode: luminosity;
+}
