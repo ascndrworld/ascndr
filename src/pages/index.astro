@@ -839,8 +839,8 @@ import Layout from "../layouts/Layout.astro";
     <button class="gallery-close" onclick="closeGallery()">✕</button>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item gallery-item-wide" style="aspect-ratio:16/7;" onclick="openLightbox(0)">
-      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets" loading="lazy" style="object-fit:contain; background:#111;"/>
+    <div class="gallery-item gallery-item-wide" onclick="openLightbox(0)">
+      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets" loading="lazy" style="object-fit:cover;"/>
     </div>
     <div class="gallery-item" onclick="openLightbox(1)">
       <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial" loading="lazy"/>
@@ -851,8 +851,8 @@ import Layout from "../layouts/Layout.astro";
     <div class="gallery-item" onclick="openLightbox(3)">
       <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditacion" loading="lazy"/>
     </div>
-    <div class="gallery-item gallery-item-wide" style="aspect-ratio:16/7;" onclick="openLightbox(4)">
-      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP" loading="lazy" style="object-fit:contain; background:#111;"/>
+    <div class="gallery-item gallery-item-wide" onclick="openLightbox(4)">
+      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP" loading="lazy" style="object-fit:cover;"/>
     </div>
   </div>
   </div>
