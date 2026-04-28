@@ -1516,3 +1516,9 @@
 @media (max-width: 480px) {
   .tagline { word-spacing: 2px; padding: 0 10px; }
 }
+
+.work-tag {
+  background: var(--ink) !important;
+  color: #111 !important;
+  border-color: var(--ink) !important;
+}
