@@ -175,7 +175,7 @@ import Layout from "../layouts/Layout.astro";
 
     <!-- Halloween Fest -->
     <article class="work-card size-lg" data-category="branding" onclick="openGallery()" style="cursor:pointer;">
-      <div class="work-media" style="background-image:url('/images/halloween-fest/pulsera-portada.webp');"></div>
+      <div class="work-media" style="background-image:url('/images/halloween-fest/pulsera-portada.jpg');"></div>
       <span class="work-tag">Branding</span>
       <span class="work-arrow">↗</span>
       <div class="work-info">
@@ -188,7 +188,7 @@ import Layout from "../layouts/Layout.astro";
     </article>
 
     <article class="work-card size-md-v" data-category="branding">
-      <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.webp'); background-size:cover; background-position:center;"></div>
+      <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.jpg'); background-size:cover; background-position:center;"></div>
       <span class="work-tag">Branding</span>
       <span class="work-arrow">↗</span>
       <div class="work-info">
@@ -840,19 +840,19 @@ import Layout from "../layouts/Layout.astro";
   </div>
   <div class="gallery-grid">
     <div class="gallery-item gallery-item-wide" onclick="openLightbox(0)">
-      <img src="/images/halloween-fest/tickets.webp" alt="Tickets" loading="lazy" style="object-fit:cover;"/>
+      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets" loading="lazy" style="object-fit:cover;"/>
     </div>
     <div class="gallery-item" onclick="openLightbox(1)">
-      <img src="/images/halloween-fest/cartel-oficial.webp" alt="Cartel oficial" loading="lazy"/>
+      <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial" loading="lazy"/>
     </div>
     <div class="gallery-item" onclick="openLightbox(2)">
-      <img src="/images/halloween-fest/cartel-3-0.webp" alt="Cartel 3.0" loading="lazy"/>
+      <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel 3.0" loading="lazy"/>
     </div>
     <div class="gallery-item" onclick="openLightbox(3)">
-      <img src="/images/halloween-fest/acreditacion.webp" alt="Acreditacion" loading="lazy"/>
+      <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditacion" loading="lazy"/>
     </div>
     <div class="gallery-item gallery-item-wide" onclick="openLightbox(4)">
-      <img src="/images/halloween-fest/pulseras.webp" alt="Pulseras VIP" loading="lazy" style="object-fit:cover;"/>
+      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP" loading="lazy" style="object-fit:cover;"/>
     </div>
   </div>
   </div>
@@ -866,7 +866,7 @@ import Layout from "../layouts/Layout.astro";
 
 
 <script is:inline>
-var hwImgs=["/images/halloween-fest/tickets.webp","/images/halloween-fest/cartel-oficial.webp","/images/halloween-fest/cartel-3-0.webp","/images/halloween-fest/acreditacion.webp","/images/halloween-fest/pulseras.webp"];
+var hwImgs=["/images/halloween-fest/tickets.jpg","/images/halloween-fest/cartel-oficial.jpg","/images/halloween-fest/cartel-3-0.jpg","/images/halloween-fest/acreditacion.jpg","/images/halloween-fest/pulseras.jpg"];
 var lbIndex=0;
 function openGallery(){document.getElementById("galleryHalloween").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
 function closeGallery(){document.getElementById("galleryHalloween").classList.remove("open");document.body.style.overflow="";}
