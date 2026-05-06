@@ -1710,3 +1710,39 @@
   }
   .gallery-cv-section { margin-bottom: 40px; }
 }
+
+
+/* ================================
+   PORTADA ANIMADA CROSSFADE (Cónclave Design)
+   ================================ */
+
+.work-media-fade {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.work-media-fade .work-media-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.work-media-fade .work-media-img-alt {
+  animation: workMediaCrossfade 6s ease-in-out infinite;
+}
+
+@keyframes workMediaCrossfade {
+  0%, 45%   { opacity: 1; }
+  50%, 95%  { opacity: 0; }
+  100%      { opacity: 1; }
+}
+
+/* Reduce motion: si el usuario tiene accesibilidad activada, no animamos */
+@media (prefers-reduced-motion: reduce) {
+  .work-media-fade .work-media-img-alt {
+    animation: none;
+  }
+}

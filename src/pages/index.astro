@@ -200,6 +200,23 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </article>
 
+    <!-- Cónclave Design (Redes Sociales) - tarjeta wide con portada animada -->
+    <article class="work-card size-wide" data-category="social" onclick="openGalleryConclaveDesign()" style="cursor:pointer;">
+      <div class="work-media work-media-fade">
+        <div class="work-media-img" style="background-image:url('/images/conclave/rrss-01.jpg');"></div>
+        <div class="work-media-img work-media-img-alt" style="background-image:url('/images/conclave/rrss-02.jpg');"></div>
+      </div>
+      <span class="work-tag">Redes Sociales</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Marketing Visual · Instagram</div>
+          <div class="work-name">Cónclave Design</div>
+        </div>
+        <div class="work-year">MMXXVI</div>
+      </div>
+    </article>
+
     <!-- 1 -->
     <article class="work-card size-lg" data-category="branding">
       <div class="work-media" style="background-image:linear-gradient(135deg,#4a3b2e 0%,#1a1410 100%);"></div>
@@ -873,6 +890,39 @@ function closeGallery(){document.getElementById("galleryHalloween").classList.re
 function openLightbox(i){lbIndex=i;document.getElementById("lightboxImg").src=hwImgs[i];document.getElementById("lightboxCounter").textContent=(i+1)+" / "+hwImgs.length;document.getElementById("lightboxOverlay").classList.add("open");}
 function closeLightbox(){document.getElementById("lightboxOverlay").classList.remove("open");}
 function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;document.getElementById("lightboxImg").src=hwImgs[lbIndex];document.getElementById("lightboxCounter").textContent=(lbIndex+1)+" / "+hwImgs.length;}
+</script>
+
+<!-- Galería Cónclave Design (Marketing Visual / RRSS) -->
+<div class="gallery-overlay" id="galleryConclaveDesign">
+  <div class="gallery-header">
+    <span class="gallery-title">Cónclave Design <em>· Marketing Visual</em></span>
+    <button class="gallery-close" onclick="closeGalleryConclaveDesign()">✕</button>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-item-wide" onclick="openLightboxDesign(0)">
+      <img src="/images/conclave/rrss-01.jpg" alt="Contenido redes sociales Cónclave" loading="lazy" style="object-fit:cover;"/>
+    </div>
+    <div class="gallery-item gallery-item-wide" onclick="openLightboxDesign(1)">
+      <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Cónclave" loading="lazy" style="object-fit:cover;"/>
+    </div>
+  </div>
+</div>
+<div class="lightbox-overlay" id="lightboxDesignOverlay" onclick="closeLightboxDesign()">
+  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxDesign(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightboxDesignImg" src="" alt=""/>
+  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxDesign(1)">&#8250;</button>
+  <button class="lightbox-close" onclick="closeLightboxDesign()">✕</button>
+  <span class="lightbox-counter" id="lightboxDesignCounter"></span>
+</div>
+
+<script is:inline>
+var dsImgs=["/images/conclave/rrss-01.jpg","/images/conclave/rrss-02.jpg"];
+var dsIndex=0;
+function openGalleryConclaveDesign(){document.getElementById("galleryConclaveDesign").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
+function closeGalleryConclaveDesign(){document.getElementById("galleryConclaveDesign").classList.remove("open");document.body.style.overflow="";closeLightboxDesign();}
+function openLightboxDesign(i){dsIndex=i;document.getElementById("lightboxDesignImg").src=dsImgs[i];document.getElementById("lightboxDesignCounter").textContent=(i+1)+" / "+dsImgs.length;document.getElementById("lightboxDesignOverlay").classList.add("open");}
+function closeLightboxDesign(){document.getElementById("lightboxDesignOverlay").classList.remove("open");}
+function moveLightboxDesign(dir){dsIndex=(dsIndex+dir+dsImgs.length)%dsImgs.length;document.getElementById("lightboxDesignImg").src=dsImgs[dsIndex];document.getElementById("lightboxDesignCounter").textContent=(dsIndex+1)+" / "+dsImgs.length;}
 </script>
 
 <!-- Galería Cónclave -->
