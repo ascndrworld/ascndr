@@ -1261,7 +1261,7 @@
     .work-card.size-md-v { grid-column: span 5; grid-row: span 3; }
     .work-card.size-md   { grid-column: span 6; grid-row: span 2; }
     .work-card.size-sm   { grid-column: span 4; grid-row: span 2; }
-    .work-card.size-wide { grid-column: span 8; grid-row: span 2; }
+    .work-card.size-wide { grid-column: span 12; grid-row: span 3; }
 
     /* Imagen de la tarjeta (placeholder con gradient hasta que pongas las reales) */
     .work-media {
