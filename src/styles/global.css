@@ -1716,33 +1716,97 @@
    PORTADA ANIMADA CROSSFADE (Cónclave Design)
    ================================ */
 
-.work-media-fade {
-  position: relative;
-  overflow: hidden;
-  background: #0a0a0a;
+/* El contenedor hereda position:absolute; inset:0 de .work-media original */
+.work-media.work-media-fade {
+  background-image: none !important;
+  filter: saturate(0.95) brightness(0.92) !important;
+}
+
+.work-card:hover .work-media.work-media-fade {
+  filter: saturate(1) brightness(1) !important;
 }
 
 .work-media-fade .work-media-img {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: block;
 }
 
+/* Imagen base (la que está debajo) - siempre visible */
+.work-media-fade .work-media-img:not(.work-media-img-alt) {
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Imagen alternativa (encima) - se anima en opacidad */
 .work-media-fade .work-media-img-alt {
+  z-index: 2;
+  opacity: 1;
   animation: workMediaCrossfade 6s ease-in-out infinite;
 }
 
 @keyframes workMediaCrossfade {
-  0%, 45%   { opacity: 1; }
-  50%, 95%  { opacity: 0; }
-  100%      { opacity: 1; }
+  0%   { opacity: 1; }
+  40%  { opacity: 1; }
+  50%  { opacity: 0; }
+  90%  { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-/* Reduce motion: si el usuario tiene accesibilidad activada, no animamos */
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .work-media-fade .work-media-img-alt {
     animation: none;
+  }
+}
+
+/* ================================
+   GALERÍA CÓNCLAVE DESIGN (RRSS)
+   Las imágenes son mockups 3:2 — necesitan aspect-ratio adecuado
+   y verse enteras (sin recortar) para apreciar el diseño completo
+   ================================ */
+
+.gallery-grid-design {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-item-design {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  cursor: pointer;
+  background: #0a0a0a;
+  border-radius: 4px;
+}
+
+.gallery-item-design img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform .5s cubic-bezier(.22,1,.36,1), filter .4s ease;
+  filter: brightness(.92);
+  display: block;
+}
+
+.gallery-item-design:hover img {
+  transform: scale(1.02);
+  filter: brightness(1);
+}
+
+@media (max-width: 768px) {
+  .gallery-grid-design {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
   }
 }
