@@ -173,6 +173,19 @@ import Layout from "../layouts/Layout.astro";
   <!-- Grid de proyectos -->
   <div class="works-grid" id="worksGrid">
 
+    <article class="work-card size-md-v" data-category="direction" onclick="openGalleryConclave()" style="cursor:pointer">
+      <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.jpg'); background-size:cover; background-position:center;"></div>
+      <span class="work-tag">Dirección Creativa</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Rebranding · Pub</div>
+          <div class="work-name">Cónclave</div>
+        </div>
+        <div class="work-year">MMXXV</div>
+      </div>
+    </article>
+
     <!-- Halloween Fest -->
     <article class="work-card size-lg" data-category="branding" onclick="openGallery()" style="cursor:pointer;">
       <div class="work-media" style="background-image:url('/images/halloween-fest/pulsera-portada.jpg');"></div>
@@ -184,19 +197,6 @@ import Layout from "../layouts/Layout.astro";
           <div class="work-name">Halloween Fest</div>
         </div>
         <div class="work-year">MMXXIV — MMXXV</div>
-      </div>
-    </article>
-
-    <article class="work-card size-md-v" data-category="branding" onclick="openGalleryConclave()" style="cursor:pointer">
-      <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.jpg'); background-size:cover; background-position:center;"></div>
-      <span class="work-tag">Branding</span>
-      <span class="work-arrow">↗</span>
-      <div class="work-info">
-        <div class="work-info-left">
-          <div class="work-category">Rebranding · Pub</div>
-          <div class="work-name">Cónclave</div>
-        </div>
-        <div class="work-year">MMXXV</div>
       </div>
     </article>
 
@@ -878,7 +878,7 @@ function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;doc
 <!-- Galería Cónclave -->
 <div class="gallery-overlay gallery-conclave" id="galleryConclave">
   <div class="gallery-header">
-    <span class="gallery-title">Cónclave <em>· Rebranding</em></span>
+    <span class="gallery-title">Cónclave <em>· Dirección Creativa</em></span>
     <button class="gallery-close" onclick="closeGalleryConclave()">✕</button>
   </div>
 
