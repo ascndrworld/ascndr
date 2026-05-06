@@ -835,7 +835,7 @@ import Layout from "../layouts/Layout.astro";
 
 <div class="gallery-overlay" id="galleryHalloween">
   <div class="gallery-header">
-    <span class="gallery-title">Halloween Fest <em>· Identidad Visual</em></span>
+    <span class="gallery-title">Halloween Fest <em>· Branding</em></span>
     <button class="gallery-close" onclick="closeGallery()">✕</button>
   </div>
   <div class="gallery-grid">
@@ -877,13 +877,13 @@ function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;doc
 
 <!-- Galería Cónclave -->
 <div class="gallery-overlay gallery-conclave" id="galleryConclave">
-  <button class="gallery-close gallery-close-floating" onclick="closeGalleryConclave()" aria-label="Cerrar">✕</button>
+  <div class="gallery-header">
+    <span class="gallery-title">Cónclave <em>· Rebranding</em></span>
+    <button class="gallery-close" onclick="closeGalleryConclave()">✕</button>
+  </div>
 
   <div class="gallery-content">
     <header class="gallery-cv-header">
-      <div class="gallery-header-tag">Branding · Rebranding</div>
-      <h2 class="gallery-cv-title">Cónclave</h2>
-      <div class="gallery-cv-subtitle">Los Villares, Jaén · 2025</div>
       <p class="gallery-cv-description">
         Transformación completa del antiguo Milenio 2.0 en Cónclave: un espacio donde reunirse para tomar decisiones. El proyecto incluyó naming, logotipo y dirección de identidad visual, además de la reforma del local con nueva iluminación, paleta cromática, mejora en la distribución del espacio y elementos decorativos. Un enfoque actual para un lugar pensado como punto de encuentro.
       </p>
