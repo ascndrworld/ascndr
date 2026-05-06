@@ -1442,11 +1442,20 @@
     @media (max-width: 640px) {
       #works { padding: 32px 18px 56px; }
       .works-hero {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
       }
-      .works-hero-right { align-items: flex-start; }
+      .works-hero-right {
+        align-items: flex-end;
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .works-hero-right .works-count {
+        font-size: 0.7rem;
+        white-space: nowrap;
+      }
       .works-filters { gap: 5px; margin-bottom: 28px; }
       .filter-btn { padding: 8px 14px; font-size: 8px; }
       .works-grid {
