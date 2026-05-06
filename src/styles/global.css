@@ -1556,15 +1556,15 @@
 
 /* Cabecera del case study - texto descriptivo alineado izquierda */
 .gallery-cv-header {
-  margin-bottom: 64px;
+  margin-bottom: 40px;
   padding: 0;
 }
 
 .gallery-cv-description {
-  max-width: 880px;
+  max-width: 100%;
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.15rem;
+  line-height: 1.6;
   opacity: 0.85;
   text-align: left;
 }
