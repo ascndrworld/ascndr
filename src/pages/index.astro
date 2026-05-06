@@ -1,4 +1,3 @@
----
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -187,7 +186,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </article>
 
-    <article class="work-card size-md-v" data-category="branding">
+    <article class="work-card size-md-v" data-category="branding" onclick="openGalleryConclave()" style="cursor:pointer">
       <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.jpg'); background-size:cover; background-position:center;"></div>
       <span class="work-tag">Branding</span>
       <span class="work-arrow">↗</span>
@@ -873,6 +872,107 @@ function closeGallery(){document.getElementById("galleryHalloween").classList.re
 function openLightbox(i){lbIndex=i;document.getElementById("lightboxImg").src=hwImgs[i];document.getElementById("lightboxCounter").textContent=(i+1)+" / "+hwImgs.length;document.getElementById("lightboxOverlay").classList.add("open");}
 function closeLightbox(){document.getElementById("lightboxOverlay").classList.remove("open");}
 function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;document.getElementById("lightboxImg").src=hwImgs[lbIndex];document.getElementById("lightboxCounter").textContent=(lbIndex+1)+" / "+hwImgs.length;}
+</script>
+
+<!-- Galería Cónclave -->
+<div class="gallery-overlay gallery-conclave" id="galleryConclave">
+  <button class="gallery-close gallery-close-floating" onclick="closeGalleryConclave()" aria-label="Cerrar">✕</button>
+
+  <div class="gallery-content">
+    <header class="gallery-cv-header">
+      <div class="gallery-header-tag">Branding · Rebranding</div>
+      <h2 class="gallery-cv-title">Cónclave</h2>
+      <div class="gallery-cv-subtitle">Los Villares, Jaén · 2025</div>
+      <p class="gallery-cv-description">
+        Transformación completa del antiguo Milenio 2.0 en Cónclave: un espacio donde reunirse para tomar decisiones. El proyecto incluyó naming, logotipo y dirección de identidad visual, además de la reforma del local con nueva iluminación, paleta cromática, mejora en la distribución del espacio y elementos decorativos. Un enfoque actual para un lugar pensado como punto de encuentro.
+      </p>
+    </header>
+
+    <section class="gallery-cv-section">
+      <h3 class="gallery-cv-section-title">Antes</h3>
+      <div class="gallery-cv-grid gallery-cv-grid-2">
+        <div class="gallery-cv-item" onclick="openLightboxConclave(0)">
+          <img src="/images/conclave/antes-01.jpg" alt="Milenio 2.0 - barra antigua" loading="lazy"/>
+        </div>
+        <div class="gallery-cv-item" onclick="openLightboxConclave(1)">
+          <img src="/images/conclave/antes-02.jpg" alt="Milenio 2.0 - sala interior" loading="lazy"/>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-cv-section">
+      <h3 class="gallery-cv-section-title">Nueva identidad</h3>
+      <div class="gallery-cv-grid gallery-cv-grid-1">
+        <div class="gallery-cv-item gallery-cv-item-video" onclick="openLightboxConclave(2)">
+          <video src="/images/conclave/reveal-logo.mp4" poster="/images/conclave/reveal-logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="gallery-cv-video-tag">Logo reveal</span>
+        </div>
+        <div class="gallery-cv-item gallery-cv-item-video" onclick="openLightboxConclave(3)">
+          <video src="/images/conclave/reveal-nombre.mp4" poster="/images/conclave/reveal-nombre-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="gallery-cv-video-tag">Nombre reveal</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-cv-section">
+      <h3 class="gallery-cv-section-title">El pub hoy</h3>
+      <div class="gallery-cv-grid gallery-cv-grid-3">
+        <div class="gallery-cv-item" onclick="openLightboxConclave(4)">
+          <img src="/images/conclave/despues-01.jpg" alt="Cónclave - interior 1" loading="lazy"/>
+        </div>
+        <div class="gallery-cv-item" onclick="openLightboxConclave(5)">
+          <img src="/images/conclave/despues-02.jpg" alt="Cónclave - interior 2" loading="lazy"/>
+        </div>
+        <div class="gallery-cv-item gallery-cv-item-video" onclick="openLightboxConclave(6)">
+          <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="gallery-cv-video-tag">Evento</span>
+        </div>
+        <div class="gallery-cv-item" onclick="openLightboxConclave(7)">
+          <img src="/images/conclave/despues-03.jpg" alt="Cónclave - interior 3" loading="lazy"/>
+        </div>
+        <div class="gallery-cv-item" onclick="openLightboxConclave(8)">
+          <img src="/images/conclave/despues-04.jpg" alt="Cónclave - interior 4" loading="lazy"/>
+        </div>
+        <div class="gallery-cv-item" onclick="openLightboxConclave(9)">
+          <img src="/images/conclave/despues-05.jpg" alt="Cónclave - interior 5" loading="lazy"/>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Lightbox Cónclave (foto + vídeo) -->
+<div class="lightbox-overlay lightbox-conclave" id="lightboxConclaveOverlay" onclick="closeLightboxConclave()">
+  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxConclave(-1)">&#8249;</button>
+  <div class="lightbox-cv-wrap" onclick="event.stopPropagation()">
+    <img class="lightbox-img" id="lightboxConclaveImg" src="" alt="" style="display:none"/>
+    <video class="lightbox-cv-video" id="lightboxConclaveVideo" controls playsinline style="display:none"></video>
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxConclave(1)">&#8250;</button>
+  <button class="lightbox-close" onclick="closeLightboxConclave()">✕</button>
+  <span class="lightbox-counter" id="lightboxConclaveCounter"></span>
+</div>
+
+<script is:inline>
+var cvItems=[
+  {type:"img",src:"/images/conclave/antes-01.jpg"},
+  {type:"img",src:"/images/conclave/antes-02.jpg"},
+  {type:"video",src:"/images/conclave/reveal-logo.mp4",poster:"/images/conclave/reveal-logo-poster.jpg"},
+  {type:"video",src:"/images/conclave/reveal-nombre.mp4",poster:"/images/conclave/reveal-nombre-poster.jpg"},
+  {type:"img",src:"/images/conclave/despues-01.jpg"},
+  {type:"img",src:"/images/conclave/despues-02.jpg"},
+  {type:"video",src:"/images/conclave/evento.mp4",poster:"/images/conclave/evento-poster.jpg"},
+  {type:"img",src:"/images/conclave/despues-03.jpg"},
+  {type:"img",src:"/images/conclave/despues-04.jpg"},
+  {type:"img",src:"/images/conclave/despues-05.jpg"}
+];
+var cvIndex=0;
+function openGalleryConclave(){document.getElementById("galleryConclave").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
+function closeGalleryConclave(){document.getElementById("galleryConclave").classList.remove("open");document.body.style.overflow="";closeLightboxConclave();}
+function renderLightboxConclave(){var it=cvItems[cvIndex];var im=document.getElementById("lightboxConclaveImg");var vd=document.getElementById("lightboxConclaveVideo");if(it.type==="img"){vd.pause();vd.removeAttribute("src");vd.style.display="none";im.src=it.src;im.style.display="block";}else{im.style.display="none";im.removeAttribute("src");vd.src=it.src;if(it.poster)vd.poster=it.poster;vd.style.display="block";vd.play().catch(function(){});}document.getElementById("lightboxConclaveCounter").textContent=(cvIndex+1)+" / "+cvItems.length;}
+function openLightboxConclave(i){cvIndex=i;renderLightboxConclave();document.getElementById("lightboxConclaveOverlay").classList.add("open");}
+function moveLightboxConclave(dir){cvIndex=(cvIndex+dir+cvItems.length)%cvItems.length;renderLightboxConclave();}
+function closeLightboxConclave(){var vd=document.getElementById("lightboxConclaveVideo");vd.pause();vd.removeAttribute("src");document.getElementById("lightboxConclaveOverlay").classList.remove("open");}
 </script>
 
 </Layout>
