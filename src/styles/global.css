@@ -1637,6 +1637,16 @@
 .gallery-cv-grid-2 { grid-template-columns: 1fr 1fr; }
 .gallery-cv-grid-3 { grid-template-columns: repeat(3, 1fr); }
 
+/* Grid específico de "El pub hoy": 3 cols x 2 filas, vídeo último ocupa columna entera */
+.gallery-cv-grid-pub {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+.gallery-cv-grid-pub .gallery-cv-item-tall {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
 /* Items */
 .gallery-cv-item {
   position: relative;
@@ -1658,9 +1668,23 @@
   display: block;
 }
 
-/* Vídeo: aspecto 16/9 en lugar de 4/5 */
+/* Vídeo: aspecto 16/9 por defecto */
 .gallery-cv-item-video {
   aspect-ratio: 16/9;
+}
+
+/* Vídeo del logo: aspecto 3/4 (más alto) + contain para que se vea entero */
+.gallery-cv-item-logo {
+  aspect-ratio: 3/4;
+  background: #000;
+}
+.gallery-cv-item-logo video {
+  object-fit: contain;
+}
+
+/* Vídeo "tall" (evento): se autoadapta al span 2 filas, sin aspect-ratio fijo */
+.gallery-cv-item-tall {
+  aspect-ratio: auto;
 }
 
 /* Tag de vídeo */
@@ -1708,15 +1732,27 @@
   .gallery-cv-grid-3 .gallery-cv-item-video {
     grid-column: span 2;
   }
+  /* Pub hoy: pasa a 2 columnas, vídeo en última fila a ancho completo */
+  .gallery-cv-grid-pub {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .gallery-cv-grid-pub .gallery-cv-item-tall {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    aspect-ratio: 16/9;
+  }
 }
 
 /* Móvil */
 @media (max-width: 480px) {
   .gallery-cv-grid-2,
-  .gallery-cv-grid-3 {
+  .gallery-cv-grid-3,
+  .gallery-cv-grid-pub {
     grid-template-columns: 1fr;
   }
-  .gallery-cv-grid-3 .gallery-cv-item-video {
+  .gallery-cv-grid-3 .gallery-cv-item-video,
+  .gallery-cv-grid-pub .gallery-cv-item-tall {
     grid-column: auto;
   }
   .gallery-cv-description {

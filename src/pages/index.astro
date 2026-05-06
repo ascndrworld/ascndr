@@ -904,7 +904,7 @@ function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;doc
     <section class="gallery-cv-section">
       <h3 class="gallery-cv-section-title">Nueva identidad</h3>
       <div class="gallery-cv-grid gallery-cv-grid-1">
-        <div class="gallery-cv-item gallery-cv-item-video" onclick="openLightboxConclave(2)">
+        <div class="gallery-cv-item gallery-cv-item-video gallery-cv-item-logo" onclick="openLightboxConclave(2)">
           <video src="/images/conclave/reveal-logo.mp4" poster="/images/conclave/reveal-logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
           <span class="gallery-cv-video-tag">Logo reveal</span>
         </div>
@@ -917,25 +917,22 @@ function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;doc
 
     <section class="gallery-cv-section">
       <h3 class="gallery-cv-section-title">El pub hoy</h3>
-      <div class="gallery-cv-grid gallery-cv-grid-3">
+      <div class="gallery-cv-grid gallery-cv-grid-pub">
         <div class="gallery-cv-item" onclick="openLightboxConclave(4)">
           <img src="/images/conclave/despues-01.jpg" alt="Cónclave - interior 1" loading="lazy"/>
         </div>
         <div class="gallery-cv-item" onclick="openLightboxConclave(5)">
           <img src="/images/conclave/despues-02.jpg" alt="Cónclave - interior 2" loading="lazy"/>
         </div>
-        <div class="gallery-cv-item gallery-cv-item-video" onclick="openLightboxConclave(6)">
-          <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-          <span class="gallery-cv-video-tag">Evento</span>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(7)">
+        <div class="gallery-cv-item" onclick="openLightboxConclave(6)">
           <img src="/images/conclave/despues-03.jpg" alt="Cónclave - interior 3" loading="lazy"/>
         </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(8)">
+        <div class="gallery-cv-item" onclick="openLightboxConclave(7)">
           <img src="/images/conclave/despues-04.jpg" alt="Cónclave - interior 4" loading="lazy"/>
         </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(9)">
-          <img src="/images/conclave/despues-05.jpg" alt="Cónclave - interior 5" loading="lazy"/>
+        <div class="gallery-cv-item gallery-cv-item-video gallery-cv-item-tall" onclick="openLightboxConclave(8)">
+          <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="gallery-cv-video-tag">Evento</span>
         </div>
       </div>
     </section>
@@ -962,10 +959,9 @@ var cvItems=[
   {type:"video",src:"/images/conclave/reveal-nombre.mp4",poster:"/images/conclave/reveal-nombre-poster.jpg"},
   {type:"img",src:"/images/conclave/despues-01.jpg"},
   {type:"img",src:"/images/conclave/despues-02.jpg"},
-  {type:"video",src:"/images/conclave/evento.mp4",poster:"/images/conclave/evento-poster.jpg"},
   {type:"img",src:"/images/conclave/despues-03.jpg"},
   {type:"img",src:"/images/conclave/despues-04.jpg"},
-  {type:"img",src:"/images/conclave/despues-05.jpg"}
+  {type:"video",src:"/images/conclave/evento.mp4",poster:"/images/conclave/evento-poster.jpg"}
 ];
 var cvIndex=0;
 function openGalleryConclave(){document.getElementById("galleryConclave").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
