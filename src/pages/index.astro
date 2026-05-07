@@ -899,7 +899,7 @@ function closeLightboxConclave(){var vd=document.getElementById("lightboxConclav
 .gallery-header-hw3-left {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 }
 .gallery-hw3-credits {
   font-size: 0.78rem;
@@ -910,47 +910,87 @@ function closeLightboxConclave(){var vd=document.getElementById("lightboxConclav
   padding: 0;
 }
 
-/* Grid irregular de 12 columnas */
+/* Grid puzzle: 12 columnas, filas explícitas para respetar proporciones */
 .hw3-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 220px;
-  gap: 6px;
+  grid-template-rows:
+    260px   /* fila 1 — horizontal escenario */
+    340px   /* fila 2 — tall izq + dos verticales apiladas */
+    340px   /* fila 3 — continúa tall + dos verticales apiladas */
+    400px   /* fila 4 — tres verticales */
+    340px   /* fila 5 — dos verticales + tall der */
+    340px   /* fila 6 — continúa + wide2 cierra */
+    260px;  /* fila 7 — horizontal cierre */
+  gap: 5px;
 }
 
 .hw3-item {
   overflow: hidden;
   cursor: pointer;
-  grid-column: span 4;
-  grid-row: span 1;
   background: #111;
 }
 .hw3-item img {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform .35s ease;
+  transition: transform .38s ease;
 }
-.hw3-item:hover img { transform: scale(1.04); }
+.hw3-item:hover img { transform: scale(1.035); }
 
-/* Ancho completo */
-.hw3-wide  { grid-column: span 12; grid-row: span 1; }
-/* Medio ancho */
-.hw3-wide2 { grid-column: span 8;  grid-row: span 1; }
-/* Alto doble */
-.hw3-tall  { grid-column: span 4;  grid-row: span 2; }
+/* ── Piezas del puzzle ─────────────────────────────── */
 
-/* Fila 2 layout:
-   hw3-tall (4 cols, 2 rows) + item (4 cols) + item (4 cols)
-   El tall ocupa las 2 filas, las otras dos se apilan en col 5-8 y 9-12 */
+/* Fila 1: horizontal completa */
+.hw3-f1-wide   { grid-column: 1 / 13;  grid-row: 1; }
 
+/* Fila 2-3: tall izquierdo */
+.hw3-f23-tall  { grid-column: 1 / 5;   grid-row: 2 / 4; }
+/* Fila 2: dos celdas derechas */
+.hw3-f2-mid    { grid-column: 5 / 9;   grid-row: 2; }
+.hw3-f2-right  { grid-column: 9 / 13;  grid-row: 2; }
+/* Fila 3: dos celdas derechas */
+.hw3-f3-mid    { grid-column: 5 / 9;   grid-row: 3; }
+.hw3-f3-right  { grid-column: 9 / 13;  grid-row: 3; }
+
+/* Fila 4: tres verticales iguales */
+.hw3-f4-a      { grid-column: 1 / 5;   grid-row: 4; }
+.hw3-f4-b      { grid-column: 5 / 9;   grid-row: 4; }
+.hw3-f4-c      { grid-column: 9 / 13;  grid-row: 4; }
+
+/* Fila 5-6: tall derecho */
+.hw3-f56-tall  { grid-column: 9 / 13;  grid-row: 5 / 7; }
+/* Fila 5: dos celdas izquierdas */
+.hw3-f5-left   { grid-column: 1 / 5;   grid-row: 5; }
+.hw3-f5-mid    { grid-column: 5 / 9;   grid-row: 5; }
+/* Fila 6: wide2 cierra las 8 cols izquierdas */
+.hw3-f6-wide2  { grid-column: 1 / 9;   grid-row: 6; }
+
+/* Fila 7: horizontal cierre completo */
+.hw3-f7-wide   { grid-column: 1 / 13;  grid-row: 7; }
+
+/* ── Responsive ──────────────────────────────────── */
 @media (max-width: 768px) {
-  .hw3-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
-  .hw3-item, .hw3-wide, .hw3-wide2, .hw3-tall { grid-column: span 2; grid-row: span 1; }
+  .hw3-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: 200px;
+  }
+  .hw3-f1-wide, .hw3-f23-tall, .hw3-f2-mid, .hw3-f2-right,
+  .hw3-f3-mid, .hw3-f3-right, .hw3-f4-a, .hw3-f4-b, .hw3-f4-c,
+  .hw3-f56-tall, .hw3-f5-left, .hw3-f5-mid, .hw3-f6-wide2, .hw3-f7-wide {
+    grid-column: span 2; grid-row: span 1;
+  }
 }
 @media (max-width: 480px) {
-  .hw3-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
-  .hw3-item, .hw3-wide, .hw3-wide2, .hw3-tall { grid-column: span 1; grid-row: span 1; }
+  .hw3-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 240px;
+  }
+  .hw3-f1-wide, .hw3-f23-tall, .hw3-f2-mid, .hw3-f2-right,
+  .hw3-f3-mid, .hw3-f3-right, .hw3-f4-a, .hw3-f4-b, .hw3-f4-c,
+  .hw3-f56-tall, .hw3-f5-left, .hw3-f5-mid, .hw3-f6-wide2, .hw3-f7-wide {
+    grid-column: span 1; grid-row: span 1;
+  }
 }
 </style>
 
@@ -964,57 +1004,64 @@ function closeLightboxConclave(){var vd=document.getElementById("lightboxConclav
     <button class="gallery-close" onclick="closeGalleryHalloween3()">✕</button>
   </div>
   <div class="gallery-content">
-
     <div class="hw3-grid">
-      <!-- 1 — Horizontal ancha, toda la fila -->
-      <div class="hw3-item hw3-wide" onclick="openLightboxHalloween3(0)">
+
+      <!-- F1 — Horizontal escenario completo -->
+      <div class="hw3-item hw3-f1-wide" onclick="openLightboxHalloween3(0)">
         <img src="/images/halloween-fest/hw3-01.jpg" alt="Escenario Halloween Fest" loading="lazy"/>
       </div>
 
-      <!-- Fila 2: tall izq (4 cols × 2 filas) + dos apiladas der -->
-      <div class="hw3-item hw3-tall" onclick="openLightboxHalloween3(1)">
-        <img src="/images/halloween-fest/hw3-02.jpg" alt="Escenario luces amarillas" loading="lazy"/>
+      <!-- F2-3 tall izquierdo: DJ zombie (vertical, ocupa 2 filas) -->
+      <div class="hw3-item hw3-f23-tall" onclick="openLightboxHalloween3(7)">
+        <img src="/images/halloween-fest/hw3-08.jpg" alt="DJ zombie" loading="lazy"/>
       </div>
-      <div class="hw3-item" onclick="openLightboxHalloween3(2)">
+      <!-- F2 derecha: escenario azul + pista -->
+      <div class="hw3-item hw3-f2-mid" onclick="openLightboxHalloween3(2)">
         <img src="/images/halloween-fest/hw3-03.jpg" alt="Escenario luces azules" loading="lazy"/>
       </div>
-      <div class="hw3-item" onclick="openLightboxHalloween3(3)">
+      <div class="hw3-item hw3-f2-right" onclick="openLightboxHalloween3(3)">
         <img src="/images/halloween-fest/hw3-04.jpg" alt="Pista de baile" loading="lazy"/>
       </div>
-      <!-- Fila 3 (continúa debajo del tall): dos cols + col vacía que cierra el tall -->
-      <div class="hw3-item" onclick="openLightboxHalloween3(4)">
+      <!-- F3 derecha: ambiente + vinilo -->
+      <div class="hw3-item hw3-f3-mid" onclick="openLightboxHalloween3(4)">
         <img src="/images/halloween-fest/hw3-05.jpg" alt="Ambiente pista" loading="lazy"/>
       </div>
-      <div class="hw3-item" onclick="openLightboxHalloween3(5)">
+      <div class="hw3-item hw3-f3-right" onclick="openLightboxHalloween3(5)">
         <img src="/images/halloween-fest/hw3-06.jpg" alt="DJ vinilo" loading="lazy"/>
       </div>
 
-      <!-- Fila 4: tres iguales -->
-      <div class="hw3-item" onclick="openLightboxHalloween3(6)">
-        <img src="/images/halloween-fest/hw3-07.jpg" alt="DJ Pioneer" loading="lazy"/>
+      <!-- F4 — Tres verticales: escenario amarillo, pareja disfrazada, tortugas ninja -->
+      <div class="hw3-item hw3-f4-a" onclick="openLightboxHalloween3(1)">
+        <img src="/images/halloween-fest/hw3-02.jpg" alt="Escenario luces amarillas" loading="lazy"/>
       </div>
-      <div class="hw3-item" onclick="openLightboxHalloween3(7)">
-        <img src="/images/halloween-fest/hw3-08.jpg" alt="DJ zombie" loading="lazy"/>
-      </div>
-      <div class="hw3-item" onclick="openLightboxHalloween3(8)">
-        <img src="/images/halloween-fest/hw3-09.jpg" alt="Micro verde" loading="lazy"/>
-      </div>
-
-      <!-- Fila 5: dos pequeñas izq + tall der -->
-      <div class="hw3-item" onclick="openLightboxHalloween3(9)">
+      <div class="hw3-item hw3-f4-b" onclick="openLightboxHalloween3(9)">
         <img src="/images/halloween-fest/hw3-10.jpg" alt="Pareja disfrazada" loading="lazy"/>
       </div>
-      <div class="hw3-item" onclick="openLightboxHalloween3(10)">
+      <div class="hw3-item hw3-f4-c" onclick="openLightboxHalloween3(10)">
         <img src="/images/halloween-fest/hw3-11.jpg" alt="Tortugas ninja" loading="lazy"/>
       </div>
-      <div class="hw3-item hw3-tall" onclick="openLightboxHalloween3(11)">
+
+      <!-- F5-6 tall derecho: grupo staff (vertical, ocupa 2 filas) -->
+      <div class="hw3-item hw3-f56-tall" onclick="openLightboxHalloween3(11)">
         <img src="/images/halloween-fest/hw3-12.jpg" alt="Grupo staff" loading="lazy"/>
       </div>
-
-      <!-- Fila 6: wide2 (8 cols) que cierra debajo del tall der -->
-      <div class="hw3-item hw3-wide2" onclick="openLightboxHalloween3(12)">
+      <!-- F5 izquierda: Pioneer + micro verde -->
+      <div class="hw3-item hw3-f5-left" onclick="openLightboxHalloween3(6)">
+        <img src="/images/halloween-fest/hw3-07.jpg" alt="DJ Pioneer" loading="lazy"/>
+      </div>
+      <div class="hw3-item hw3-f5-mid" onclick="openLightboxHalloween3(8)">
+        <img src="/images/halloween-fest/hw3-09.jpg" alt="Micro verde" loading="lazy"/>
+      </div>
+      <!-- F6 wide2: equipo cierra las 8 cols izquierdas -->
+      <div class="hw3-item hw3-f6-wide2" onclick="openLightboxHalloween3(12)">
         <img src="/images/halloween-fest/hw3-13.jpg" alt="Equipo Halloween Fest" loading="lazy"/>
       </div>
+
+      <!-- F7 — Horizontal cierre completo -->
+      <div class="hw3-item hw3-f7-wide" onclick="openLightboxHalloween3(0)">
+        <img src="/images/halloween-fest/hw3-01.jpg" alt="Escenario Halloween Fest" loading="lazy" style="object-position: center 70%;"/>
+      </div>
+
     </div>
   </div>
 </div>
