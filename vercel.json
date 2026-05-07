@@ -4,6 +4,6 @@
     { "source": "/trabajos/direccion-creativa/conclave", "destination": "/trabajos/direccion-creativa/conclave" },
     { "source": "/trabajos/redes-sociales/conclave-design", "destination": "/trabajos/redes-sociales/conclave-design" },
     { "source": "/trabajos/fotografia/halloweenfest-fotografia", "destination": "/trabajos/fotografia/halloweenfest-fotografia" },
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
