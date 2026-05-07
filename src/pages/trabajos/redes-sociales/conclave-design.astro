@@ -1,0 +1,127 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+<Layout
+  title="Cónclave Design — Marketing y Redes Sociales · Ascndr Jaén"
+  description="Gestión de contenido visual e Instagram marketing para Cónclave pub en Jaén. Estrategia de redes sociales, diseño de publicaciones y mockups por Ascndr, estudio creativo en Jaén."
+  canonical="https://ascndrworld.com/trabajos/redes-sociales/conclave-design"
+>
+
+<style is:global>
+  @import "../../../styles/global.css";
+
+  .project-page { background: #0a0a0a; color: #f0ece6; min-height: 100vh; font-family: "Montserrat", sans-serif; }
+  .project-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); }
+  .project-nav a { color: #888; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+  .project-nav a:hover { color: #f0ece6; }
+  .project-nav .nav-logo { color: #f0ece6; font-size: 13px; font-weight: 500; letter-spacing: .08em; }
+
+  .project-hero { height: 70vh; min-height: 400px; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+  .project-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.5); }
+  .project-hero-content { position: relative; z-index: 2; padding: 0 40px 48px; width: 100%; max-width: 900px; }
+  .project-tag { display: inline-block; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #888; border: 0.5px solid #333; border-radius: 999px; padding: 5px 14px; margin-bottom: 16px; }
+  .project-title { font-size: clamp(32px, 6vw, 64px); font-weight: 500; letter-spacing: -.02em; color: #f0ece6; margin: 0 0 8px; }
+  .project-subtitle { font-size: 14px; color: #888; letter-spacing: .04em; }
+
+  .project-body { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+  .project-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 60px; }
+  .meta-item { background: #111; padding: 20px; }
+  .meta-label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+  .meta-value { font-size: 13px; color: #f0ece6; font-weight: 500; }
+
+  .project-desc { font-size: 15px; line-height: 1.8; color: #aaa; margin-bottom: 60px; max-width: 640px; }
+
+  .rrss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 60px; }
+  .rrss-grid img { width: 100%; display: block; object-fit: contain; background: #111; transition: filter .3s; }
+  .rrss-grid img:hover { filter: brightness(1.08); }
+
+  .project-cta { border-top: 0.5px solid #1e1e1e; padding-top: 48px; display: flex; align-items: center; justify-content: space-between; }
+  .cta-text { font-size: 13px; color: #555; }
+  .cta-link { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: border-color .2s; }
+  .cta-link:hover { border-color: #555; }
+
+  @media (max-width: 640px) {
+    .project-nav { padding: 16px 20px; }
+    .project-hero-content { padding: 0 20px 32px; }
+    .project-body { padding: 40px 20px; }
+    .project-meta { grid-template-columns: 1fr; }
+    .rrss-grid { grid-template-columns: 1fr; }
+    .project-cta { flex-direction: column; gap: 20px; align-items: flex-start; }
+  }
+</style>
+
+<script type="application/ld+json" is:inline>{`
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Cónclave Design — Marketing y Redes Sociales",
+  "description": "Gestión de contenido visual e Instagram marketing para Cónclave pub en Jaén. Estrategia, diseño de publicaciones y mockups.",
+  "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
+  "url": "https://ascndrworld.com/trabajos/redes-sociales/conclave-design",
+  "image": "https://ascndrworld.com/images/conclave/rrss-01.jpg",
+  "keywords": ["redes sociales", "Instagram", "marketing visual", "contenido", "pub", "Jaén"],
+  "locationCreated": { "@type": "Place", "name": "Jaén, España" },
+  "dateCreated": "2026",
+  "genre": "Marketing · Redes Sociales · Instagram"
+}
+`}</script>
+
+<div class="project-page">
+
+  <nav class="project-nav">
+    <a href="/trabajos">← Trabajos</a>
+    <a href="/" class="nav-logo">Ascndr</a>
+    <a href="/">Contacto</a>
+  </nav>
+
+  <div class="project-hero">
+    <img
+      src="/images/conclave/rrss-01.jpg"
+      alt="Cónclave Design — Marketing y redes sociales en Jaén por Ascndr"
+      fetchpriority="high"
+    />
+    <div class="project-hero-content">
+      <span class="project-tag">Marketing · Redes Sociales</span>
+      <h1 class="project-title">Cónclave Design</h1>
+      <p class="project-subtitle">Marketing Visual · Instagram · Jaén</p>
+    </div>
+  </div>
+
+  <div class="project-body">
+
+    <div class="project-meta">
+      <div class="meta-item">
+        <div class="meta-label">Categoría</div>
+        <div class="meta-value">Redes Sociales</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Año</div>
+        <div class="meta-value">MMXXVI</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Cliente</div>
+        <div class="meta-value">Cónclave Pub · Jaén</div>
+      </div>
+    </div>
+
+    <p class="project-desc">
+      Estrategia de contenido visual y gestión de redes sociales para Cónclave pub en Jaén.
+      Diseño de publicaciones para Instagram, mockups de stories y feed, y coordinación
+      de la identidad visual en todos los canales digitales del local.
+    </p>
+
+    <div class="rrss-grid">
+      <img src="/images/conclave/rrss-01.jpg" alt="Contenido Instagram Cónclave pub Jaén — Ascndr marketing redes sociales" loading="lazy"/>
+      <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Semana Santa Cónclave Jaén — Ascndr gestión redes" loading="lazy"/>
+    </div>
+
+    <div class="project-cta">
+      <p class="cta-text">¿Tienes un proyecto similar?</p>
+      <a href="/" class="cta-link">Hablemos →</a>
+    </div>
+
+  </div>
+
+</div>
+
+</Layout>

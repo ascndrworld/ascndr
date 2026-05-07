@@ -1,18 +1,76 @@
 ---
 export interface Props {
   title?: string;
+  description?: string;
+  canonical?: string;
 }
-const { title = "Ascndr" } = Astro.props;
+const {
+  title = "Ascndr · Estudio Creativo en Jaén - Branding, Lanzamientos y Redes Sociales",
+  description = "Ascndr es un estudio creativo en Jaén especializado en branding, identidad visual, dirección creativa de eventos, fotografía y gestión de redes sociales para empresas y negocios.",
+  canonical = "https://ascndrworld.com"
+} = Astro.props;
+const ogImage = "https://ascndrworld.com/images/og-ascndr.jpg";
 ---
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ── SEO básico ── -->
   <title>{title}</title>
+  <meta name="description" content={description}/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="Ascndr"/>
+  <link rel="canonical" href={canonical}/>
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Ascndr"/>
+  <meta property="og:title" content={title}/>
+  <meta property="og:description" content={description}/>
+  <meta property="og:url" content={canonical}/>
+  <meta property="og:image" content={ogImage}/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:locale" content="es_ES"/>
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content={title}/>
+  <meta name="twitter:description" content={description}/>
+  <meta name="twitter:image" content={ogImage}/>
+
+  <!-- ── Schema.org LocalBusiness ── -->
+  <script type="application/ld+json" is:inline>{`
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Ascndr",
+      "description": "Estudio creativo en Jaén especializado en branding, identidad visual, dirección creativa de eventos, fotografía y gestión de redes sociales.",
+      "url": "https://ascndrworld.com",
+      "logo": "https://ascndrworld.com/ascndr-logo.png",
+      "image": "${ogImage}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jaén",
+        "addressRegion": "Andalucía",
+        "addressCountry": "ES"
+      },
+      "areaServed": ["Jaén", "Andalucía", "España"],
+      "serviceType": ["Branding", "Identidad Visual", "Dirección Creativa", "Fotografía de Eventos", "Gestión de Redes Sociales", "Marketing Digital"],
+      "sameAs": [
+        "https://www.instagram.com/ascndrworld"
+      ]
+    }
+  `}</script>
+
+  <!-- ── Fuentes ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- ── EmailJS ── -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script is:inline>
     (function(){

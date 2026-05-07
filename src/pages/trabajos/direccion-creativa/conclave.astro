@@ -1,0 +1,149 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+<Layout
+  title="Cónclave — Dirección Creativa y Rebranding · Ascndr Jaén"
+  description="Transformación completa del pub Milenio 2.0 en Cónclave: naming, nueva identidad visual, señalética y gestión de redes sociales en Jaén. Proyecto de dirección creativa por Ascndr."
+  canonical="https://ascndrworld.com/trabajos/direccion-creativa/conclave"
+>
+
+<style is:global>
+  @import "../../../styles/global.css";
+
+  .project-page {
+    background: #0a0a0a; color: #f0ece6;
+    min-height: 100vh; font-family: "Montserrat", sans-serif;
+  }
+  .project-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  }
+  .project-nav a { color: #888; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+  .project-nav a:hover { color: #f0ece6; }
+  .project-nav .nav-logo { color: #f0ece6; font-size: 13px; font-weight: 500; letter-spacing: .08em; }
+
+  .project-hero { height: 70vh; min-height: 400px; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+  .project-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+  .project-hero-content { position: relative; z-index: 2; padding: 0 40px 48px; width: 100%; max-width: 900px; }
+  .project-tag { display: inline-block; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #888; border: 0.5px solid #333; border-radius: 999px; padding: 5px 14px; margin-bottom: 16px; }
+  .project-title { font-size: clamp(32px, 6vw, 64px); font-weight: 500; letter-spacing: -.02em; color: #f0ece6; margin: 0 0 8px; }
+  .project-subtitle { font-size: 14px; color: #888; letter-spacing: .04em; }
+
+  .project-body { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+  .project-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 60px; }
+  .meta-item { background: #111; padding: 20px; }
+  .meta-label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+  .meta-value { font-size: 13px; color: #f0ece6; font-weight: 500; }
+
+  .project-desc { font-size: 15px; line-height: 1.8; color: #aaa; margin-bottom: 60px; max-width: 640px; }
+
+  .section-label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #555; margin-bottom: 20px; }
+
+  .antes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 48px; }
+  .antes-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; filter: saturate(0.6) brightness(0.8); }
+
+  .despues-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; margin-bottom: 60px; }
+  .despues-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: filter .3s; }
+  .despues-grid img:hover { filter: brightness(1.1); }
+
+  .project-cta { border-top: 0.5px solid #1e1e1e; padding-top: 48px; display: flex; align-items: center; justify-content: space-between; }
+  .cta-text { font-size: 13px; color: #555; }
+  .cta-link { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: border-color .2s; }
+  .cta-link:hover { border-color: #555; }
+
+  @media (max-width: 640px) {
+    .project-nav { padding: 16px 20px; }
+    .project-hero-content { padding: 0 20px 32px; }
+    .project-body { padding: 40px 20px; }
+    .project-meta { grid-template-columns: 1fr; }
+    .antes-grid, .despues-grid { grid-template-columns: 1fr; }
+    .project-cta { flex-direction: column; gap: 20px; align-items: flex-start; }
+  }
+</style>
+
+<script type="application/ld+json" is:inline>{`
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Cónclave — Dirección Creativa y Rebranding",
+  "description": "Transformación completa del pub Milenio 2.0 en Cónclave: naming, nueva identidad visual, señalética y gestión de redes sociales en Jaén.",
+  "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
+  "url": "https://ascndrworld.com/trabajos/direccion-creativa/conclave",
+  "image": "https://ascndrworld.com/images/conclave/portada-conclave2.jpg",
+  "keywords": ["rebranding", "dirección creativa", "naming", "pub", "hostelería", "Jaén"],
+  "locationCreated": { "@type": "Place", "name": "Jaén, España" },
+  "dateCreated": "2025",
+  "genre": "Dirección Creativa · Rebranding · Pub"
+}
+`}</script>
+
+<div class="project-page">
+
+  <nav class="project-nav">
+    <a href="/trabajos">← Trabajos</a>
+    <a href="/" class="nav-logo">Ascndr</a>
+    <a href="/" class="cta-nav">Contacto</a>
+  </nav>
+
+  <div class="project-hero">
+    <img
+      src="/images/conclave/portada-conclave2.jpg"
+      alt="Cónclave pub Jaén — Rebranding y dirección creativa por Ascndr"
+      fetchpriority="high"
+    />
+    <div class="project-hero-content">
+      <span class="project-tag">Dirección Creativa · Rebranding</span>
+      <h1 class="project-title">Cónclave</h1>
+      <p class="project-subtitle">Rebranding · Pub · Jaén</p>
+    </div>
+  </div>
+
+  <div class="project-body">
+
+    <div class="project-meta">
+      <div class="meta-item">
+        <div class="meta-label">Categoría</div>
+        <div class="meta-value">Dirección Creativa</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Año</div>
+        <div class="meta-value">MMXXV</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Cliente</div>
+        <div class="meta-value">Cónclave Pub · Jaén</div>
+      </div>
+    </div>
+
+    <p class="project-desc">
+      Transformación completa del antiguo Milenio 2.0 en Cónclave: un espacio donde reunirse para tomar decisiones.
+      Nuevo nombre, nueva identidad visual, señalética y rediseño completo de la comunicación del local.
+      Un proyecto de rebranding integral que cambió la percepción del espacio en Jaén.
+    </p>
+
+    <p class="section-label">Antes</p>
+    <div class="antes-grid">
+      <img src="/images/conclave/antes-01.jpg" alt="Milenio 2.0 antes del rebranding — Jaén" loading="lazy"/>
+      <img src="/images/conclave/antes-02.jpg" alt="Interior Milenio 2.0 antes de la transformación — Jaén" loading="lazy"/>
+    </div>
+
+    <p class="section-label">El pub hoy</p>
+    <div class="despues-grid">
+      <img src="/images/conclave/despues-01.jpg" alt="Cónclave pub Jaén interior tras el rebranding — Ascndr" loading="lazy"/>
+      <img src="/images/conclave/despues-02.jpg" alt="Cónclave pub Jaén nueva identidad visual — Ascndr" loading="lazy"/>
+      <img src="/images/conclave/despues-03.jpg" alt="Espacio Cónclave Jaén rebranding completo — Ascndr" loading="lazy"/>
+      <img src="/images/conclave/despues-04.jpg" alt="Ambiente Cónclave pub Jaén dirección creativa — Ascndr" loading="lazy"/>
+    </div>
+
+    <div class="project-cta">
+      <p class="cta-text">¿Tienes un proyecto similar?</p>
+      <a href="/" class="cta-link">Hablemos →</a>
+    </div>
+
+  </div>
+
+</div>
+
+</Layout>

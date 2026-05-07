@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://ascndrworld.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/branding</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/redes-sociales</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/fotografia</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/direccion-creativa</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/branding/halloweenfest</loc><changefreq>yearly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/direccion-creativa/conclave</loc><changefreq>yearly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/redes-sociales/conclave-design</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ascndrworld.com/trabajos/fotografia/halloweenfest-fotografia</loc><changefreq>yearly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ascndrworld.com/terminos</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://ascndrworld.com/privacidad</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
