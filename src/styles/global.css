@@ -50,7 +50,7 @@
          pero solo se enciende en el 33% inicial (cuando el halo cruza). */
       animation:
         logoHaloIntro 3.5s 3.5s ease-in-out both,
-        logoHaloLoop 10.5s 7s ease-in-out infinite;
+        logoHaloLoop 10.5s 10.5s ease-in-out infinite;
     }
 
     /* 1er pulso del halo del logo — acompaña el barrido intro */
@@ -131,7 +131,7 @@
          luego en bucle cada 10.5s = 3 ciclos del botón */
       animation:
         haloSweepIntro 3.5s 3.5s ease-in-out both,
-        haloSweepLoop 10.5s 7s ease-in-out infinite;
+        haloSweepLoop 10.5s 10.5s ease-in-out infinite;
     }
 
     /* Primer barrido (intro): easing idéntico al del botón para que se perciban
@@ -236,7 +236,7 @@
       transform-origin: 53px 11px;
       animation:
         sparkleTwinkleIntro 3.5s 3.5s ease-in-out both,
-        sparkleTwinkleLoop 10.5s 7s ease-in-out infinite;
+        sparkleTwinkleLoop 10.5s 10.5s ease-in-out infinite;
     }
 
     .works-arrow:hover {
