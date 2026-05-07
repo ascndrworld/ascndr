@@ -893,12 +893,20 @@ function closeLightboxConclave(){var vd=document.getElementById("lightboxConclav
 
 <!-- ════ CSS GALERÍA HW3 ════ -->
 <style>
+.gallery-header-hw3 {
+  align-items: flex-start !important;
+}
+.gallery-header-hw3-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .gallery-hw3-credits {
   font-size: 0.78rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: #888;
-  margin: 0 0 28px 0;
+  margin: 0;
   padding: 0;
 }
 
@@ -948,12 +956,14 @@ function closeLightboxConclave(){var vd=document.getElementById("lightboxConclav
 
 <!-- Galería Halloween Fest · Desde dentro -->
 <div class="gallery-overlay gallery-hw3" id="galleryHalloween3">
-  <div class="gallery-header">
-    <span class="gallery-title">Halloween Fest <em>· Desde dentro</em></span>
+  <div class="gallery-header gallery-header-hw3">
+    <div class="gallery-header-hw3-left">
+      <span class="gallery-title">Halloween Fest <em>· Desde dentro</em></span>
+      <p class="gallery-hw3-credits">Shot by: @alvarojimenez7 · @bydorian__</p>
+    </div>
     <button class="gallery-close" onclick="closeGalleryHalloween3()">✕</button>
   </div>
   <div class="gallery-content">
-    <p class="gallery-hw3-credits">Shot by: @bydorian__ · @alvarojimenez7</p>
 
     <div class="hw3-grid">
       <!-- 1 — Horizontal ancha, toda la fila -->
