@@ -768,15 +768,35 @@ function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;doc
     <span class="gallery-title">Cónclave Design <em>· Marketing Visual</em></span>
     <button class="gallery-close" onclick="closeGalleryConclaveDesign()">✕</button>
   </div>
-  <div class="gallery-grid">
-    <div class="gallery-item gallery-item-wide" onclick="openLightboxDesign(0)">
-      <img src="/images/conclave/rrss-01.jpg" alt="Contenido redes sociales Cónclave" loading="lazy" style="object-fit:contain; background:#111;"/>
-    </div>
-    <div class="gallery-item gallery-item-wide" onclick="openLightboxDesign(1)">
-      <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Cónclave" loading="lazy" style="object-fit:contain; background:#111;"/>
+  <div class="gallery-content">
+    <div class="ds-grid">
+      <div class="ds-item" onclick="openLightboxDesign(0)">
+        <img src="/images/conclave/rrss-01.jpg" alt="Contenido redes sociales Cónclave" loading="lazy"/>
+      </div>
+      <div class="ds-item" onclick="openLightboxDesign(1)">
+        <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Cónclave" loading="lazy"/>
+      </div>
     </div>
   </div>
 </div>
+<style>
+.ds-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.ds-item {
+  cursor: pointer;
+  overflow: hidden;
+}
+.ds-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform .35s ease;
+}
+.ds-item:hover img { transform: scale(1.02); }
+</style>
 <div class="lightbox-overlay" id="lightboxDesignOverlay" onclick="closeLightboxDesign()">
   <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxDesign(-1)">&#8249;</button>
   <img class="lightbox-img" id="lightboxDesignImg" src="" alt=""/>
