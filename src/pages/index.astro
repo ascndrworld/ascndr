@@ -156,7 +156,7 @@ import Layout from "../layouts/Layout.astro";
       <h1 class="works-title">Trabajos<sup>©</sup></h1>
     </div>
     <div class="works-hero-right">
-      <span class="works-count"><strong id="worksCount">3</strong> / 3 proyectos</span>
+      <span class="works-count"><strong id="worksCount">4</strong> / 4 proyectos</span>
       <span class="works-count" style="color:#555">Seleccionados</span>
     </div>
   </div>
@@ -197,6 +197,20 @@ import Layout from "../layouts/Layout.astro";
           <div class="work-name">Halloween Fest</div>
         </div>
         <div class="work-year">MMXXIV — MMXXV</div>
+      </div>
+    </article>
+
+    <!-- 3ª Ed. Halloween Fest (Fotografía) -->
+    <article class="work-card size-lg" data-category="photography" onclick="openGalleryHalloween3()" style="cursor:pointer;">
+      <div class="work-media" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg'); background-size:cover; background-position:center;"></div>
+      <span class="work-tag">Fotografía</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Desde dentro · Shooting</div>
+          <div class="work-name">Halloween Fest</div>
+        </div>
+        <div class="work-year">MMXXV</div>
       </div>
     </article>
 
@@ -875,6 +889,48 @@ function renderLightboxConclave(){var it=cvItems[cvIndex];var im=document.getEle
 function openLightboxConclave(i){cvIndex=i;renderLightboxConclave();document.getElementById("lightboxConclaveOverlay").classList.add("open");}
 function moveLightboxConclave(dir){cvIndex=(cvIndex+dir+cvItems.length)%cvItems.length;renderLightboxConclave();}
 function closeLightboxConclave(){var vd=document.getElementById("lightboxConclaveVideo");vd.pause();vd.removeAttribute("src");document.getElementById("lightboxConclaveOverlay").classList.remove("open");}
+</script>
+
+<!-- Galería 3ª Ed. Halloween Fest (Fotografía) -->
+<div class="gallery-overlay" id="galleryHalloween3">
+  <div class="gallery-header">
+    <span class="gallery-title">3ª Ed. Halloween Fest <em>· Fotografía</em></span>
+    <button class="gallery-close" onclick="closeGalleryHalloween3()">✕</button>
+  </div>
+  <div class="gallery-content">
+    <header class="gallery-cv-header">
+      <p class="gallery-cv-description">
+        Cobertura fotográfica de la tercera edición de Halloween Fest. Imágenes tomadas desde dentro del evento, mostrando ambiente, espectadores y momentos del show en directo.
+      </p>
+      <p class="gallery-cv-credits">
+        Fotografía: <em>Añadir nombre del fotógrafo</em> · Todos los derechos reservados.
+      </p>
+    </header>
+    <div class="gallery-grid">
+      <!-- Sustituye estas rutas por las fotos reales cuando las tengas -->
+      <div class="gallery-item gallery-item-wide" onclick="openLightboxHalloween3(0)">
+        <img src="/images/halloween-fest/portada-halloween3.jpg" alt="Halloween Fest 3ª edición" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxHalloween3Overlay" onclick="closeLightboxHalloween3()">
+  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxHalloween3(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightboxHalloween3Img" src="" alt=""/>
+  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxHalloween3(1)">&#8250;</button>
+  <button class="lightbox-close" onclick="closeLightboxHalloween3()">✕</button>
+  <span class="lightbox-counter" id="lightboxHalloween3Counter"></span>
+</div>
+
+<script is:inline>
+var hw3Imgs=["/images/halloween-fest/portada-halloween3.jpg"];
+var hw3Index=0;
+function openGalleryHalloween3(){document.getElementById("galleryHalloween3").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
+function closeGalleryHalloween3(){document.getElementById("galleryHalloween3").classList.remove("open");document.body.style.overflow="";closeLightboxHalloween3();}
+function openLightboxHalloween3(i){hw3Index=i;document.getElementById("lightboxHalloween3Img").src=hw3Imgs[i];document.getElementById("lightboxHalloween3Counter").textContent=(i+1)+" / "+hw3Imgs.length;document.getElementById("lightboxHalloween3Overlay").classList.add("open");}
+function closeLightboxHalloween3(){document.getElementById("lightboxHalloween3Overlay").classList.remove("open");}
+function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3Imgs.length;document.getElementById("lightboxHalloween3Img").src=hw3Imgs[hw3Index];document.getElementById("lightboxHalloween3Counter").textContent=(hw3Index+1)+" / "+hw3Imgs.length;}
 </script>
 
 </Layout>
