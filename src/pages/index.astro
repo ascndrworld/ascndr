@@ -9,7 +9,7 @@ import Layout from "../layouts/Layout.astro";
 <div id="home" class="page active">
 
   <!-- Botón flecha → Trabajos: acorde al logo Ascndr -->
-  <a class="works-arrow" href="/trabajos" onclick="showPage('works'); return false;" aria-label="Ir a Trabajos" title="Trabajos">
+  <a class="works-arrow" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;" aria-label="Ir a Trabajos" title="Trabajos">
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Filtro para difuminar solo los bordes -->
       <defs>
@@ -82,7 +82,7 @@ import Layout from "../layouts/Layout.astro";
 
   <footer>
     <ul class="footer-nav">
-      <li><a href="/trabajos"   onclick="showPage('works'); return false;">Trabajos</a></li>
+      <li><a href="/trabajos"   onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">Trabajos</a></li>
       <li><span class="footer-sep"></span></li>
       <li><a href="/terminos"   onclick="showPage('terms'); return false;">Términos</a></li>
       <li><span class="footer-sep"></span></li>
@@ -1205,6 +1205,9 @@ function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3I
     const initPath = window.location.pathname.replace(/\/+$/, "") || "/";
     const initFilter = ROUTE_TO_FILTER[initPath] || "all";
     applyFilter(initFilter, { skipHistory: true });
+
+    /* Exponer para uso externo (flecha landing, nav) */
+    window.applyFilter = applyFilter;
   })();
 
   let pillActive = false;
