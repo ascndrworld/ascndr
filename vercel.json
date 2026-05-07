@@ -1,1 +1,12 @@
-{}
+{
+  "rewrites": [
+    { "source": "/trabajos/branding/halloweenfest", "destination": "/trabajos/branding/halloweenfest" },
+    { "source": "/trabajos/direccion-creativa/conclave", "destination": "/trabajos/direccion-creativa/conclave" },
+    { "source": "/trabajos/redes-sociales/conclave-design", "destination": "/trabajos/redes-sociales/conclave-design" },
+    { "source": "/trabajos/fotografia/halloweenfest-fotografia", "destination": "/trabajos/fotografia/halloweenfest-fotografia" },
+    { "source": "/trabajos/(.*)", "destination": "/index.html" },
+    { "source": "/terminos", "destination": "/index.html" },
+    { "source": "/privacidad", "destination": "/index.html" },
+    { "source": "/contacto", "destination": "/index.html" }
+  ]
+}
