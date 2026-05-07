@@ -1165,30 +1165,46 @@ function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3I
 
     const cards = document.querySelectorAll("#worksGrid .work-card");
     const countEl = document.getElementById("worksCount");
-    const total = cards.length;
 
-    filtersEl.addEventListener("click", (e) => {
-      const btn = e.target.closest(".filter-btn");
-      if (!btn) return;
+    const FILTER_ROUTES = {
+      "all":         "/trabajos",
+      "branding":    "/trabajos/branding",
+      "social":      "/trabajos/redes-sociales",
+      "photography": "/trabajos/fotografia",
+      "direction":   "/trabajos/direccion-creativa"
+    };
+    const ROUTE_TO_FILTER = Object.fromEntries(
+      Object.entries(FILTER_ROUTES).map(([f, p]) => [p, f])
+    );
 
-      // toggle active state
-      filtersEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const filter = btn.dataset.filter;
+    function applyFilter(filter, opts) {
+      opts = opts || {};
+      filtersEl.querySelectorAll(".filter-btn").forEach(b => {
+        b.classList.toggle("active", b.dataset.filter === filter);
+      });
       let visible = 0;
-
       cards.forEach(card => {
         const match = (filter === "all") || (card.dataset.category === filter);
         card.classList.toggle("hidden", !match);
         if (match) visible++;
       });
-
       if (countEl) countEl.textContent = visible;
+      if (!opts.skipHistory) {
+        const path = FILTER_ROUTES[filter] || "/trabajos";
+        const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+        if (currentPath !== path) history.pushState({ filter }, "", path);
+      }
+    }
+
+    filtersEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      applyFilter(btn.dataset.filter);
     });
 
-    // inicializar contador
-    if (countEl) countEl.textContent = total;
+    const initPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    const initFilter = ROUTE_TO_FILTER[initPath] || "all";
+    applyFilter(initFilter, { skipHistory: true });
   })();
 
   let pillActive = false;
