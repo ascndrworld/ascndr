@@ -1073,18 +1073,14 @@ function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3I
   display: none;
   position: fixed; inset: 0; z-index: 9000;
   background: rgba(0,0,0,0.92);
-  align-items: center; justify-content: center;
+  align-items: flex-start;
+  justify-content: center;
   padding: 20px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .qmodal-backdrop.open { display: flex; }
 
-@media (max-width: 520px) {
-  .qmodal-backdrop {
-    align-items: flex-start;
-    padding: 16px 12px 24px;
-  }
-}
 
 .qmodal {
   background: #141414;
@@ -1094,9 +1090,7 @@ function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3I
   width: 100%; max-width: 480px;
   position: relative;
   font-family: "Montserrat", sans-serif;
-  max-height: 90dvh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  margin: auto;
 }
 
 .qmodal-close {
@@ -1128,12 +1122,12 @@ function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3I
   margin-bottom: 4px; letter-spacing: -.01em;
 }
 .qm-sub {
-  font-size: 12px; color: #555; margin-bottom: 24px; line-height: 1.5;
+  font-size: 12px; color: #555; margin-bottom: 16px; line-height: 1.5;
 }
 
 .qm-opts {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 8px; margin-bottom: 24px;
+  gap: 8px; margin-bottom: 16px;
 }
 .qm-opt {
   background: #0f0f0f; border: 0.5px solid #222; border-radius: 8px;
@@ -1280,7 +1274,7 @@ textarea.qm-input,
           <span class="qm-opt-label">Evento</span>
           <span class="qm-opt-desc">Dirección creativa, fotografía</span>
         </div>
-        <div class="qm-opt" onclick="qmSelect(this,'web')">
+        <div class="qm-opt" onclick="qmSelect(this,'web')" style="grid-column:1/-1;">
           <div class="qm-opt-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
           <span class="qm-opt-label">Web</span>
           <span class="qm-opt-desc">Diseño y posicionamiento SEO</span>
