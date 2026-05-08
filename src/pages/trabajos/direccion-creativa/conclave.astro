@@ -15,7 +15,7 @@ import Layout from "../../../layouts/Layout.astro";
   .pp-nav.hidden { transform: translateY(-100%); }
   .pp-nav a { color: #555; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
   .pp-nav a:hover { color: #f0ece6; }
-  .pp-nav-logo img { height: 36px; width: auto; display: block; }
+  .pp-nav-logo img { height: 56px; width: auto; display: block; }
   .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 80px 32px 24px; border-bottom: 0.5px solid #1e1e1e; }
   .pp-title { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: #f0ece6; text-transform: uppercase; }
   .pp-title em { color: #555; font-style: normal; }
@@ -38,8 +38,9 @@ import Layout from "../../../layouts/Layout.astro";
   .pp-gallery-video video { width: 100%; max-height: 80vh; display: block; object-fit: cover; background: #111; }
   .pp-gallery-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 3px; }
   .pp-gallery-2col img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
-  .pp-gallery-2col-video { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 3px; }
-  .pp-gallery-2col-video video { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; background: #111; }
+  .pp-gallery-2col-mixed { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 3px; }
+  .pp-gallery-2col-mixed img { width: 100%; height: 75vh; min-height: 400px; object-fit: cover; display: block; }
+  .pp-gallery-2col-mixed video { width: 100%; height: 75vh; min-height: 400px; object-fit: cover; display: block; background: #111; }
   .pp-cta { display: flex; align-items: center; justify-content: space-between; padding: 32px; border-top: 0.5px solid #1e1e1e; margin-top: 3px; }
   .pp-cta-text { font-size: 11px; color: #444; letter-spacing: .06em; text-transform: uppercase; }
   .pp-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; font-family: "Montserrat", sans-serif; transition: border-color .2s; }
@@ -57,6 +58,8 @@ import Layout from "../../../layouts/Layout.astro";
     .pp-gallery-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
     .pp-gallery-2col { grid-template-columns: 1fr; gap: 2px; }
     .pp-gallery-2col-video { grid-template-columns: 1fr; gap: 2px; }
+    .pp-gallery-2col-mixed { grid-template-columns: 1fr; gap: 2px; }
+    .pp-gallery-2col-mixed img, .pp-gallery-2col-mixed video { height: 70vw; min-height: 200px; }
     .pp-gallery-wide { margin-bottom: 2px; }
     .pp-cta { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px 20px; }
   }
@@ -109,19 +112,14 @@ import Layout from "../../../layouts/Layout.astro";
     <p>Un proyecto de rebranding que cambió por completo la percepción del local, desde el nombre hasta cada detalle visual del espacio.</p>
   </div>
 
-  <div class="pp-section-label">Antes</div>
+  <div class="pp-section-label">Antes · Nueva identidad</div>
   <div class="pp-gallery">
-    <div class="pp-gallery-2col">
-      <img src="/images/conclave/antes-01.jpg" alt="Milenio 2.0 antes del rebranding — Los Villares Jaén" loading="lazy"/>
+    <div class="pp-gallery-2col-mixed">
       <img src="/images/conclave/antes-02.jpg" alt="Interior Milenio 2.0 antes de la transformación — Los Villares Jaén" loading="lazy"/>
-    </div>
-  </div>
-
-  <div class="pp-section-label">Nueva identidad</div>
-  <div class="pp-gallery">
-    <div class="pp-gallery-2col-video">
       <video src="/images/conclave/reveal-logo.mp4" poster="/images/conclave/reveal-logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-      <video src="/images/conclave/reveal-nombre.mp4" poster="/images/conclave/reveal-nombre-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+    </div>
+    <div class="pp-gallery-video" style="margin-top:3px;">
+      <video src="/images/conclave/reveal-nombre.mp4" poster="/images/conclave/reveal-nombre-poster.jpg" muted loop playsinline autoplay preload="metadata" style="max-height:60vh;object-fit:cover;"></video>
     </div>
   </div>
 
