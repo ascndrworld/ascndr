@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Ascndr · Estudio Creativo en Jaén - Branding, Lanzamientos y Redes Sociales">
+<Layout title="Ascndr · Consultoría Creativa - Branding, Lanzamientos y RRSS">
 
 
 <!-- ════ HOME ════ -->
@@ -67,7 +67,7 @@ import Layout from "../layouts/Layout.astro";
 
   <div class="middle">
     <p class="tagline">
-      Estudio creativo especializado en estrategia en redes<br/> y dirección de proyectos digitales.
+      Consultoría creativa especializada en estrategia en rrss<br/> y dirección de proyectos multimedia.
     </p>
     <div class="search-container">
       <div class="pill-btn" id="pillBtn" onclick="openQModal()">
@@ -759,6 +759,9 @@ function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;doc
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
+}
+@media (max-width: 640px) {
+  .ds-grid { grid-template-columns: 1fr; }
 }
 .ds-item {
   cursor: pointer;
