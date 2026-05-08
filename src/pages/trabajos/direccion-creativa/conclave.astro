@@ -34,10 +34,10 @@ import Layout from "../../../layouts/Layout.astro";
   .pp-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-bottom: 3px; }
   .pp-gallery-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: filter .3s; }
   .pp-gallery-grid img:hover { filter: brightness(1.08); }
-  .pp-gallery-pub { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; height: 90vh; }
-  .pp-gallery-pub-fotos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; }
-  .pp-gallery-pub-fotos img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .pp-gallery-pub-video { overflow: hidden; }
+  .pp-gallery-pub { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; height: 100vh; max-height: 900px; }
+  .pp-gallery-pub-fotos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; min-height: 0; }
+  .pp-gallery-pub-fotos img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; min-height: 0; }
+  .pp-gallery-pub-video { min-height: 0; overflow: hidden; }
   .pp-gallery-pub-video video { width: 100%; height: 100%; object-fit: cover; display: block; background: #111; }
   .pp-gallery-video video { width: 100%; max-height: 80vh; display: block; object-fit: cover; background: #111; }
   .pp-gallery-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 3px; }
@@ -64,7 +64,8 @@ import Layout from "../../../layouts/Layout.astro";
     .pp-gallery-2col-video { grid-template-columns: 1fr; gap: 2px; }
     .pp-gallery-2col-mixed { grid-template-columns: 1fr; gap: 2px; }
     .pp-gallery-2col-mixed img, .pp-gallery-2col-mixed video { height: 70vw; min-height: 200px; }
-    .pp-gallery-pub { grid-template-columns: 1fr; gap: 2px; }
+    .pp-gallery-pub { grid-template-columns: 1fr; height: auto; max-height: none; gap: 2px; }
+    .pp-gallery-pub-fotos { grid-template-columns: 1fr 1fr; height: 60vw; gap: 2px; }
     .pp-gallery-pub-video video { height: 80vw; }
     .pp-gallery-wide { margin-bottom: 2px; }
     .pp-cta { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px 20px; }
