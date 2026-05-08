@@ -15,7 +15,7 @@ import Layout from "../../../layouts/Layout.astro";
   .pp-nav.hidden { transform: translateY(-100%); }
   .pp-nav a { color: #555; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
   .pp-nav a:hover { color: #f0ece6; }
-  .pp-nav-logo img { height: 44px; width: auto; display: block; }
+  .pp-nav-logo img { height: 80px; width: auto; display: block; }
   .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 32px 24px; border-bottom: 0.5px solid #1e1e1e; }
   .pp-title { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: #f0ece6; text-transform: uppercase; }
   .pp-title em { color: #555; font-style: normal; }
@@ -34,7 +34,10 @@ import Layout from "../../../layouts/Layout.astro";
   .pp-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-bottom: 3px; }
   .pp-gallery-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: filter .3s; }
   .pp-gallery-grid img:hover { filter: brightness(1.08); }
-  .pp-gallery-video { width: 100%; margin-bottom: 3px; background: #111; }
+  .pp-gallery-pub { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .pp-gallery-pub-fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .pp-gallery-pub-fotos img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .pp-gallery-pub-video video { width: 100%; height: 100%; object-fit: cover; display: block; background: #111; }
   .pp-gallery-video video { width: 100%; max-height: 80vh; display: block; object-fit: cover; background: #111; }
   .pp-gallery-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 3px; }
   .pp-gallery-2col img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
@@ -60,6 +63,8 @@ import Layout from "../../../layouts/Layout.astro";
     .pp-gallery-2col-video { grid-template-columns: 1fr; gap: 2px; }
     .pp-gallery-2col-mixed { grid-template-columns: 1fr; gap: 2px; }
     .pp-gallery-2col-mixed img, .pp-gallery-2col-mixed video { height: 70vw; min-height: 200px; }
+    .pp-gallery-pub { grid-template-columns: 1fr; gap: 2px; }
+    .pp-gallery-pub-video video { height: 80vw; }
     .pp-gallery-wide { margin-bottom: 2px; }
     .pp-cta { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px 20px; }
   }
@@ -112,27 +117,37 @@ import Layout from "../../../layouts/Layout.astro";
     <p>Un proyecto de rebranding que cambió por completo la percepción del local, desde el nombre hasta cada detalle visual del espacio.</p>
   </div>
 
-  <div class="pp-section-label">Antes · Nueva identidad</div>
+  <!-- Antes -->
+  <div class="pp-section-label">Antes</div>
   <div class="pp-gallery">
-    <div class="pp-gallery-2col-mixed">
+    <div class="pp-gallery-2col">
+      <img src="/images/conclave/antes-01.jpg" alt="Milenio 2.0 antes del rebranding — Los Villares Jaén" loading="lazy"/>
       <img src="/images/conclave/antes-02.jpg" alt="Interior Milenio 2.0 antes de la transformación — Los Villares Jaén" loading="lazy"/>
-      <video src="/images/conclave/reveal-logo.mp4" poster="/images/conclave/reveal-logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-    </div>
-    <div class="pp-gallery-video" style="margin-top:3px;">
-      <video src="/images/conclave/reveal-nombre.mp4" poster="/images/conclave/reveal-nombre-poster.jpg" muted loop playsinline autoplay preload="metadata" style="max-height:60vh;object-fit:cover;"></video>
     </div>
   </div>
 
+  <!-- Nueva identidad -->
+  <div class="pp-section-label">Nueva identidad</div>
+  <div class="pp-gallery">
+    <div class="pp-gallery-2col-mixed">
+      <video src="/images/conclave/reveal-logo.mp4" muted loop playsinline autoplay preload="metadata"></video>
+      <video src="/images/conclave/reveal-nombre.mp4" muted loop playsinline autoplay preload="metadata"></video>
+    </div>
+  </div>
+
+  <!-- El pub hoy -->
   <div class="pp-section-label">El pub hoy</div>
   <div class="pp-gallery">
-    <div class="pp-gallery-grid">
-      <img src="/images/conclave/despues-01.jpg" alt="Cónclave pub Los Villares Jaén interior tras el rebranding — Ascndr" loading="lazy"/>
-      <img src="/images/conclave/despues-02.jpg" alt="Cónclave pub Los Villares Jaén nueva identidad visual — Ascndr" loading="lazy"/>
-      <img src="/images/conclave/despues-03.jpg" alt="Espacio Cónclave Los Villares Jaén rebranding completo — Ascndr" loading="lazy"/>
-      <img src="/images/conclave/despues-04.jpg" alt="Ambiente Cónclave pub Los Villares Jaén dirección creativa — Ascndr" loading="lazy"/>
-    </div>
-    <div class="pp-gallery-video">
-      <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+    <div class="pp-gallery-pub">
+      <div class="pp-gallery-pub-fotos">
+        <img src="/images/conclave/despues-01.jpg" alt="Cónclave pub Los Villares Jaén interior tras el rebranding — Ascndr" loading="lazy"/>
+        <img src="/images/conclave/despues-02.jpg" alt="Cónclave pub Los Villares Jaén nueva identidad visual — Ascndr" loading="lazy"/>
+        <img src="/images/conclave/despues-03.jpg" alt="Espacio Cónclave Los Villares Jaén rebranding completo — Ascndr" loading="lazy"/>
+        <img src="/images/conclave/despues-04.jpg" alt="Ambiente Cónclave pub Los Villares Jaén dirección creativa — Ascndr" loading="lazy"/>
+      </div>
+      <div class="pp-gallery-pub-video">
+        <video src="/images/conclave/evento.mp4" muted loop playsinline autoplay preload="metadata"></video>
+      </div>
     </div>
   </div>
 
