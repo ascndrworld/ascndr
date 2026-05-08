@@ -22,7 +22,7 @@ import Layout from "../../../layouts/Layout.astro";
   .pp-nav.hidden { transform: translateY(-100%); }
   .pp-nav a { color: #555; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
   .pp-nav a:hover { color: #f0ece6; }
-  .pp-nav-logo img { height: 22px; width: auto; display: block; }
+  .pp-nav-logo img { height: 36px; width: auto; display: block; }
   .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 80px 32px 24px; border-bottom: 0.5px solid #1e1e1e; }
   .pp-title { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: #f0ece6; text-transform: uppercase; }
   .pp-title em { color: #555; font-style: normal; }
@@ -36,7 +36,7 @@ import Layout from "../../../layouts/Layout.astro";
   .pp-gallery { padding: 3px; }
   .pp-gallery-wide { width: 100%; margin-bottom: 3px; }
   .pp-gallery-wide img { width: 100%; height: 70vh; min-height: 300px; object-fit: cover; display: block; }
-  .pp-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .pp-gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
   .pp-gallery-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: filter .3s; }
   .pp-gallery-grid img:hover { filter: brightness(1.08); }
   .pp-cta { display: flex; align-items: center; justify-content: space-between; padding: 32px; border-top: 0.5px solid #1e1e1e; margin-top: 3px; }
@@ -108,8 +108,10 @@ import Layout from "../../../layouts/Layout.astro";
     <div class="pp-gallery-wide">
       <img src="/images/halloween-fest/pulsera-portada.jpg" alt="Halloween Fest Los Villares Jaén — Branding e identidad visual por Ascndr" fetchpriority="high"/>
     </div>
-    <div class="pp-gallery-grid">
-      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets Halloween Fest Los Villares Jaén — branding Ascndr" loading="lazy"/>
+    <div class="pp-gallery-wide" style="margin-top:3px;">
+      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets Halloween Fest Los Villares Jaén — branding Ascndr" loading="lazy" style="height:60vh;min-height:260px;"/>
+    </div>
+    <div class="pp-gallery-grid" style="margin-top:3px;">
       <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial Halloween Fest Los Villares Jaén — diseño Ascndr" loading="lazy"/>
       <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel 3ª edición Halloween Fest Jaén — Ascndr" loading="lazy"/>
       <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditación Halloween Fest Los Villares Jaén — diseño gráfico Ascndr" loading="lazy"/>
