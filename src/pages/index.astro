@@ -1210,7 +1210,11 @@ textarea.qm-input { resize: none; }
 @media (max-width: 520px) {
   .qmodal { padding: 24px 18px; }
   .qm-opts { grid-template-columns: 1fr; }
-  .qm-opt[style*="grid-column"] { grid-column: span 1 !important; }
+  .qm-opt,
+  .qm-opt[style*="grid-column"] {
+    grid-column: span 1 !important;
+    background: #1a1a1a !important;
+  }
 }
 </style>
 
@@ -1274,7 +1278,7 @@ textarea.qm-input,
           <span class="qm-opt-label">Evento</span>
           <span class="qm-opt-desc">Dirección creativa, fotografía</span>
         </div>
-        <div class="qm-opt" onclick="qmSelect(this,'web')" style="grid-column:1/-1;">
+        <div class="qm-opt" onclick="qmSelect(this,'web')">
           <div class="qm-opt-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
           <span class="qm-opt-label">Web</span>
           <span class="qm-opt-desc">Diseño y posicionamiento SEO</span>
