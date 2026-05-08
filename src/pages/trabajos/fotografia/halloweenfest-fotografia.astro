@@ -2,59 +2,53 @@
 import Layout from "../../../layouts/Layout.astro";
 ---
 <Layout
-  title="Halloween Fest — Fotografía de Evento · Ascndr Jaén"
-  description="Cobertura fotográfica profesional de la 3ª edición de Halloween Fest Jaén. Shooting desde dentro del evento por fotógrafos @alvarojimenez7 y @bydorian__, coordinado por Ascndr, estudio creativo en Jaén."
+  title="Halloween Fest — Fotografía de Evento · Ascndr"
+  description="Cobertura fotográfica profesional de la 3ª edición de Halloween Fest, Los Villares (Jaén). Shooting desde dentro del evento por fotógrafos @alvarojimenez7 y @bydorian__, coordinado por Ascndr."
   canonical="https://ascndrworld.com/trabajos/fotografia/halloweenfest-fotografia"
 >
 
 <style is:global>
   @import "../../../styles/global.css";
-
-  .project-page { background: #0a0a0a; color: #f0ece6; min-height: 100vh; font-family: "Montserrat", sans-serif; }
-  .project-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); }
-  .project-nav a { color: #888; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
-  .project-nav a:hover { color: #f0ece6; }
-  .project-nav .nav-logo { color: #f0ece6; font-size: 13px; font-weight: 500; letter-spacing: .08em; }
-
-  .project-hero { height: 70vh; min-height: 400px; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
-  .project-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: brightness(0.5); }
-  .project-hero-content { position: relative; z-index: 2; padding: 0 40px 48px; width: 100%; max-width: 900px; }
-  .project-tag { display: inline-block; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #888; border: 0.5px solid #333; border-radius: 999px; padding: 5px 14px; margin-bottom: 16px; }
-  .project-title { font-size: clamp(32px, 6vw, 64px); font-weight: 500; letter-spacing: -.02em; color: #f0ece6; margin: 0 0 8px; }
-  .project-subtitle { font-size: 14px; color: #888; letter-spacing: .04em; }
-
-  .project-body { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
-  .project-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 60px; }
-  .meta-item { background: #111; padding: 20px; }
-  .meta-label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #555; margin-bottom: 8px; }
-  .meta-value { font-size: 13px; color: #f0ece6; font-weight: 500; }
-
-  .project-desc { font-size: 15px; line-height: 1.8; color: #aaa; margin-bottom: 12px; max-width: 640px; }
-  .project-credits { font-size: 11px; color: #555; letter-spacing: .08em; margin-bottom: 60px; }
-
-  .photo-grid {
-    columns: 2; column-gap: 3px;
-    margin-bottom: 60px;
-  }
-  .photo-grid img {
-    width: 100%; display: block;
-    margin-bottom: 3px; break-inside: avoid;
-    transition: filter .3s;
-  }
-  .photo-grid img:hover { filter: brightness(1.1); }
-
-  .project-cta { border-top: 0.5px solid #1e1e1e; padding-top: 48px; display: flex; align-items: center; justify-content: space-between; }
-  .cta-text { font-size: 13px; color: #555; }
-  .cta-link { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: border-color .2s; }
-  .cta-link:hover { border-color: #555; }
-
+  body { background: #111; margin: 0; }
+  .pp { background: #111; color: #f0ece6; min-height: 100vh; font-family: "Montserrat", sans-serif; }
+  .pp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; background: rgba(17,17,17,0.97); border-bottom: 0.5px solid #1e1e1e; transition: transform .35s ease; }
+  .pp-nav.hidden { transform: translateY(-100%); }
+  .pp-nav a { color: #555; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+  .pp-nav a:hover { color: #f0ece6; }
+  .pp-nav-logo img { height: 22px; width: auto; display: block; }
+  .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 80px 32px 24px; border-bottom: 0.5px solid #1e1e1e; }
+  .pp-title { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: #f0ece6; text-transform: uppercase; }
+  .pp-title em { color: #555; font-style: normal; }
+  .pp-credits { font-size: 10px; color: #444; letter-spacing: .08em; }
+  .pp-meta { display: flex; border-bottom: 0.5px solid #1e1e1e; }
+  .pp-meta-item { flex: 1; padding: 18px 32px; border-right: 0.5px solid #1e1e1e; }
+  .pp-meta-item:last-child { border-right: none; }
+  .pp-meta-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #444; margin-bottom: 6px; }
+  .pp-meta-value { font-size: 12px; color: #f0ece6; font-weight: 500; letter-spacing: .02em; }
+  .pp-desc { padding: 36px 32px 40px; border-bottom: 0.5px solid #1e1e1e; max-width: 720px; }
+  .pp-desc p { font-size: 13px; line-height: 1.85; color: #888; margin: 0; }
+  .pp-gallery { padding: 3px; }
+  .pp-gallery-wide { width: 100%; margin-bottom: 3px; }
+  .pp-gallery-wide img { width: 100%; height: 70vh; min-height: 300px; object-fit: cover; display: block; }
+  .pp-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .pp-gallery-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: filter .3s; }
+  .pp-gallery-grid img:hover { filter: brightness(1.08); }
+  .pp-cta { display: flex; align-items: center; justify-content: space-between; padding: 32px; border-top: 0.5px solid #1e1e1e; margin-top: 3px; }
+  .pp-cta-text { font-size: 11px; color: #444; letter-spacing: .06em; text-transform: uppercase; }
+  .pp-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; font-family: "Montserrat", sans-serif; transition: border-color .2s; }
+  .pp-cta-btn:hover { border-color: #c8753a; }
   @media (max-width: 640px) {
-    .project-nav { padding: 16px 20px; }
-    .project-hero-content { padding: 0 20px 32px; }
-    .project-body { padding: 40px 20px; }
-    .project-meta { grid-template-columns: 1fr; }
-    .photo-grid { columns: 1; }
-    .project-cta { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .pp-nav { padding: 14px 20px; }
+    .pp-header { padding: 72px 20px 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .pp-meta { flex-direction: column; }
+    .pp-meta-item { border-right: none; border-bottom: 0.5px solid #1e1e1e; padding: 14px 20px; }
+    .pp-meta-item:last-child { border-bottom: none; }
+    .pp-desc { padding: 28px 20px; }
+    .pp-gallery { padding: 2px; }
+    .pp-gallery-wide img { height: 50vw; min-height: 200px; }
+    .pp-gallery-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+    .pp-gallery-wide { margin-bottom: 2px; }
+    .pp-cta { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px 20px; }
   }
 </style>
 
@@ -62,89 +56,87 @@ import Layout from "../../../layouts/Layout.astro";
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Halloween Fest 3ª Edición — Fotografía de Evento",
-  "description": "Cobertura fotográfica profesional de la 3ª edición de Halloween Fest Jaén desde dentro del evento.",
+  "name": "Halloween Fest — Fotografía de Evento",
+  "description": "Cobertura fotográfica profesional de la 3ª edición de Halloween Fest en Los Villares (Jaén) desde dentro del evento.",
   "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
   "url": "https://ascndrworld.com/trabajos/fotografia/halloweenfest-fotografia",
   "image": "https://ascndrworld.com/images/halloween-fest/portada-halloween3.jpg",
-  "keywords": ["fotografía", "cobertura evento", "shooting", "Halloween", "Jaén"],
-  "contributor": [
-    { "@type": "Person", "name": "@alvarojimenez7" },
-    { "@type": "Person", "name": "@bydorian__" }
-  ],
-  "locationCreated": { "@type": "Place", "name": "Jaén, España" },
+  "keywords": ["fotografía", "cobertura evento", "shooting", "Halloween", "Los Villares", "Jaén"],
+  "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
   "dateCreated": "2025",
-  "genre": "Fotografía · Cobertura de Evento"
+  "genre": "Fotografía · Evento"
 }
 `}</script>
 
-<div class="project-page">
-
-  <nav class="project-nav">
+<div class="pp">
+  <nav class="pp-nav">
     <a href="/trabajos">← Trabajos</a>
-    <a href="/" class="nav-logo">Ascndr</a>
+    <a href="/" class="pp-nav-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
     <a href="/">Contacto</a>
   </nav>
 
-  <div class="project-hero">
-    <img
-      src="/images/halloween-fest/portada-halloween3.jpg"
-      alt="Halloween Fest 3ª edición Jaén — Fotografía de evento Ascndr"
-      fetchpriority="high"
-    />
-    <div class="project-hero-content">
-      <span class="project-tag">Fotografía · Cobertura de Evento</span>
-      <h1 class="project-title">Halloween Fest</h1>
-      <p class="project-subtitle">Desde dentro · 3ª Edición · Jaén</p>
+  <div class="pp-header">
+    <span class="pp-title">Halloween Fest <em>· Desde dentro</em></span>
+    <span class="pp-credits">Shot by: @alvarojimenez7 · @bydorian__</span>
+  </div>
+
+  <div class="pp-meta">
+    <div class="pp-meta-item">
+      <div class="pp-meta-label">Categoría</div>
+      <div class="pp-meta-value">Fotografía · Evento</div>
+    </div>
+    <div class="pp-meta-item">
+      <div class="pp-meta-label">Año</div>
+      <div class="pp-meta-value">MMXXV</div>
+    </div>
+    <div class="pp-meta-item">
+      <div class="pp-meta-label">Cliente</div>
+      <div class="pp-meta-value">Halloween Fest · Los Villares (Jaén)</div>
     </div>
   </div>
 
-  <div class="project-body">
-
-    <div class="project-meta">
-      <div class="meta-item">
-        <div class="meta-label">Categoría</div>
-        <div class="meta-value">Fotografía · Evento</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Año</div>
-        <div class="meta-value">MMXXV</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Cliente</div>
-        <div class="meta-value">Halloween Fest Jaén</div>
-      </div>
-    </div>
-
-    <p class="project-desc">
-      Cobertura fotográfica profesional de la tercera edición de Halloween Fest Jaén.
-      Imágenes tomadas desde dentro del evento, mostrando ambiente, artistas, disfraces
-      y momentos del show en directo.
-    </p>
-    <p class="project-credits">Shot by: @alvarojimenez7 · @bydorian__ · Todos los derechos reservados.</p>
-
-    <div class="photo-grid">
-      <img src="/images/halloween-fest/hw3-01.jpg" alt="Escenario Halloween Fest 3ª edición Jaén — fotografía Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-06.jpg" alt="DJ vinilo Halloween Fest Jaén — cobertura fotográfica" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-03.jpg" alt="Escenario luces azules Halloween Fest Jaén" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-04.jpg" alt="Pista de baile Halloween Fest Jaén — Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-08.jpg" alt="DJ zombie Halloween Fest Jaén — fotografía evento" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-02.jpg" alt="Escenario luces amarillas Halloween Fest Jaén" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-10.jpg" alt="Asistentes disfrazados Halloween Fest Jaén" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-11.jpg" alt="Disfraces Halloween Fest Jaén — Ascndr fotografía" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-07.jpg" alt="DJ Pioneer Halloween Fest Jaén" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-09.jpg" alt="Artista en escenario Halloween Fest Jaén" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-12.jpg" alt="Staff Halloween Fest Jaén — fotografía Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/hw3-13.jpg" alt="Equipo Halloween Fest Jaén — Ascndr estudio creativo" loading="lazy"/>
-    </div>
-
-    <div class="project-cta">
-      <p class="cta-text">¿Necesitas cobertura fotográfica para tu evento?</p>
-      <a href="/" class="cta-link">Hablemos →</a>
-    </div>
-
+  <div class="pp-desc">
+    <p>Cobertura fotográfica profesional de la tercera edición de Halloween Fest en Los Villares (Jaén). Shooting desde dentro del evento por @alvarojimenez7 y @bydorian__, coordinado por Ascndr.</p>
   </div>
 
+  <div class="pp-gallery">
+    <div class="pp-gallery-wide">
+      <img src="/images/halloween-fest/portada-halloween3.jpg" alt="Halloween Fest 3ª edición Los Villares Jaén — Fotografía de evento Ascndr" fetchpriority="high"/>
+    </div>
+    <div class="pp-gallery-grid">
+      <img src="/images/halloween-fest/hw3-06.jpg" alt="DJ vinilo Halloween Fest Los Villares Jaén — cobertura fotográfica" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-03.jpg" alt="Escenario luces azules Halloween Fest Los Villares Jaén" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-04.jpg" alt="Pista de baile Halloween Fest Los Villares Jaén — Ascndr" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-08.jpg" alt="DJ zombie Halloween Fest Los Villares Jaén — fotografía evento" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-02.jpg" alt="Escenario luces amarillas Halloween Fest Los Villares Jaén" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-10.jpg" alt="Asistentes disfrazados Halloween Fest Los Villares Jaén" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-11.jpg" alt="Disfraces Halloween Fest Los Villares Jaén — Ascndr fotografía" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-07.jpg" alt="DJ Pioneer Halloween Fest Los Villares Jaén" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-09.jpg" alt="Artista en escenario Halloween Fest Los Villares Jaén" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-12.jpg" alt="Staff Halloween Fest Los Villares Jaén — fotografía Ascndr" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-13.jpg" alt="Equipo Halloween Fest Los Villares Jaén — Ascndr estudio creativo" loading="lazy"/>
+      <img src="/images/halloween-fest/hw3-01.jpg" alt="Escenario Halloween Fest 3ª edición Los Villares Jaén — Ascndr" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="pp-cta">
+    <span class="pp-cta-text">¿Tienes un proyecto similar?</span>
+    <a href="/" class="pp-cta-btn">Hablemos →</a>
+  </div>
 </div>
+
+<script is:inline>
+(function(){
+  var nav = document.querySelector(".pp-nav");
+  var last = 0;
+  window.addEventListener("scroll", function(){
+    var cur = window.scrollY;
+    if(cur <= 10){ nav.classList.remove("hidden"); }
+    else if(cur > last){ nav.classList.add("hidden"); }
+    else{ nav.classList.remove("hidden"); }
+    last = cur;
+  }, {passive:true});
+})();
+</script>
 
 </Layout>

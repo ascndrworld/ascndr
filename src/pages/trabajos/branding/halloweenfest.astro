@@ -2,125 +2,50 @@
 import Layout from "../../../layouts/Layout.astro";
 ---
 <Layout
-  title="Halloween Fest — Branding e Identidad Visual · Ascndr Jaén"
-  description="Diseño de identidad visual completa para Halloween Fest Jaén: logo, carteles, pulseras VIP, acreditaciones y dirección creativa del evento. Proyecto de branding por Ascndr, estudio creativo en Jaén."
+  title="Halloween Fest — Branding e Identidad Visual · Ascndr"
+  description="Diseño de identidad visual completa para Halloween Fest, Los Villares (Jaén): logo, carteles, pulseras VIP, acreditaciones y dirección creativa del evento. Proyecto de branding por Ascndr."
   canonical="https://ascndrworld.com/trabajos/branding/halloweenfest"
 >
 
 <style is:global>
   @import "../../../styles/global.css";
-
-  body { background: #0a0a0a; }
-
-  .pp {
-    background: #0a0a0a;
-    color: #f0ece6;
-    min-height: 100vh;
-    font-family: "Montserrat", sans-serif;
-  }
-
-  /* ── NAV ── */
+  body { background: #111; margin: 0; }
+  .pp { background: #111; color: #f0ece6; min-height: 100vh; font-family: "Montserrat", sans-serif; }
   .pp-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 32px;
-    background: linear-gradient(to bottom, rgba(10,10,10,.96) 0%, transparent 100%);
+    padding: 16px 32px;
+    background: rgba(17,17,17,0.97);
+    border-bottom: 0.5px solid #1e1e1e;
+    transition: transform .35s ease;
   }
-  .pp-nav a {
-    color: #666; font-size: 10px; letter-spacing: .14em;
-    text-transform: uppercase; text-decoration: none;
-    transition: color .2s;
-  }
+  .pp-nav.hidden { transform: translateY(-100%); }
+  .pp-nav a { color: #555; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
   .pp-nav a:hover { color: #f0ece6; }
-  .pp-nav .pp-nav-logo { color: #f0ece6; font-size: 12px; font-weight: 500; letter-spacing: .1em; }
-
-  /* ── HEADER igual que gallery-header ── */
-  .pp-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 88px 32px 24px;
-    border-bottom: 0.5px solid #1e1e1e;
-  }
-  .pp-title {
-    font-size: 13px; font-weight: 400; letter-spacing: .06em;
-    color: #f0ece6; text-transform: uppercase;
-  }
+  .pp-nav-logo img { height: 22px; width: auto; display: block; }
+  .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 80px 32px 24px; border-bottom: 0.5px solid #1e1e1e; }
+  .pp-title { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: #f0ece6; text-transform: uppercase; }
   .pp-title em { color: #555; font-style: normal; }
-
-  /* ── META ── */
-  .pp-meta {
-    display: flex; gap: 0;
-    border-bottom: 0.5px solid #1e1e1e;
-  }
-  .pp-meta-item {
-    flex: 1; padding: 18px 32px;
-    border-right: 0.5px solid #1e1e1e;
-  }
+  .pp-meta { display: flex; border-bottom: 0.5px solid #1e1e1e; }
+  .pp-meta-item { flex: 1; padding: 18px 32px; border-right: 0.5px solid #1e1e1e; }
   .pp-meta-item:last-child { border-right: none; }
-  .pp-meta-label {
-    font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
-    color: #444; margin-bottom: 6px;
-  }
-  .pp-meta-value {
-    font-size: 12px; color: #f0ece6; font-weight: 500; letter-spacing: .02em;
-  }
-
-  /* ── DESC ── */
-  .pp-desc {
-    padding: 36px 32px 40px;
-    border-bottom: 0.5px solid #1e1e1e;
-    max-width: 720px;
-  }
-  .pp-desc p {
-    font-size: 13px; line-height: 1.85; color: #888;
-    margin: 0;
-  }
-
-  /* ── GALERÍA — mismo estilo que gallery-grid ── */
-  .pp-gallery {
-    padding: 3px;
-  }
-  .pp-gallery-wide {
-    width: 100%;
-    margin-bottom: 3px;
-  }
-  .pp-gallery-wide img {
-    width: 100%; height: 70vh; min-height: 320px;
-    object-fit: cover; display: block;
-  }
-  .pp-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-  }
-  .pp-gallery-grid img {
-    width: 100%; aspect-ratio: 3/4;
-    object-fit: cover; display: block;
-    transition: filter .3s ease;
-  }
+  .pp-meta-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #444; margin-bottom: 6px; }
+  .pp-meta-value { font-size: 12px; color: #f0ece6; font-weight: 500; letter-spacing: .02em; }
+  .pp-desc { padding: 36px 32px 40px; border-bottom: 0.5px solid #1e1e1e; max-width: 720px; }
+  .pp-desc p { font-size: 13px; line-height: 1.85; color: #888; margin: 0; }
+  .pp-gallery { padding: 3px; }
+  .pp-gallery-wide { width: 100%; margin-bottom: 3px; }
+  .pp-gallery-wide img { width: 100%; height: 70vh; min-height: 300px; object-fit: cover; display: block; }
+  .pp-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .pp-gallery-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: filter .3s; }
   .pp-gallery-grid img:hover { filter: brightness(1.08); }
-
-  /* ── CTA ── */
-  .pp-cta {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 32px;
-    border-top: 0.5px solid #1e1e1e;
-    margin-top: 3px;
-  }
+  .pp-cta { display: flex; align-items: center; justify-content: space-between; padding: 32px; border-top: 0.5px solid #1e1e1e; margin-top: 3px; }
   .pp-cta-text { font-size: 11px; color: #444; letter-spacing: .06em; text-transform: uppercase; }
-  .pp-cta-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #141414; border: 0.5px solid #2a2a2a;
-    border-radius: 999px; padding: 10px 22px;
-    color: #f0ece6; font-size: 10px; letter-spacing: .12em;
-    text-transform: uppercase; text-decoration: none;
-    font-family: "Montserrat", sans-serif;
-    transition: border-color .2s;
-  }
+  .pp-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; font-family: "Montserrat", sans-serif; transition: border-color .2s; }
   .pp-cta-btn:hover { border-color: #c8753a; }
-
   @media (max-width: 640px) {
-    .pp-nav { padding: 16px 20px; }
-    .pp-header { padding: 76px 20px 20px; }
+    .pp-nav { padding: 14px 20px; }
+    .pp-header { padding: 72px 20px 20px; }
     .pp-meta { flex-direction: column; }
     .pp-meta-item { border-right: none; border-bottom: 0.5px solid #1e1e1e; padding: 14px 20px; }
     .pp-meta-item:last-child { border-bottom: none; }
@@ -138,31 +63,28 @@ import Layout from "../../../layouts/Layout.astro";
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Halloween Fest — Branding e Identidad Visual",
-  "description": "Diseño de identidad visual completa para Halloween Fest Jaén: logo, carteles, pulseras VIP, acreditaciones y dirección creativa del evento durante dos ediciones consecutivas.",
+  "description": "Diseño de identidad visual completa para Halloween Fest, Los Villares (Jaén): logo, carteles, pulseras VIP, acreditaciones y dirección creativa del evento durante dos ediciones consecutivas.",
   "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
   "url": "https://ascndrworld.com/trabajos/branding/halloweenfest",
   "image": "https://ascndrworld.com/images/halloween-fest/pulsera-portada.jpg",
-  "keywords": ["branding", "identidad visual", "evento", "Halloween", "Jaén", "diseño gráfico"],
-  "locationCreated": { "@type": "Place", "name": "Jaén, España" },
+  "keywords": ["branding", "identidad visual", "evento", "Halloween", "Los Villares", "Jaén", "diseño gráfico"],
+  "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
   "dateCreated": "2024",
   "genre": "Branding · Identidad Visual · Evento"
 }
 `}</script>
 
 <div class="pp">
-
   <nav class="pp-nav">
     <a href="/trabajos">← Trabajos</a>
-    <a href="/" class="pp-nav-logo">Ascndr</a>
+    <a href="/" class="pp-nav-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
     <a href="/">Contacto</a>
   </nav>
 
-  <!-- Header estilo galería -->
   <div class="pp-header">
     <span class="pp-title">Halloween Fest <em>· Branding</em></span>
   </div>
 
-  <!-- Metadatos -->
   <div class="pp-meta">
     <div class="pp-meta-item">
       <div class="pp-meta-label">Categoría</div>
@@ -174,35 +96,45 @@ import Layout from "../../../layouts/Layout.astro";
     </div>
     <div class="pp-meta-item">
       <div class="pp-meta-label">Cliente</div>
-      <div class="pp-meta-value">Halloween Fest Jaén</div>
+      <div class="pp-meta-value">Halloween Fest · Los Villares (Jaén)</div>
     </div>
   </div>
 
-  <!-- Descripción -->
   <div class="pp-desc">
-    <p>Diseño de identidad visual completa para Halloween Fest, el evento de referencia de la noche de Halloween en Jaén. Dos ediciones consecutivas con dirección creativa integral: logo, carteles, pulseras VIP, acreditaciones y todos los materiales gráficos del evento.</p>
+    <p>Diseño de identidad visual completa para Halloween Fest, el evento de referencia de la noche de Halloween en Los Villares (Jaén). Dos ediciones consecutivas con dirección creativa integral: logo, carteles, pulseras VIP, acreditaciones y todos los materiales gráficos del evento.</p>
   </div>
 
-  <!-- Galería -->
   <div class="pp-gallery">
     <div class="pp-gallery-wide">
-      <img src="/images/halloween-fest/pulsera-portada.jpg" alt="Halloween Fest Jaén — Branding e identidad visual por Ascndr" fetchpriority="high"/>
+      <img src="/images/halloween-fest/pulsera-portada.jpg" alt="Halloween Fest Los Villares Jaén — Branding e identidad visual por Ascndr" fetchpriority="high"/>
     </div>
     <div class="pp-gallery-grid">
-      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets Halloween Fest Jaén — branding Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial Halloween Fest Jaén — diseño Ascndr" loading="lazy"/>
+      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets Halloween Fest Los Villares Jaén — branding Ascndr" loading="lazy"/>
+      <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial Halloween Fest Los Villares Jaén — diseño Ascndr" loading="lazy"/>
       <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel 3ª edición Halloween Fest Jaén — Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditación Halloween Fest Jaén — diseño gráfico Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP Halloween Fest Jaén — identidad visual Ascndr" loading="lazy"/>
+      <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditación Halloween Fest Los Villares Jaén — diseño gráfico Ascndr" loading="lazy"/>
+      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP Halloween Fest Los Villares Jaén — identidad visual Ascndr" loading="lazy"/>
     </div>
   </div>
 
-  <!-- CTA -->
   <div class="pp-cta">
     <span class="pp-cta-text">¿Tienes un proyecto similar?</span>
     <a href="/" class="pp-cta-btn">Hablemos →</a>
   </div>
-
 </div>
+
+<script is:inline>
+(function(){
+  var nav = document.querySelector(".pp-nav");
+  var last = 0;
+  window.addEventListener("scroll", function(){
+    var cur = window.scrollY;
+    if(cur <= 10){ nav.classList.remove("hidden"); }
+    else if(cur > last){ nav.classList.add("hidden"); }
+    else{ nav.classList.remove("hidden"); }
+    last = cur;
+  }, {passive:true});
+})();
+</script>
 
 </Layout>
