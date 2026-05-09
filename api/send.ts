@@ -6,8 +6,12 @@ import nodemailer from 'nodemailer';
 export const POST: APIRoute = async ({ request }) => {
   let body: any = {};
   try {
-    body = await request.json();
-  } catch {
+    const text = await request.text();
+    console.log('RAW BODY:', text);
+    body = JSON.parse(text);
+    console.log('PARSED BODY:', JSON.stringify(body));
+  } catch(e) {
+    console.log('PARSE ERROR:', e);
     return new Response(JSON.stringify({ error: 'Bad request' }), { status: 400 });
   }
 
@@ -18,12 +22,12 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const transporter = nodemailer.createTransport({
-    host: import.meta.env.SMTP_HOST,
-    port: Number(import.meta.env.SMTP_PORT),
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
     secure: true,
     auth: {
-      user: import.meta.env.SMTP_USER,
-      pass: import.meta.env.SMTP_PASS,
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
     },
   });
 
@@ -50,8 +54,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     await transporter.sendMail({
-      from: `"Ascndr Web" <${import.meta.env.SMTP_USER}>`,
-      to: import.meta.env.SMTP_USER,
+      from: `"Ascndr Web" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       replyTo: email,
       subject,
       html,
