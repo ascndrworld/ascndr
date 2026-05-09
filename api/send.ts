@@ -6,12 +6,18 @@ import nodemailer from 'nodemailer';
 export const POST: APIRoute = async ({ request }) => {
   let body: any = {};
   try {
-    const text = await request.text();
-    console.log('RAW BODY:', text);
-    body = JSON.parse(text);
-    console.log('PARSED BODY:', JSON.stringify(body));
+    const contentType = request.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      body = await request.json();
+    } else if (contentType.includes('form')) {
+      const fd = await request.formData();
+      fd.forEach((v, k) => { body[k] = v; });
+    } else {
+      // Try JSON as fallback
+      const text = await request.text();
+      try { body = JSON.parse(text); } catch { body = {}; }
+    }
   } catch(e) {
-    console.log('PARSE ERROR:', e);
     return new Response(JSON.stringify({ error: 'Bad request' }), { status: 400 });
   }
 
