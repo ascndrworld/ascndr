@@ -5,13 +5,25 @@ import nodemailer from 'nodemailer';
 
 export const POST: APIRoute = async ({ request }) => {
   let body: any = {};
+  
+  // Try multiple methods to read the body
   try {
-    const text = await request.text();
-    if (text) {
-      try { body = JSON.parse(text); } catch { body = {}; }
+    body = await request.json();
+  } catch {
+    try {
+      const text = await request.text();
+      if (text && text.length > 0) {
+        body = JSON.parse(text);
+      }
+    } catch {
+      // Try form data as last resort
+      try {
+        const fd = await request.formData();
+        fd.forEach((v: any, k: string) => { body[k] = v; });
+      } catch {
+        body = {};
+      }
     }
-  } catch(e) {
-    body = {};
   }
 
   const { tipo, web, email, nombre, telefono, mensaje } = body;
