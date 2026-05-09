@@ -1393,18 +1393,20 @@ function qmCheckStep2() {
   document.getElementById('qmbtn2').disabled = !(url.length > 2 && email.includes('@'));
 }
 
-function qmSend() {
+async function qmSend() {
   var tipo   = qmSelected || '';
   var noselo = document.getElementById('qmNoseloText').value.trim();
   var url    = document.getElementById('qmUrl').value.trim();
   var email  = document.getElementById('qmEmail').value.trim();
   var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
 
-  fetch('/api/send', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ tipo: consulta, web: url, email: email })
-  }).catch(function(){});
+  try {
+    await fetch('/api/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tipo: consulta, web: url, email: email })
+    });
+  } catch(e) {}
 
   qmGo(3);
 }
