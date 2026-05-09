@@ -6,25 +6,18 @@ import nodemailer from 'nodemailer';
 export const POST: APIRoute = async ({ request }) => {
   let body: any = {};
   try {
-    const contentType = request.headers.get('content-type') || '';
-    if (contentType.includes('application/json')) {
-      body = await request.json();
-    } else if (contentType.includes('form')) {
-      const fd = await request.formData();
-      fd.forEach((v, k) => { body[k] = v; });
-    } else {
-      // Try JSON as fallback
-      const text = await request.text();
+    const text = await request.text();
+    if (text) {
       try { body = JSON.parse(text); } catch { body = {}; }
     }
   } catch(e) {
-    return new Response(JSON.stringify({ error: 'Bad request' }), { status: 400 });
+    body = {};
   }
 
   const { tipo, web, email, nombre, telefono, mensaje } = body;
 
   if (!email) {
-    return new Response(JSON.stringify({ error: 'Email requerido' }), { status: 400 });
+    return new Response(JSON.stringify({ error: 'Email requerido', received: Object.keys(body) }), { status: 400 });
   }
 
   const transporter = nodemailer.createTransport({
