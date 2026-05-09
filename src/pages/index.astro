@@ -522,7 +522,6 @@ import Layout from "../layouts/Layout.astro";
     const consulta = document.getElementById("drawerConsulta").value.trim();
     const honeypot = document.getElementById("drawerWebsite").value;
 
-    /* Honeypot: si los bots lo rellenan, fingimos éxito y no enviamos nada */
     if (honeypot) {
       document.getElementById("drawerForm").style.display = "none";
       document.getElementById("drawerSuccess").classList.add("show");
@@ -530,7 +529,6 @@ import Layout from "../layouts/Layout.astro";
       return;
     }
 
-    /* Validación */
     errorEl.style.display = "none";
     if (!nombre || !email) {
       errorEl.textContent = "Por favor completa tu nombre y email.";
@@ -543,31 +541,23 @@ import Layout from "../layouts/Layout.astro";
       return;
     }
 
-    /* Estado de envío */
     const btnTextOriginal = btn.innerHTML;
     btn.disabled = true;
     btn.style.opacity = "0.6";
     btn.style.cursor = "wait";
     btn.innerHTML = "Enviando...";
 
-    /* Elegir plantilla: si hay consulta, A; si no, B */
-    const hasConsulta = consulta.length > 0;
-    const templateId  = hasConsulta ? EMAILJS_TEMPLATE_A : EMAILJS_TEMPLATE_B;
-    const params      = {
-      name:     nombre,
-      email:    email,
-      phone:    telefono || "No facilitado",
-      consulta: hasConsulta ? consulta : "Sin consulta previa",
-      reply_to: email
-    };
-
     try {
-      await sendEmail(templateId, params);
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, telefono, mensaje: consulta })
+      });
+      if (!res.ok) throw new Error('Error');
       document.getElementById("drawerForm").style.display = "none";
       document.getElementById("drawerSuccess").classList.add("show");
       setTimeout(closeDrawer, 3000);
     } catch (err) {
-      console.error("EmailJS error:", err);
       errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
       errorEl.style.display = "block";
       btn.disabled = false;
@@ -1404,26 +1394,17 @@ function qmCheckStep2() {
 }
 
 function qmSend() {
-  // Recoger datos y enviar al mismo endpoint que el formulario de contacto
-  var tipo = qmSelected || '';
+  var tipo   = qmSelected || '';
   var noselo = document.getElementById('qmNoseloText').value.trim();
-  var url = document.getElementById('qmUrl').value.trim();
-  var email = document.getElementById('qmEmail').value.trim();
+  var url    = document.getElementById('qmUrl').value.trim();
+  var email  = document.getElementById('qmEmail').value.trim();
   var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
 
-  // Enviar via fetch al mismo endpoint de Formspree/EmailJS que usa el drawer
-  var endpoint = document.getElementById('drawerForm') ?
-    document.getElementById('drawerForm').action : null;
-
-  // Si hay endpoint real lo usamos, si no simplemente mostramos confirmación
-  if (endpoint) {
-    var body = new FormData();
-    body.append('tipo', consulta);
-    body.append('web_instagram', url);
-    body.append('email', email);
-    fetch(endpoint, { method: 'POST', body: body, headers: { 'Accept': 'application/json' } })
-      .catch(function(){});
-  }
+  fetch('/api/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tipo: consulta, web: url, email: email })
+  }).catch(function(){});
 
   qmGo(3);
 }
@@ -1701,7 +1682,6 @@ function qmReset(reopen) {
     const consulta = document.getElementById("drawerConsulta").value.trim();
     const honeypot = document.getElementById("drawerWebsite").value;
 
-    /* Honeypot: si los bots lo rellenan, fingimos éxito y no enviamos nada */
     if (honeypot) {
       document.getElementById("drawerForm").style.display = "none";
       document.getElementById("drawerSuccess").classList.add("show");
@@ -1709,7 +1689,6 @@ function qmReset(reopen) {
       return;
     }
 
-    /* Validación */
     errorEl.style.display = "none";
     if (!nombre || !email) {
       errorEl.textContent = "Por favor completa tu nombre y email.";
@@ -1722,31 +1701,23 @@ function qmReset(reopen) {
       return;
     }
 
-    /* Estado de envío */
     const btnTextOriginal = btn.innerHTML;
     btn.disabled = true;
     btn.style.opacity = "0.6";
     btn.style.cursor = "wait";
     btn.innerHTML = "Enviando...";
 
-    /* Elegir plantilla: si hay consulta, A; si no, B */
-    const hasConsulta = consulta.length > 0;
-    const templateId  = hasConsulta ? EMAILJS_TEMPLATE_A : EMAILJS_TEMPLATE_B;
-    const params      = {
-      name:     nombre,
-      email:    email,
-      phone:    telefono || "No facilitado",
-      consulta: hasConsulta ? consulta : "Sin consulta previa",
-      reply_to: email
-    };
-
     try {
-      await sendEmail(templateId, params);
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, telefono, mensaje: consulta })
+      });
+      if (!res.ok) throw new Error('Error');
       document.getElementById("drawerForm").style.display = "none";
       document.getElementById("drawerSuccess").classList.add("show");
       setTimeout(closeDrawer, 3000);
     } catch (err) {
-      console.error("EmailJS error:", err);
       errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
       errorEl.style.display = "block";
       btn.disabled = false;
