@@ -4,28 +4,12 @@ import { Resend } from "resend";
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
-  let email = "", tipo = "", web = "";
+  const url = new URL(request.url);
+  const email = url.searchParams.get("email") ?? "";
+  const tipo  = url.searchParams.get("tipo")  ?? "";
+  const web   = url.searchParams.get("web")   ?? "";
 
-  try {
-    const raw = await request.text();
-    console.log("[send] raw body:", raw);
-
-    if (raw && raw.startsWith("{")) {
-      const parsed = JSON.parse(raw);
-      email = parsed.email ?? "";
-      tipo  = parsed.tipo  ?? "";
-      web   = parsed.web   ?? "";
-    } else if (raw) {
-      const params = new URLSearchParams(raw);
-      email = params.get("email") ?? "";
-      tipo  = params.get("tipo")  ?? "";
-      web   = params.get("web")   ?? "";
-    }
-  } catch (e) {
-    console.error("[send] parse error:", e);
-  }
-
-  console.log("[send] parsed →", { email, tipo, web });
+  console.log("[send] params →", { email, tipo, web });
 
   if (!email) {
     return new Response(JSON.stringify({ error: "email requerido" }), {
@@ -45,14 +29,13 @@ export const POST: APIRoute = async ({ request }) => {
         <p><strong>Web:</strong> ${web}</p>
       `,
     });
-
-    console.log("[send] resend ok:", data);
+    console.log("[send] ok:", data);
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (e: any) {
-    console.error("[send] resend error:", e);
+    console.error("[send] error:", e);
     return new Response(JSON.stringify({ error: e?.message ?? "error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
