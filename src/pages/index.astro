@@ -548,11 +548,7 @@ import Layout from "../layouts/Layout.astro";
     btn.innerHTML = "Enviando...";
 
     try {
-      const res = await fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, email, telefono, mensaje: consulta })
-      });
+      const res = await fetch(`/api/send?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono||'')}&consulta=${encodeURIComponent(consulta||'')}`, { method: 'POST' });
       if (!res.ok) throw new Error('Error');
       document.getElementById("drawerForm").style.display = "none";
       document.getElementById("drawerSuccess").classList.add("show");
@@ -1401,11 +1397,7 @@ async function qmSend() {
   var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
 
   try {
-    await fetch('/api/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tipo: consulta, web: url, email: email })
-    });
+    await fetch(`/api/send?tipo=${encodeURIComponent(consulta)}&web=${encodeURIComponent(url)}&email=${encodeURIComponent(email)}`, { method: 'POST' });
   } catch(e) {}
 
   qmGo(3);
@@ -1710,11 +1702,7 @@ function qmReset(reopen) {
     btn.innerHTML = "Enviando...";
 
     try {
-      const res = await fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, email, telefono, mensaje: consulta })
-      });
+      const res = await fetch(`/api/send?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono||'')}&consulta=${encodeURIComponent(consulta||'')}`, { method: 'POST' });
       if (!res.ok) throw new Error('Error');
       document.getElementById("drawerForm").style.display = "none";
       document.getElementById("drawerSuccess").classList.add("show");
