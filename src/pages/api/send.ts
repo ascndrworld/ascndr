@@ -6,10 +6,19 @@ export const POST: APIRoute = async ({ request }) => {
   let body: any = {};
 
   try {
-    const buf = await request.arrayBuffer();
-    const text = new TextDecoder().decode(buf);
-    if (text) body = JSON.parse(text);
-  } catch { body = {}; }
+    body = await request.json();
+  } catch (e1) {
+    try {
+      const buf = await request.arrayBuffer();
+      const text = new TextDecoder().decode(buf);
+      if (text) body = JSON.parse(text);
+    } catch (e2) {
+      return new Response(
+        JSON.stringify({ error: 'Cannot parse body', e1: String(e1), e2: String(e2) }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+  }
 
   const { tipo, web, email, nombre, telefono, mensaje } = body;
 
