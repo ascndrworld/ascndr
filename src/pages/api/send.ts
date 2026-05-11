@@ -17,9 +17,11 @@ export const GET: APIRoute = async ({ url }) => {
     });
   }
 
-  const tipoLabel = tipo || consulta || "tu proyecto";
+  const tipoRaw = tipo || consulta || "tu proyecto";
+  const tipoLabel = tipoRaw.startsWith("noselo") || tipoRaw.startsWith("No sé")
+    ? "orientación"
+    : tipoRaw;
 
-  // Email interno a Frank
   const htmlInterno = `
     <p><strong>Email cliente:</strong> ${email}</p>
     <p><strong>Tipo:</strong> ${tipo || "—"}</p>
@@ -28,13 +30,11 @@ export const GET: APIRoute = async ({ url }) => {
     <p><strong>Consulta:</strong> ${consulta || "—"}</p>
   `;
 
-  // Autoreply al cliente
-  const htmlCliente = `
-<!DOCTYPE html>
+  const htmlCliente = `<!DOCTYPE html>
 <html>
 <body style="margin:0;padding:0;background-color:#000000;">
   <div style="display:none;max-height:0;overflow:hidden;font-size:1px;color:#000000;">
-    Hemos recibido tu consulta — te respondemos en menos de 24 horas.
+    Te respondemos en menos de 24 horas.&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌
   </div>
   <table style="background-color:#000000;margin:0;padding:0;" border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
@@ -48,7 +48,7 @@ export const GET: APIRoute = async ({ url }) => {
           <tr>
             <td>
               <p style="margin:0 0 20px 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.3;color:#fffff8;">
-                Hola.
+                Hola,
               </p>
               <p style="margin:0 0 16px 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#a1a1aa;">
                 Hemos recibido tu consulta sobre <span style="color:#fffff8;font-weight:600;">«${tipoLabel}»</span> y ya está en nuestras manos.
@@ -61,7 +61,7 @@ export const GET: APIRoute = async ({ url }) => {
               </p>
               <p style="margin:0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;">
                 <span style="color:#fffff8;font-weight:600;">Frank</span><br/>
-                <span style="color:#71717a;font-weight:400;">Consultor Estratégico</span>
+                <span style="color:#71717a;">Consultor Estratégico</span>
               </p>
               <table style="margin-top:40px;" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
@@ -80,21 +80,18 @@ export const GET: APIRoute = async ({ url }) => {
     </tr>
   </table>
 </body>
-</html>
-  `;
+</html>`;
 
   try {
-    // Envío interno
     await resend.emails.send({
-      from: "web@ascndrworld.com",
+      from: "Ascndr <web@ascndrworld.com>",
       to: "franmadi10@gmail.com",
       subject: `Nueva consulta — ${tipoLabel} — Ascndr`,
       html: htmlInterno,
     });
 
-    // Autoreply al cliente
     await resend.emails.send({
-      from: "web@ascndrworld.com",
+      from: "Ascndr <web@ascndrworld.com>",
       to: email,
       reply_to: "frank@ascndrworld.com",
       subject: "Hemos recibido tu consulta — Ascndr",
