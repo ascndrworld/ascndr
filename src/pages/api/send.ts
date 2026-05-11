@@ -22,12 +22,15 @@ export const GET: APIRoute = async ({ url }) => {
     ? "orientación"
     : tipoRaw;
 
+  const textoOrientacion = consulta.startsWith("No sé / orientación:")
+    ? consulta.replace("No sé / orientación:", "").trim()
+    : "";
+
   const htmlInterno = `
-    <p><strong>Email cliente:</strong> ${email}</p>
+    <p><strong>Email:</strong> ${email}</p>
     <p><strong>Tipo:</strong> ${tipo || "—"}</p>
     <p><strong>Web:</strong> ${web || "—"}</p>
-    <p><strong>Nombre:</strong> ${nombre || "—"}</p>
-    <p><strong>Consulta:</strong> ${consulta || "—"}</p>
+    ${textoOrientacion ? `<p><strong>Mensaje:</strong> ${textoOrientacion}</p>` : ""}
   `;
 
   const htmlCliente = `<!DOCTYPE html>
