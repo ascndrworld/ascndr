@@ -12,45 +12,29 @@ export const POST: APIRoute = async ({ request }) => {
   const tipo     = url.searchParams.get("tipo")     ?? "";
   const web      = url.searchParams.get("web")      ?? "";
 
-  console.log("[send] params →", { email, nombre, telefono, consulta, tipo, web });
-
   if (!email) {
-    return new Response(JSON.stringify({ error: "email requerido" }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
+    return new Response(JSON.stringify({ error: "email requerido", keys: [email,tipo,web] }), {
+      status: 400, headers: { "Content-Type": "application/json" },
     });
   }
 
-  const subject = nombre
-    ? `Nueva consulta de ${nombre} — Ascndr`
-    : `Nueva consulta desde Ascndr — ${tipo || "web"}`;
-
+  const subject = `Nueva consulta — ${tipo || "web"} — Ascndr`;
   const html = `
-    <p><strong>Nombre:</strong> ${nombre || "—"}</p>
     <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Teléfono:</strong> ${telefono || "—"}</p>
-    <p><strong>Consulta:</strong> ${consulta || tipo || "—"}</p>
+    <p><strong>Tipo:</strong> ${tipo || "—"}</p>
     <p><strong>Web:</strong> ${web || "—"}</p>
+    <p><strong>Nombre:</strong> ${nombre || "—"}</p>
+    <p><strong>Consulta:</strong> ${consulta || "—"}</p>
   `;
 
   try {
-    const data = await resend.emails.send({
-      from: "web@ascndrworld.com",
-      to:   "frank@ascndrworld.com",
-      subject,
-      html,
-    });
-    console.log("[send] ok:", data);
+    await resend.emails.send({ from: "web@ascndrworld.com", to: "frank@ascndrworld.com", subject, html });
     return new Response(JSON.stringify({ ok: true }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
+      status: 200, headers: { "Content-Type": "application/json" },
     });
   } catch (e: any) {
-    console.error("[send] error:", e);
     return new Response(JSON.stringify({ error: e?.message ?? "error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
+      status: 500, headers: { "Content-Type": "application/json" },
     });
   }
 };
-// searchParams fix
