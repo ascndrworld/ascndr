@@ -548,27 +548,10 @@ import Layout from "../layouts/Layout.astro";
     btn.innerHTML = "Enviando...";
 
     try {
-      const html = '<div style="font-family:sans-serif;color:#111;">'
-        + '<h2>Nuevo mensaje de ' + nombre + '</h2>'
-        + (nombre   ? '<p><strong>Nombre:</strong> '   + nombre   + '</p>' : '')
-        + (telefono ? '<p><strong>Teléfono:</strong> ' + telefono + '</p>' : '')
-        + (consulta ? '<p><strong>Mensaje:</strong> '  + consulta + '</p>' : '')
-        + '<p><strong>Email:</strong> <a href="mailto:' + email + '">' + email + '</a></p>'
-        + '<p style="font-size:12px;color:#888;">Enviado desde ascndrworld.com</p>'
-        + '</div>';
-      const res = await fetch('https://api.resend.com/emails', {
+      const res = await fetch('/api/send', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer re_AZZkzxzB_M8VujT3WkNpiLLDFUgQPjc7x'
-        },
-        body: JSON.stringify({
-          from: 'Ascndr Web <web@ascndrworld.com>',
-          to: ['frank@ascndrworld.com'],
-          reply_to: email,
-          subject: 'Nuevo mensaje de ' + nombre,
-          html: html
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, telefono, mensaje: consulta })
       });
       if (!res.ok) throw new Error('Error');
       document.getElementById("drawerForm").style.display = "none";
@@ -1417,28 +1400,11 @@ async function qmSend() {
   var email  = document.getElementById('qmEmail').value.trim();
   var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
 
-  var html = '<div style="font-family:sans-serif;color:#111;">'
-    + '<h2>Nueva consulta — ' + consulta + '</h2>'
-    + (consulta ? '<p><strong>Tipo:</strong> ' + consulta + '</p>' : '')
-    + (url      ? '<p><strong>Web / Instagram:</strong> ' + url + '</p>' : '')
-    + '<p><strong>Email:</strong> <a href="mailto:' + email + '">' + email + '</a></p>'
-    + '<p style="font-size:12px;color:#888;">Enviado desde ascndrworld.com</p>'
-    + '</div>';
-
   try {
-    await fetch('https://api.resend.com/emails', {
+    await fetch('/api/send', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer re_AZZkzxzB_M8VujT3WkNpiLLDFUgQPjc7x'
-      },
-      body: JSON.stringify({
-        from: 'Ascndr Web <web@ascndrworld.com>',
-        to: ['frank@ascndrworld.com'],
-        reply_to: email,
-        subject: 'Nueva consulta — ' + consulta,
-        html: html
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tipo: consulta, web: url, email: email })
     });
   } catch(e) {}
 
@@ -1744,27 +1710,10 @@ function qmReset(reopen) {
     btn.innerHTML = "Enviando...";
 
     try {
-      const html = '<div style="font-family:sans-serif;color:#111;">'
-        + '<h2>Nuevo mensaje de ' + nombre + '</h2>'
-        + (nombre   ? '<p><strong>Nombre:</strong> '   + nombre   + '</p>' : '')
-        + (telefono ? '<p><strong>Teléfono:</strong> ' + telefono + '</p>' : '')
-        + (consulta ? '<p><strong>Mensaje:</strong> '  + consulta + '</p>' : '')
-        + '<p><strong>Email:</strong> <a href="mailto:' + email + '">' + email + '</a></p>'
-        + '<p style="font-size:12px;color:#888;">Enviado desde ascndrworld.com</p>'
-        + '</div>';
-      const res = await fetch('https://api.resend.com/emails', {
+      const res = await fetch('/api/send', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer re_AZZkzxzB_M8VujT3WkNpiLLDFUgQPjc7x'
-        },
-        body: JSON.stringify({
-          from: 'Ascndr Web <web@ascndrworld.com>',
-          to: ['frank@ascndrworld.com'],
-          reply_to: email,
-          subject: 'Nuevo mensaje de ' + nombre,
-          html: html
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, telefono, mensaje: consulta })
       });
       if (!res.ok) throw new Error('Error');
       document.getElementById("drawerForm").style.display = "none";
