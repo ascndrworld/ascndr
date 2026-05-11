@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export const ALL: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url }) => {
   const email    = url.searchParams.get("email")    ?? "";
   const nombre   = url.searchParams.get("nombre")   ?? "";
   const telefono = url.searchParams.get("telefono") ?? "";
@@ -39,3 +39,5 @@ export const ALL: APIRoute = async ({ url }) => {
     });
   }
 };
+
+export const POST: APIRoute = GET;
