@@ -27,6 +27,7 @@ export const GET: APIRoute = async ({ url }) => {
     : "";
 
   const htmlInterno = `
+    <p><strong>Nombre:</strong> ${nombre || "—"}</p>
     <p><strong>Email:</strong> ${email}</p>
     <p><strong>Tipo:</strong> ${tipo || "—"}</p>
     <p><strong>Web:</strong> ${web || "—"}</p>
