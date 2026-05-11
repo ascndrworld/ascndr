@@ -1403,7 +1403,7 @@ async function qmSend() {
   var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
 
   try {
-    await fetch(`/api/send?tipo=${encodeURIComponent(consulta)}&web=${encodeURIComponent(url)}&email=${encodeURIComponent(email)}`, { method: 'POST' });
+    await fetch(`/api/send?tipo=${encodeURIComponent(consulta)}&web=${encodeURIComponent(url)}&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}`, { method: 'POST' });
   } catch(e) {}
 
   qmGo(3);
