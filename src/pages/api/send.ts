@@ -36,9 +36,7 @@ export const GET: APIRoute = async ({ url }) => {
   const htmlCliente = `<!DOCTYPE html>
 <html>
 <body style="margin:0;padding:0;background-color:#000000;">
-  <div style="display:none;max-height:0;overflow:hidden;font-size:1px;color:#000000;">
-    Te respondemos en menos de 24 horas.&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌
-  </div>
+
   <table style="background-color:#000000;margin:0;padding:0;" border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
       <td style="padding:40px 20px;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;" align="center">
@@ -94,10 +92,11 @@ export const GET: APIRoute = async ({ url }) => {
     });
 
     await resend.emails.send({
-      from: "Ascndr <web@ascndrworld.com>",
+      from: "Frank <frank@ascndrworld.com>",
       to: email,
       reply_to: "frank@ascndrworld.com",
-      subject: "Hemos recibido tu consulta — Ascndr",
+      subject: "Bienvenido a Ascndr",
+      reply_to: "frank@ascndrworld.com",
       html: htmlCliente,
     });
 
