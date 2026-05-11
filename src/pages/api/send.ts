@@ -1,81 +1,61 @@
-export const prerender = false;
+import type { APIRoute } from "astro";
+import { Resend } from "resend";
 
-import type { APIRoute } from 'astro';
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
-  let body: any = {};
+  let email = "", tipo = "", web = "";
 
   try {
-    body = await request.json();
-  } catch (e1) {
-    try {
-      const buf = await request.arrayBuffer();
-      const text = new TextDecoder().decode(buf);
-      if (text) body = JSON.parse(text);
-    } catch (e2) {
-      return new Response(
-        JSON.stringify({ error: 'Cannot parse body', e1: String(e1), e2: String(e2) }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
+    const raw = await request.text();
+    console.log("[send] raw body:", raw);
+
+    if (raw && raw.startsWith("{")) {
+      const parsed = JSON.parse(raw);
+      email = parsed.email ?? "";
+      tipo  = parsed.tipo  ?? "";
+      web   = parsed.web   ?? "";
+    } else if (raw) {
+      const params = new URLSearchParams(raw);
+      email = params.get("email") ?? "";
+      tipo  = params.get("tipo")  ?? "";
+      web   = params.get("web")   ?? "";
     }
+  } catch (e) {
+    console.error("[send] parse error:", e);
   }
 
-  const { tipo, web, email, nombre, telefono, mensaje } = body;
+  console.log("[send] parsed →", { email, tipo, web });
 
   if (!email) {
-    return new Response(
-      JSON.stringify({ error: 'Email requerido' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ error: "email requerido" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
-  const subject = tipo ? `Nueva consulta — ${tipo}`
-    : nombre ? `Nuevo mensaje de ${nombre}`
-    : 'Nuevo mensaje desde ascndrworld.com';
-
-  const html = `
-    <div style="font-family:sans-serif;max-width:520px;color:#111;">
-      <h2>${subject}</h2>
-      <hr style="border:none;border-top:1px solid #eee;margin:16px 0;"/>
-      ${tipo     ? `<p><strong>Tipo:</strong> ${tipo}</p>` : ''}
-      ${nombre   ? `<p><strong>Nombre:</strong> ${nombre}</p>` : ''}
-      ${telefono ? `<p><strong>Teléfono:</strong> ${telefono}</p>` : ''}
-      ${web      ? `<p><strong>Web / Instagram:</strong> ${web}</p>` : ''}
-      ${mensaje  ? `<p><strong>Mensaje:</strong> ${mensaje}</p>` : ''}
-      <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-      <hr style="border:none;border-top:1px solid #eee;margin:16px 0;"/>
-      <p style="font-size:12px;color:#888;">Enviado desde ascndrworld.com</p>
-    </div>`;
-
   try {
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
-      },
-      body: JSON.stringify({
-        from: 'Ascndr Web <web@ascndrworld.com>',
-        to: ['frank@ascndrworld.com'],
-        reply_to: email,
-        subject,
-        html
-      })
+    const data = await resend.emails.send({
+      from: "web@ascndrworld.com",
+      to:   "frank@ascndrworld.com",
+      subject: `Nueva consulta desde Ascndr — ${tipo || "web"}`,
+      html: `
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Tipo:</strong> ${tipo}</p>
+        <p><strong>Web:</strong> ${web}</p>
+      `,
     });
 
-    if (!res.ok) {
-      const err = await res.text();
-      return new Response(JSON.stringify({ error: 'Resend error', detail: err }), {
-        status: 500, headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
+    console.log("[send] resend ok:", data);
     return new Response(JSON.stringify({ ok: true }), {
-      status: 200, headers: { 'Content-Type': 'application/json' }
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
-  } catch (err: any) {
-    return new Response(JSON.stringify({ error: 'Error', detail: err.message }), {
-      status: 500, headers: { 'Content-Type': 'application/json' }
+  } catch (e: any) {
+    console.error("[send] resend error:", e);
+    return new Response(JSON.stringify({ error: e?.message ?? "error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
     });
   }
 };
