@@ -3,15 +3,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export const GET: APIRoute = async ({ url }) => {
-  return handler(url);
-};
-
-export const POST: APIRoute = async ({ url }) => {
-  return handler(url);
-};
-
-async function handler(url: URL) {
+export const ALL: APIRoute = async ({ url }) => {
   const email    = url.searchParams.get("email")    ?? "";
   const nombre   = url.searchParams.get("nombre")   ?? "";
   const telefono = url.searchParams.get("telefono") ?? "";
@@ -20,22 +12,24 @@ async function handler(url: URL) {
   const web      = url.searchParams.get("web")      ?? "";
 
   if (!email) {
-    return new Response(JSON.stringify({ error: "email requerido", debug: url.toString() }), {
+    return new Response(JSON.stringify({ error: "email requerido", url: url.toString() }), {
       status: 400, headers: { "Content-Type": "application/json" },
     });
   }
 
-  const subject = `Nueva consulta — ${tipo || "web"} — Ascndr`;
-  const html = `
-    <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Tipo:</strong> ${tipo || "—"}</p>
-    <p><strong>Web:</strong> ${web || "—"}</p>
-    <p><strong>Nombre:</strong> ${nombre || "—"}</p>
-    <p><strong>Consulta:</strong> ${consulta || "—"}</p>
-  `;
-
   try {
-    await resend.emails.send({ from: "web@ascndrworld.com", to: "frank@ascndrworld.com", subject, html });
+    await resend.emails.send({
+      from: "web@ascndrworld.com",
+      to: "frank@ascndrworld.com",
+      subject: `Nueva consulta — ${tipo || "web"} — Ascndr`,
+      html: `
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Tipo:</strong> ${tipo || "—"}</p>
+        <p><strong>Web:</strong> ${web || "—"}</p>
+        <p><strong>Nombre:</strong> ${nombre || "—"}</p>
+        <p><strong>Consulta:</strong> ${consulta || "—"}</p>
+      `,
+    });
     return new Response(JSON.stringify({ ok: true }), {
       status: 200, headers: { "Content-Type": "application/json" },
     });
@@ -44,4 +38,4 @@ async function handler(url: URL) {
       status: 500, headers: { "Content-Type": "application/json" },
     });
   }
-}
+};
