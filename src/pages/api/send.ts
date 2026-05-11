@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ url }) => {
   const web      = url.searchParams.get("web")      ?? "";
 
   if (!email) {
-    return new Response(JSON.stringify({ error: "email requerido", url: url.toString() }), {
+    return new Response(JSON.stringify({ error: "email requerido" }), {
       status: 400, headers: { "Content-Type": "application/json" },
     });
   }
@@ -20,10 +20,10 @@ export const GET: APIRoute = async ({ url }) => {
   try {
     await resend.emails.send({
       from: "web@ascndrworld.com",
-      to: "frank@ascndrworld.com",
+      to: "franmadi10@gmail.com",
       subject: `Nueva consulta — ${tipo || "web"} — Ascndr`,
       html: `
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Email cliente:</strong> ${email}</p>
         <p><strong>Tipo:</strong> ${tipo || "—"}</p>
         <p><strong>Web:</strong> ${web || "—"}</p>
         <p><strong>Nombre:</strong> ${nombre || "—"}</p>
