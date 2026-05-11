@@ -49,7 +49,7 @@ export const GET: APIRoute = async ({ url }) => {
           <tr>
             <td>
               <p style="margin:0 0 20px 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.3;color:#fffff8;">
-                Hola,
+                Hola${nombre ? ", " + nombre : ""},
               </p>
               <p style="margin:0 0 16px 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#a1a1aa;">
                 Hemos recibido tu consulta sobre <span style="color:#fffff8;font-weight:600;">«${tipoLabel}»</span> y ya está en nuestras manos.

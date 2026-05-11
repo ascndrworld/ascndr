@@ -1298,6 +1298,11 @@ textarea.qm-input,
       <div class="qm-title">¿Dónde estás ahora?</div>
       <div class="qm-sub">Así revisamos tu situación antes de escribirte</div>
       <div class="qm-field-group">
+        <span class="qm-field-label">Nombre o denominación</span>
+        <input class="qm-input" type="text" id="qmNombre"
+          placeholder="Tu nombre o el de tu marca" oninput="qmCheckStep2()"/>
+      </div>
+      <div class="qm-field-group">
         <span class="qm-field-label">Tu web o Instagram</span>
         <input class="qm-input" type="text" id="qmUrl"
           placeholder="miweb.com o @mimarca" oninput="qmCheckStep2()"/>
@@ -1392,6 +1397,7 @@ function qmCheckStep2() {
 async function qmSend() {
   var tipo   = qmSelected || '';
   var noselo = document.getElementById('qmNoseloText').value.trim();
+  var nombre = document.getElementById('qmNombre').value.trim();
   var url    = document.getElementById('qmUrl').value.trim();
   var email  = document.getElementById('qmEmail').value.trim();
   var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
@@ -1409,6 +1415,7 @@ function qmReset(reopen) {
   document.getElementById('qmNoseloExtra').classList.remove('visible');
   document.getElementById('qmNoseloText').value = '';
   document.getElementById('qmbtn1').disabled = true;
+  document.getElementById('qmNombre').value = '';
   document.getElementById('qmUrl').value = '';
   document.getElementById('qmEmail').value = '';
   document.getElementById('qmbtn2').disabled = true;
