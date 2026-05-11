@@ -45,7 +45,7 @@ export const GET: APIRoute = async ({ url }) => {
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:560px;">
           <tr>
             <td style="padding-bottom:30px;" align="center">
-              <img style="width:150px;max-width:150px;height:auto;display:block;border:0;" src="https://i.postimg.cc/cLLvvXz4/ascndr-logo.png" alt="Ascndr" width="150" />
+              <img style="width:150px;max-width:150px;height:auto;display:block;border:0;" src="https://www.ascndrworld.com/ascndr-logo.png" alt="Ascndr" width="150" />
             </td>
           </tr>
           <tr>
