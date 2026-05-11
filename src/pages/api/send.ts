@@ -92,7 +92,7 @@ export const GET: APIRoute = async ({ url }) => {
     });
 
     await resend.emails.send({
-      from: "Frank <frank@ascndrworld.com>",
+      from: "Ascndr <frank@ascndrworld.com>",
       to: email,
       reply_to: "frank@ascndrworld.com",
       subject: "Bienvenido a Ascndr",
