@@ -3,8 +3,15 @@ import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export const POST: APIRoute = async ({ request }) => {
-  const url = new URL(request.url);
+export const GET: APIRoute = async ({ url }) => {
+  return handler(url);
+};
+
+export const POST: APIRoute = async ({ url }) => {
+  return handler(url);
+};
+
+async function handler(url: URL) {
   const email    = url.searchParams.get("email")    ?? "";
   const nombre   = url.searchParams.get("nombre")   ?? "";
   const telefono = url.searchParams.get("telefono") ?? "";
@@ -13,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
   const web      = url.searchParams.get("web")      ?? "";
 
   if (!email) {
-    return new Response(JSON.stringify({ error: "email requerido", keys: [email,tipo,web] }), {
+    return new Response(JSON.stringify({ error: "email requerido", debug: url.toString() }), {
       status: 400, headers: { "Content-Type": "application/json" },
     });
   }
@@ -37,4 +44,4 @@ export const POST: APIRoute = async ({ request }) => {
       status: 500, headers: { "Content-Type": "application/json" },
     });
   }
-};
+}
