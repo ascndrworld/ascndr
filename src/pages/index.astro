@@ -4,91 +4,97 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Ascndr | Consultoría Creativa - Branding, Lanzamientos y RRSS">
 
-
 <!-- ════ HOME ════ -->
 <div id="home" class="page active">
 
-  <!-- Botón flecha → Trabajos: acorde al logo Ascndr -->
-  <a class="works-arrow" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;" aria-label="Ir a Trabajos" title="Trabajos">
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- Filtro para difuminar solo los bordes -->
-      <defs>
-        <filter id="edgeBlur" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="0.4"></feGaussianBlur>
-        </filter>
-      </defs>
+  <!-- HEADER FIJO -->
+  <header class="site-header">
+    <a href="/" class="header-logo" onclick="showPage('home'); return false;">
+      <img src="/ascndr-logo.png" alt="Ascndr" />
+    </a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-      <!-- Flecha sólida un poco más fina, color crema del logo.
-           Duplicado borroso detrás (solo para difuminar el borde)
-           + versión nítida encima con el relleno real. -->
-      <path class="arrow-shape arrow-edge"
-            filter="url(#edgeBlur)"
-            d="M 15 44
-               L 20 49
-               L 44 25
-               L 44 44
-               L 51 44
-               L 51 13
-               L 20 13
-               L 20 20
-               L 39 20
-               L 15 44 Z"></path>
+  <!-- MENÚ OVERLAY -->
+  <nav class="menu-overlay" id="menuOverlay">
+    <ul class="menu-links">
+      <li><a href="/" onclick="closeMenu(); showPage('home'); return false;">inicio</a></li>
+      <li><a href="/trabajos" onclick="closeMenu(); showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">trabajos</a></li>
+      <li><a href="/contacto" onclick="closeMenu(); openContactRoute(); return false;">contacto</a></li>
+    </ul>
+  </nav>
 
-      <path class="arrow-shape"
-            d="M 15 44
-               L 20 49
-               L 44 25
-               L 44 44
-               L 51 44
-               L 51 13
-               L 20 13
-               L 20 20
-               L 39 20
-               L 15 44 Z"></path>
-
-      <!-- Sparkle de 4 puntas — homenaje a la estrella junto a la 'A' del logo -->
-      <path class="arrow-sparkle"
-            d="M 53 3
-               L 54.2 9
-               L 60 10
-               L 54.2 11
-               L 53 17
-               L 51.8 11
-               L 46 10
-               L 51.8 9
-               Z"></path>
-    </svg>
-  </a>
-
-  <div class="logo-wrap">
-    <img src="/ascndr-logo.png" alt="Ascndr — Estudio Creativo en Jaén"/>
-    <div class="logo-line" aria-hidden="true"></div>
-  </div>
-
-  <div class="middle">
-    <p class="tagline">
-      Consultoría creativa especializada en estrategia en rrss<br/> y dirección de proyectos multimedia.
-    </p>
-    <div class="search-container">
-      <div class="pill-btn" id="pillBtn" onclick="openQModal()">
-        <span class="pill-label">¿Qué buscas?</span>
-        <span class="pill-arrow">›</span>
-      </div>
+  <!-- HERO FULLSCREEN -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">eleva<br/>tu marca<br/>o te quedas<br/>donde estás.</h1>
+      <a class="hero-btn" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">
+        VER TRABAJOS
+      </a>
     </div>
-  </div>
+  </section>
 
-  <footer>
+  <!-- SECCIÓN SERVICIOS -->
+  <section class="services-section">
+    <h2 class="services-heading">estrategia</h2>
+    <p class="services-text">Trabajamos contigo desde la identidad visual hasta la gestión de redes, con foco en resultados reales y presencia que se recuerda.</p>
+    <p class="services-text">Branding, dirección creativa, fotografía, redes sociales. Todo bajo una misma visión.</p>
+    <a class="services-btn" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">
+      VER PORTFOLIO
+    </a>
+  </section>
+
+  <!-- GRID PROYECTOS EN HOME -->
+  <section class="home-works">
+    <article class="home-work-card" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); setTimeout(openGalleryConclave, 80); return false;" style="cursor:pointer;">
+      <div class="home-work-img" style="background-image:url('/images/conclave/portada-conclave2.jpg');"></div>
+      <div class="home-work-info">
+        <span class="home-work-tag">Dirección Creativa</span>
+        <span class="home-work-name">Cónclave</span>
+      </div>
+    </article>
+    <article class="home-work-card" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); setTimeout(openGallery, 80); return false;" style="cursor:pointer;">
+      <div class="home-work-img" style="background-image:url('/images/halloween-fest/pulsera-portada.jpg');"></div>
+      <div class="home-work-info">
+        <span class="home-work-tag">Branding</span>
+        <span class="home-work-name">Halloween Fest</span>
+      </div>
+    </article>
+    <article class="home-work-card" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); setTimeout(openGalleryConclaveDesign, 80); return false;" style="cursor:pointer;">
+      <div class="home-work-img" style="background-image:url('/images/conclave/rrss-01.jpg');"></div>
+      <div class="home-work-info">
+        <span class="home-work-tag">Redes Sociales</span>
+        <span class="home-work-name">Cónclave Design</span>
+      </div>
+    </article>
+    <article class="home-work-card" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); setTimeout(openGalleryHalloween3, 80); return false;" style="cursor:pointer;">
+      <div class="home-work-img" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg');"></div>
+      <div class="home-work-info">
+        <span class="home-work-tag">Fotografía</span>
+        <span class="home-work-name">Halloween Fest III</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <img src="/ascndr-logo.png" alt="Ascndr" class="footer-logo" />
+    <div class="footer-line"></div>
     <ul class="footer-nav">
-      <li><a href="/trabajos"   onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">Trabajos</a></li>
-      <li><span class="footer-sep"></span></li>
-      <li><a href="/terminos"   onclick="showPage('terms'); return false;">Términos</a></li>
-      <li><span class="footer-sep"></span></li>
+      <li><a href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">Trabajos</a></li>
+      <li><span class="footer-sep">·</span></li>
+      <li><a href="/terminos" onclick="showPage('terms'); return false;">Términos</a></li>
+      <li><span class="footer-sep">·</span></li>
       <li><a href="/privacidad" onclick="showPage('privacy'); return false;">Privacidad</a></li>
-      <li><span class="footer-sep"></span></li>
-      <li><a href="/contacto"   onclick="openContactRoute(); return false;">Contacto</a></li>
+      <li><span class="footer-sep">·</span></li>
+      <li><a href="/contacto" onclick="openContactRoute(); return false;">Contacto</a></li>
     </ul>
     <p class="copyright">© Ascndr 2026 &nbsp;·&nbsp; Marca Registrada</p>
   </footer>
+
 </div>
 
 <!-- ════ PRIVACY ════ -->
@@ -146,7 +152,6 @@ import Layout from "../layouts/Layout.astro";
 <div id="works" class="page">
   <a href="/" class="back-btn" onclick="showPage('home'); return false;">← Volver</a>
 
-  <!-- Hero -->
   <div class="works-hero">
     <div class="works-hero-left">
       <div class="works-eyebrow">Portfolio · 2024 — 2026</div>
@@ -158,7 +163,6 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </div>
 
-  <!-- Filtros -->
   <div class="works-filters" id="worksFilters">
     <button class="filter-btn active" data-filter="all">Todos</button>
     <button class="filter-btn" data-filter="branding">Branding</button>
@@ -167,9 +171,7 @@ import Layout from "../layouts/Layout.astro";
     <button class="filter-btn" data-filter="direction">Dirección Creativa</button>
   </div>
 
-  <!-- Grid de proyectos -->
   <div class="works-grid" id="worksGrid">
-
     <article class="work-card size-md-v" data-category="direction" onclick="openGalleryConclave()" style="cursor:pointer">
       <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.jpg'); background-size:cover; background-position:center;"></div>
       <span class="work-tag">Dirección Creativa</span>
@@ -182,8 +184,6 @@ import Layout from "../layouts/Layout.astro";
         <div class="work-year">MMXXV</div>
       </div>
     </article>
-
-    <!-- Halloween Fest -->
     <article class="work-card size-lg" data-category="branding" onclick="openGallery()" style="cursor:pointer;">
       <div class="work-media" style="background-image:url('/images/halloween-fest/pulsera-portada.jpg');"></div>
       <span class="work-tag">Branding</span>
@@ -196,8 +196,6 @@ import Layout from "../layouts/Layout.astro";
         <div class="work-year">MMXXIV — MMXXV</div>
       </div>
     </article>
-
-    <!-- Cónclave Design (Redes Sociales) -->
     <article class="work-card size-lg" data-category="social" onclick="openGalleryConclaveDesign()" style="cursor:pointer;">
       <div class="work-media work-media-fade">
         <div class="work-media-img" style="background-image:url('/images/conclave/rrss-01.jpg');"></div>
@@ -213,8 +211,6 @@ import Layout from "../layouts/Layout.astro";
         <div class="work-year">MMXXVI</div>
       </div>
     </article>
-
-    <!-- 3ª Ed. Halloween Fest (Fotografía) -->
     <article class="work-card size-md-v" data-category="photography" onclick="openGalleryHalloween3()" style="cursor:pointer;">
       <div class="work-media" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg'); background-size:cover; background-position:center;"></div>
       <span class="work-tag">Fotografía</span>
@@ -227,10 +223,8 @@ import Layout from "../layouts/Layout.astro";
         <div class="work-year">MMXXV</div>
       </div>
     </article>
-
   </div>
 
-  <!-- CTA -->
   <div class="works-cta">
     <div class="works-cta-text">
       <h3>¿Tienes un proyecto en mente?</h3>
@@ -241,53 +235,40 @@ import Layout from "../layouts/Layout.astro";
 
   <p class="meta" style="text-align:center; margin-top:40px;">Portfolio · Actualizado mayo 2026</p>
 </div>
+
+<!-- DRAWER CONTACTO -->
 <div class="drawer-overlay" id="drawerOverlay">
   <div class="drawer" id="drawer">
     <div id="drawerForm">
-      <button class="drawer-close" onclick="closeDrawer()">
-        <span class="modal-back-arrow">←</span> Volver
-      </button>
+      <button class="drawer-close" onclick="closeDrawer()"><span class="modal-back-arrow">←</span> Volver</button>
       <h1 class="drawer-title">Contacto</h1>
       <p class="drawer-sub">¿Tienes una idea en mente? Cuéntanos qué necesitas y te atenderemos lo antes posible.</p>
-
       <div class="consulta-box">
         <label class="consulta-box-label">Tu consulta</label>
         <textarea id="drawerConsulta" placeholder='"asesoría sobre rrss"' maxlength="150"></textarea>
       </div>
-
       <div class="d-field-group">
         <label class="d-field-label">Nombre <em>*</em></label>
         <div class="d-input-wrap">
-          <span class="d-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
+          <span class="d-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
           <input class="d-input" id="drawerNombre" type="text" placeholder="Tu nombre"/>
         </div>
       </div>
-
       <div class="d-field-group">
         <label class="d-field-label">Email <em>*</em></label>
         <div class="d-input-wrap">
-          <span class="d-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </span>
+          <span class="d-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
           <input class="d-input" id="drawerEmail" type="email" placeholder="tu@email.com"/>
         </div>
       </div>
-
       <div class="d-field-group">
         <label class="d-field-label">Teléfono <em>opcional</em></label>
         <div class="d-input-wrap">
-          <span class="d-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
+          <span class="d-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
           <input class="d-input" id="drawerTelefono" type="tel" placeholder="+34 600 000 000"/>
         </div>
       </div>
-
-      <!-- Honeypot antispam (oculto para humanos) -->
       <input type="text" id="drawerWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
-
       <button class="enviar-btn" id="drawerSendBtn" onclick="sendDrawer()">Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
       <p class="form-error" id="drawerError" style="display:none;margin-top:12px;font-size:11px;color:#c77;text-align:center;letter-spacing:.06em;"></p>
     </div>
@@ -299,54 +280,38 @@ import Layout from "../layouts/Layout.astro";
   </div>
 </div>
 
-<!-- ════ MODAL ════ -->
+<!-- MODAL CONTACTO -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div id="modalForm">
-      <button class="modal-back" onclick="closeModal()">
-        <span class="modal-back-arrow">←</span> Volver
-      </button>
+      <button class="modal-back" onclick="closeModal()"><span class="modal-back-arrow">←</span> Volver</button>
       <h1 class="modal-title">Contacto</h1>
       <p class="modal-sub">¿Tienes un proyecto en mente? Cuéntanos qué necesitas y te responderemos lo antes posible.</p>
-
       <div class="m-field-group">
         <label class="m-field-label">Nombre</label>
         <div class="m-input-wrap">
-          <span class="m-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
+          <span class="m-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
           <input class="m-input" id="mNombre" type="text" placeholder="Tu nombre"/>
         </div>
       </div>
-
       <div class="m-field-group">
         <label class="m-field-label">Email</label>
         <div class="m-input-wrap">
-          <span class="m-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </span>
+          <span class="m-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
           <input class="m-input" id="mEmail" type="email" placeholder="tu@email.com"/>
         </div>
       </div>
-
       <div class="m-field-group">
         <label class="m-field-label">Teléfono</label>
         <div class="m-input-wrap">
-          <span class="m-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
+          <span class="m-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
           <input class="m-input" id="mTelefono" type="tel" placeholder="+34 600 000 000"/>
         </div>
       </div>
-
-      <!-- Honeypot antispam (oculto para humanos) -->
       <input type="text" id="mWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
-
       <button class="m-send-btn" id="mSendBtn" onclick="sendModal()">Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
       <p class="form-error" id="mError" style="display:none;margin-top:12px;font-size:11px;color:#c77;text-align:center;letter-spacing:.06em;"></p>
-
       <hr class="m-divider"/>
-
       <p class="m-direct-label">También puedes escribirnos directamente a:</p>
       <a class="m-direct-email" href="mailto:frank@ascndrworld.com">frank@ascndrworld.com</a>
     </div>
@@ -358,11 +323,9 @@ import Layout from "../layouts/Layout.astro";
   </div>
 </div>
 
-<!-- ════ COOKIE BANNER ════ -->
+<!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
-  <p class="cookie-text">
-    Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar tu experiencia. Puedes aceptarlas, rechazarlas o consultar más información en nuestra <a href="/privacidad" onclick="showPage('privacy'); return false;">política de privacidad</a>.
-  </p>
+  <p class="cookie-text">Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar tu experiencia. Puedes aceptarlas, rechazarlas o consultar más información en nuestra <a href="/privacidad" onclick="showPage('privacy'); return false;">política de privacidad</a>.</p>
   <div class="cookie-actions">
     <button class="cookie-btn cookie-btn-reject" onclick="handleCookie('rejected')">Rechazar</button>
     <button class="cookie-btn cookie-btn-accept" onclick="handleCookie('accepted')">Aceptar</button>
@@ -370,17 +333,8 @@ import Layout from "../layouts/Layout.astro";
 </div>
 
 <script>
-  /* ════ ROUTING: URLs amigables por sección ════ */
-  /* Mapa bidireccional entre id de página y ruta de URL */
-  const PAGE_ROUTES = {
-    home:    "/",
-    works:   "/trabajos",
-    terms:   "/terminos",
-    privacy: "/privacidad"
-  };
-  const ROUTE_TO_PAGE = Object.fromEntries(
-    Object.entries(PAGE_ROUTES).map(([id, path]) => [path, id])
-  );
+  const PAGE_ROUTES = { home:"/", works:"/trabajos", terms:"/terminos", privacy:"/privacidad" };
+  const ROUTE_TO_PAGE = Object.fromEntries(Object.entries(PAGE_ROUTES).map(([id,path])=>[path,id]));
 
   function showPage(id, opts) {
     opts = opts || {};
@@ -389,1472 +343,165 @@ import Layout from "../layouts/Layout.astro";
     if (!target) return;
     target.classList.add("active");
     window.scrollTo(0,0);
-
-    /* Actualiza la URL sin recargar la página */
     if (!opts.skipHistory) {
       const path = PAGE_ROUTES[id] || "/";
-      const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-      if (currentPath !== path) {
-        history.pushState({ page: id }, "", path);
-      }
+      const currentPath = window.location.pathname.replace(/\/+$/,"") || "/";
+      if (currentPath !== path) history.pushState({page:id},"",path);
     }
   }
 
-  /* Contacto: abre el modal y refleja /contacto en la URL */
+  function toggleMenu() {
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('hamburger');
+    overlay.classList.toggle('open');
+    btn.classList.toggle('open');
+    document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('menuOverlay').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   const _originalOpenModal = (typeof openModal === "function") ? openModal : null;
   function openContactRoute() {
     if (_originalOpenModal) _originalOpenModal();
-    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-    if (currentPath !== "/contacto") {
-      history.pushState({ contact: true }, "", "/contacto");
-    }
+    const currentPath = window.location.pathname.replace(/\/+$/,"") || "/";
+    if (currentPath !== "/contacto") history.pushState({contact:true},"","/contacto");
   }
 
-  /* Al cargar, lee la URL y muestra la sección correspondiente */
   (function initRouteFromURL() {
-    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    const path = window.location.pathname.replace(/\/+$/,"") || "/";
     if (path === "/contacto") {
-      showPage("home", { skipHistory: true });
-      if (_originalOpenModal) setTimeout(_originalOpenModal, 50);
+      showPage("home",{skipHistory:true});
+      if (_originalOpenModal) setTimeout(_originalOpenModal,50);
       return;
     }
     const pageId = ROUTE_TO_PAGE[path];
-    if (pageId && pageId !== "home") {
-      showPage(pageId, { skipHistory: true });
-    }
+    if (pageId && pageId !== "home") showPage(pageId,{skipHistory:true});
   })();
 
-  /* Maneja los botones Atrás/Adelante del navegador */
-  window.addEventListener("popstate", () => {
-    const path = window.location.pathname.replace(/\/+$/, "") || "/";
-    if (path === "/contacto") {
-      showPage("home", { skipHistory: true });
-      if (_originalOpenModal) _originalOpenModal();
-      return;
-    }
-    const pageId = ROUTE_TO_PAGE[path] || "home";
-    showPage(pageId, { skipHistory: true });
+  window.addEventListener("popstate",()=>{
+    const path = window.location.pathname.replace(/\/+$/,"") || "/";
+    if (path === "/contacto") { showPage("home",{skipHistory:true}); if (_originalOpenModal) _originalOpenModal(); return; }
+    showPage(ROUTE_TO_PAGE[path]||"home",{skipHistory:true});
   });
 
-  /* ════ WORKS FILTERS ════ */
   (function initWorksFilters() {
     const filtersEl = document.getElementById("worksFilters");
     if (!filtersEl) return;
-
     const cards = document.querySelectorAll("#worksGrid .work-card");
     const countEl = document.getElementById("worksCount");
-    const total = cards.length;
-
-    filtersEl.addEventListener("click", (e) => {
+    filtersEl.addEventListener("click",(e)=>{
       const btn = e.target.closest(".filter-btn");
       if (!btn) return;
-
-      // toggle active state
-      filtersEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      filtersEl.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
       btn.classList.add("active");
-
       const filter = btn.dataset.filter;
       let visible = 0;
-
-      cards.forEach(card => {
-        const match = (filter === "all") || (card.dataset.category === filter);
-        card.classList.toggle("hidden", !match);
-        if (match) visible++;
-      });
-
+      cards.forEach(card=>{ const match=(filter==="all")||(card.dataset.category===filter); card.classList.toggle("hidden",!match); if(match) visible++; });
       if (countEl) countEl.textContent = visible;
     });
-
-    // inicializar contador
-    if (countEl) countEl.textContent = total;
+    if (countEl) countEl.textContent = cards.length;
   })();
 
-
-
   function openDrawer() {
-    const q = document.getElementById("pillInput").value.trim();
-    document.getElementById("drawerConsulta").value = q;
-    ["drawerNombre","drawerEmail","drawerTelefono"].forEach(id => document.getElementById(id).value = "");
-    document.getElementById("drawerWebsite").value = "";
-    const dErr = document.getElementById("drawerError");
-    if (dErr) dErr.style.display = "none";
-    const dBtn = document.getElementById("drawerSendBtn");
-    if (dBtn) {
-      dBtn.disabled = false;
-      dBtn.style.opacity = "";
-      dBtn.style.cursor = "";
-      dBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
-    }
-    document.getElementById("drawerForm").style.display = "block";
+    ["drawerNombre","drawerEmail","drawerTelefono"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("drawerWebsite").value="";
+    const dErr=document.getElementById("drawerError"); if(dErr) dErr.style.display="none";
+    const dBtn=document.getElementById("drawerSendBtn"); if(dBtn){dBtn.disabled=false;dBtn.style.opacity="";dBtn.style.cursor="";}
+    document.getElementById("drawerForm").style.display="block";
     document.getElementById("drawerSuccess").classList.remove("show");
     document.getElementById("drawerOverlay").classList.add("open");
-    document.body.style.overflow = "hidden";
-    window.scrollTo(0,0);
+    document.body.style.overflow="hidden"; window.scrollTo(0,0);
   }
-  function closeDrawer() {
-    document.getElementById("drawerOverlay").classList.remove("open");
-    document.body.style.overflow = "";
-  }
-  /* ════ EmailJS config ════ */
-  const EMAILJS_SERVICE_ID    = "service_itdpucz";
-  const EMAILJS_TEMPLATE_A    = "template_1onca15"; // consulta (con {{consulta}})
-  const EMAILJS_TEMPLATE_B    = "template_a9a415g"; // contacto genérico
+  function closeDrawer() { document.getElementById("drawerOverlay").classList.remove("open"); document.body.style.overflow=""; }
 
-  /* Valida formato básico de email */
-  function isValidEmail(v) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  }
-
-  /* Envía con EmailJS. Devuelve una promesa. */
-  function sendEmail(templateId, params) {
-    if (typeof emailjs === "undefined" || !emailjs.send) {
-      return Promise.reject(new Error("SDK no cargado"));
-    }
-    return emailjs.send(EMAILJS_SERVICE_ID, templateId, params);
+  const EMAILJS_SERVICE_ID="service_itdpucz";
+  const EMAILJS_TEMPLATE_A="template_1onca15";
+  const EMAILJS_TEMPLATE_B="template_a9a415g";
+  function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+  function sendEmail(templateId,params){
+    if(typeof emailjs==="undefined"||!emailjs.send) return Promise.reject(new Error("SDK no cargado"));
+    return emailjs.send(EMAILJS_SERVICE_ID,templateId,params);
   }
 
   async function sendDrawer() {
-    const btn      = document.getElementById("drawerSendBtn");
-    const errorEl  = document.getElementById("drawerError");
-    const nombre   = document.getElementById("drawerNombre").value.trim();
-    const email    = document.getElementById("drawerEmail").value.trim();
-    const telefono = document.getElementById("drawerTelefono").value.trim();
-    const consulta = document.getElementById("drawerConsulta").value.trim();
-    const honeypot = document.getElementById("drawerWebsite").value;
-
-    if (honeypot) {
-      document.getElementById("drawerForm").style.display = "none";
+    const btn=document.getElementById("drawerSendBtn"),errorEl=document.getElementById("drawerError");
+    const nombre=document.getElementById("drawerNombre").value.trim(),email=document.getElementById("drawerEmail").value.trim();
+    const telefono=document.getElementById("drawerTelefono").value.trim(),consulta=document.getElementById("drawerConsulta").value.trim();
+    const honeypot=document.getElementById("drawerWebsite").value;
+    if(honeypot){document.getElementById("drawerForm").style.display="none";document.getElementById("drawerSuccess").classList.add("show");setTimeout(closeDrawer,3000);return;}
+    errorEl.style.display="none";
+    if(!nombre||!email){errorEl.textContent="Por favor completa tu nombre y email.";errorEl.style.display="block";return;}
+    if(!isValidEmail(email)){errorEl.textContent="El email no parece válido. Revísalo.";errorEl.style.display="block";return;}
+    const orig=btn.innerHTML; btn.disabled=true;btn.style.opacity="0.6";btn.style.cursor="wait";btn.innerHTML="Enviando...";
+    try{
+      const res=await fetch(`/api/send?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono||'')}&consulta=${encodeURIComponent(consulta||'')}`,{method:'POST'});
+      if(!res.ok) throw new Error('Error');
+      document.getElementById("drawerForm").style.display="none";
       document.getElementById("drawerSuccess").classList.add("show");
-      setTimeout(closeDrawer, 3000);
-      return;
-    }
-
-    errorEl.style.display = "none";
-    if (!nombre || !email) {
-      errorEl.textContent = "Por favor completa tu nombre y email.";
-      errorEl.style.display = "block";
-      return;
-    }
-    if (!isValidEmail(email)) {
-      errorEl.textContent = "El email no parece válido. Revísalo.";
-      errorEl.style.display = "block";
-      return;
-    }
-
-    const btnTextOriginal = btn.innerHTML;
-    btn.disabled = true;
-    btn.style.opacity = "0.6";
-    btn.style.cursor = "wait";
-    btn.innerHTML = "Enviando...";
-
-    try {
-      const res = await fetch(`/api/send?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono||'')}&consulta=${encodeURIComponent(consulta||'')}`, { method: 'POST' });
-      if (!res.ok) throw new Error('Error');
-      document.getElementById("drawerForm").style.display = "none";
-      document.getElementById("drawerSuccess").classList.add("show");
-      setTimeout(closeDrawer, 3000);
-    } catch (err) {
-      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
-      errorEl.style.display = "block";
-      btn.disabled = false;
-      btn.style.opacity = "";
-      btn.style.cursor = "";
-      btn.innerHTML = btnTextOriginal;
+      setTimeout(closeDrawer,3000);
+    }catch(err){
+      errorEl.textContent="No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
+      errorEl.style.display="block";btn.disabled=false;btn.style.opacity="";btn.style.cursor="";btn.innerHTML=orig;
     }
   }
 
   function openModal() {
-    ["mNombre","mEmail","mTelefono"].forEach(id => document.getElementById(id).value = "");
-    document.getElementById("mWebsite").value = "";
-    const mErr = document.getElementById("mError");
-    if (mErr) mErr.style.display = "none";
-    const mBtn = document.getElementById("mSendBtn");
-    if (mBtn) {
-      mBtn.disabled = false;
-      mBtn.style.opacity = "";
-      mBtn.style.cursor = "";
-      mBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
-    }
-    document.getElementById("modalForm").style.display = "block";
+    ["mNombre","mEmail","mTelefono"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("mWebsite").value="";
+    const mErr=document.getElementById("mError"); if(mErr) mErr.style.display="none";
+    const mBtn=document.getElementById("mSendBtn"); if(mBtn){mBtn.disabled=false;mBtn.style.opacity="";mBtn.style.cursor="";}
+    document.getElementById("modalForm").style.display="block";
     document.getElementById("modalSuccess").classList.remove("show");
     document.getElementById("modalOverlay").classList.add("open");
-    document.body.style.overflow = "hidden";
-    window.scrollTo(0,0);
+    document.body.style.overflow="hidden"; window.scrollTo(0,0);
   }
   function closeModal() {
     document.getElementById("modalOverlay").classList.remove("open");
-    document.body.style.overflow = "";
-    /* Si la URL quedó en /contacto, la revertimos a la página visible */
-    if (window.location.pathname.replace(/\/+$/, "") === "/contacto") {
-      const activePage = document.querySelector(".page.active");
-      const id = activePage ? activePage.id : "home";
-      const path = PAGE_ROUTES[id] || "/";
-      history.replaceState({ page: id }, "", path);
+    document.body.style.overflow="";
+    if(window.location.pathname.replace(/\/+$/,"")===="/contacto"){
+      const activePage=document.querySelector(".page.active");
+      const id=activePage?activePage.id:"home";
+      history.replaceState({page:id},"",PAGE_ROUTES[id]||"/");
     }
   }
   async function sendModal() {
-    const btn      = document.getElementById("mSendBtn");
-    const errorEl  = document.getElementById("mError");
-    const nombre   = document.getElementById("mNombre").value.trim();
-    const email    = document.getElementById("mEmail").value.trim();
-    const telefono = document.getElementById("mTelefono").value.trim();
-    const honeypot = document.getElementById("mWebsite").value;
-
-    if (honeypot) {
-      document.getElementById("modalForm").style.display = "none";
+    const btn=document.getElementById("mSendBtn"),errorEl=document.getElementById("mError");
+    const nombre=document.getElementById("mNombre").value.trim(),email=document.getElementById("mEmail").value.trim();
+    const telefono=document.getElementById("mTelefono").value.trim(),honeypot=document.getElementById("mWebsite").value;
+    if(honeypot){document.getElementById("modalForm").style.display="none";document.getElementById("modalSuccess").classList.add("show");setTimeout(closeModal,3000);return;}
+    errorEl.style.display="none";
+    if(!nombre||!email){errorEl.textContent="Por favor completa tu nombre y email.";errorEl.style.display="block";return;}
+    if(!isValidEmail(email)){errorEl.textContent="El email no parece válido. Revísalo.";errorEl.style.display="block";return;}
+    const orig=btn.innerHTML; btn.disabled=true;btn.style.opacity="0.6";btn.style.cursor="wait";btn.innerHTML="Enviando...";
+    try{
+      await sendEmail(EMAILJS_TEMPLATE_B,{name:nombre,email,phone:telefono||"No facilitado",consulta:"Sin consulta previa",reply_to:email});
+      document.getElementById("modalForm").style.display="none";
       document.getElementById("modalSuccess").classList.add("show");
-      setTimeout(closeModal, 3000);
-      return;
-    }
-
-    errorEl.style.display = "none";
-    if (!nombre || !email) {
-      errorEl.textContent = "Por favor completa tu nombre y email.";
-      errorEl.style.display = "block";
-      return;
-    }
-    if (!isValidEmail(email)) {
-      errorEl.textContent = "El email no parece válido. Revísalo.";
-      errorEl.style.display = "block";
-      return;
-    }
-
-    const btnTextOriginal = btn.innerHTML;
-    btn.disabled = true;
-    btn.style.opacity = "0.6";
-    btn.style.cursor = "wait";
-    btn.innerHTML = "Enviando...";
-
-    /* El modal siempre usa la plantilla B (contacto genérico) */
-    const params = {
-      name:     nombre,
-      email:    email,
-      phone:    telefono || "No facilitado",
-      consulta: "Sin consulta previa",
-      reply_to: email
-    };
-
-    try {
-      await sendEmail(EMAILJS_TEMPLATE_B, params);
-      document.getElementById("modalForm").style.display = "none";
-      document.getElementById("modalSuccess").classList.add("show");
-      setTimeout(closeModal, 3000);
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
-      errorEl.style.display = "block";
-      btn.disabled = false;
-      btn.style.opacity = "";
-      btn.style.cursor = "";
-      btn.innerHTML = btnTextOriginal;
+      setTimeout(closeModal,3000);
+    }catch(err){
+      errorEl.textContent="No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
+      errorEl.style.display="block";btn.disabled=false;btn.style.opacity="";btn.style.cursor="";btn.innerHTML=orig;
     }
   }
 
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") { closeDrawer(); closeModal(); }
-  });
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();closeModal();closeMenu();}});
 
-  /* ════ COOKIE BANNER ════ */
-  const COOKIE_KEY = "ascndr_cookie_consent";
-
-  function initCookieBanner() {
-    try {
-      if (localStorage.getItem(COOKIE_KEY)) return; // ya decidido, no mostrar
-    } catch (e) { /* localStorage bloqueado → mostrar igualmente */ }
-
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    // pequeño delay para que entre después del halo de bienvenida
-    setTimeout(() => banner.classList.add("visible"), 1200);
+  const COOKIE_KEY="ascndr_cookie_consent";
+  function initCookieBanner(){
+    try{if(localStorage.getItem(COOKIE_KEY))return;}catch(e){}
+    const banner=document.getElementById("cookieBanner"); if(!banner)return;
+    setTimeout(()=>banner.classList.add("visible"),1200);
   }
-
-  function handleCookie(choice) {
-    try { localStorage.setItem(COOKIE_KEY, choice); } catch (e) {}
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    banner.classList.remove("visible");
-    banner.classList.add("hiding");
-    setTimeout(() => banner.remove(), 600);
+  function handleCookie(choice){
+    try{localStorage.setItem(COOKIE_KEY,choice);}catch(e){}
+    const banner=document.getElementById("cookieBanner"); if(!banner)return;
+    banner.classList.remove("visible");banner.classList.add("hiding");
+    setTimeout(()=>banner.remove(),600);
   }
+  window.addEventListener("load",initCookieBanner);
 
-  window.addEventListener("load", initCookieBanner);
-</script>
-
-
-<div class="gallery-overlay" id="galleryHalloween">
-  <div class="gallery-header">
-    <span class="gallery-title">Halloween Fest <em>· Branding</em></span>
-    <button class="gallery-close" onclick="closeGallery()">✕</button>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item gallery-item-wide" onclick="openLightbox(0)">
-      <img src="/images/halloween-fest/tickets.jpg" alt="Diseño de tickets Halloween Fest — Ascndr Jaén" loading="lazy" style="object-fit:cover;"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(1)">
-      <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial Halloween Fest — Dirección creativa Ascndr" loading="lazy"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(2)">
-      <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel Halloween Fest 3ª edición — Diseño gráfico Ascndr" loading="lazy"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(3)">
-      <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditación Halloween Fest — Identidad visual Ascndr Jaén" loading="lazy"/>
-    </div>
-    <div class="gallery-item gallery-item-wide" onclick="openLightbox(4)">
-      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP Halloween Fest — Branding evento Ascndr" loading="lazy" style="object-fit:cover;"/>
-    </div>
-  </div>
-  </div>
-  <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightbox(-1)">&#8249;</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt=""/>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightbox(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <span class="lightbox-counter" id="lightboxCounter"></span>
-</div>
-
-
-<script is:inline>
-var hwImgs=["/images/halloween-fest/tickets.jpg","/images/halloween-fest/cartel-oficial.jpg","/images/halloween-fest/cartel-3-0.jpg","/images/halloween-fest/acreditacion.jpg","/images/halloween-fest/pulseras.jpg"];
-var lbIndex=0;
-function openGallery(){document.getElementById("galleryHalloween").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGallery(){document.getElementById("galleryHalloween").classList.remove("open");document.body.style.overflow="";}
-function openLightbox(i){lbIndex=i;document.getElementById("lightboxImg").src=hwImgs[i];document.getElementById("lightboxCounter").textContent=(i+1)+" / "+hwImgs.length;document.getElementById("lightboxOverlay").classList.add("open");}
-function closeLightbox(){document.getElementById("lightboxOverlay").classList.remove("open");}
-function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;document.getElementById("lightboxImg").src=hwImgs[lbIndex];document.getElementById("lightboxCounter").textContent=(lbIndex+1)+" / "+hwImgs.length;}
-</script>
-
-<!-- Galería Cónclave Design (Marketing Visual / RRSS) -->
-<div class="gallery-overlay" id="galleryConclaveDesign">
-  <div class="gallery-header">
-    <span class="gallery-title">Cónclave Design <em>· Marketing</em></span>
-    <button class="gallery-close" onclick="closeGalleryConclaveDesign()">✕</button>
-  </div>
-  <div class="gallery-content">
-    <div class="ds-grid">
-      <div class="ds-item" onclick="openLightboxDesign(0)">
-        <img src="/images/conclave/rrss-01.jpg" alt="Contenido redes sociales Cónclave pub Jaén — Ascndr Marketing" loading="lazy"/>
-      </div>
-      <div class="ds-item" onclick="openLightboxDesign(1)">
-        <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Cónclave pub Jaén — Gestión redes sociales Ascndr" loading="lazy"/>
-      </div>
-    </div>
-  </div>
-</div>
-<style>
-.ds-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
-}
-@media (max-width: 640px) {
-  .ds-grid { grid-template-columns: 1fr; }
-}
-.ds-item {
-  cursor: pointer;
-  overflow: hidden;
-}
-.ds-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform .35s ease;
-}
-.ds-item:hover img { transform: scale(1.02); }
-</style>
-<div class="lightbox-overlay" id="lightboxDesignOverlay" onclick="closeLightboxDesign()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxDesign(-1)">&#8249;</button>
-  <img class="lightbox-img" id="lightboxDesignImg" src="" alt=""/>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxDesign(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightboxDesign()">✕</button>
-  <span class="lightbox-counter" id="lightboxDesignCounter"></span>
-</div>
-
-<script is:inline>
-var dsImgs=["/images/conclave/rrss-01.jpg","/images/conclave/rrss-02.jpg"];
-var dsIndex=0;
-function openGalleryConclaveDesign(){document.getElementById("galleryConclaveDesign").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGalleryConclaveDesign(){document.getElementById("galleryConclaveDesign").classList.remove("open");document.body.style.overflow="";closeLightboxDesign();}
-function openLightboxDesign(i){dsIndex=i;document.getElementById("lightboxDesignImg").src=dsImgs[i];document.getElementById("lightboxDesignCounter").textContent=(i+1)+" / "+dsImgs.length;document.getElementById("lightboxDesignOverlay").classList.add("open");}
-function closeLightboxDesign(){document.getElementById("lightboxDesignOverlay").classList.remove("open");}
-function moveLightboxDesign(dir){dsIndex=(dsIndex+dir+dsImgs.length)%dsImgs.length;document.getElementById("lightboxDesignImg").src=dsImgs[dsIndex];document.getElementById("lightboxDesignCounter").textContent=(dsIndex+1)+" / "+dsImgs.length;}
-</script>
-
-<!-- Galería Cónclave -->
-<div class="gallery-overlay gallery-conclave" id="galleryConclave">
-  <div class="gallery-header">
-    <span class="gallery-title">Cónclave <em>· Dirección Creativa</em></span>
-    <button class="gallery-close" onclick="closeGalleryConclave()">✕</button>
-  </div>
-
-  <div class="gallery-content">
-    <header class="gallery-cv-header">
-      <p class="gallery-cv-description">
-        Transformación completa del antiguo Milenio 2.0 en Cónclave: un espacio donde reunirse para tomar decisiones. El proyecto incluyó naming, logotipo y dirección de identidad visual, además de la reforma del local con nueva iluminación, paleta cromática, mejora en la distribución del espacio y elementos decorativos. Un enfoque actual para un lugar pensado como punto de encuentro.
-      </p>
-    </header>
-
-    <section class="gallery-cv-section">
-      <h3 class="gallery-cv-section-title">Antes</h3>
-      <div class="gallery-cv-grid gallery-cv-grid-2">
-        <div class="gallery-cv-item" onclick="openLightboxConclave(0)">
-          <img src="/images/conclave/antes-01.jpg" alt="Milenio 2.0 antes del rebranding — Dirección creativa Ascndr Jaén" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(1)">
-          <img src="/images/conclave/antes-02.jpg" alt="Interior Milenio 2.0 antes del rebranding — Ascndr Jaén" loading="lazy"/>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery-cv-section">
-      <h3 class="gallery-cv-section-title">Nueva identidad</h3>
-      <div class="gallery-cv-grid gallery-cv-grid-1">
-        <div class="gallery-cv-item gallery-cv-item-video gallery-cv-item-logo" onclick="openLightboxConclave(2)">
-          <video src="/images/conclave/reveal-logo.mp4" poster="/images/conclave/reveal-logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-          <span class="gallery-cv-video-tag">Nuevo logo</span>
-        </div>
-        <div class="gallery-cv-item gallery-cv-item-video" onclick="openLightboxConclave(3)">
-          <video src="/images/conclave/reveal-nombre.mp4" poster="/images/conclave/reveal-nombre-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-          <span class="gallery-cv-video-tag">Nuevo nombre</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery-cv-section">
-      <h3 class="gallery-cv-section-title">El pub hoy</h3>
-      <div class="gallery-cv-grid gallery-cv-grid-pub">
-        <div class="gallery-cv-item" onclick="openLightboxConclave(4)">
-          <img src="/images/conclave/despues-01.jpg" alt="Cónclave pub Jaén tras el rebranding — Identidad visual Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(5)">
-          <img src="/images/conclave/despues-02.jpg" alt="Interior Cónclave pub Jaén — Dirección creativa Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(6)">
-          <img src="/images/conclave/despues-03.jpg" alt="Espacio Cónclave pub Jaén — Rebranding completo Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(7)">
-          <img src="/images/conclave/despues-04.jpg" alt="Ambiente Cónclave pub Jaén — Estudio creativo Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item gallery-cv-item-video gallery-cv-item-tall" onclick="openLightboxConclave(8)">
-          <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
-
-<!-- Lightbox Cónclave (foto + vídeo) -->
-<div class="lightbox-overlay lightbox-conclave" id="lightboxConclaveOverlay" onclick="closeLightboxConclave()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxConclave(-1)">&#8249;</button>
-  <div class="lightbox-cv-wrap" onclick="event.stopPropagation()">
-    <img class="lightbox-img" id="lightboxConclaveImg" src="" alt="" style="display:none"/>
-    <video class="lightbox-cv-video" id="lightboxConclaveVideo" controls playsinline style="display:none"></video>
-  </div>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxConclave(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightboxConclave()">✕</button>
-  <span class="lightbox-counter" id="lightboxConclaveCounter"></span>
-</div>
-
-<script is:inline>
-var cvItems=[
-  {type:"img",src:"/images/conclave/antes-01.jpg"},
-  {type:"img",src:"/images/conclave/antes-02.jpg"},
-  {type:"video",src:"/images/conclave/reveal-logo.mp4",poster:"/images/conclave/reveal-logo-poster.jpg"},
-  {type:"video",src:"/images/conclave/reveal-nombre.mp4",poster:"/images/conclave/reveal-nombre-poster.jpg"},
-  {type:"img",src:"/images/conclave/despues-01.jpg"},
-  {type:"img",src:"/images/conclave/despues-02.jpg"},
-  {type:"img",src:"/images/conclave/despues-03.jpg"},
-  {type:"img",src:"/images/conclave/despues-04.jpg"},
-  {type:"video",src:"/images/conclave/evento.mp4",poster:"/images/conclave/evento-poster.jpg"}
-];
-var cvIndex=0;
-function openGalleryConclave(){document.getElementById("galleryConclave").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGalleryConclave(){document.getElementById("galleryConclave").classList.remove("open");document.body.style.overflow="";closeLightboxConclave();}
-function renderLightboxConclave(){var it=cvItems[cvIndex];var im=document.getElementById("lightboxConclaveImg");var vd=document.getElementById("lightboxConclaveVideo");if(it.type==="img"){vd.pause();vd.removeAttribute("src");vd.style.display="none";im.src=it.src;im.style.display="block";}else{im.style.display="none";im.removeAttribute("src");vd.src=it.src;if(it.poster)vd.poster=it.poster;vd.style.display="block";vd.play().catch(function(){});}document.getElementById("lightboxConclaveCounter").textContent=(cvIndex+1)+" / "+cvItems.length;}
-function openLightboxConclave(i){cvIndex=i;renderLightboxConclave();document.getElementById("lightboxConclaveOverlay").classList.add("open");}
-function moveLightboxConclave(dir){cvIndex=(cvIndex+dir+cvItems.length)%cvItems.length;renderLightboxConclave();}
-function closeLightboxConclave(){var vd=document.getElementById("lightboxConclaveVideo");vd.pause();vd.removeAttribute("src");document.getElementById("lightboxConclaveOverlay").classList.remove("open");}
-</script>
-
-<!-- ════ CSS GALERÍA HW3 ════ -->
-<style>
-.gallery-header-hw3 {
-  align-items: flex-start !important;
-}
-.gallery-header-hw3-left {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.gallery-hw3-credits {
-  font-size: 0.78rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: #888;
-  margin: 0;
-  padding: 0;
-}
-
-/*
-  GRID — proporciones reales con vw
-  Foto vertical 2:3 en 4/12 cols = 33.3vw ancho → altura ideal = 50vw
-  Foto horizontal 3:2 en 12/12 = 100vw ancho → altura ideal = 33vw (la hacemos 40vw para que se vea con más presencia)
-  Tall × 2 filas verticales = 100vw (2 × 50vw)
-*/
-.hw3-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows:
-    40vw    /* F1 — horizontal grande */
-    50vw    /* F2 — tall izq + 2 vert der */
-    50vw    /* F3 — tall cont + 2 vert der */
-    50vw    /* F4 — 3 verticales */
-    50vw    /* F5 — 2 vert izq + tall der */
-    50vw;   /* F6 — wide8 + tall cont */
-  gap: 5px;
-}
-
-.hw3-item {
-  overflow: hidden;
-  cursor: pointer;
-  background: #111;
-  min-height: 0;
-}
-.hw3-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .38s ease;
-}
-.hw3-item:hover img { transform: scale(1.03); }
-
-.hw3-f1      { grid-column: 1 / 13; grid-row: 1; }
-.hw3-f23tall { grid-column: 1 / 5;  grid-row: 2 / 4; }
-.hw3-f2b     { grid-column: 5 / 9;  grid-row: 2; }
-.hw3-f2c     { grid-column: 9 / 13; grid-row: 2; }
-.hw3-f3b     { grid-column: 5 / 9;  grid-row: 3; }
-.hw3-f3c     { grid-column: 9 / 13; grid-row: 3; }
-.hw3-f4a     { grid-column: 1 / 5;  grid-row: 4; }
-.hw3-f4b     { grid-column: 5 / 9;  grid-row: 4; }
-.hw3-f4c     { grid-column: 9 / 13; grid-row: 4; }
-.hw3-f5a     { grid-column: 1 / 5;  grid-row: 5; }
-.hw3-f5b     { grid-column: 5 / 9;  grid-row: 5; }
-.hw3-f56tall { grid-column: 9 / 13; grid-row: 5 / 7; }
-.hw3-f6wide  { grid-column: 1 / 9;  grid-row: 6; }
-
-@media (max-width: 768px) {
-  .hw3-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: none; grid-auto-rows: 56vw; }
-  [class*="hw3-f"] { grid-column: span 2 !important; grid-row: span 1 !important; }
-}
-@media (max-width: 480px) {
-  .hw3-grid { grid-template-columns: 1fr; grid-auto-rows: 80vw; }
-  [class*="hw3-f"] { grid-column: span 1 !important; grid-row: span 1 !important; }
-}
-</style>
-
-<!-- Galería Halloween Fest · Desde dentro -->
-<div class="gallery-overlay gallery-hw3" id="galleryHalloween3">
-  <div class="gallery-header gallery-header-hw3">
-    <div class="gallery-header-hw3-left">
-      <span class="gallery-title">Halloween Fest <em>· Desde dentro</em></span>
-      <p class="gallery-hw3-credits">Shot by: @alvarojimenez7 · @bydorian__</p>
-    </div>
-    <button class="gallery-close" onclick="closeGalleryHalloween3()">✕</button>
-  </div>
-  <div class="gallery-content">
-    <div class="hw3-grid">
-
-      <!-- F1 — Horizontal escenario, ancho completo, 40vw alto -->
-      <div class="hw3-item hw3-f1" onclick="openLightboxHalloween3(0)">
-        <img src="/images/halloween-fest/hw3-01.jpg" alt="Escenario Halloween Fest 3ª edición Jaén — Fotografía Ascndr" loading="lazy"/>
-      </div>
-
-      <!-- F2-3 tall izq: DJ vinilo (vertical, ocupa filas 2-3 = 100vw) -->
-      <div class="hw3-item hw3-f23tall" onclick="openLightboxHalloween3(5)">
-        <img src="/images/halloween-fest/hw3-06.jpg" alt="DJ en Halloween Fest Jaén — Cobertura fotográfica Ascndr" loading="lazy"/>
-      </div>
-      <!-- F2 der: escenario azul + pista baile -->
-      <div class="hw3-item hw3-f2b" onclick="openLightboxHalloween3(2)">
-        <img src="/images/halloween-fest/hw3-03.jpg" alt="Escenario con luces azules Halloween Fest Jaén — Fotografía de evento" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f2c" onclick="openLightboxHalloween3(3)">
-        <img src="/images/halloween-fest/hw3-04.jpg" alt="Pista de baile Halloween Fest Jaén — Fotografía evento Ascndr" loading="lazy"/>
-      </div>
-      <!-- F3 der: ambiente + DJ zombie -->
-      <div class="hw3-item hw3-f3b" onclick="openLightboxHalloween3(4)">
-        <img src="/images/halloween-fest/hw3-05.jpg" alt="Ambiente Halloween Fest Jaén — Shooting fotográfico Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f3c" onclick="openLightboxHalloween3(7)">
-        <img src="/images/halloween-fest/hw3-08.jpg" alt="DJ con maquillaje zombie Halloween Fest Jaén — Fotografía Ascndr" loading="lazy"/>
-      </div>
-
-      <!-- F4 — Tres verticales a plena proporción -->
-      <div class="hw3-item hw3-f4a" onclick="openLightboxHalloween3(1)">
-        <img src="/images/halloween-fest/hw3-02.jpg" alt="Escenario con luces amarillas Halloween Fest Jaén — Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f4b" onclick="openLightboxHalloween3(9)">
-        <img src="/images/halloween-fest/hw3-10.jpg" alt="Asistentes disfrazados Halloween Fest Jaén — Cobertura fotográfica Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f4c" onclick="openLightboxHalloween3(10)">
-        <img src="/images/halloween-fest/hw3-11.jpg" alt="Disfraces Halloween Fest Jaén — Fotografía de evento Ascndr" loading="lazy"/>
-      </div>
-
-      <!-- F5 izq: Pioneer + micro -->
-      <div class="hw3-item hw3-f5a" onclick="openLightboxHalloween3(6)">
-        <img src="/images/halloween-fest/hw3-07.jpg" alt="DJ con Pioneer en Halloween Fest Jaén — Fotografía Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f5b" onclick="openLightboxHalloween3(8)">
-        <img src="/images/halloween-fest/hw3-09.jpg" alt="Artista en escenario Halloween Fest Jaén — Ascndr fotografía" loading="lazy"/>
-      </div>
-      <!-- F5-6 tall der: grupo staff (filas 5-6 = 100vw) -->
-      <div class="hw3-item hw3-f56tall" onclick="openLightboxHalloween3(11)">
-        <img src="/images/halloween-fest/hw3-12.jpg" alt="Staff Halloween Fest Jaén — Cobertura fotográfica Ascndr" loading="lazy"/>
-      </div>
-      <!-- F6 wide8: equipo (8 cols, cierra izq bajo F5) -->
-      <div class="hw3-item hw3-f6wide" onclick="openLightboxHalloween3(12)">
-        <img src="/images/halloween-fest/hw3-13.jpg" alt="Equipo organizador Halloween Fest Jaén — Ascndr estudio creativo" loading="lazy"/>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- Lightbox HW3 -->
-<div class="lightbox-overlay" id="lightboxHalloween3Overlay" onclick="closeLightboxHalloween3()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxHalloween3(-1)">&#8249;</button>
-  <img class="lightbox-img" id="lightboxHalloween3Img" src="" alt=""/>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxHalloween3(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightboxHalloween3()">✕</button>
-  <span class="lightbox-counter" id="lightboxHalloween3Counter"></span>
-</div>
-
-<script is:inline>
-var hw3Imgs=[
-  "/images/halloween-fest/hw3-01.jpg",
-  "/images/halloween-fest/hw3-02.jpg",
-  "/images/halloween-fest/hw3-03.jpg",
-  "/images/halloween-fest/hw3-04.jpg",
-  "/images/halloween-fest/hw3-05.jpg",
-  "/images/halloween-fest/hw3-06.jpg",
-  "/images/halloween-fest/hw3-07.jpg",
-  "/images/halloween-fest/hw3-08.jpg",
-  "/images/halloween-fest/hw3-09.jpg",
-  "/images/halloween-fest/hw3-10.jpg",
-  "/images/halloween-fest/hw3-11.jpg",
-  "/images/halloween-fest/hw3-12.jpg",
-  "/images/halloween-fest/hw3-13.jpg"
-];
-var hw3Index=0;
-function openGalleryHalloween3(){document.getElementById("galleryHalloween3").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGalleryHalloween3(){document.getElementById("galleryHalloween3").classList.remove("open");document.body.style.overflow="";closeLightboxHalloween3();}
-function openLightboxHalloween3(i){hw3Index=i;document.getElementById("lightboxHalloween3Img").src=hw3Imgs[i];document.getElementById("lightboxHalloween3Counter").textContent=(i+1)+" / "+hw3Imgs.length;document.getElementById("lightboxHalloween3Overlay").classList.add("open");}
-function closeLightboxHalloween3(){document.getElementById("lightboxHalloween3Overlay").classList.remove("open");}
-function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3Imgs.length;document.getElementById("lightboxHalloween3Img").src=hw3Imgs[hw3Index];document.getElementById("lightboxHalloween3Counter").textContent=(hw3Index+1)+" / "+hw3Imgs.length;}
-</script>
-
-
-<!-- ════ TABLER ICONS (para modal ¿Qué buscas?) ════ -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
-
-<!-- ════ MODAL ¿QUÉ BUSCAS? ════ -->
-<style>
-.qmodal-backdrop {
-  display: none;
-  position: fixed; inset: 0; z-index: 9000;
-  background: rgba(0,0,0,0.92);
-  align-items: flex-start;
-  justify-content: center;
-  padding: 20px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.qmodal-backdrop.open { display: flex; }
-
-
-.qmodal {
-  background: #141414;
-  border: 0.5px solid #2a2a2a;
-  border-radius: 14px;
-  padding: 32px 28px;
-  width: 100%; max-width: 480px;
-  position: relative;
-  font-family: "Montserrat", sans-serif;
-  margin: auto;
-}
-
-.qmodal-close {
-  position: absolute; top: 16px; right: 18px;
-  background: none; border: none; color: #555;
-  font-size: 16px; cursor: pointer; line-height: 1;
-  transition: color .2s;
-}
-.qmodal-close:hover { color: #f0ece6; }
-
-.qm-progress { display: flex; gap: 4px; margin-bottom: 24px; margin-top: 8px; }
-
-@media (max-width: 520px) {
-  .qmodal-close { top: auto; right: 18px; position: static; display: block; margin-left: auto; margin-bottom: 12px; }
-  .qmodal { padding-top: 20px; }
-}
-.qm-dot { height: 2px; flex: 1; background: #222; border-radius: 2px; transition: background .3s; }
-.qm-dot.done { background: #c8753a; }
-
-.qm-step { display: none; }
-.qm-step.active { display: block; }
-
-.qm-label {
-  font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
-  color: #555; margin-bottom: 6px;
-}
-.qm-title {
-  font-size: 17px; font-weight: 500; color: #f0ece6;
-  margin-bottom: 4px; letter-spacing: -.01em;
-}
-.qm-sub {
-  font-size: 12px; color: #555; margin-bottom: 16px; line-height: 1.5;
-}
-
-.qm-opts {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 8px; margin-bottom: 16px;
-}
-.qm-opt {
-  background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 8px;
-  padding: 12px 14px; cursor: pointer; text-align: left;
-  transition: border-color .15s, background .15s;
-}
-.qm-opt:hover { border-color: #333; background: #1e1e1e; }
-.qm-opt.selected { border-color: #c8753a; background: #1a1109; }
-.qm-opt-icon { font-size: 17px; margin-bottom: 6px; color: #444; }
-.qm-opt.selected .qm-opt-icon { color: #c8753a; }
-.qm-opt-label {
-  font-size: 12px; font-weight: 500; color: #f0ece6;
-  display: block; letter-spacing: .01em;
-}
-.qm-opt-desc {
-  font-size: 11px; color: #555; margin-top: 2px;
-  display: block; line-height: 1.4;
-}
-
-.qm-noselo-extra { display: none; margin-top: 10px; grid-column: 1 / -1; }
-.qm-noselo-extra.visible { display: block; }
-
-.qm-field-group { margin-bottom: 16px; }
-.qm-field-label {
-  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-  color: #555; display: block; margin-bottom: 6px;
-}
-.qm-input {
-  width: 100%; background: #0f0f0f; border: 0.5px solid #222;
-  border-radius: 8px; color: #f0ece6;
-  font-size: 16px; font-family: "Montserrat", sans-serif;
-  padding: 10px 14px; box-sizing: border-box;
-  outline: none; transition: border-color .15s; line-height: 1.5;
-}
-.qm-input:focus { border-color: #c8753a; }
-.qm-input::placeholder { color: #444; }
-textarea.qm-input { resize: none; }
-
-/* Botón con sweep igual que la pill */
-.qm-btn {
-  width: 100%; background: #1a1a1a; border: 0.5px solid #c8753a; border-radius: 8px;
-  color: #f0ece6; font-size: 12px; font-weight: 300;
-  letter-spacing: .12em; text-transform: uppercase; padding: 13px; cursor: pointer;
-  margin-top: 8px; font-family: "Montserrat", sans-serif;
-  position: relative; overflow: hidden; transition: background .2s, border-color .2s;
-}
-.qm-btn:not(:disabled)::before {
-  content: "";
-  position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,244,.05), transparent);
-  animation: qmSweep 3.5s ease-in-out infinite;
-}
-@keyframes qmSweep { 0%{left:-80%} 60%{left:140%} 100%{left:140%} }
-.qm-btn:hover:not(:disabled) { background: #222; border-color: #d4864a; }
-.qm-btn:disabled { background: #111; border-color: #222; color: #333; cursor: not-allowed; }
-.qm-btn:disabled::before { display: none; }
-.qm-btn span { position: relative; z-index: 1; }
-
-.qm-back {
-  background: none; border: none; color: #444;
-  font-size: 11px; cursor: pointer; padding: 0;
-  margin-top: 16px; display: flex; align-items: center; gap: 4px;
-  letter-spacing: .06em; font-family: "Montserrat", sans-serif;
-}
-.qm-back:hover { color: #f0ece6; }
-
-.qm-success-icon {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: #111; border: 1px solid #c8753a;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px; font-size: 16px; color: #c8753a;
-}
-.qm-checklist { display: flex; flex-direction: column; gap: 8px; }
-.qm-check-row { display: flex; align-items: flex-start; gap: 8px; }
-.qm-check-row i { color: #c8753a; font-size: 14px; margin-top: 1px; }
-.qm-check-row span { font-size: 12px; color: #f0ece6; line-height: 1.4; }
-.qm-note { font-size: 11px; color: #444; text-align: center; margin-top: 14px; letter-spacing: .04em; }
-
-
-@media (max-width: 520px) {
-  .qmodal { padding: 24px 18px; }
-  .qm-opts { grid-template-columns: 1fr; }
-  .qm-opt,
-  .qm-opt[style*="grid-column"] {
-    grid-column: span 1 !important;
-    background: #1a1a1a !important;
-  }
-}
-
-/* Ocultar flecha ↗ en móvil (en touch se queda visible al pulsar) */
-@media (hover: none) {
-  .work-arrow { display: none !important; }
-}
-</style>
-
-<style>
-/* ════ PROTECCIÓN CONTENIDO ════ */
-img, video {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  user-select: none;
-  pointer-events: none;
-}
-/* Restaurar pointer-events solo donde se necesita click (lightbox, galerías) */
-.gallery-item img,
-.hw3-item img,
-.ds-item img,
-.gallery-cv-item img,
-.lightbox-img {
-  pointer-events: auto;
-}
-
-/* ════ FIX iOS ZOOM EN INPUTS ════ */
-/* iOS hace zoom si font-size < 16px — forzamos 16px en todos los inputs de modales */
-.d-input,
-.m-input,
-.qm-input,
-textarea.qm-input,
-#drawerConsulta {
-  font-size: 16px !important;
-}
-</style>
-
-<div class="qmodal-backdrop" id="qModalBackdrop" onclick="qModalBackdropClick(event)">
-  <div class="qmodal" role="dialog" aria-modal="true" aria-label="¿Qué buscas?">
-    <button class="qmodal-close" onclick="closeQModal()" aria-label="Cerrar">✕</button>
-
-    <!-- Progreso -->
-    <div class="qm-progress">
-      <div class="qm-dot" id="qmdot1"></div>
-      <div class="qm-dot" id="qmdot2"></div>
-      <div class="qm-dot" id="qmdot3"></div>
-    </div>
-
-    <!-- PASO 1 -->
-    <div class="qm-step active" id="qmstep1">
-      <div class="qm-label">Paso 1 de 3</div>
-      <div class="qm-title">¿En qué te puedo ayudar?</div>
-      <div class="qm-sub">Elige la opción que más se acerque a lo que necesitas</div>
-      <div class="qm-opts">
-        <div class="qm-opt" onclick="qmSelect(this,'branding')">
-          <div class="qm-opt-icon"><i class="ti ti-brush" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Branding</span>
-          <span class="qm-opt-desc">Logo, identidad visual, manual</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'redes')">
-          <div class="qm-opt-icon"><i class="ti ti-brand-instagram" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Redes sociales</span>
-          <span class="qm-opt-desc">Contenido, gestión, estrategia</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'evento')">
-          <div class="qm-opt-icon"><i class="ti ti-confetti" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Evento</span>
-          <span class="qm-opt-desc">Dirección creativa, fotografía</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'web')">
-          <div class="qm-opt-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Web</span>
-          <span class="qm-opt-desc">Diseño y posicionamiento SEO</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'noselo')" style="grid-column:1/-1;">
-          <div class="qm-opt-icon"><i class="ti ti-help" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">No sé, necesito orientación</span>
-          <span class="qm-opt-desc">Cuéntame tu situación y te digo por dónde empezar</span>
-        </div>
-        <div class="qm-noselo-extra" id="qmNoseloExtra" style="grid-column:1/-1;">
-          <span class="qm-field-label">Cuéntame brevemente</span>
-          <textarea class="qm-input" id="qmNoseloText" rows="3"
-            placeholder="Tengo un negocio de hostelería y no sé cómo mejorar mi imagen..."
-            oninput="qmCheckStep1()"></textarea>
-        </div>
-      </div>
-      <button class="qm-btn" id="qmbtn1" onclick="qmGo(2)" disabled><span>Siguiente →</span></button>
-    </div>
-
-    <!-- PASO 2 -->
-    <div class="qm-step" id="qmstep2">
-      <div class="qm-label">Paso 2 de 3</div>
-      <div class="qm-title">¿Dónde estás ahora?</div>
-      <div class="qm-sub">Así revisamos tu situación antes de escribirte</div>
-      <div class="qm-field-group">
-        <span class="qm-field-label">Nombre o denominación</span>
-        <input class="qm-input" type="text" id="qmNombre"
-          placeholder="Tu nombre o el de tu marca" oninput="qmCheckStep2()"/>
-      </div>
-      <div class="qm-field-group">
-        <span class="qm-field-label">Tu web o Instagram</span>
-        <input class="qm-input" type="text" id="qmUrl"
-          placeholder="miweb.com o @mimarca" oninput="qmCheckStep2()"/>
-      </div>
-      <div class="qm-field-group">
-        <span class="qm-field-label">Tu email</span>
-        <input class="qm-input" type="email" id="qmEmail"
-          placeholder="hola@tuempresa.com" oninput="qmCheckStep2()"/>
-      </div>
-      <button class="qm-btn" id="qmbtn2" onclick="qmSend()" disabled>
-        <span>Enviar — te escribimos en 24h →</span>
-      </button>
-      <button class="qm-back" onclick="qmGo(1)">← Atrás</button>
-    </div>
-
-    <!-- PASO 3 — Confirmación -->
-    <div class="qm-step" id="qmstep3" style="text-align:center;">
-      <div class="qm-success-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
-      <div class="qm-title">Recibido</div>
-      <div class="qm-sub" style="margin-bottom:20px;">
-        Revisaremos tu web y redes antes de escribirte.<br/>
-        Te mandamos un borrador de mejoras en menos de 24h.
-      </div>
-      <div style="background:#0f0f0f;border:0.5px solid #222;border-radius:8px;padding:14px 16px;text-align:left;margin-bottom:16px;">
-        <div class="qm-field-label" style="margin-bottom:10px;">Recibirás</div>
-        <div class="qm-checklist">
-          <div class="qm-check-row"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Revisión rápida de tu web y redes sociales</span></div>
-          <div class="qm-check-row"><i class="ti ti-circle-check" aria-hidden="true"></i><span>3-5 puntos concretos de mejora</span></div>
-          <div class="qm-check-row"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Propuesta de lo que podríamos trabajar juntos</span></div>
-        </div>
-      </div>
-      <p class="qm-note">Sin compromiso.</p>
-    </div>
-
-  </div>
-</div>
-
-<script is:inline>
-var qmSelected = null;
-
-function openQModal() {
-  document.getElementById('qModalBackdrop').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  qmReset(false);
-}
-function closeQModal() {
-  document.getElementById('qModalBackdrop').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function qModalBackdropClick(e) {
-  if (e.target === document.getElementById('qModalBackdrop')) closeQModal();
-}
-
-function qmGo(n) {
-  [1,2,3].forEach(function(i) {
-    document.getElementById('qmstep'+i).classList.toggle('active', i===n);
-    var dot = document.getElementById('qmdot'+i);
-    if (dot) dot.classList.toggle('done', i < n);
-  });
-  // dot for current step
-  var cur = document.getElementById('qmdot'+n);
-  if (cur && n <= 3) cur.classList.add('done');
-}
-
-function qmSelect(el, val) {
-  document.querySelectorAll('.qm-opt').forEach(function(o){ o.classList.remove('selected'); });
-  el.classList.add('selected');
-  qmSelected = val;
-  var extra = document.getElementById('qmNoseloExtra');
-  if (val === 'noselo') {
-    extra.classList.add('visible');
-    qmCheckStep1();
-  } else {
-    extra.classList.remove('visible');
-    document.getElementById('qmbtn1').disabled = false;
-  }
-}
-
-function qmCheckStep1() {
-  if (qmSelected === 'noselo') {
-    document.getElementById('qmbtn1').disabled =
-      document.getElementById('qmNoseloText').value.trim().length < 5;
-  }
-}
-
-function qmCheckStep2() {
-  var url = document.getElementById('qmUrl').value.trim();
-  var email = document.getElementById('qmEmail').value.trim();
-  document.getElementById('qmbtn2').disabled = !(url.length > 2 && email.includes('@'));
-}
-
-async function qmSend() {
-  var tipo   = qmSelected || '';
-  var noselo = document.getElementById('qmNoseloText').value.trim();
-  var nombre = document.getElementById('qmNombre').value.trim();
-  var url    = document.getElementById('qmUrl').value.trim();
-  var email  = document.getElementById('qmEmail').value.trim();
-  var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
-
-  try {
-    await fetch(`/api/send?tipo=${encodeURIComponent(consulta)}&web=${encodeURIComponent(url)}&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}`, { method: 'POST' });
-  } catch(e) {}
-
-  qmGo(3);
-}
-
-function qmReset(reopen) {
-  qmSelected = null;
-  document.querySelectorAll('.qm-opt').forEach(function(o){ o.classList.remove('selected'); });
-  document.getElementById('qmNoseloExtra').classList.remove('visible');
-  document.getElementById('qmNoseloText').value = '';
-  document.getElementById('qmbtn1').disabled = true;
-  document.getElementById('qmNombre').value = '';
-  document.getElementById('qmUrl').value = '';
-  document.getElementById('qmEmail').value = '';
-  document.getElementById('qmbtn2').disabled = true;
-  [1,2,3].forEach(function(i){
-    var d = document.getElementById('qmdot'+i);
-    if (d) d.classList.remove('done');
-  });
-  qmGo(1);
-}
-</script>
-
-<!-- ── SEO: canonical dinámico por sección ── -->
-<script is:inline>
-(function(){
-  var sectionCanonicals = {
-    "/":                              "https://ascndrworld.com/",
-    "/trabajos":                      "https://ascndrworld.com/trabajos",
-    "/trabajos/branding":             "https://ascndrworld.com/trabajos/branding",
-    "/trabajos/redes-sociales":       "https://ascndrworld.com/trabajos/redes-sociales",
-    "/trabajos/fotografia":           "https://ascndrworld.com/trabajos/fotografia",
-    "/trabajos/direccion-creativa":   "https://ascndrworld.com/trabajos/direccion-creativa",
-    "/terminos":                      "https://ascndrworld.com/terminos",
-    "/privacidad":                    "https://ascndrworld.com/privacidad"
-  };
-  function updateCanonical() {
-    var path = window.location.pathname.replace(/\/+$/, "") || "/";
-    var url = sectionCanonicals[path] || ("https://ascndrworld.com" + path);
-    var tag = document.querySelector("link[rel='canonical']");
-    if (tag) tag.setAttribute("href", url);
-  }
-  updateCanonical();
-  var _orig = history.pushState;
-  history.pushState = function() { _orig.apply(this, arguments); updateCanonical(); };
-  window.addEventListener("popstate", updateCanonical);
-})();
-</script>
-
-<!-- ── Schema.org: portfolio de proyectos ── -->
-<script type="application/ld+json" is:inline>{`
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Halloween Fest — Branding e Identidad Visual",
-    "description": "Diseño de identidad visual completa para Halloween Fest Jaén: logo, carteles, pulseras, acreditaciones y dirección creativa del evento.",
-    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
-    "keywords": ["branding", "identidad visual", "evento", "Halloween", "Jaén"],
-    "image": "https://ascndrworld.com/images/halloween-fest/pulsera-portada.jpg"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Cónclave — Dirección Creativa y Rebranding",
-    "description": "Transformación completa del pub Milenio 2.0 en Cónclave: naming, identidad visual, señalética y gestión de redes sociales en Jaén.",
-    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
-    "keywords": ["rebranding", "dirección creativa", "pub", "hostelería", "Jaén"],
-    "image": "https://ascndrworld.com/images/conclave/portada-conclave2.jpg"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "3ª Ed. Halloween Fest — Fotografía de Evento",
-    "description": "Cobertura fotográfica profesional de la tercera edición de Halloween Fest Jaén desde dentro del evento.",
-    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
-    "keywords": ["fotografía", "cobertura evento", "Halloween", "Jaén"],
-    "image": "https://ascndrworld.com/images/halloween-fest/portada-halloween3.jpg"
-  }
-]
-`}</script>
-
-</Layout>
-
-<script is:inline>
-
-  /* ════ ROUTING: URLs amigables por sección ════ */
-  /* Mapa bidireccional entre id de página y ruta de URL */
-  const PAGE_ROUTES = {
-    home:    "/",
-    works:   "/trabajos",
-    terms:   "/terminos",
-    privacy: "/privacidad"
-  };
-  const ROUTE_TO_PAGE = Object.fromEntries(
-    Object.entries(PAGE_ROUTES).map(([id, path]) => [path, id])
-  );
-
-  function showPage(id, opts) {
-    opts = opts || {};
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    const target = document.getElementById(id);
-    if (!target) return;
-    target.classList.add("active");
-    window.scrollTo(0,0);
-
-    /* Actualiza la URL sin recargar la página */
-    if (!opts.skipHistory) {
-      const path = PAGE_ROUTES[id] || "/";
-      const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-      if (currentPath !== path) {
-        history.pushState({ page: id }, "", path);
-      }
-    }
-  }
-
-  /* Contacto: abre el modal y refleja /contacto en la URL */
-  const _originalOpenModal = (typeof openModal === "function") ? openModal : null;
-  function openContactRoute() {
-    if (_originalOpenModal) _originalOpenModal();
-    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-    if (currentPath !== "/contacto") {
-      history.pushState({ contact: true }, "", "/contacto");
-    }
-  }
-
-  /* Al cargar, lee la URL y muestra la sección correspondiente */
-  (function initRouteFromURL() {
-    const path = window.location.pathname.replace(/\/+$/, "") || "/";
-    if (path === "/contacto") {
-      showPage("home", { skipHistory: true });
-      if (_originalOpenModal) setTimeout(_originalOpenModal, 50);
-      return;
-    }
-    const pageId = ROUTE_TO_PAGE[path];
-    if (pageId && pageId !== "home") {
-      showPage(pageId, { skipHistory: true });
-    }
-  })();
-
-  /* Maneja los botones Atrás/Adelante del navegador */
-  window.addEventListener("popstate", () => {
-    const path = window.location.pathname.replace(/\/+$/, "") || "/";
-    if (path === "/contacto") {
-      showPage("home", { skipHistory: true });
-      if (_originalOpenModal) _originalOpenModal();
-      return;
-    }
-    const pageId = ROUTE_TO_PAGE[path] || "home";
-    showPage(pageId, { skipHistory: true });
-  });
-
-  /* ════ WORKS FILTERS ════ */
-  (function initWorksFilters() {
-    const filtersEl = document.getElementById("worksFilters");
-    if (!filtersEl) return;
-
-    const cards = document.querySelectorAll("#worksGrid .work-card");
-    const countEl = document.getElementById("worksCount");
-
-    const FILTER_ROUTES = {
-      "all":         "/trabajos",
-      "branding":    "/trabajos/branding",
-      "social":      "/trabajos/redes-sociales",
-      "photography": "/trabajos/fotografia",
-      "direction":   "/trabajos/direccion-creativa"
-    };
-    const ROUTE_TO_FILTER = Object.fromEntries(
-      Object.entries(FILTER_ROUTES).map(([f, p]) => [p, f])
-    );
-
-    function applyFilter(filter, opts) {
-      opts = opts || {};
-      filtersEl.querySelectorAll(".filter-btn").forEach(b => {
-        b.classList.toggle("active", b.dataset.filter === filter);
-      });
-      let visible = 0;
-      cards.forEach(card => {
-        const match = (filter === "all") || (card.dataset.category === filter);
-        card.classList.toggle("hidden", !match);
-        if (match) visible++;
-      });
-      if (countEl) countEl.textContent = visible;
-      if (!opts.skipHistory) {
-        const path = FILTER_ROUTES[filter] || "/trabajos";
-        const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-        if (currentPath !== path) history.pushState({ filter }, "", path);
-      }
-    }
-
-    filtersEl.addEventListener("click", (e) => {
-      const btn = e.target.closest(".filter-btn");
-      if (!btn) return;
-      applyFilter(btn.dataset.filter);
-    });
-
-    const initPath = window.location.pathname.replace(/\/+$/, "") || "/";
-    const initFilter = ROUTE_TO_FILTER[initPath] || "all";
-    applyFilter(initFilter, { skipHistory: true });
-
-    /* Exponer para uso externo (flecha landing, nav) */
-    window.applyFilter = applyFilter;
-  })();
-
-  let pillActive = false;
-  function activatePill() {
-    if (pillActive) return;
-    pillActive = true;
-    const btn = document.getElementById("pillBtn");
-    btn.classList.add("expanded");
-    setTimeout(() => document.getElementById("pillInput").focus(), 220);
-    setTimeout(() => document.addEventListener("click", collapsePillOut), 150);
-  }
-  function collapsePillOut(e) {
-    const btn = document.getElementById("pillBtn");
-    const inp = document.getElementById("pillInput");
-    if (!btn.contains(e.target)) {
-      if (!inp.value.trim()) { pillActive = false; btn.classList.remove("expanded"); }
-      document.removeEventListener("click", collapsePillOut);
-    }
-  }
-  function handleArrow(e) {
-    e.stopPropagation();
-    if (!pillActive) { activatePill(); return; }
-    openDrawer();
-  }
-  function onPillKey(e) { if (e.key === "Enter") { e.preventDefault(); openDrawer(); } }
-
-  function openDrawer() {
-    const q = document.getElementById("pillInput").value.trim();
-    document.getElementById("drawerConsulta").value = q;
-    ["drawerNombre","drawerEmail","drawerTelefono"].forEach(id => document.getElementById(id).value = "");
-    document.getElementById("drawerWebsite").value = "";
-    const dErr = document.getElementById("drawerError");
-    if (dErr) dErr.style.display = "none";
-    const dBtn = document.getElementById("drawerSendBtn");
-    if (dBtn) {
-      dBtn.disabled = false;
-      dBtn.style.opacity = "";
-      dBtn.style.cursor = "";
-      dBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
-    }
-    document.getElementById("drawerForm").style.display = "block";
-    document.getElementById("drawerSuccess").classList.remove("show");
-    document.getElementById("drawerOverlay").classList.add("open");
-    document.body.style.overflow = "hidden";
-    window.scrollTo(0,0);
-  }
-  function closeDrawer() {
-    document.getElementById("drawerOverlay").classList.remove("open");
-    document.body.style.overflow = "";
-  }
-  /* ════ EmailJS config ════ */
-  const EMAILJS_SERVICE_ID    = "service_itdpucz";
-  const EMAILJS_TEMPLATE_A    = "template_1onca15"; // consulta (con {{consulta}})
-  const EMAILJS_TEMPLATE_B    = "template_a9a415g"; // contacto genérico
-
-  /* Valida formato básico de email */
-  function isValidEmail(v) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  }
-
-  /* Envía con EmailJS. Devuelve una promesa. */
-  function sendEmail(templateId, params) {
-    if (typeof emailjs === "undefined" || !emailjs.send) {
-      return Promise.reject(new Error("SDK no cargado"));
-    }
-    return emailjs.send(EMAILJS_SERVICE_ID, templateId, params);
-  }
-
-  async function sendDrawer() {
-    const btn      = document.getElementById("drawerSendBtn");
-    const errorEl  = document.getElementById("drawerError");
-    const nombre   = document.getElementById("drawerNombre").value.trim();
-    const email    = document.getElementById("drawerEmail").value.trim();
-    const telefono = document.getElementById("drawerTelefono").value.trim();
-    const consulta = document.getElementById("drawerConsulta").value.trim();
-    const honeypot = document.getElementById("drawerWebsite").value;
-
-    if (honeypot) {
-      document.getElementById("drawerForm").style.display = "none";
-      document.getElementById("drawerSuccess").classList.add("show");
-      setTimeout(closeDrawer, 3000);
-      return;
-    }
-
-    errorEl.style.display = "none";
-    if (!nombre || !email) {
-      errorEl.textContent = "Por favor completa tu nombre y email.";
-      errorEl.style.display = "block";
-      return;
-    }
-    if (!isValidEmail(email)) {
-      errorEl.textContent = "El email no parece válido. Revísalo.";
-      errorEl.style.display = "block";
-      return;
-    }
-
-    const btnTextOriginal = btn.innerHTML;
-    btn.disabled = true;
-    btn.style.opacity = "0.6";
-    btn.style.cursor = "wait";
-    btn.innerHTML = "Enviando...";
-
-    try {
-      const res = await fetch(`/api/send?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono||'')}&consulta=${encodeURIComponent(consulta||'')}`, { method: 'POST' });
-      if (!res.ok) throw new Error('Error');
-      document.getElementById("drawerForm").style.display = "none";
-      document.getElementById("drawerSuccess").classList.add("show");
-      setTimeout(closeDrawer, 3000);
-    } catch (err) {
-      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
-      errorEl.style.display = "block";
-      btn.disabled = false;
-      btn.style.opacity = "";
-      btn.style.cursor = "";
-      btn.innerHTML = btnTextOriginal;
-    }
-  }
-
-  function openModal() {
-    ["mNombre","mEmail","mTelefono"].forEach(id => document.getElementById(id).value = "");
-    document.getElementById("mWebsite").value = "";
-    const mErr = document.getElementById("mError");
-    if (mErr) mErr.style.display = "none";
-    const mBtn = document.getElementById("mSendBtn");
-    if (mBtn) {
-      mBtn.disabled = false;
-      mBtn.style.opacity = "";
-      mBtn.style.cursor = "";
-      mBtn.innerHTML = 'Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
-    }
-    document.getElementById("modalForm").style.display = "block";
-    document.getElementById("modalSuccess").classList.remove("show");
-    document.getElementById("modalOverlay").classList.add("open");
-    document.body.style.overflow = "hidden";
-    window.scrollTo(0,0);
-  }
-  function closeModal() {
-    document.getElementById("modalOverlay").classList.remove("open");
-    document.body.style.overflow = "";
-    /* Si la URL quedó en /contacto, la revertimos a la página visible */
-    if (window.location.pathname.replace(/\/+$/, "") === "/contacto") {
-      const activePage = document.querySelector(".page.active");
-      const id = activePage ? activePage.id : "home";
-      const path = PAGE_ROUTES[id] || "/";
-      history.replaceState({ page: id }, "", path);
-    }
-  }
-  async function sendModal() {
-    const btn      = document.getElementById("mSendBtn");
-    const errorEl  = document.getElementById("mError");
-    const nombre   = document.getElementById("mNombre").value.trim();
-    const email    = document.getElementById("mEmail").value.trim();
-    const telefono = document.getElementById("mTelefono").value.trim();
-    const honeypot = document.getElementById("mWebsite").value;
-
-    if (honeypot) {
-      document.getElementById("modalForm").style.display = "none";
-      document.getElementById("modalSuccess").classList.add("show");
-      setTimeout(closeModal, 3000);
-      return;
-    }
-
-    errorEl.style.display = "none";
-    if (!nombre || !email) {
-      errorEl.textContent = "Por favor completa tu nombre y email.";
-      errorEl.style.display = "block";
-      return;
-    }
-    if (!isValidEmail(email)) {
-      errorEl.textContent = "El email no parece válido. Revísalo.";
-      errorEl.style.display = "block";
-      return;
-    }
-
-    const btnTextOriginal = btn.innerHTML;
-    btn.disabled = true;
-    btn.style.opacity = "0.6";
-    btn.style.cursor = "wait";
-    btn.innerHTML = "Enviando...";
-
-    /* El modal siempre usa la plantilla B (contacto genérico) */
-    const params = {
-      name:     nombre,
-      email:    email,
-      phone:    telefono || "No facilitado",
-      consulta: "Sin consulta previa",
-      reply_to: email
-    };
-
-    try {
-      await sendEmail(EMAILJS_TEMPLATE_B, params);
-      document.getElementById("modalForm").style.display = "none";
-      document.getElementById("modalSuccess").classList.add("show");
-      setTimeout(closeModal, 3000);
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      errorEl.textContent = "No hemos podido enviar el mensaje. Inténtalo de nuevo en unos segundos.";
-      errorEl.style.display = "block";
-      btn.disabled = false;
-      btn.style.opacity = "";
-      btn.style.cursor = "";
-      btn.innerHTML = btnTextOriginal;
-    }
-  }
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") { closeDrawer(); closeModal(); }
-  });
-
-  /* ════ COOKIE BANNER ════ */
-  const COOKIE_KEY = "ascndr_cookie_consent";
-
-  function initCookieBanner() {
-    try {
-      if (localStorage.getItem(COOKIE_KEY)) return; // ya decidido, no mostrar
-    } catch (e) { /* localStorage bloqueado → mostrar igualmente */ }
-
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    // pequeño delay para que entre después del halo de bienvenida
-    setTimeout(() => banner.classList.add("visible"), 1200);
-  }
-
-  function handleCookie(choice) {
-    try { localStorage.setItem(COOKIE_KEY, choice); } catch (e) {}
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    banner.classList.remove("visible");
-    banner.classList.add("hiding");
-    setTimeout(() => banner.remove(), 600);
-  }
-
-  window.addEventListener("load", initCookieBanner);
-
-  /* ════ PROTECCIÓN DESCARGA ════ */
-  /* Bloquea clic derecho, arrastrar imágenes y el atributo download en vídeos */
-  document.addEventListener("contextmenu", function(e) {
-    if (e.target.closest("img, video, .work-media, .gallery-item, .hw3-item, .ds-item, .gallery-cv-item, .lightbox-overlay")) {
-      e.preventDefault();
-    }
-  });
-  document.addEventListener("dragstart", function(e) {
-    if (e.target.tagName === "IMG" || e.target.tagName === "VIDEO") {
-      e.preventDefault();
-    }
-  });
-  /* Quitar controlMenuMouse en vídeos (iOS long-press save) */
-  document.querySelectorAll("video").forEach(function(v) {
-    v.setAttribute("controlslist", "nodownload");
-    v.addEventListener("contextmenu", function(e){ e.preventDefault(); });
-  });
-</script>
+  document.addEventListener("contextmenu",function(e){
+    if(e.target.closest("img, video, .work-media, .gallery-item, .hw3-item, .ds-item,
