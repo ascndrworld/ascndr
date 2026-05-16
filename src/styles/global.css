@@ -1878,10 +1878,13 @@
   align-items: center;
   justify-content: center;
 }
+.home-logo {
+  display: flex;
+  align-items: center;
+}
 .home-logo img {
-  height: 81px;
+  height: 57px;
   width: auto;
-  filter: brightness(0) invert(1);
   display: block;
 }
 

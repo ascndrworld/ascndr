@@ -117,10 +117,14 @@ import Layout from "../layouts/Layout.astro";
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
+  .tp-logo {
+    display: flex;
+    align-items: center;
+  }
   .tp-logo img {
-    height: 81px;
+    height: 57px;
     width: auto;
-    filter: brightness(0) invert(1);
+    display: block;
   }
 
 
@@ -256,7 +260,7 @@ import Layout from "../layouts/Layout.astro";
   /* Mobile */
   @media (max-width: 480px) {
     .tp-header { height: 80px; }
-    .tp-logo img { height: 34px; }
+    .tp-logo img { height: 36px; }
     .tp-filter-section { padding-top: 96px; }
     .tp-filter { font-size: 13px; padding: 5px 8px; }
     .tp-filter-label { font-size: 10px; }
