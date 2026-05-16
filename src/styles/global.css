@@ -1816,7 +1816,7 @@
 
 
 
-/* ════ HOME — CALCO PIXEL PERFECT SOMOS ESTUDIO ════ */
+/* ════ HOME — PIXEL PERFECT SOMOS ════ */
 
 #home {
   position: relative;
@@ -1831,8 +1831,7 @@
 .home-video-bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
@@ -1845,7 +1844,7 @@
   pointer-events: none;
 }
 
-/* HEADER — height: 162px, logo centrado, hamburguesa right:30px top:34px */
+/* HEADER — 162px alto, logo centrado 192x81, hamburguesa top:34 right:30 */
 .home-header {
   position: relative;
   z-index: 10;
@@ -1855,27 +1854,29 @@
   height: 162px;
   width: 100%;
   flex-shrink: 0;
-  padding: 0 40px;
+  padding: 0;
 }
 .home-logo img {
-  height: 40px;
-  width: auto;
+  width: 192px;
+  height: auto;
+  display: block;
   filter: brightness(0) invert(1);
 }
-
-/* Hamburguesa — 3 líneas, position absolute, top:34px right:30px */
 .home-hamburger {
   position: absolute;
-  right: 30px;
   top: 34px;
+  right: 30px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   z-index: 11;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
 }
 .home-hamburger span {
   display: block;
@@ -1885,11 +1886,11 @@
   transition: all 0.3s ease;
   transform-origin: center;
 }
-.home-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.home-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .home-hamburger.open span:nth-child(2) { opacity: 0; }
-.home-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.home-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* MENÚ OVERLAY — rgba(0,0,0,0.9), fullscreen, fixed */
+/* MENÚ OVERLAY — rgba(0,0,0,0.9), fullscreen */
 .home-menu {
   position: fixed;
   inset: 0;
@@ -1903,12 +1904,9 @@
   pointer-events: none;
   transition: opacity 0.35s ease;
 }
-.home-menu.open {
-  opacity: 1;
-  pointer-events: all;
-}
+.home-menu.open { opacity: 1; pointer-events: all; }
+.home-menu-bg { display: none; }
 
-/* X cerrar — arriba derecha, igual Somos */
 .home-menu-close {
   position: absolute;
   top: 28px;
@@ -1917,45 +1915,41 @@
   border: none;
   color: rgba(255,255,255,0.7);
   font-size: 20px;
-  font-weight: 300;
   cursor: pointer;
   line-height: 1;
   padding: 8px;
-  transition: color 0.2s, transform 0.3s ease;
+  transition: color 0.2s, transform 0.3s;
   z-index: 10;
 }
 .home-menu-close:hover { color: #fff; transform: rotate(90deg); }
 
-/* Links — font-size:60px, weight:900, color:#707070, lowercase, underline, centrados */
+/* Links — 60px / 900 / Montserrat / #707070 / lowercase / underline */
 .home-menu-links {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 0; margin: 0;
   text-align: center;
 }
-.home-menu-links li { margin: 0; }
 .home-menu-links li a {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 60px;
   font-weight: 900;
-  color: rgb(112, 112, 112);
+  color: rgb(112,112,112);
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
-  text-decoration-color: rgb(112, 112, 112);
-  letter-spacing: normal;
+  text-decoration-color: rgb(112,112,112);
+  letter-spacing: -2px;
   text-transform: lowercase;
-  line-height: 56px;
+  line-height: 1.1;
   display: inline-block;
-  padding: 8px 0;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  padding: 6px 0;
+  transition: color 0.2s, text-decoration-color 0.2s;
 }
 .home-menu-links li a:hover {
   color: #fff;
   text-decoration-color: #fff;
 }
 
-/* Bottom del menú — logo + socials */
 .home-menu-bottom {
   position: absolute;
   bottom: 28px;
@@ -1970,11 +1964,7 @@
   filter: brightness(0) invert(1);
   opacity: 0.3;
 }
-.home-menu-socials {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
+.home-menu-socials { display: flex; gap: 12px; align-items: center; }
 .home-menu-socials a {
   font-size: 9px;
   letter-spacing: 0.18em;
@@ -1986,21 +1976,21 @@
 .home-menu-socials a:hover { color: rgba(255,255,255,0.7); }
 .home-menu-dot { color: rgba(255,255,255,0.2); font-size: 9px; }
 
-/* HERO CONTENT — pegado izquierda, bottom, igual Somos (left:10px) */
+/* HERO CONTENT — left:10px, flex-end vertical, igual Somos */
 .home-hero-content {
   position: relative;
   z-index: 5;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-start;
-  padding: 0 0 60px 10px;
+  padding: 6px 0 0 10px;
 }
 
-/* H1 — font-size:90px, weight:800, Montserrat, letter-spacing:-4px, line-height:94px */
+/* H1 — 90px / 800 / Helvetica / letter-spacing:-4px / line-height:94px */
 .home-hero-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 90px;
   font-weight: 800;
   line-height: 94px;
@@ -2011,28 +2001,25 @@
   text-align: left;
 }
 
-/* Botón — font-size:21px, padding:12px 24px, border:2px solid white, weight:600 */
+/* Botón — 21px / 600 / padding:12px 24px / border:2px solid white */
 .home-hero-btn {
   display: inline-block;
   border: 2px solid #fff;
   color: #fff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 21px;
   font-weight: 600;
-  letter-spacing: normal;
+  letter-spacing: 0;
   text-transform: none;
   text-decoration: none;
   padding: 12px 24px;
   background: transparent;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s, color 0.25s;
   cursor: pointer;
 }
-.home-hero-btn:hover {
-  background: #fff;
-  color: #000;
-}
+.home-hero-btn:hover { background: #fff; color: #000; }
 
-/* FOOTER home */
+/* FOOTER */
 .home-footer {
   position: relative;
   z-index: 5;
@@ -2050,8 +2037,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 0;
-  margin: 0;
+  padding: 0; margin: 0;
 }
 .home-footer-nav a {
   font-size: 9px;
@@ -2075,13 +2061,14 @@
 @media (max-width: 768px) {
   .home-header { height: 100px; }
   .home-hamburger { top: 22px; right: 20px; }
-  .home-hero-content { padding: 0 0 48px 20px; }
+  .home-logo img { width: 130px; }
+  .home-hero-content { padding: 0 0 0 20px; }
   .home-hero-title { font-size: 56px; line-height: 58px; letter-spacing: -2px; margin-bottom: 20px; }
-  .home-hero-btn { font-size: 14px; padding: 10px 18px; }
-  .home-menu-links li a { font-size: 44px; line-height: 46px; }
+  .home-hero-btn { font-size: 15px; padding: 10px 18px; }
+  .home-menu-links li a { font-size: 44px; line-height: 48px; }
   .home-menu-close { right: 20px; top: 20px; }
 }
 @media (max-width: 480px) {
   .home-hero-title { font-size: 44px; line-height: 46px; letter-spacing: -2px; }
-  .home-menu-links li a { font-size: 36px; line-height: 38px; }
+  .home-menu-links li a { font-size: 36px; line-height: 40px; }
 }
