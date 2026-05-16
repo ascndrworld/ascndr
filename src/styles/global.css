@@ -4,7 +4,7 @@
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     :root {
       --bg:       #222222;
-      --ink:      #FFFFF4;
+      --ink:      #F7EFDB;
       --muted:    #555;
       --dim:      #2e2e2e;
       --field-bg: #1a1a1a;
@@ -1648,7 +1648,7 @@
   background: rgba(0,0,0,0.65);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  color: #fff;
+  color: #F7EFDB;
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 0.72rem;
@@ -1923,7 +1923,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #fff;
+  background: #F7EFDB;
   transition: all 0.3s cubic-bezier(0.77,0,0.175,1);
   transform-origin: center;
 }
@@ -1964,7 +1964,7 @@
   line-height: 1;
   transition: color 0.2s, transform 0.3s ease;
 }
-.home-menu-close:hover { color: #fff; transform: rotate(90deg); }
+.home-menu-close:hover { color: #F7EFDB; transform: rotate(90deg); }
 
 /* Links — exacto Somos: 60px/900/Montserrat/#707070/lowercase/underline/centrado */
 .home-menu-links {
@@ -1991,8 +1991,8 @@
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 .home-menu-links li a:hover {
-  color: #fff;
-  text-decoration-color: #fff;
+  color: #F7EFDB;
+  text-decoration-color: #F7EFDB;
 }
 
 /* Logo + socials abajo del menú */
@@ -2042,7 +2042,7 @@
   font-size: 90px !important;
   font-weight: 800 !important;
   line-height: 94px !important;
-  color: #FFFFF4 !important;
+  color: #F7EFDB !important;
   letter-spacing: -4px !important;
   text-transform: none !important;
   margin: 0 0 24px !important;
@@ -2052,8 +2052,8 @@
 /* Botón — exacto Somos: 21px/600/padding:12px 24px/border:2px */
 .home-hero-btn {
   display: inline-block !important;
-  border: 2px solid #FFFFF4 !important;
-  color: #FFFFF4 !important;
+  border: 2px solid #F7EFDB !important;
+  color: #F7EFDB !important;
   font-family: "Montserrat", sans-serif !important;
   font-size: 21px !important;
   font-weight: 600 !important;
@@ -2066,7 +2066,7 @@
   cursor: pointer;
 }
 .home-hero-btn:hover {
-  background: #fff !important;
+  background: #F7EFDB !important;
   color: #000 !important;
 }
 
@@ -2311,7 +2311,7 @@
   .work-card:hover .work-media { transform: none; filter: none; }
   .tp-item:hover .tp-img { transform: none; }
   .tp-item:hover .tp-hover { opacity: 1; }
-  .home-hero-btn:hover { background: transparent; color: #fff; }
+  .home-hero-btn:hover { background: transparent; color: #F7EFDB; }
 }
 
 /* ════ HOME SECCIONES SCROLL — ESTILO SOMOS ════ */
@@ -2344,7 +2344,7 @@
   font-family: "Montserrat", sans-serif;
   font-size: 90px;
   font-weight: 800;
-  color: #fff;
+  color: #F7EFDB;
   line-height: 0.95;
   letter-spacing: -4px;
   margin-bottom: 40px;
@@ -2355,7 +2355,7 @@
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
   font-weight: 300;
-  color: #fff;
+  color: #F7EFDB;
   max-width: 700px;
   margin: 0 auto 20px;
   line-height: 1.6;
@@ -2364,8 +2364,8 @@
 .hs-services-btn {
   display: inline-block;
   margin-top: 32px;
-  border: 2px solid #fff;
-  color: #fff;
+  border: 2px solid #F7EFDB;
+  color: #F7EFDB;
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -2375,7 +2375,7 @@
   padding: 14px 32px;
   transition: background 0.25s, color 0.25s;
 }
-.hs-services-btn:hover { background: #fff; color: #000; }
+.hs-services-btn:hover { background: #F7EFDB; color: #000; }
 
 /* ── GRID PROYECTOS DESTACADOS — 2 cols igual Somos ── */
 .hs-works {
@@ -2430,7 +2430,7 @@
   font-family: "Montserrat", sans-serif;
   font-size: 32px;
   font-weight: 800;
-  color: #fff;
+  color: #F7EFDB;
   letter-spacing: -1px;
   line-height: 1;
   margin: 0;
@@ -2470,7 +2470,7 @@
   color: rgba(255,255,255,0.7);
   transition: color 0.2s;
 }
-.hs-footer-social a:hover { color: #fff; }
+.hs-footer-social a:hover { color: #F7EFDB; }
 
 .hs-footer-contact {
   display: flex;
@@ -2487,7 +2487,7 @@
   text-decoration: none;
   transition: color 0.2s;
 }
-.hs-footer-contact-item:hover { color: #fff; }
+.hs-footer-contact-item:hover { color: #F7EFDB; }
 .hs-footer-contact-item span {
   font-family: "Montserrat", sans-serif;
   font-size: 11px;
