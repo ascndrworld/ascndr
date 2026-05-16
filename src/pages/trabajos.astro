@@ -1,0 +1,181 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Trabajos | Ascndr — Portfolio Creativo">
+
+<div class="works-page">
+
+  <!-- HEADER -->
+  <header class="works-page-header">
+    <a href="/" class="works-page-logo">
+      <img src="/ascndr-logo.png" alt="Ascndr"/>
+    </a>
+    <a href="/" class="works-back-btn">← Volver</a>
+  </header>
+
+  <!-- HERO -->
+  <div class="works-hero">
+    <div class="works-hero-left">
+      <div class="works-eyebrow">Portfolio · 2024 — 2026</div>
+      <h1 class="works-title">Trabajos<sup>©</sup></h1>
+    </div>
+    <div class="works-hero-right">
+      <span class="works-count"><strong id="worksCount">4</strong> / 4 proyectos</span>
+      <span class="works-count" style="color:#555">Seleccionados</span>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="works-filters" id="worksFilters">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="social">Redes Sociales</button>
+    <button class="filter-btn" data-filter="photography">Fotografía</button>
+    <button class="filter-btn" data-filter="direction">Dirección Creativa</button>
+  </div>
+
+  <!-- Grid -->
+  <div class="works-grid" id="worksGrid">
+
+    <article class="work-card size-md-v" data-category="direction" onclick="openGalleryConclave()" style="cursor:pointer">
+      <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.jpg'); background-size:cover; background-position:center;"></div>
+      <span class="work-tag">Dirección Creativa</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Rebranding · Pub</div>
+          <div class="work-name">Cónclave</div>
+        </div>
+        <div class="work-year">MMXXV</div>
+      </div>
+    </article>
+
+    <article class="work-card size-lg" data-category="branding" onclick="openGallery()" style="cursor:pointer;">
+      <div class="work-media" style="background-image:url('/images/halloween-fest/pulsera-portada.jpg');"></div>
+      <span class="work-tag">Branding</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Identidad Visual · Evento</div>
+          <div class="work-name">Halloween Fest</div>
+        </div>
+        <div class="work-year">MMXXIV — MMXXV</div>
+      </div>
+    </article>
+
+    <article class="work-card size-lg" data-category="social" onclick="openGalleryConclaveDesign()" style="cursor:pointer;">
+      <div class="work-media work-media-fade">
+        <div class="work-media-img" style="background-image:url('/images/conclave/rrss-01.jpg');"></div>
+        <div class="work-media-img work-media-img-alt" style="background-image:url('/images/conclave/rrss-02.jpg');"></div>
+      </div>
+      <span class="work-tag">Redes Sociales</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Marketing · Instagram</div>
+          <div class="work-name">Cónclave Design</div>
+        </div>
+        <div class="work-year">MMXXVI</div>
+      </div>
+    </article>
+
+    <article class="work-card size-md-v" data-category="photography" onclick="openGalleryHalloween3()" style="cursor:pointer;">
+      <div class="work-media" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg'); background-size:cover; background-position:center;"></div>
+      <span class="work-tag">Fotografía</span>
+      <span class="work-arrow">↗</span>
+      <div class="work-info">
+        <div class="work-info-left">
+          <div class="work-category">Desde dentro · Shooting</div>
+          <div class="work-name">Halloween Fest</div>
+        </div>
+        <div class="work-year">MMXXV</div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="works-cta">
+    <div class="works-cta-text">
+      <h3>¿Tienes un proyecto en mente?</h3>
+      <p>Trabajamos con marcas que buscan construir algo memorable. Cuéntanos tu idea y la convertimos en realidad.</p>
+    </div>
+    <a class="works-cta-btn" href="mailto:frank@ascndrworld.com">Iniciar proyecto ›</a>
+  </div>
+
+  <p class="meta" style="text-align:center; margin-top:40px; margin-bottom:40px;">Portfolio · Actualizado mayo 2026</p>
+
+</div>
+
+<!-- Las galerías y modales se importan desde el index via JS compartido -->
+<!-- Por ahora las galerías abren desde el index, aquí solo el grid -->
+
+<script is:inline>
+  // Filtros
+  (function() {
+    const filtersEl = document.getElementById("worksFilters");
+    if (!filtersEl) return;
+    const cards = document.querySelectorAll("#worksGrid .work-card");
+    const countEl = document.getElementById("worksCount");
+    filtersEl.addEventListener("click", function(e) {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      filtersEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      let visible = 0;
+      cards.forEach(card => {
+        const match = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (countEl) countEl.textContent = visible;
+    });
+    if (countEl) countEl.textContent = cards.length;
+  })();
+
+  // Stub funciones de galería para que no rompan si no están cargadas
+  function openGallery() { alert("Galería Halloween Fest — próximamente"); }
+  function openGalleryConclave() { alert("Galería Cónclave — próximamente"); }
+  function openGalleryConclaveDesign() { alert("Galería Cónclave Design — próximamente"); }
+  function openGalleryHalloween3() { alert("Galería Halloween Fest III — próximamente"); }
+</script>
+
+<style>
+  .works-page {
+    min-height: 100vh;
+    background: var(--bg, #222);
+    color: var(--ink, #FFFFF4);
+    font-family: "Montserrat", sans-serif;
+    padding-top: 0;
+  }
+
+  /* Header de la página trabajos */
+  .works-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 24px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .works-page-logo img {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+  .works-back-btn {
+    position: absolute;
+    left: 40px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .works-back-btn:hover { color: #fff; }
+</style>
+
+</Layout>

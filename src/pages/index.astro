@@ -26,8 +26,8 @@ import Layout from "../layouts/Layout.astro";
   <nav class="home-menu" id="homeMenu">
     <button class="home-menu-close" onclick="toggleHomeMenu()" aria-label="Cerrar">✕</button>
     <ul class="home-menu-links">
-      <li><a href="/" onclick="toggleHomeMenu(); showPage('home'); return false;">home</a></li>
-      <li><a href="/trabajos" onclick="toggleHomeMenu(); showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">proyectos</a></li>
+      <li><a href="/" onclick="toggleHomeMenu(); return false;">home</a></li>
+      <li><a href="/trabajos">proyectos</a></li>
       <li><a href="/contacto" onclick="toggleHomeMenu(); openContactRoute(); return false;">contacto</a></li>
     </ul>
     <div class="home-menu-bottom">
@@ -40,10 +40,21 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </nav>
 
+  <script is:inline>
+    function toggleHomeMenu() {
+      var menu = document.getElementById("homeMenu");
+      var btn  = document.getElementById("homeHamburger");
+      if (!menu) return;
+      var open = menu.classList.toggle("open");
+      if (btn) btn.classList.toggle("open", open);
+      document.body.style.overflow = open ? "hidden" : "";
+    }
+  </script>
+
   <!-- HERO: texto izquierda, pegado arriba tras el header -->
   <div class="home-hero-content">
     <h1 class="home-hero-title">eleva<br/>tu marca<br/>o te quedas<br/>donde estás.</h1>
-    <a class="home-hero-btn" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">VER TRABAJOS</a>
+    <a class="home-hero-btn" href="/trabajos">VER TRABAJOS</a>
   </div>
 
   <!-- FOOTER -->
