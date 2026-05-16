@@ -1816,7 +1816,7 @@
 
 
 
-/* ════ HOME — CALCO SOMOS ESTUDIO ════ */
+/* ════ HOME — CALCO PIXEL PERFECT SOMOS ESTUDIO ════ */
 
 #home {
   position: relative;
@@ -1840,116 +1840,114 @@
 .home-video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.15);
   z-index: 1;
   pointer-events: none;
 }
 
-/* HEADER */
+/* HEADER — height: 162px, logo centrado, hamburguesa right:30px top:34px */
 .home-header {
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 40px;
+  height: 162px;
   width: 100%;
   flex-shrink: 0;
+  padding: 0 40px;
 }
 .home-logo img {
-  height: 24px;
+  height: 40px;
   width: auto;
   filter: brightness(0) invert(1);
 }
+
+/* Hamburguesa — 3 líneas, position absolute, top:34px right:30px */
 .home-hamburger {
   position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 30px;
+  top: 34px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 4px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   z-index: 11;
 }
 .home-hamburger span {
   display: block;
-  width: 26px;
+  width: 22px;
   height: 2px;
   background: #fff;
-  transition: all 0.35s cubic-bezier(0.77,0,0.175,1);
+  transition: all 0.3s ease;
   transform-origin: center;
 }
-.home-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.home-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.home-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.home-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.home-hamburger.open span:nth-child(2) { opacity: 0; }
+.home-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* MENÚ OVERLAY */
+/* MENÚ OVERLAY — rgba(0,0,0,0.9), fullscreen, fixed */
 .home-menu {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 999999;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: rgba(0,0,0,0.9);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.77,0,0.175,1);
-}
-.home-menu-bg {
-  position: absolute;
-  inset: 0;
-  background: rgba(8,8,8,0.93);
-  z-index: -1;
+  transition: opacity 0.35s ease;
 }
 .home-menu.open {
   opacity: 1;
   pointer-events: all;
 }
 
-/* X cerrar */
+/* X cerrar — arriba derecha, igual Somos */
 .home-menu-close {
   position: absolute;
   top: 28px;
-  right: 36px;
+  right: 30px;
   background: none;
   border: none;
-  color: rgba(255,255,255,0.6);
-  font-size: 22px;
+  color: rgba(255,255,255,0.7);
+  font-size: 20px;
   font-weight: 300;
   cursor: pointer;
   line-height: 1;
-  padding: 6px;
+  padding: 8px;
   transition: color 0.2s, transform 0.3s ease;
-  z-index: 201;
+  z-index: 10;
 }
 .home-menu-close:hover { color: #fff; transform: rotate(90deg); }
 
-/* Links del menú — centrados, bold, con underline, igual Somos */
+/* Links — font-size:60px, weight:900, color:#707070, lowercase, underline, centrados */
 .home-menu-links {
   list-style: none;
   padding: 0;
-  text-align: center;
   margin: 0;
+  text-align: center;
 }
-.home-menu-links li { margin-bottom: 0; }
+.home-menu-links li { margin: 0; }
 .home-menu-links li a {
-  font-family: "Barlow Condensed", "Montserrat", sans-serif;
-  font-size: clamp(52px, 9vw, 92px);
-  font-weight: 800;
-  color: rgba(255,255,255,0.42);
+  font-family: "Montserrat", sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  color: rgb(112, 112, 112);
   text-decoration: underline;
-  text-underline-offset: 5px;
+  text-underline-offset: 4px;
   text-decoration-thickness: 2px;
-  text-decoration-color: rgba(255,255,255,0.18);
-  letter-spacing: -0.01em;
+  text-decoration-color: rgb(112, 112, 112);
+  letter-spacing: normal;
   text-transform: lowercase;
+  line-height: 56px;
   display: inline-block;
-  line-height: 1.1;
+  padding: 8px 0;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 .home-menu-links li a:hover {
@@ -1957,10 +1955,10 @@
   text-decoration-color: #fff;
 }
 
-/* Logo + socials abajo del menú */
+/* Bottom del menú — logo + socials */
 .home-menu-bottom {
   position: absolute;
-  bottom: 32px;
+  bottom: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1970,11 +1968,11 @@
   height: 16px;
   width: auto;
   filter: brightness(0) invert(1);
-  opacity: 0.35;
+  opacity: 0.3;
 }
 .home-menu-socials {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 .home-menu-socials a {
@@ -1986,12 +1984,9 @@
   transition: color 0.2s;
 }
 .home-menu-socials a:hover { color: rgba(255,255,255,0.7); }
-.home-menu-dot {
-  color: rgba(255,255,255,0.2);
-  font-size: 10px;
-}
+.home-menu-dot { color: rgba(255,255,255,0.2); font-size: 9px; }
 
-/* HERO CONTENT — todo pegado a la izquierda, abajo */
+/* HERO CONTENT — pegado izquierda, bottom, igual Somos (left:10px) */
 .home-hero-content {
   position: relative;
   z-index: 5;
@@ -2000,38 +1995,37 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 0 52px 72px;
+  padding: 0 0 60px 10px;
 }
 
-/* Título — fuente condensada enorme, izquierda */
+/* H1 — font-size:90px, weight:800, Montserrat, letter-spacing:-4px, line-height:94px */
 .home-hero-title {
-  font-family: "Barlow Condensed", "Montserrat", sans-serif;
-  font-size: clamp(54px, 9.5vw, 118px);
+  font-family: "Montserrat", sans-serif;
+  font-size: 90px;
   font-weight: 800;
-  line-height: 0.95;
+  line-height: 94px;
   color: #fff;
-  letter-spacing: -0.01em;
-  text-transform: lowercase;
-  margin: 0 0 36px;
+  letter-spacing: -4px;
+  text-transform: none;
+  margin: 0 0 24px;
   text-align: left;
 }
 
-/* Botón outline — izquierda, igual Somos */
+/* Botón — font-size:21px, padding:12px 24px, border:2px solid white, weight:600 */
 .home-hero-btn {
   display: inline-block;
-  border: 1.5px solid rgba(255,255,255,0.8);
+  border: 2px solid #fff;
   color: #fff;
   font-family: "Montserrat", sans-serif;
-  font-size: 11px;
+  font-size: 21px;
   font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   text-decoration: none;
-  padding: 15px 30px;
+  padding: 12px 24px;
   background: transparent;
   transition: background 0.25s ease, color 0.25s ease;
   cursor: pointer;
-  align-self: flex-start;
 }
 .home-hero-btn:hover {
   background: #fff;
@@ -2042,11 +2036,11 @@
 .home-footer {
   position: relative;
   z-index: 5;
-  padding: 14px 40px 22px;
+  padding: 12px 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   flex-shrink: 0;
 }
 .home-footer-nav {
@@ -2077,16 +2071,17 @@
   margin: 0;
 }
 
-/* MÓVIL */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .home-header { padding: 22px 24px; }
-  .home-hamburger { right: 24px; }
-  .home-hero-content { padding: 0 28px 52px; }
-  .home-hero-title { font-size: clamp(44px,13vw,72px); margin-bottom: 26px; }
-  .home-menu-close { right: 22px; top: 22px; }
-  .home-footer { padding: 12px 24px 18px; }
+  .home-header { height: 100px; }
+  .home-hamburger { top: 22px; right: 20px; }
+  .home-hero-content { padding: 0 0 48px 20px; }
+  .home-hero-title { font-size: 56px; line-height: 58px; letter-spacing: -2px; margin-bottom: 20px; }
+  .home-hero-btn { font-size: 14px; padding: 10px 18px; }
+  .home-menu-links li a { font-size: 44px; line-height: 46px; }
+  .home-menu-close { right: 20px; top: 20px; }
 }
 @media (max-width: 480px) {
-  .home-hero-title { font-size: clamp(38px,14vw,56px); }
-  .home-menu-links li a { font-size: clamp(46px,13vw,72px); }
+  .home-hero-title { font-size: 44px; line-height: 46px; letter-spacing: -2px; }
+  .home-menu-links li a { font-size: 36px; line-height: 38px; }
 }
