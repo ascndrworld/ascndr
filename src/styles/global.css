@@ -1842,3 +1842,255 @@
 #home.active .home-video-overlay {
   display: block;
 }
+
+
+/* ════ HOME NUEVO — ESTILO SOMOS ════ */
+
+/* El home ocupa pantalla completa */
+#home {
+  position: relative;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Vídeo fondo */
+.home-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Overlay muy sutil — igual que Somos, el vídeo se ve con fuerza */
+.home-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── HEADER ── */
+.home-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 32px;
+}
+
+.home-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-logo img {
+  height: 28px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Hamburguesa */
+.home-hamburger {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 11;
+}
+
+.home-hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: #fff;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.home-hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.home-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.home-hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── MENÚ OVERLAY ── */
+.home-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.97);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.home-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.home-menu ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.home-menu ul li {
+  margin-bottom: 24px;
+}
+
+.home-menu ul li a {
+  font-size: clamp(36px, 7vw, 80px);
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  display: block;
+}
+
+.home-menu ul li a:hover {
+  opacity: 1;
+}
+
+.home-menu-close {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.home-menu-close:hover { opacity: 1; }
+
+/* ── HERO CONTENT ── */
+.home-hero-content {
+  position: relative;
+  z-index: 5;
+  padding: 0 48px 0 52px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 80px;
+}
+
+.home-hero-title {
+  font-size: clamp(48px, 8vw, 110px);
+  font-weight: 800;
+  line-height: 1.0;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  text-transform: lowercase;
+}
+
+.home-hero-btn {
+  display: inline-block;
+  border: 1.5px solid #fff;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 28px;
+  width: fit-content;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.home-hero-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ── FOOTER HOME ── */
+.home-footer {
+  position: relative;
+  z-index: 5;
+  padding: 20px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-footer .footer-nav {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-footer .footer-nav a {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.home-footer .footer-nav a:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+.home-footer .footer-sep {
+  color: rgba(255,255,255,0.2);
+  font-size: 10px;
+}
+
+.home-footer .copyright {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+
+/* ── MÓVIL ── */
+@media (max-width: 600px) {
+  .home-hero-content {
+    padding: 0 24px 60px;
+  }
+  .home-hero-title {
+    font-size: clamp(38px, 11vw, 60px);
+  }
+  .home-hamburger {
+    right: 20px;
+  }
+  .home-header {
+    padding: 22px 20px;
+  }
+}
