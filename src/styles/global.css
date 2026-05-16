@@ -1851,15 +1851,26 @@
 
 /* HEADER — logo centrado, hamburguesa top:34 right:30 */
 .home-header {
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 162px;
   width: 100%;
-  flex-shrink: 0;
   padding: 0 60px;
+  background: transparent;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+/* Cuando hay scroll — fondo semitransparente sutil */
+.home-header.scrolled {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .home-logo {
@@ -1977,24 +1988,19 @@
   align-items: center;
   gap: 8px;
 }
-.home-menu-logo {
-  height: 28px;
-  width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.3;
-}
 .home-menu-socials {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 .home-menu-socials a {
-  font-size: 9px;
-  letter-spacing: 0.15em;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.4);
   text-decoration: none;
   transition: color 0.2s;
+  font-family: "Montserrat", sans-serif;
 }
 .home-menu-socials a:hover { color: rgba(255,255,255,0.7); }
 .home-menu-dot { color: rgba(255,255,255,0.2); font-size: 9px; }
@@ -2008,7 +2014,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 6px 40px 0 10px;
+  padding-top: 168px;
+  padding-left: 10px;
+  padding-right: 40px;
   width: 100%;
 }
 
@@ -2087,7 +2095,7 @@
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .home-header { height: 100px; padding: 0 50px 0 20px; }
+  .home-header { height: 100px; padding: 0 50px 0 20px; position: fixed; top: 0; left: 0; right: 0; }
   .home-hamburger { top: 22px; right: 20px; }
   .home-logo img { height: 50px; }
   .home-hero-content { padding: 4px 20px 0 20px; }

@@ -9,12 +9,10 @@ import Layout from "../layouts/Layout.astro";
   <a href="/" class="tp-logo">
     <img src="/ascndr-logo.png" alt="Ascndr"/>
   </a>
-  <a href="/" class="tp-back">← Volver</a>
 </header>
 
 <!-- FILTROS — centrados, estilo Somos -->
 <div class="tp-filter-section">
-  <p class="tp-filter-label">Portfolio · 2024 — 2026</p>
   <div class="tp-filters" id="tpFilters">
     <button class="tp-filter active" data-filter="all">Todo</button>
     <button class="tp-filter" data-filter="branding">Branding</button>
@@ -68,6 +66,17 @@ import Layout from "../layouts/Layout.astro";
 </div>
 
 <script is:inline>
+  // Header scroll
+  (function() {
+    var header = document.querySelector('.tp-header');
+    if (!header) return;
+    function onScroll() {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
   (function() {
     var filters = document.querySelectorAll('.tp-filter');
     var items = document.querySelectorAll('.tp-item');
@@ -90,7 +99,7 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
-  body { background: #0a0a0a !important; }
+  body { background: var(--bg, #222222) !important; }
 
   .tp-header {
     position: fixed;
@@ -99,32 +108,27 @@ import Layout from "../layouts/Layout.astro";
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
-    background: rgba(0,0,0,0.9);
+    z-index: 99999;
+    background: transparent;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+  }
+  .tp-header.scrolled {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   .tp-logo img {
     height: 81px;
     width: auto;
     filter: brightness(0) invert(1);
   }
-  .tp-back {
-    position: absolute;
-    left: 40px;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    text-decoration: none;
-    font-family: "Montserrat", sans-serif;
-    transition: color 0.2s;
-  }
-  .tp-back:hover { color: #fff; }
+
 
   .tp-filter-section {
     padding-top: 182px;
     padding-bottom: 24px;
     text-align: center;
-    background: #0a0a0a;
+    background: var(--bg, #222222);
   }
   .tp-filter-label {
     font-family: "Montserrat", sans-serif;
@@ -158,7 +162,7 @@ import Layout from "../layouts/Layout.astro";
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
-    background: #0a0a0a;
+    background: var(--bg, #222222);
   }
 
   .tp-item {
@@ -210,7 +214,7 @@ import Layout from "../layouts/Layout.astro";
 
   /* CTA */
   .tp-cta {
-    background: #0a0a0a;
+    background: var(--bg, #222222);
     padding: 60px 40px;
     text-align: center;
     font-family: "Montserrat", sans-serif;
@@ -240,7 +244,6 @@ import Layout from "../layouts/Layout.astro";
     .tp-header { height: 100px; }
     .tp-filter-section { padding-top: 120px; }
     .tp-logo img { height: 50px; }
-    .tp-back { left: 20px; }
   }
   @media (max-width: 480px) {
     .tp-filter { font-size: 13px; padding: 5px 8px; }

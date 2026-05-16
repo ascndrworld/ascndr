@@ -31,11 +31,10 @@ import Layout from "../layouts/Layout.astro";
       <li><a href="/contacto" onclick="toggleHomeMenu(); openContactRoute(); return false;">contacto</a></li>
     </ul>
     <div class="home-menu-bottom">
-      <img src="/ascndr-logo.png" alt="Ascndr" class="home-menu-logo"/>
       <div class="home-menu-socials">
-        <a href="https://www.instagram.com/ascndrworld" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
         <span class="home-menu-dot">·</span>
-        <a href="mailto:frank@ascndrworld.com">Escríbenos</a>
+        <a href="/contacto" onclick="toggleHomeMenu(); openContactRoute(); return false;">Escríbenos</a>
       </div>
     </div>
   </nav>
@@ -49,6 +48,21 @@ import Layout from "../layouts/Layout.astro";
       if (btn) btn.classList.toggle("open", open);
       document.body.style.overflow = open ? "hidden" : "";
     }
+
+    // Header scroll — fondo sutil al hacer scroll, igual que Somos
+    (function() {
+      var header = document.querySelector('.home-header');
+      if (!header) return;
+      function onScroll() {
+        if (window.scrollY > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
   </script>
 
   <!-- HERO: texto izquierda, pegado arriba tras el header -->
