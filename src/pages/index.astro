@@ -33,12 +33,19 @@ import Layout from "../layouts/Layout.astro";
 
   <!-- MENÚ OVERLAY -->
   <nav class="home-menu" id="homeMenu">
-    <button class="home-menu-close" onclick="toggleHomeMenu()">✕</button>
-    <ul>
+    <div class="home-menu-bg"></div>
+    <button class="home-menu-close" onclick="toggleHomeMenu()" aria-label="Cerrar menú">✕</button>
+    <ul class="home-menu-links">
       <li><a href="/" onclick="toggleHomeMenu(); return false;">inicio</a></li>
       <li><a href="/trabajos" onclick="toggleHomeMenu(); showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">trabajos</a></li>
       <li><a href="/contacto" onclick="toggleHomeMenu(); openContactRoute(); return false;">contacto</a></li>
     </ul>
+    <div class="home-menu-footer">
+      <img src="/ascndr-logo.png" alt="Ascndr" class="home-menu-logo"/>
+      <div class="home-menu-social">
+        <a href="https://www.instagram.com/ascndrworld" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
   </nav>
 
   <!-- CONTENIDO HERO -->
