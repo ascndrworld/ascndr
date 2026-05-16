@@ -28,20 +28,7 @@ import Layout from "../layouts/Layout.astro";
 
   <!-- HERO FULLSCREEN -->
   <section class="hero">
-    <!-- Vídeo de fondo: cambia src por tu .mp4 cuando lo tengas -->
-    <video
-      class="hero-video"
-      src="/video/hero.mp4"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-    ></video>
-    <!-- Fallback placeholder mientras no hay vídeo -->
-    <div class="hero-video-placeholder"></div>
-    <!-- Overlay oscuro encima del vídeo -->
-    <div class="hero-overlay"></div>
+    <div class="hero-bg"></div>
     <div class="hero-content">
       <h1 class="hero-title">eleva<br/>tu marca<br/>o te quedas<br/>donde estás.</h1>
       <a class="hero-btn" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">
