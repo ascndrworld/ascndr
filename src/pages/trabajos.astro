@@ -6,7 +6,6 @@ import Layout from "../layouts/Layout.astro";
 
 <div class="works-page">
 
-  <!-- HEADER -->
   <header class="works-page-header">
     <a href="/" class="works-page-logo">
       <img src="/ascndr-logo.png" alt="Ascndr"/>
@@ -14,7 +13,6 @@ import Layout from "../layouts/Layout.astro";
     <a href="/" class="works-back-btn">← Volver</a>
   </header>
 
-  <!-- HERO -->
   <div class="works-hero">
     <div class="works-hero-left">
       <div class="works-eyebrow">Portfolio · 2024 — 2026</div>
@@ -26,7 +24,6 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </div>
 
-  <!-- Filtros -->
   <div class="works-filters" id="worksFilters">
     <button class="filter-btn active" data-filter="all">Todos</button>
     <button class="filter-btn" data-filter="branding">Branding</button>
@@ -35,7 +32,6 @@ import Layout from "../layouts/Layout.astro";
     <button class="filter-btn" data-filter="direction">Dirección Creativa</button>
   </div>
 
-  <!-- Grid -->
   <div class="works-grid" id="worksGrid">
 
     <article class="work-card size-md-v" data-category="direction" onclick="openGalleryConclave()" style="cursor:pointer">
@@ -95,7 +91,6 @@ import Layout from "../layouts/Layout.astro";
 
   </div>
 
-  <!-- CTA -->
   <div class="works-cta">
     <div class="works-cta-text">
       <h3>¿Tienes un proyecto en mente?</h3>
@@ -108,154 +103,6 @@ import Layout from "../layouts/Layout.astro";
 
 </div>
 
-<!-- Las galerías y modales se importan desde el index via JS compartido -->
-<!-- Por ahora las galerías abren desde el index, aquí solo el grid -->
-
-<div class="drawer-overlay" id="drawerOverlay">
-  <div class="drawer" id="drawer">
-    <div id="drawerForm">
-      <button class="drawer-close" onclick="closeDrawer()">
-        <span class="modal-back-arrow">←</span> Volver
-      </button>
-      <h1 class="drawer-title">Contacto</h1>
-      <p class="drawer-sub">¿Tienes una idea en mente? Cuéntanos qué necesitas y te atenderemos lo antes posible.</p>
-
-      <div class="consulta-box">
-        <label class="consulta-box-label">Tu consulta</label>
-        <textarea id="drawerConsulta" placeholder='"asesoría sobre rrss"' maxlength="150"></textarea>
-      </div>
-
-      <div class="d-field-group">
-        <label class="d-field-label">Nombre <em>*</em></label>
-        <div class="d-input-wrap">
-          <span class="d-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
-          <input class="d-input" id="drawerNombre" type="text" placeholder="Tu nombre"/>
-        </div>
-      </div>
-
-      <div class="d-field-group">
-        <label class="d-field-label">Email <em>*</em></label>
-        <div class="d-input-wrap">
-          <span class="d-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </span>
-          <input class="d-input" id="drawerEmail" type="email" placeholder="tu@email.com"/>
-        </div>
-      </div>
-
-      <div class="d-field-group">
-        <label class="d-field-label">Teléfono <em>opcional</em></label>
-        <div class="d-input-wrap">
-          <span class="d-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
-          <input class="d-input" id="drawerTelefono" type="tel" placeholder="+34 600 000 000"/>
-        </div>
-      </div>
-
-      <!-- Honeypot antispam (oculto para humanos) -->
-      <input type="text" id="drawerWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
-
-      <button class="enviar-btn" id="drawerSendBtn" onclick="sendDrawer()">Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
-      <p class="form-error" id="drawerError" style="display:none;margin-top:12px;font-size:11px;color:#c77;text-align:center;letter-spacing:.06em;"></p>
-    </div>
-    <div class="d-success" id="drawerSuccess">
-      <div class="d-success-icon">✦</div>
-      <h3>¡Mensaje recibido!</h3>
-      <p>Nos pondremos en contacto<br/>contigo muy pronto.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ════ MODAL ════ -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div id="modalForm">
-      <button class="modal-back" onclick="closeModal()">
-        <span class="modal-back-arrow">←</span> Volver
-      </button>
-      <h1 class="modal-title">Contacto</h1>
-      <p class="modal-sub">¿Tienes un proyecto en mente? Cuéntanos qué necesitas y te responderemos lo antes posible.</p>
-
-      <div class="m-field-group">
-        <label class="m-field-label">Nombre</label>
-        <div class="m-input-wrap">
-          <span class="m-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
-          <input class="m-input" id="mNombre" type="text" placeholder="Tu nombre"/>
-        </div>
-      </div>
-
-      <div class="m-field-group">
-        <label class="m-field-label">Email</label>
-        <div class="m-input-wrap">
-          <span class="m-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </span>
-          <input class="m-input" id="mEmail" type="email" placeholder="tu@email.com"/>
-        </div>
-      </div>
-
-      <div class="m-field-group">
-        <label class="m-field-label">Teléfono</label>
-        <div class="m-input-wrap">
-          <span class="m-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
-          <input class="m-input" id="mTelefono" type="tel" placeholder="+34 600 000 000"/>
-        </div>
-      </div>
-
-      <!-- Honeypot antispam (oculto para humanos) -->
-      <input type="text" id="mWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true"/>
-
-      <button class="m-send-btn" id="mSendBtn" onclick="sendModal()">Enviar<svg class="send-plane" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
-      <p class="form-error" id="mError" style="display:none;margin-top:12px;font-size:11px;color:#c77;text-align:center;letter-spacing:.06em;"></p>
-
-      <hr class="m-divider"/>
-
-      <p class="m-direct-label">También puedes escribirnos directamente a:</p>
-      <a class="m-direct-email" href="mailto:frank@ascndrworld.com">frank@ascndrworld.com</a>
-    </div>
-    <div class="m-success" id="modalSuccess">
-      <div class="m-success-icon">✦</div>
-      <h3>¡Mensaje recibido!</h3>
-      <p>Nos pondremos en contacto<br/>contigo muy pronto.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ════ COOKIE BANNER ════ -->
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
-  <p class="cookie-text">
-    Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar tu experiencia. Puedes aceptarlas, rechazarlas o consultar más información en nuestra <a href="/privacidad" onclick="showPage('privacy'); return false;">política de privacidad</a>.
-  </p>
-  <div class="cookie-actions">
-    <button class="cookie-btn cookie-btn-reject" onclick="handleCookie('rejected')">Rechazar</button>
-    <button class="cookie-btn cookie-btn-accept" onclick="handleCookie('accepted')">Aceptar</button>
-  </div>
-</div>
-
-<script>
-  /* ════ ROUTING: URLs amigables por sección ════ */
-  /* Mapa bidireccional entre id de página y ruta de URL */
-  const PAGE_ROUTES = {
-    home:    "/",
-    works:   "/trabajos",
-    terms:   "/terminos",
-    privacy: "/privacidad"
-  };
-  const ROUTE_TO_PAGE = Object.fromEntries(
-    Object.entries(PAGE_ROUTES).map(([id, path]) => [path, id])
-  );
-
-  function toggleHomeMenu() {
-    const menu = document.getElementById("homeMenu");
-    const btn  = document.getElementById("homeHamburger");
-    if (!menu) return;
 <div class="gallery-overlay" id="galleryHalloween">
   <div class="gallery-header">
     <span class="gallery-title">Halloween Fest <em>· Branding</em></span>
@@ -815,248 +662,24 @@ textarea.qm-input,
 }
 </style>
 
-<div class="qmodal-backdrop" id="qModalBackdrop" onclick="qModalBackdropClick(event)">
-  <div class="qmodal" role="dialog" aria-modal="true" aria-label="¿Qué buscas?">
-    <button class="qmodal-close" onclick="closeQModal()" aria-label="Cerrar">✕</button>
-
-    <!-- Progreso -->
-    <div class="qm-progress">
-      <div class="qm-dot" id="qmdot1"></div>
-      <div class="qm-dot" id="qmdot2"></div>
-      <div class="qm-dot" id="qmdot3"></div>
-    </div>
-
-    <!-- PASO 1 -->
-    <div class="qm-step active" id="qmstep1">
-      <div class="qm-label">Paso 1 de 3</div>
-      <div class="qm-title">¿En qué te puedo ayudar?</div>
-      <div class="qm-sub">Elige la opción que más se acerque a lo que necesitas</div>
-      <div class="qm-opts">
-        <div class="qm-opt" onclick="qmSelect(this,'branding')">
-          <div class="qm-opt-icon"><i class="ti ti-brush" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Branding</span>
-          <span class="qm-opt-desc">Logo, identidad visual, manual</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'redes')">
-          <div class="qm-opt-icon"><i class="ti ti-brand-instagram" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Redes sociales</span>
-          <span class="qm-opt-desc">Contenido, gestión, estrategia</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'evento')">
-          <div class="qm-opt-icon"><i class="ti ti-confetti" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Evento</span>
-          <span class="qm-opt-desc">Dirección creativa, fotografía</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'web')">
-          <div class="qm-opt-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">Web</span>
-          <span class="qm-opt-desc">Diseño y posicionamiento SEO</span>
-        </div>
-        <div class="qm-opt" onclick="qmSelect(this,'noselo')" style="grid-column:1/-1;">
-          <div class="qm-opt-icon"><i class="ti ti-help" aria-hidden="true"></i></div>
-          <span class="qm-opt-label">No sé, necesito orientación</span>
-          <span class="qm-opt-desc">Cuéntame tu situación y te digo por dónde empezar</span>
-        </div>
-        <div class="qm-noselo-extra" id="qmNoseloExtra" style="grid-column:1/-1;">
-          <span class="qm-field-label">Cuéntame brevemente</span>
-          <textarea class="qm-input" id="qmNoseloText" rows="3"
-            placeholder="Tengo un negocio de hostelería y no sé cómo mejorar mi imagen..."
-            oninput="qmCheckStep1()"></textarea>
-        </div>
-      </div>
-      <button class="qm-btn" id="qmbtn1" onclick="qmGo(2)" disabled><span>Siguiente →</span></button>
-    </div>
-
-    <!-- PASO 2 -->
-    <div class="qm-step" id="qmstep2">
-      <div class="qm-label">Paso 2 de 3</div>
-      <div class="qm-title">¿Dónde estás ahora?</div>
-      <div class="qm-sub">Así revisamos tu situación antes de escribirte</div>
-      <div class="qm-field-group">
-        <span class="qm-field-label">Nombre o denominación</span>
-        <input class="qm-input" type="text" id="qmNombre"
-          placeholder="Tu nombre o el de tu marca" oninput="qmCheckStep2()"/>
-      </div>
-      <div class="qm-field-group">
-        <span class="qm-field-label">Tu web o Instagram</span>
-        <input class="qm-input" type="text" id="qmUrl"
-          placeholder="miweb.com o @mimarca" oninput="qmCheckStep2()"/>
-      </div>
-      <div class="qm-field-group">
-        <span class="qm-field-label">Tu email</span>
-        <input class="qm-input" type="email" id="qmEmail"
-          placeholder="hola@tuempresa.com" oninput="qmCheckStep2()"/>
-      </div>
-      <button class="qm-btn" id="qmbtn2" onclick="qmSend()" disabled>
-        <span>Enviar — te escribimos en 24h →</span>
-      </button>
-      <button class="qm-back" onclick="qmGo(1)">← Atrás</button>
-    </div>
-
-    <!-- PASO 3 — Confirmación -->
-    <div class="qm-step" id="qmstep3" style="text-align:center;">
-      <div class="qm-success-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
-      <div class="qm-title">Recibido</div>
-      <div class="qm-sub" style="margin-bottom:20px;">
-        Revisaremos tu web y redes antes de escribirte.<br/>
-        Te mandamos un borrador de mejoras en menos de 24h.
-      </div>
-      <div style="background:#0f0f0f;border:0.5px solid #222;border-radius:8px;padding:14px 16px;text-align:left;margin-bottom:16px;">
-        <div class="qm-field-label" style="margin-bottom:10px;">Recibirás</div>
-        <div class="qm-checklist">
-          <div class="qm-check-row"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Revisión rápida de tu web y redes sociales</span></div>
-          <div class="qm-check-row"><i class="ti ti-circle-check" aria-hidden="true"></i><span>3-5 puntos concretos de mejora</span></div>
-          <div class="qm-check-row"><i class="ti ti-circle-check" aria-hidden="true"></i><span>Propuesta de lo que podríamos trabajar juntos</span></div>
-        </div>
-      </div>
-      <p class="qm-note">Sin compromiso.</p>
-    </div>
-
-  </div>
-</div>
-
-<script is:inline>
-var qmSelected = null;
-
-function openQModal() {
-  document.getElementById('qModalBackdrop').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  qmReset(false);
-}
-function closeQModal() {
-  document.getElementById('qModalBackdrop').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function qModalBackdropClick(e) {
-  if (e.target === document.getElementById('qModalBackdrop')) closeQModal();
-}
-
-function qmGo(n) {
-  [1,2,3].forEach(function(i) {
-    document.getElementById('qmstep'+i).classList.toggle('active', i===n);
-    var dot = document.getElementById('qmdot'+i);
-    if (dot) dot.classList.toggle('done', i < n);
-  });
-  // dot for current step
-  var cur = document.getElementById('qmdot'+n);
-  if (cur && n <= 3) cur.classList.add('done');
-}
-
-function qmSelect(el, val) {
-  document.querySelectorAll('.qm-opt').forEach(function(o){ o.classList.remove('selected'); });
-  el.classList.add('selected');
-  qmSelected = val;
-  var extra = document.getElementById('qmNoseloExtra');
-  if (val === 'noselo') {
-    extra.classList.add('visible');
-    qmCheckStep1();
-  } else {
-    extra.classList.remove('visible');
-    document.getElementById('qmbtn1').disabled = false;
-  }
-}
-
-function qmCheckStep1() {
-  if (qmSelected === 'noselo') {
-    document.getElementById('qmbtn1').disabled =
-      document.getElementById('qmNoseloText').value.trim().length < 5;
-  }
-}
-
-function qmCheckStep2() {
-  var url = document.getElementById('qmUrl').value.trim();
-  var email = document.getElementById('qmEmail').value.trim();
-  document.getElementById('qmbtn2').disabled = !(url.length > 2 && email.includes('@'));
-}
-
-async function qmSend() {
-  var tipo   = qmSelected || '';
-  var noselo = document.getElementById('qmNoseloText').value.trim();
-  var nombre = document.getElementById('qmNombre').value.trim();
-  var url    = document.getElementById('qmUrl').value.trim();
-  var email  = document.getElementById('qmEmail').value.trim();
-  var consulta = tipo === 'noselo' ? ('No sé / orientación: ' + noselo) : tipo;
-
-  try {
-    await fetch(`/api/send?tipo=${encodeURIComponent(consulta)}&web=${encodeURIComponent(url)}&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}`, { method: 'POST' });
-  } catch(e) {}
-
-  qmGo(3);
-}
-
-function qmReset(reopen) {
-  qmSelected = null;
-  document.querySelectorAll('.qm-opt').forEach(function(o){ o.classList.remove('selected'); });
-  document.getElementById('qmNoseloExtra').classList.remove('visible');
-  document.getElementById('qmNoseloText').value = '';
-  document.getElementById('qmbtn1').disabled = true;
-  document.getElementById('qmNombre').value = '';
-  document.getElementById('qmUrl').value = '';
-  document.getElementById('qmEmail').value = '';
-  document.getElementById('qmbtn2').disabled = true;
-  [1,2,3].forEach(function(i){
-    var d = document.getElementById('qmdot'+i);
-    if (d) d.classList.remove('done');
-  });
-  qmGo(1);
-}
-</script>
-
-
-<style>
-  .works-page {
-    min-height: 100vh;
-    background: var(--bg, #222);
-    color: var(--ink, #FFFFF4);
-    font-family: "Montserrat", sans-serif;
-    padding-top: 0;
-  }
-
-  /* Header de la página trabajos */
-  .works-page-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 24px 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .works-page-logo img {
-    height: 48px;
-    width: auto;
-    filter: brightness(0) invert(1);
-  }
-  .works-back-btn {
-    position: absolute;
-    left: 40px;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .works-back-btn:hover { color: #fff; }
-</style>
 
 
 <script is:inline>
-  // Filtros portfolio
-  (function initFilters() {
-    var filtersEl = document.getElementById('worksFilters');
+  (function() {
+    var filtersEl = document.getElementById("worksFilters");
     if (!filtersEl) return;
-    var cards = document.querySelectorAll('#worksGrid .work-card');
-    var countEl = document.getElementById('worksCount');
-    filtersEl.addEventListener('click', function(e) {
-      var btn = e.target.closest('.filter-btn');
+    var cards = document.querySelectorAll("#worksGrid .work-card");
+    var countEl = document.getElementById("worksCount");
+    filtersEl.addEventListener("click", function(e) {
+      var btn = e.target.closest(".filter-btn");
       if (!btn) return;
-      filtersEl.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
+      filtersEl.querySelectorAll(".filter-btn").forEach(function(b) { b.classList.remove("active"); });
+      btn.classList.add("active");
       var filter = btn.dataset.filter;
       var visible = 0;
       cards.forEach(function(card) {
-        var match = filter === 'all' || card.dataset.category === filter;
-        card.classList.toggle('hidden', !match);
+        var match = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("hidden", !match);
         if (match) visible++;
       });
       if (countEl) countEl.textContent = visible;
@@ -1064,4 +687,13 @@ function qmReset(reopen) {
     if (countEl) countEl.textContent = cards.length;
   })();
 </script>
+
+<style>
+  .works-page { min-height:100vh; background:var(--bg,#222); color:var(--ink,#FFFFF4); font-family:"Montserrat",sans-serif; }
+  .works-page-header { display:flex; align-items:center; justify-content:center; position:relative; padding:24px 40px; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .works-page-logo img { height:48px; width:auto; filter:brightness(0) invert(1); }
+  .works-back-btn { position:absolute; left:40px; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.45); text-decoration:none; text-transform:uppercase; transition:color 0.2s; }
+  .works-back-btn:hover { color:#fff; }
+</style>
+
 </Layout>
