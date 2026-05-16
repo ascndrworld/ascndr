@@ -9,32 +9,22 @@ import Layout from "../layouts/Layout.astro";
 <div id="home" class="page active">
 
   <!-- VÍDEO DE FONDO -->
-  <video
-    class="home-video-bg"
-    src="/video/hero.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-    aria-hidden="true"
-  ></video>
+  <video class="home-video-bg" src="/video/hero.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
   <div class="home-video-overlay" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- HEADER: logo centrado, hamburguesa derecha -->
   <header class="home-header">
-    <div class="home-logo">
+    <a href="/" class="home-logo" onclick="showPage('home'); return false;">
       <img src="/ascndr-logo.png" alt="Ascndr"/>
-    </div>
+    </a>
     <button class="home-hamburger" id="homeHamburger" onclick="toggleHomeMenu()" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- MENÚ OVERLAY — igual que Somos -->
+  <!-- MENÚ OVERLAY — estilo Somos -->
   <nav class="home-menu" id="homeMenu">
-    <div class="home-menu-bg"></div>
-    <button class="home-menu-close" onclick="toggleHomeMenu()" aria-label="Cerrar menú">✕</button>
+    <button class="home-menu-close" onclick="toggleHomeMenu()" aria-label="Cerrar">✕</button>
     <ul class="home-menu-links">
       <li><a href="/" onclick="toggleHomeMenu(); showPage('home'); return false;">home</a></li>
       <li><a href="/trabajos" onclick="toggleHomeMenu(); showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">proyectos</a></li>
@@ -50,12 +40,10 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </nav>
 
-  <!-- HERO CONTENT — izquierda abajo -->
+  <!-- HERO: texto izquierda, pegado arriba tras el header -->
   <div class="home-hero-content">
     <h1 class="home-hero-title">eleva<br/>tu marca<br/>o te quedas<br/>donde estás.</h1>
-    <a class="home-hero-btn" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">
-      VER TRABAJOS
-    </a>
+    <a class="home-hero-btn" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">VER TRABAJOS</a>
   </div>
 
   <!-- FOOTER -->

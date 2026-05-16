@@ -31,7 +31,7 @@
     .page.active { display:flex; flex-direction:column; }
 
     /* ════ HOME ════ */
-    #home { align-items:flex-start; justify-content:flex-start; }
+    #home { align-items:flex-start; justify-content:flex-start; } /* sobreescrito abajo */
 
     /* HERO — logo + pill appear FIRST together */
     .logo-wrap {
@@ -1816,23 +1816,27 @@
 
 
 
+
 /* ════ HOME — PIXEL PERFECT SOMOS ════ */
 
+/* Reset del align-items heredado */
 #home {
-  position: relative;
-  height: 100vh;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: hidden;
+  position: relative !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
 }
 
 /* VÍDEO */
 .home-video-bg {
   position: absolute;
   inset: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
@@ -1845,24 +1849,32 @@
   pointer-events: none;
 }
 
-/* HEADER — 162px alto, logo centrado 192x81, hamburguesa top:34 right:30 */
+/* HEADER — logo centrado, hamburguesa top:34 right:30 */
 .home-header {
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 162px;
+  height: 120px;
   width: 100%;
   flex-shrink: 0;
-  padding: 0;
+  padding: 0 60px;
+}
+
+.home-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .home-logo img {
-  width: 192px;
-  height: auto;
-  display: block;
+  height: 30px;
+  width: auto;
   filter: brightness(0) invert(1);
+  display: block;
 }
+
+/* Hamburguesa — 3 líneas finas, top:34 right:30 exacto Somos */
 .home-hamburger {
   position: absolute;
   top: 34px;
@@ -1870,28 +1882,29 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 4px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  z-index: 11;
+  gap: 5px;
+  z-index: 20;
   width: 30px;
   height: 30px;
   justify-content: center;
+  align-items: flex-end;
 }
 .home-hamburger span {
   display: block;
   width: 22px;
   height: 2px;
   background: #fff;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.77,0,0.175,1);
   transform-origin: center;
 }
-.home-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.home-hamburger.open span:nth-child(2) { opacity: 0; }
-.home-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.home-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.home-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.home-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* MENÚ OVERLAY — rgba(0,0,0,0.9), fullscreen */
+/* MENÚ OVERLAY — rgba(0,0,0,0.9) fullscreen, igual Somos */
 .home-menu {
   position: fixed;
   inset: 0;
@@ -1905,9 +1918,12 @@
   pointer-events: none;
   transition: opacity 0.35s ease;
 }
-.home-menu.open { opacity: 1; pointer-events: all; }
-.home-menu-bg { display: none; }
+.home-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
 
+/* X cerrar — top:28 right:30 */
 .home-menu-close {
   position: absolute;
   top: 28px;
@@ -1915,21 +1931,22 @@
   background: none;
   border: none;
   color: rgba(255,255,255,0.7);
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
-  line-height: 1;
   padding: 8px;
-  transition: color 0.2s, transform 0.3s;
-  z-index: 10;
+  line-height: 1;
+  transition: color 0.2s, transform 0.3s ease;
 }
 .home-menu-close:hover { color: #fff; transform: rotate(90deg); }
 
-/* Links — 60px / 900 / Montserrat / #707070 / lowercase / underline */
+/* Links — exacto Somos: 60px/900/Montserrat/#707070/lowercase/underline/centrado */
 .home-menu-links {
   list-style: none;
-  padding: 0; margin: 0;
+  padding: 0;
+  margin: 0;
   text-align: center;
 }
+.home-menu-links li { line-height: 1; }
 .home-menu-links li a {
   font-family: "Montserrat", sans-serif;
   font-size: 60px;
@@ -1941,23 +1958,24 @@
   text-decoration-color: rgb(112,112,112);
   letter-spacing: -2px;
   text-transform: lowercase;
-  line-height: 1.1;
+  line-height: 1.15;
   display: inline-block;
-  padding: 6px 0;
-  transition: color 0.2s, text-decoration-color 0.2s;
+  padding: 4px 0;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 .home-menu-links li a:hover {
   color: #fff;
   text-decoration-color: #fff;
 }
 
+/* Logo + socials abajo del menú */
 .home-menu-bottom {
   position: absolute;
   bottom: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .home-menu-logo {
   height: 16px;
@@ -1965,10 +1983,14 @@
   filter: brightness(0) invert(1);
   opacity: 0.3;
 }
-.home-menu-socials { display: flex; gap: 12px; align-items: center; }
+.home-menu-socials {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 .home-menu-socials a {
   font-size: 9px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.28);
   text-decoration: none;
@@ -1977,7 +1999,7 @@
 .home-menu-socials a:hover { color: rgba(255,255,255,0.7); }
 .home-menu-dot { color: rgba(255,255,255,0.2); font-size: 9px; }
 
-/* HERO CONTENT — left:10px, flex-end vertical, igual Somos */
+/* HERO CONTENT — left:10px exacto Somos, arriba tras header */
 .home-hero-content {
   position: relative;
   z-index: 5;
@@ -1986,42 +2008,45 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 6px 0 0 10px;
+  padding: 6px 40px 0 10px;
   width: 100%;
 }
 
-/* H1 — 90px / 800 / Helvetica / letter-spacing:-4px / line-height:94px */
+/* H1 — exacto Somos: 90px/800/Montserrat/letter-spacing:-4px/line-height:94px */
 .home-hero-title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 90px;
-  font-weight: 800;
-  line-height: 94px;
-  color: #fff;
-  letter-spacing: -4px;
-  text-transform: none;
-  margin: 0 0 24px;
-  text-align: left;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 90px !important;
+  font-weight: 800 !important;
+  line-height: 94px !important;
+  color: #fff !important;
+  letter-spacing: -4px !important;
+  text-transform: none !important;
+  margin: 0 0 24px !important;
+  text-align: left !important;
 }
 
-/* Botón — 21px / 600 / padding:12px 24px / border:2px solid white */
+/* Botón — exacto Somos: 21px/600/padding:12px 24px/border:2px */
 .home-hero-btn {
-  display: inline-block;
-  border: 2px solid #fff;
-  color: #fff;
-  font-family: "Montserrat", sans-serif;
-  font-size: 21px;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
-  text-decoration: none;
-  padding: 12px 24px;
-  background: transparent;
+  display: inline-block !important;
+  border: 2px solid #fff !important;
+  color: #fff !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 21px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  padding: 12px 24px !important;
+  background: transparent !important;
   transition: background 0.25s, color 0.25s;
   cursor: pointer;
 }
-.home-hero-btn:hover { background: #fff; color: #000; }
+.home-hero-btn:hover {
+  background: #fff !important;
+  color: #000 !important;
+}
 
-/* FOOTER */
+/* FOOTER home */
 .home-footer {
   position: relative;
   z-index: 5;
@@ -2031,6 +2056,7 @@
   align-items: center;
   gap: 5px;
   flex-shrink: 0;
+  width: 100%;
 }
 .home-footer-nav {
   display: flex;
@@ -2061,16 +2087,15 @@
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .home-header { height: 100px; }
+  .home-header { height: 90px; padding: 0 50px 0 20px; }
   .home-hamburger { top: 22px; right: 20px; }
-  .home-logo img { width: 130px; }
-  .home-hero-content { padding: 0 0 0 20px; }
-  .home-hero-title { font-size: 56px; line-height: 58px; letter-spacing: -2px; margin-bottom: 20px; }
-  .home-hero-btn { font-size: 15px; padding: 10px 18px; }
-  .home-menu-links li a { font-size: 44px; line-height: 48px; }
-  .home-menu-close { right: 20px; top: 20px; }
+  .home-logo img { height: 24px; }
+  .home-hero-content { padding: 4px 20px 0 20px; }
+  .home-hero-title { font-size: 52px !important; line-height: 54px !important; letter-spacing: -2px !important; margin-bottom: 20px !important; }
+  .home-hero-btn { font-size: 15px !important; padding: 10px 18px !important; }
+  .home-menu-links li a { font-size: 42px; line-height: 1.2; }
 }
 @media (max-width: 480px) {
-  .home-hero-title { font-size: 44px; line-height: 46px; letter-spacing: -2px; }
-  .home-menu-links li a { font-size: 36px; line-height: 40px; }
+  .home-hero-title { font-size: 40px !important; line-height: 42px !important; }
+  .home-menu-links li a { font-size: 34px; }
 }
