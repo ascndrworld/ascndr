@@ -21,7 +21,7 @@ import Layout from "../layouts/Layout.astro";
   ></video>
   <div class="home-video-overlay" aria-hidden="true"></div>
 
-  <!-- HEADER: logo centrado + hamburguesa -->
+  <!-- HEADER -->
   <header class="home-header">
     <div class="home-logo">
       <img src="/ascndr-logo.png" alt="Ascndr"/>
@@ -31,24 +31,26 @@ import Layout from "../layouts/Layout.astro";
     </button>
   </header>
 
-  <!-- MENÚ OVERLAY -->
+  <!-- MENÚ OVERLAY — igual que Somos -->
   <nav class="home-menu" id="homeMenu">
     <div class="home-menu-bg"></div>
     <button class="home-menu-close" onclick="toggleHomeMenu()" aria-label="Cerrar menú">✕</button>
     <ul class="home-menu-links">
-      <li><a href="/" onclick="toggleHomeMenu(); return false;">inicio</a></li>
-      <li><a href="/trabajos" onclick="toggleHomeMenu(); showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">trabajos</a></li>
+      <li><a href="/" onclick="toggleHomeMenu(); showPage('home'); return false;">home</a></li>
+      <li><a href="/trabajos" onclick="toggleHomeMenu(); showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">proyectos</a></li>
       <li><a href="/contacto" onclick="toggleHomeMenu(); openContactRoute(); return false;">contacto</a></li>
     </ul>
-    <div class="home-menu-footer">
+    <div class="home-menu-bottom">
       <img src="/ascndr-logo.png" alt="Ascndr" class="home-menu-logo"/>
-      <div class="home-menu-social">
+      <div class="home-menu-socials">
         <a href="https://www.instagram.com/ascndrworld" target="_blank" rel="noopener">Instagram</a>
+        <span class="home-menu-dot">·</span>
+        <a href="mailto:frank@ascndrworld.com">Escríbenos</a>
       </div>
     </div>
   </nav>
 
-  <!-- CONTENIDO HERO -->
+  <!-- HERO CONTENT — izquierda abajo -->
   <div class="home-hero-content">
     <h1 class="home-hero-title">eleva<br/>tu marca<br/>o te quedas<br/>donde estás.</h1>
     <a class="home-hero-btn" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">
@@ -56,19 +58,20 @@ import Layout from "../layouts/Layout.astro";
     </a>
   </div>
 
-  <!-- FOOTER mínimo -->
+  <!-- FOOTER -->
   <footer class="home-footer">
-    <ul class="footer-nav">
-      <li><a href="/trabajos"   onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">Trabajos</a></li>
-      <li><span class="footer-sep"></span></li>
-      <li><a href="/terminos"   onclick="showPage('terms'); return false;">Términos</a></li>
-      <li><span class="footer-sep"></span></li>
+    <ul class="home-footer-nav">
+      <li><a href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;">Trabajos</a></li>
+      <li><span>·</span></li>
+      <li><a href="/terminos" onclick="showPage('terms'); return false;">Términos</a></li>
+      <li><span>·</span></li>
       <li><a href="/privacidad" onclick="showPage('privacy'); return false;">Privacidad</a></li>
-      <li><span class="footer-sep"></span></li>
-      <li><a href="/contacto"   onclick="openContactRoute(); return false;">Contacto</a></li>
+      <li><span>·</span></li>
+      <li><a href="/contacto" onclick="openContactRoute(); return false;">Contacto</a></li>
     </ul>
-    <p class="copyright">© Ascndr 2026 &nbsp;·&nbsp; Marca Registrada</p>
+    <p class="home-copyright">© Ascndr 2026 · Marca Registrada</p>
   </footer>
+
 </div>
 
 <!-- ════ PRIVACY ════ -->
