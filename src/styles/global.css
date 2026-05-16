@@ -1811,3 +1811,34 @@
     padding: 12px;
   }
 }
+
+
+/* ════ VÍDEO FONDO HOME ════ */
+.home-video-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+  /* Solo visible cuando #home está activo */
+  display: none;
+}
+
+#home.active .home-video-bg {
+  display: block;
+}
+
+.home-video-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.58);
+  z-index: -1;
+  pointer-events: none;
+  display: none;
+}
+
+#home.active .home-video-overlay {
+  display: block;
+}

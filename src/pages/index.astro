@@ -8,6 +8,19 @@ import Layout from "../layouts/Layout.astro";
 <!-- ════ HOME ════ -->
 <div id="home" class="page active">
 
+  <!-- VÍDEO DE FONDO: pon tu .mp4 en public/video/hero.mp4 -->
+  <video
+    class="home-video-bg"
+    src="/video/hero.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  ></video>
+  <div class="home-video-overlay" aria-hidden="true"></div>
+
   <!-- Botón flecha → Trabajos: acorde al logo Ascndr -->
   <a class="works-arrow" href="/trabajos" onclick="showPage('works'); if(typeof applyFilter==='function') applyFilter('all'); return false;" aria-label="Ir a Trabajos" title="Trabajos">
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
