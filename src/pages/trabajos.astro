@@ -238,15 +238,36 @@ import Layout from "../layouts/Layout.astro";
   }
   .tp-cta a:hover { background: #fff; color: #000; }
 
-  @media (max-width: 900px) {
+  /* Tablet */
+  @media (max-width: 768px) {
+    .tp-header { height: 90px; }
+    .tp-logo img { height: 40px; }
+    .tp-filter-section { padding-top: 110px; padding-bottom: 16px; }
+    .tp-filters { gap: 0; }
+    .tp-filter { font-size: 15px; padding: 6px 10px; }
     .tp-grid { grid-template-columns: repeat(2, 1fr); }
-    .tp-filter { font-size: 16px; padding: 6px 12px; }
-    .tp-header { height: 100px; }
-    .tp-filter-section { padding-top: 120px; }
-    .tp-logo img { height: 50px; }
+    .tp-hover-title { font-size: 16px; }
+    .tp-hover-cat { font-size: 12px; }
+    .tp-hover { padding: 14px; }
+    .tp-cta { padding: 40px 24px; }
+    .tp-cta p { font-size: 14px; }
   }
+
+  /* Mobile */
   @media (max-width: 480px) {
+    .tp-header { height: 80px; }
+    .tp-logo img { height: 34px; }
+    .tp-filter-section { padding-top: 96px; }
     .tp-filter { font-size: 13px; padding: 5px 8px; }
+    .tp-filter-label { font-size: 10px; }
+    .tp-hover-title { font-size: 14px; }
+    .tp-hover-cat { font-size: 11px; }
+  }
+
+  /* Mobile pequeño */
+  @media (max-width: 360px) {
+    .tp-grid { grid-template-columns: repeat(2, 1fr); }
+    .tp-filter { font-size: 11px; padding: 4px 6px; }
   }
 </style>
 
