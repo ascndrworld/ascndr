@@ -2480,42 +2480,21 @@
 
 .hs-footer-middle {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 64px;
   width: 100%;
+  margin: 0 auto 28px;
 }
 
-.hs-footer-social {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 28px;
-}
-.hs-footer-social a {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255,255,255,0.7);
-  transition: color 0.2s;
-  text-decoration: none;
-}
-.hs-footer-social a:hover { color: #F7EFDB; }
-.hs-footer-ig-label {
-  display: none;
-  font-family: "Montserrat", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+/* Aplana social + contact: los 3 enlaces son hijos directos del flex row */
+.hs-footer-social,
+.hs-footer-contact { display: contents; }
 
-.hs-footer-contact {
-  display: flex;
-  gap: 48px;
-  margin-bottom: 32px;
-}
-
+.hs-footer-social a,
 .hs-footer-contact-item {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
@@ -2523,8 +2502,20 @@
   text-decoration: none;
   transition: color 0.2s;
 }
+.hs-footer-social a:hover,
 .hs-footer-contact-item:hover { color: #F7EFDB; }
+
+/* Iconos al mismo tamaño */
+.hs-footer-social a svg,
+.hs-footer-contact-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Labels al mismo estilo y tamaño */
+.hs-footer-ig-label,
 .hs-footer-contact-item span {
+  display: block;
   font-family: "Montserrat", sans-serif;
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -2568,21 +2559,7 @@
   .hs-work-name { font-size: 22px; }
   .hs-work-overlay { opacity: 1; background: rgba(0,0,0,0.45); }
   .hs-footer { padding: 48px 24px 32px; }
-  .hs-footer-middle {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-  .hs-footer-social { margin-bottom: 28px; }
-  .hs-footer-contact {
-    gap: 22px;
-    margin-bottom: 28px;
-  }
-  .hs-footer-ig-label { display: block; }
-  .hs-footer-contact-item span { display: none; }
+  .hs-footer-middle { gap: 40px; }
 }
 
 @media (max-width: 480px) {
@@ -2590,4 +2567,5 @@
   .hs-services-text { font-size: 14px; }
   .hs-works { grid-template-columns: 1fr; }
   .hs-work-item { aspect-ratio: 3/2; }
+  .hs-footer-middle { gap: 28px; }
 }
