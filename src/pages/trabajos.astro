@@ -4,33 +4,6 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Trabajos | Ascndr — Portfolio Creativo">
 
-<!-- HEADER -->
-<header class="tp-header">
-  <a href="/" class="tp-logo">
-    <img src="/ascndr-logo.png" alt="Ascndr"/>
-  </a>
-  <button class="tp-hamburger" id="tpHamburger" onclick="toggleTpMenu()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-
-<!-- MENÚ OVERLAY -->
-<nav class="tp-menu" id="tpMenu">
-  <button class="tp-menu-close" onclick="toggleTpMenu()" aria-label="Cerrar">✕</button>
-  <ul class="tp-menu-links">
-    <li><a href="/">home</a></li>
-    <li><a href="/trabajos" onclick="toggleTpMenu(); return false;">proyectos</a></li>
-    <li><a href="/contacto">contacto</a></li>
-  </ul>
-  <div class="tp-menu-bottom">
-    <div class="tp-menu-socials">
-      <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
-      <span class="tp-menu-dot">·</span>
-      <a href="/contacto">Escríbenos</a>
-    </div>
-  </div>
-</nav>
-
 <!-- FILTROS — centrados, estilo Somos -->
 <div class="tp-filter-section">
   <div class="tp-filters" id="tpFilters">
@@ -86,26 +59,6 @@ import Layout from "../layouts/Layout.astro";
 </div>
 
 <script is:inline>
-  function toggleTpMenu() {
-    var menu = document.getElementById("tpMenu");
-    var btn = document.getElementById("tpHamburger");
-    if (!menu) return;
-    var open = menu.classList.toggle("open");
-    if (btn) btn.classList.toggle("open", open);
-    document.body.style.overflow = open ? "hidden" : "";
-  }
-
-  // Header scroll
-  (function() {
-    var header = document.querySelector('.tp-header');
-    if (!header) return;
-    function onScroll() {
-      header.classList.toggle('scrolled', window.scrollY > 20);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  })();
-
   (function() {
     var filters = document.querySelectorAll('.tp-filter');
     var items = document.querySelectorAll('.tp-item');
@@ -130,35 +83,8 @@ import Layout from "../layouts/Layout.astro";
 <style>
   body { background: var(--bg, #222222) !important; }
 
-  .tp-header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 162px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-    background: transparent;
-    transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
-  }
-  .tp-header.scrolled {
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  .tp-logo {
-    display: flex;
-    align-items: center;
-  }
-  .tp-logo img {
-    height: 60px;
-    width: auto;
-    display: block;
-  }
-
-
   .tp-filter-section {
-    padding-top: 182px;
+    padding-top: 140px;
     padding-bottom: 24px;
     text-align: center;
     background: var(--bg, #222222);
@@ -272,114 +198,7 @@ import Layout from "../layouts/Layout.astro";
   .tp-cta a:hover { background: #fff; color: #000; }
 
   /* Tablet */
-  /* HAMBURGUESA */
-  .tp-hamburger {
-    position: absolute;
-    top: 34px;
-    right: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 20;
-    width: 30px;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  .tp-hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: #fff;
-    transition: all 0.3s cubic-bezier(0.77,0,0.175,1);
-    transform-origin: center;
-  }
-  .tp-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  .tp-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .tp-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-  /* MENÚ OVERLAY */
-  .tp-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.9);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
-  }
-  .tp-menu.open { opacity: 1; pointer-events: all; }
-
-  .tp-menu-close {
-    position: absolute;
-    top: 28px;
-    right: 30px;
-    background: none;
-    border: none;
-    color: rgba(255,255,255,0.7);
-    font-size: 20px;
-    cursor: pointer;
-    padding: 8px;
-    transition: color 0.2s, transform 0.3s;
-  }
-  .tp-menu-close:hover { color: #F7EFDB; transform: rotate(90deg); }
-
-  .tp-menu-links {
-    list-style: none;
-    padding: 0; margin: 0;
-    text-align: center;
-  }
-  .tp-menu-links li a {
-    font-family: "Montserrat", sans-serif;
-    font-size: 60px;
-    font-weight: 900;
-    color: rgb(112,112,112);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 2px;
-    text-decoration-color: rgb(112,112,112);
-    letter-spacing: -2px;
-    text-transform: lowercase;
-    line-height: 1.15;
-    display: inline-block;
-    padding: 4px 0;
-    transition: color 0.2s, text-decoration-color 0.2s;
-  }
-  .tp-menu-links li a:hover { color: #F7EFDB; text-decoration-color: #F7EFDB; }
-
-  .tp-menu-bottom {
-    position: absolute;
-    bottom: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .tp-menu-socials { display: flex; gap: 10px; align-items: center; }
-  .tp-menu-socials a {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    text-decoration: none;
-    font-family: "Montserrat", sans-serif;
-    transition: color 0.2s;
-  }
-  .tp-menu-socials a:hover { color: rgba(255,255,255,0.7); }
-  .tp-menu-dot { color: rgba(255,255,255,0.2); font-size: 9px; }
-
   @media (max-width: 768px) {
-    .tp-header { height: 90px; }
-    .tp-logo img { height: 40px; }
-    .tp-hamburger { top: 26px; right: 20px; }
-    .tp-menu-close { right: 20px; top: 20px; }
-    .tp-menu-links li a { font-size: 44px; line-height: 1.2; }
     .tp-filter-section { padding-top: 110px; padding-bottom: 16px; }
     .tp-filters { gap: 0; }
     .tp-filter { font-size: 15px; padding: 6px 10px; }
@@ -393,8 +212,6 @@ import Layout from "../layouts/Layout.astro";
 
   /* Mobile */
   @media (max-width: 480px) {
-    .tp-header { height: 80px; }
-    .tp-logo img { height: 32px; }
     .tp-filter-section { padding-top: 96px; }
     .tp-filter { font-size: 13px; padding: 5px 8px; }
     .tp-filter-label { font-size: 10px; }

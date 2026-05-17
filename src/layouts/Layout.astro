@@ -1,4 +1,5 @@
 ---
+import Header from "../components/Header.astro";
 export interface Props {
   title?: string;
   description?: string;
@@ -79,6 +80,7 @@ const ogImage = "https://ascndrworld.com/images/og-ascndr.jpg";
   </script>
 </head>
 <body>
+  <Header />
   <slot />
 </body>
 </html>

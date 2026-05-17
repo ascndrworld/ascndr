@@ -12,59 +12,6 @@ import Layout from "../layouts/Layout.astro";
   <video class="home-video-bg" src="/video/hero.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
   <div class="home-video-overlay" aria-hidden="true"></div>
 
-  <!-- HEADER: logo centrado, hamburguesa derecha -->
-  <header class="home-header">
-    <a href="/" class="home-logo" onclick="showPage('home'); return false;">
-      <img src="/ascndr-logo.png" alt="Ascndr"/>
-    </a>
-    <button class="home-hamburger" id="homeHamburger" onclick="toggleHomeMenu()" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <!-- MENÚ OVERLAY — estilo Somos -->
-  <nav class="home-menu" id="homeMenu">
-    <button class="home-menu-close" onclick="toggleHomeMenu()" aria-label="Cerrar">✕</button>
-    <ul class="home-menu-links">
-      <li><a href="/" onclick="toggleHomeMenu(); return false;">home</a></li>
-      <li><a href="/trabajos">proyectos</a></li>
-      <li><a href="/contacto" onclick="toggleHomeMenu(); openContactRoute(); return false;">contacto</a></li>
-    </ul>
-    <div class="home-menu-bottom">
-      <div class="home-menu-socials">
-        <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
-        <span class="home-menu-dot">·</span>
-        <a href="/contacto" onclick="toggleHomeMenu(); openContactRoute(); return false;">Escríbenos</a>
-      </div>
-    </div>
-  </nav>
-
-  <script is:inline>
-    function toggleHomeMenu() {
-      var menu = document.getElementById("homeMenu");
-      var btn  = document.getElementById("homeHamburger");
-      if (!menu) return;
-      var open = menu.classList.toggle("open");
-      if (btn) btn.classList.toggle("open", open);
-      document.body.style.overflow = open ? "hidden" : "";
-    }
-
-    // Header scroll — fondo sutil al hacer scroll, igual que Somos
-    (function() {
-      var header = document.querySelector('.home-header');
-      if (!header) return;
-      function onScroll() {
-        if (window.scrollY > 20) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-  </script>
-
   <!-- HERO: texto izquierda, pegado arriba tras el header -->
   <div class="home-hero-content">
     <h1 class="home-hero-title">eleva<br/>tu marca<br/>o te quedas<br/>donde estás.</h1>
