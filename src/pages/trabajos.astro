@@ -8,11 +8,11 @@ import Layout from "../layouts/Layout.astro";
 <div class="tp-filter-section">
   <div class="tp-filter-dropdown" id="tpDropdown">
     <button class="tp-filter-trigger" id="tpTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
-      <span class="tp-filter-current" id="tpCurrent">Todo</span>
+      <span class="tp-filter-current" id="tpCurrent">Filter</span>
       <svg class="tp-filter-caret" viewBox="0 0 12 8" width="12" height="8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <ul class="tp-filter-menu" id="tpMenu" role="listbox">
-      <li><button class="tp-filter-option active" type="button" role="option" aria-selected="true" data-filter="all">Todo</button></li>
+      <li><button class="tp-filter-option active" type="button" role="option" aria-selected="true" data-filter="all">All</button></li>
       <li><button class="tp-filter-option" type="button" role="option" data-filter="branding">Branding</button></li>
       <li><button class="tp-filter-option" type="button" role="option" data-filter="social">Redes Sociales</button></li>
       <li><button class="tp-filter-option" type="button" role="option" data-filter="photography">Fotografía</button></li>
@@ -106,7 +106,6 @@ import Layout from "../layouts/Layout.astro";
         opt.setAttribute('aria-selected', 'true');
 
         var f = opt.dataset.filter;
-        if (current) current.textContent = opt.textContent;
         if (grid) grid.classList.toggle('filtered', f !== 'all');
         items.forEach(function(item) {
           item.style.display = (f === 'all' || item.dataset.category === f) ? 'block' : 'none';

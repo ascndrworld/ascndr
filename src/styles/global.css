@@ -1839,6 +1839,10 @@
   width: 100%;
   overflow: hidden;
   flex-shrink: 0;
+  background-color: #000;
+  background-image: url('/video/hero-poster.jpg');
+  background-size: cover;
+  background-position: center center;
 }
 
 .home-video-bg {
@@ -1850,6 +1854,7 @@
   object-position: center center;
   z-index: 0;
   pointer-events: none;
+  background-color: transparent;
 }
 .home-video-overlay {
   position: absolute;
