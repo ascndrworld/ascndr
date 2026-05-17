@@ -60,6 +60,7 @@ import Layout from "../layouts/Layout.astro";
 
 <script is:inline>
   (function() {
+    var grid = document.getElementById('tpGrid');
     var filters = document.querySelectorAll('.tp-filter');
     var items = document.querySelectorAll('.tp-item');
     filters.forEach(function(btn) {
@@ -67,6 +68,7 @@ import Layout from "../layouts/Layout.astro";
         filters.forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
         var f = btn.dataset.filter;
+        if (grid) grid.classList.toggle('filtered', f !== 'all');
         items.forEach(function(item) {
           item.style.display = (f === 'all' || item.dataset.category === f) ? 'block' : 'none';
         });
@@ -81,13 +83,13 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
-  body { background: var(--bg, #222222) !important; }
+  body { background: var(--bg, #000000) !important; }
 
   .tp-filter-section {
     padding-top: 140px;
     padding-bottom: 24px;
     text-align: center;
-    background: var(--bg, #222222);
+    background: var(--bg, #000000);
   }
   .tp-filter-label {
     font-family: "Montserrat", sans-serif;
@@ -116,19 +118,42 @@ import Layout from "../layouts/Layout.astro";
   .tp-filter:hover { color: #F7EFDB; }
   .tp-filter.active { color: #F7EFDB; font-weight: 600; }
 
-  /* GRID — 4 cols, cuadrado, gap:0, igual Somos */
+  /* GRID — mosaico asimétrico 3 cols × 4 rows, estilo Somos
+     Layout (4 trabajos):
+       A A B
+       A A B
+       C D D
+       C D D
+     A,D: 2×2 grande · B,C: 1×2 alto
+     row-height = (100vh - filter_section ≈ 200px) / 2 → A+B ocupan justo el viewport */
   .tp-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: calc((100vh - 220px) / 2);
     gap: 0;
-    background: var(--bg, #222222);
+    background: var(--bg, #000000);
   }
 
   .tp-item {
     position: relative;
-    aspect-ratio: 1 / 1;
     overflow: hidden;
     cursor: pointer;
+  }
+  .tp-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .tp-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }
+  .tp-item:nth-child(3) { grid-column: span 1; grid-row: span 2; }
+  .tp-item:nth-child(4) { grid-column: span 2; grid-row: span 2; }
+
+  /* Cuando hay un filtro activo, vuelve a rejilla uniforme 4 cols cuadrada
+     para evitar huecos al ocultar items */
+  .tp-grid.filtered {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+  }
+  .tp-grid.filtered .tp-item {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 1 / 1;
   }
 
   .tp-img {
@@ -173,7 +198,7 @@ import Layout from "../layouts/Layout.astro";
 
   /* CTA */
   .tp-cta {
-    background: var(--bg, #222222);
+    background: var(--bg, #000000);
     padding: 60px 40px;
     text-align: center;
     font-family: "Montserrat", sans-serif;
@@ -197,31 +222,55 @@ import Layout from "../layouts/Layout.astro";
   }
   .tp-cta a:hover { background: #fff; color: #000; }
 
-  /* Tablet */
+  /* Tablet/Móvil — mosaico 2 cols, A y B lado a lado arriba
+     para que los 2 primeros se vean enteros antes de scroll:
+       A B
+       A B
+       C C
+       C C
+       D D
+       D D
+     A,B: 1×2 alto · C,D: 2×2 grande */
   @media (max-width: 768px) {
     .tp-filter-section { padding-top: 110px; padding-bottom: 16px; }
-    .tp-filters { gap: 0; }
-    .tp-filter { font-size: 15px; padding: 6px 10px; }
-    .tp-grid { grid-template-columns: repeat(2, 1fr); }
+    .tp-filters { gap: 0; flex-wrap: wrap; }
+    .tp-filter { font-size: 14px; padding: 6px 10px; }
+    .tp-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: calc((100vh - 180px) / 2);
+    }
+    .tp-item:nth-child(1) { grid-column: span 1; grid-row: span 2; }
+    .tp-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }
+    .tp-item:nth-child(3) { grid-column: span 2; grid-row: span 2; }
+    .tp-item:nth-child(4) { grid-column: span 2; grid-row: span 2; }
+    .tp-grid.filtered {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: auto;
+    }
+    .tp-hover {
+      opacity: 1;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.65) 100%);
+      padding: 14px;
+    }
     .tp-hover-title { font-size: 16px; }
-    .tp-hover-cat { font-size: 12px; }
-    .tp-hover { padding: 14px; }
+    .tp-hover-cat { font-size: 11px; }
     .tp-cta { padding: 40px 24px; }
     .tp-cta p { font-size: 14px; }
   }
 
-  /* Mobile */
+  /* Móvil pequeño */
   @media (max-width: 480px) {
-    .tp-filter-section { padding-top: 96px; }
-    .tp-filter { font-size: 13px; padding: 5px 8px; }
+    .tp-filter-section { padding-top: 96px; padding-bottom: 12px; }
+    .tp-filter { font-size: 12px; padding: 5px 8px; }
     .tp-filter-label { font-size: 10px; }
-    .tp-hover-title { font-size: 14px; }
-    .tp-hover-cat { font-size: 11px; }
+    .tp-grid { grid-auto-rows: calc((100vh - 160px) / 2); }
+    .tp-hover { padding: 10px; }
+    .tp-hover-title { font-size: 13px; line-height: 1.2; }
+    .tp-hover-cat { font-size: 10px; margin-bottom: 3px; }
   }
 
   /* Mobile pequeño */
   @media (max-width: 360px) {
-    .tp-grid { grid-template-columns: repeat(2, 1fr); }
     .tp-filter { font-size: 11px; padding: 4px 6px; }
   }
 </style>
