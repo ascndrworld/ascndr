@@ -73,7 +73,9 @@
 </script>
 
 <style is:global>
-  /* ── HEADER GLOBAL — estilo Somos ── */
+  /* ── HEADER GLOBAL — estilo Somos ──
+     Transparente total arriba. Transición de blur(0→10) y bg
+     evita el "corte" visual que dejaba el ::before. */
   .site-header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -84,12 +86,14 @@
     height: 100px;
     width: 100%;
     padding: 0 60px;
-    background: transparent;
-    transition: height 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease;
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition: height 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
   }
   .site-header.scrolled {
     height: 70px;
-    background: rgba(0, 0, 0, 0.88);
+    background-color: rgba(0, 0, 0, 0.88);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -223,14 +227,13 @@
   .site-menu-socials a:hover { color: rgba(255,255,255,0.7); }
   .site-menu-dot { color: rgba(255,255,255,0.2); font-size: 9px; }
 
-  /* Tablet */
+  /* Tablet — la hamburguesa ya está centrada vertical (top:50% + translateY) */
   @media (max-width: 768px) {
     .site-header { height: 90px; padding: 0 24px; }
     .site-header.scrolled { height: 60px; }
     .site-logo img { height: 40px; }
     .site-header.scrolled .site-logo img { height: 26px; }
-    .site-hamburger { top: 28px; right: 20px; }
-    .site-header.scrolled .site-hamburger { top: 14px; }
+    .site-hamburger { right: 20px; }
     .site-menu-close { top: 20px; right: 20px; }
     .site-menu-links li a { font-size: 44px; line-height: 1.15; letter-spacing: -1px; }
     .site-menu-bottom { bottom: 20px; }
@@ -242,8 +245,7 @@
     .site-header.scrolled { height: 56px; }
     .site-logo img { height: 34px; }
     .site-header.scrolled .site-logo img { height: 24px; }
-    .site-hamburger { top: 24px; right: 16px; }
-    .site-header.scrolled .site-hamburger { top: 12px; }
+    .site-hamburger { right: 16px; }
     .site-menu-links li a { font-size: 36px; }
   }
   @media (max-width: 360px) {

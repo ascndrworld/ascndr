@@ -8,9 +8,49 @@ import Layout from "../layouts/Layout.astro";
 <!-- ════ HOME ════ -->
 <div id="home" class="page active">
 
-  <!-- VÍDEO DE FONDO -->
-  <video class="home-video-bg" src="/video/hero.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <!-- VÍDEO DE FONDO — muted al inicio para garantizar autoplay -->
+  <video
+    class="home-video-bg"
+    id="homeVideoBg"
+    muted
+    autoplay
+    loop
+    playsinline
+    webkit-playsinline="true"
+    preload="auto"
+    disablepictureinpicture
+    aria-hidden="true"
+    src="/video/hero.mp4"></video>
   <div class="home-video-overlay" aria-hidden="true"></div>
+  <script is:inline>
+    (function() {
+      var v = document.getElementById('homeVideoBg');
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+      function tryPlay() {
+        try {
+          var p = v.play();
+          if (p && p.catch) p.catch(function() { /* reintentaremos en gesto */ });
+        } catch (e) {}
+      }
+      if (v.readyState >= 2) tryPlay();
+      v.addEventListener('loadedmetadata', tryPlay);
+      v.addEventListener('loadeddata', tryPlay);
+      v.addEventListener('canplay', tryPlay);
+      // Reintenta al primer gesto si el navegador bloqueó autoplay
+      function resume() {
+        tryPlay();
+        ['touchstart','click','scroll','keydown'].forEach(function(e){ window.removeEventListener(e, resume); });
+      }
+      ['touchstart','click','scroll','keydown'].forEach(function(e){
+        window.addEventListener(e, resume, { passive: true });
+      });
+    })();
+  </script>
 
   <!-- HERO: texto izquierda, pegado arriba tras el header -->
   <div class="home-hero-content">
@@ -25,7 +65,7 @@ import Layout from "../layouts/Layout.astro";
     <h2 class="hs-services-title">consultoría<br/>creativa</h2>
     <p class="hs-services-text">La identidad visual es la primera impresión que se lleva un cliente de tu marca. Trabajamos para que sea la correcta.</p>
     <p class="hs-services-text">Branding, dirección creativa, fotografía, redes sociales. Todo bajo una misma visión estratégica.</p>
-    <a class="hs-services-btn" href="/trabajos">VER PORTFOLIO</a>
+    <a class="hs-services-btn" href="/contacto">INICIAR PROYECTO</a>
   </section>
 
   <!-- ════ SECCIÓN PROYECTOS DESTACADOS ════ -->

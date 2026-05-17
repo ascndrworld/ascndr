@@ -1,0 +1,321 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contacto | Ascndr — Iniciar Proyecto">
+
+<main class="ct-page">
+  <section class="ct-hero">
+    <p class="ct-eyebrow">CONTACTO</p>
+    <h1 class="ct-title">iniciar<br/>proyecto</h1>
+    <p class="ct-sub">Cuéntanos qué tienes en mente. Te respondemos en menos de 24h.</p>
+  </section>
+
+  <section class="ct-form-wrap" id="ctFormWrap">
+    <form class="ct-form" id="ctForm" novalidate>
+      <div class="ct-field">
+        <label for="ctNombre">Nombre</label>
+        <input id="ctNombre" name="nombre" type="text" autocomplete="name" required/>
+      </div>
+
+      <div class="ct-field">
+        <label for="ctEmail">Email</label>
+        <input id="ctEmail" name="email" type="email" autocomplete="email" required/>
+      </div>
+
+      <div class="ct-field">
+        <label for="ctTelefono">Teléfono <span class="ct-opt">opcional</span></label>
+        <input id="ctTelefono" name="telefono" type="tel" autocomplete="tel"/>
+      </div>
+
+      <div class="ct-field">
+        <label for="ctConsulta">Cuéntanos tu proyecto</label>
+        <textarea id="ctConsulta" name="consulta" rows="5" maxlength="600" placeholder="Tipo de proyecto, fechas aproximadas, referencias..."></textarea>
+      </div>
+
+      <input type="text" id="ctWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="ct-hp"/>
+
+      <button type="submit" class="ct-submit" id="ctSubmit">
+        Enviar mensaje
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+
+      <p class="ct-error" id="ctError" role="alert"></p>
+    </form>
+
+    <div class="ct-success" id="ctSuccess" hidden>
+      <div class="ct-success-mark">✦</div>
+      <h2>¡Mensaje recibido!</h2>
+      <p>Nos pondremos en contacto contigo muy pronto.</p>
+      <a href="/" class="ct-success-back">Volver al inicio →</a>
+    </div>
+
+    <p class="ct-direct">
+      O escríbenos directamente a <a href="mailto:frank@ascndrworld.com">frank@ascndrworld.com</a>
+    </p>
+  </section>
+</main>
+
+<script is:inline>
+  (function() {
+    const SERVICE_ID  = "service_itdpucz";
+    const TEMPLATE_ID = "template_a9a415g";
+
+    const form    = document.getElementById('ctForm');
+    const success = document.getElementById('ctSuccess');
+    const wrap    = document.getElementById('ctFormWrap');
+    const errEl   = document.getElementById('ctError');
+    const btn     = document.getElementById('ctSubmit');
+
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+    function showErr(msg) { errEl.textContent = msg; errEl.classList.add('show'); }
+    function clearErr() { errEl.textContent = ''; errEl.classList.remove('show'); }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      clearErr();
+
+      const nombre   = document.getElementById('ctNombre').value.trim();
+      const email    = document.getElementById('ctEmail').value.trim();
+      const telefono = document.getElementById('ctTelefono').value.trim();
+      const consulta = document.getElementById('ctConsulta').value.trim();
+      const honeypot = document.getElementById('ctWebsite').value;
+
+      if (honeypot) {
+        form.hidden = true; success.hidden = false;
+        return;
+      }
+      if (!nombre || !email) { showErr('Completa al menos nombre y email.'); return; }
+      if (!isValidEmail(email)) { showErr('Revisa el formato del email.'); return; }
+
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.classList.add('sending');
+      btn.textContent = 'Enviando…';
+
+      const params = {
+        name: nombre,
+        email: email,
+        phone: telefono || 'No facilitado',
+        consulta: consulta || 'Sin consulta previa',
+        reply_to: email
+      };
+
+      try {
+        if (typeof emailjs === 'undefined' || !emailjs.send) {
+          throw new Error('SDK EmailJS no cargado');
+        }
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, params);
+        form.hidden = true;
+        success.hidden = false;
+        wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        console.error('Contacto error:', err);
+        showErr('No hemos podido enviar el mensaje. Inténtalo en unos segundos.');
+        btn.disabled = false;
+        btn.classList.remove('sending');
+        btn.innerHTML = original;
+      }
+    });
+  })();
+</script>
+
+<style>
+  body { background: #000 !important; color: #F7EFDB; }
+
+  .ct-page {
+    min-height: 100vh;
+    padding: 140px 40px 80px;
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  /* HERO ── título estilo landing */
+  .ct-hero { margin-bottom: 56px; }
+  .ct-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: rgba(247, 239, 219, 0.45);
+    margin: 0 0 24px;
+    font-weight: 500;
+  }
+  .ct-title {
+    font-size: 90px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -4px;
+    color: #F7EFDB;
+    margin: 0 0 28px;
+    text-transform: lowercase;
+  }
+  .ct-sub {
+    font-size: 17px;
+    line-height: 1.5;
+    color: rgba(247, 239, 219, 0.65);
+    margin: 0;
+    max-width: 480px;
+  }
+
+  /* FORM ── inputs con línea inferior, sin caja */
+  .ct-form { display: flex; flex-direction: column; gap: 28px; }
+
+  .ct-field { display: flex; flex-direction: column; gap: 8px; }
+  .ct-field label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(247, 239, 219, 0.55);
+  }
+  .ct-opt {
+    font-weight: 400;
+    color: rgba(247, 239, 219, 0.3);
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+    margin-left: 6px;
+  }
+  .ct-field input,
+  .ct-field textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid rgba(247, 239, 219, 0.2);
+    padding: 12px 0;
+    color: #F7EFDB;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.25s ease;
+    width: 100%;
+    resize: none;
+  }
+  .ct-field input::placeholder,
+  .ct-field textarea::placeholder {
+    color: rgba(247, 239, 219, 0.25);
+  }
+  .ct-field input:focus,
+  .ct-field textarea:focus {
+    border-bottom-color: #F7EFDB;
+  }
+  .ct-field textarea {
+    line-height: 1.5;
+    min-height: 100px;
+    padding-top: 14px;
+  }
+
+  /* Honeypot — escondido */
+  .ct-hp {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  /* SUBMIT */
+  .ct-submit {
+    align-self: flex-start;
+    margin-top: 16px;
+    background: transparent;
+    color: #F7EFDB;
+    border: 2px solid #F7EFDB;
+    padding: 14px 28px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ct-submit:hover { background: #F7EFDB; color: #000; }
+  .ct-submit:disabled { opacity: 0.6; cursor: wait; }
+  .ct-submit svg { transition: transform 0.25s ease; }
+  .ct-submit:hover svg { transform: translate(2px, -2px); }
+
+  .ct-error {
+    color: #e89090;
+    font-size: 13px;
+    margin: 4px 0 0;
+    min-height: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .ct-error.show { opacity: 1; }
+
+  /* SUCCESS ── estado al enviar */
+  .ct-success {
+    text-align: center;
+    padding: 60px 0;
+  }
+  .ct-success-mark {
+    font-size: 48px;
+    color: #F7EFDB;
+    margin-bottom: 20px;
+  }
+  .ct-success h2 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: #F7EFDB;
+    margin: 0 0 16px;
+    text-transform: lowercase;
+  }
+  .ct-success p {
+    color: rgba(247, 239, 219, 0.6);
+    font-size: 16px;
+    margin: 0 0 32px;
+  }
+  .ct-success-back {
+    color: #F7EFDB;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(247, 239, 219, 0.4);
+    padding-bottom: 4px;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: border-color 0.2s ease;
+  }
+  .ct-success-back:hover { border-color: #F7EFDB; }
+
+  .ct-direct {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(247, 239, 219, 0.08);
+    font-size: 13px;
+    color: rgba(247, 239, 219, 0.45);
+    letter-spacing: 0.04em;
+  }
+  .ct-direct a {
+    color: #F7EFDB;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .ct-page { padding: 120px 24px 60px; }
+    .ct-title { font-size: 60px; letter-spacing: -2.5px; }
+    .ct-sub { font-size: 15px; }
+    .ct-hero { margin-bottom: 40px; }
+    .ct-form { gap: 24px; }
+    .ct-field input,
+    .ct-field textarea { font-size: 16px; }
+    .ct-success h2 { font-size: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .ct-page { padding: 110px 20px 60px; }
+    .ct-title { font-size: 48px; letter-spacing: -2px; }
+    .ct-sub { font-size: 14px; }
+    .ct-submit { width: 100%; justify-content: center; }
+  }
+</style>
+
+</Layout>
