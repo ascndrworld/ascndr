@@ -4,14 +4,20 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Trabajos | Ascndr — Portfolio Creativo">
 
-<!-- FILTROS — centrados, estilo Somos -->
+<!-- FILTROS — desplegable centrado, estilo Somos -->
 <div class="tp-filter-section">
-  <div class="tp-filters" id="tpFilters">
-    <button class="tp-filter active" data-filter="all">Todo</button>
-    <button class="tp-filter" data-filter="branding">Branding</button>
-    <button class="tp-filter" data-filter="social">Redes Sociales</button>
-    <button class="tp-filter" data-filter="photography">Fotografía</button>
-    <button class="tp-filter" data-filter="direction">Dirección Creativa</button>
+  <div class="tp-filter-dropdown" id="tpDropdown">
+    <button class="tp-filter-trigger" id="tpTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+      <span class="tp-filter-current" id="tpCurrent">Todo</span>
+      <svg class="tp-filter-caret" viewBox="0 0 12 8" width="12" height="8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <ul class="tp-filter-menu" id="tpMenu" role="listbox">
+      <li><button class="tp-filter-option active" type="button" role="option" aria-selected="true" data-filter="all">Todo</button></li>
+      <li><button class="tp-filter-option" type="button" role="option" data-filter="branding">Branding</button></li>
+      <li><button class="tp-filter-option" type="button" role="option" data-filter="social">Redes Sociales</button></li>
+      <li><button class="tp-filter-option" type="button" role="option" data-filter="photography">Fotografía</button></li>
+      <li><button class="tp-filter-option" type="button" role="option" data-filter="direction">Dirección Creativa</button></li>
+    </ul>
   </div>
 </div>
 
@@ -38,7 +44,7 @@ import Layout from "../layouts/Layout.astro";
     <div class="tp-img" style="background-image:url('/images/conclave/rrss-01.jpg')"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Redes Sociales</span>
-      <span class="tp-hover-title">Cónclave Design</span>
+      <span class="tp-hover-title">Briefing</span>
     </div>
   </div>
 
@@ -46,7 +52,7 @@ import Layout from "../layouts/Layout.astro";
     <div class="tp-img" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg')"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Fotografía</span>
-      <span class="tp-hover-title">Halloween Fest III</span>
+      <span class="tp-hover-title">Shooting 3ª edición</span>
     </div>
   </div>
 
@@ -61,17 +67,51 @@ import Layout from "../layouts/Layout.astro";
 <script is:inline>
   (function() {
     var grid = document.getElementById('tpGrid');
-    var filters = document.querySelectorAll('.tp-filter');
+    var dropdown = document.getElementById('tpDropdown');
+    var trigger = document.getElementById('tpTrigger');
+    var menu = document.getElementById('tpMenu');
+    var current = document.getElementById('tpCurrent');
+    var options = document.querySelectorAll('.tp-filter-option');
     var items = document.querySelectorAll('.tp-item');
-    filters.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        filters.forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        var f = btn.dataset.filter;
+
+    function setOpen(open) {
+      if (!dropdown) return;
+      dropdown.classList.toggle('open', open);
+      if (trigger) trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        setOpen(!dropdown.classList.contains('open'));
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!dropdown) return;
+      if (!dropdown.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    options.forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        options.forEach(function(o) {
+          o.classList.remove('active');
+          o.setAttribute('aria-selected', 'false');
+        });
+        opt.classList.add('active');
+        opt.setAttribute('aria-selected', 'true');
+
+        var f = opt.dataset.filter;
+        if (current) current.textContent = opt.textContent;
         if (grid) grid.classList.toggle('filtered', f !== 'all');
         items.forEach(function(item) {
           item.style.display = (f === 'all' || item.dataset.category === f) ? 'block' : 'none';
         });
+        setOpen(false);
       });
     });
   })();
@@ -91,32 +131,73 @@ import Layout from "../layouts/Layout.astro";
     text-align: center;
     background: var(--bg, #000000);
   }
-  .tp-filter-label {
-    font-family: "Montserrat", sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 16px;
+
+  /* DROPDOWN — centrado, estilo Somos */
+  .tp-filter-dropdown {
+    position: relative;
+    display: inline-block;
+    text-align: left;
   }
-  .tp-filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .tp-filter {
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
+  .tp-filter-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
     background: none;
     border: none;
-    padding: 8px 17px;
+    padding: 10px 4px;
     cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #F7EFDB;
     transition: color 0.2s;
   }
-  .tp-filter:hover { color: #F7EFDB; }
-  .tp-filter.active { color: #F7EFDB; font-weight: 600; }
+  .tp-filter-trigger:hover { color: #fff; }
+  .tp-filter-caret {
+    color: #F7EFDB;
+    transition: transform 0.2s ease;
+  }
+  .tp-filter-dropdown.open .tp-filter-caret { transform: rotate(180deg); }
+
+  .tp-filter-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    min-width: 240px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 20;
+  }
+  .tp-filter-dropdown.open .tp-filter-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  .tp-filter-menu li { margin: 0; padding: 0; }
+  .tp-filter-option {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px 24px;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+  .tp-filter-option:hover { color: #F7EFDB; background: rgba(255,255,255,0.04); }
+  .tp-filter-option.active { color: #F7EFDB; font-weight: 600; }
 
   /* GRID — mosaico asimétrico 3 cols × 4 rows, estilo Somos
      Layout (4 trabajos):
@@ -228,11 +309,15 @@ import Layout from "../layouts/Layout.astro";
      Los 2 primeros (A,B) se ven enteros sin scroll */
   @media (max-width: 768px) {
     .tp-filter-section { padding-top: 110px; padding-bottom: 16px; }
-    .tp-filters { gap: 0; flex-wrap: wrap; }
-    .tp-filter { font-size: 14px; padding: 6px 10px; }
+    .tp-filter-trigger { font-size: 18px; }
+    .tp-filter-menu { min-width: 220px; }
+    .tp-filter-option { font-size: 14px; padding: 9px 20px; }
     .tp-grid {
       grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 50vw;
+      grid-auto-rows: auto;
+      gap: 0;
+      row-gap: 0;
+      column-gap: 0;
     }
     .tp-item,
     .tp-item:nth-child(1),
@@ -242,10 +327,12 @@ import Layout from "../layouts/Layout.astro";
       grid-column: auto;
       grid-row: auto;
       aspect-ratio: 1 / 1;
+      margin: 0;
     }
     .tp-grid.filtered {
       grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 50vw;
+      grid-auto-rows: auto;
+      gap: 0;
     }
     /* Overlay siempre visible en móvil (sin :hover) con gradiente abajo */
     .tp-hover {
@@ -262,17 +349,10 @@ import Layout from "../layouts/Layout.astro";
   /* Móvil pequeño */
   @media (max-width: 480px) {
     .tp-filter-section { padding-top: 96px; padding-bottom: 12px; }
-    .tp-filter { font-size: 12px; padding: 5px 8px; }
-    .tp-filter-label { font-size: 10px; }
-    .tp-grid { grid-auto-rows: calc((100vh - 160px) / 2); }
+    .tp-filter-trigger { font-size: 16px; }
     .tp-hover { padding: 10px; }
     .tp-hover-title { font-size: 13px; line-height: 1.2; }
     .tp-hover-cat { font-size: 10px; margin-bottom: 3px; }
-  }
-
-  /* Mobile pequeño */
-  @media (max-width: 360px) {
-    .tp-filter { font-size: 11px; padding: 4px 6px; }
   }
 </style>
 
