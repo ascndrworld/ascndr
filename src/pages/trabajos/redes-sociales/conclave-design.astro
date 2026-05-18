@@ -9,40 +9,76 @@ import Layout from "../../../layouts/Layout.astro";
 
 <style is:global>
   @import "../../../styles/global.css";
-  body { background: #111; margin: 0; }
-  .pp { background: #111; color: #f0ece6; min-height: 100vh; font-family: "Montserrat", sans-serif; }
-  .pp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 10px 32px; background: rgba(17,17,17,0.97); align-items: center; border-bottom: 0.5px solid #1e1e1e; transition: transform .35s ease; }
-  .pp-nav.hidden { transform: translateY(-100%); }
-  .pp-nav a { color: #555; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
-  .pp-nav a:hover { color: #f0ece6; }
-  .pp-nav-logo img { height: 44px; width: auto; display: block; }
-  .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 32px 24px; border-bottom: 0.5px solid #1e1e1e; }
-  .pp-title { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: #f0ece6; text-transform: uppercase; }
-  .pp-title em { color: #555; font-style: normal; }
-  .pp-meta { display: flex; border-bottom: 0.5px solid #1e1e1e; }
-  .pp-meta-item { flex: 1; padding: 18px 32px; border-right: 0.5px solid #1e1e1e; }
-  .pp-meta-item:last-child { border-right: none; }
-  .pp-meta-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #444; margin-bottom: 6px; }
-  .pp-meta-value { font-size: 12px; color: #f0ece6; font-weight: 500; letter-spacing: .02em; }
-  .pp-desc { padding: 36px 32px 40px; border-bottom: 0.5px solid #1e1e1e; max-width: 720px; }
-  .pp-desc p { font-size: 13px; line-height: 1.85; color: #888; margin: 0; }
-  .pp-gallery { padding: 3px; }
-  .pp-gallery-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
-  .pp-gallery-grid-2 img { width: 100%; height: auto; display: block; }
-  .pp-cta { display: flex; align-items: center; justify-content: space-between; padding: 32px; border-top: 0.5px solid #1e1e1e; margin-top: 3px; }
-  .pp-cta-text { font-size: 11px; color: #444; letter-spacing: .06em; text-transform: uppercase; }
-  .pp-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; font-family: "Montserrat", sans-serif; transition: border-color .2s; }
-  .pp-cta-btn:hover { border-color: #c8753a; }
-  @media (max-width: 640px) {
-    .pp-nav { padding: 14px 20px; }
-    .pp-header { padding: 12px 20px 20px; }
-    .pp-meta { flex-direction: column; }
-    .pp-meta-item { border-right: none; border-bottom: 0.5px solid #1e1e1e; padding: 14px 20px; }
-    .pp-meta-item:last-child { border-bottom: none; }
-    .pp-desc { padding: 28px 20px; }
-    .pp-gallery { padding: 2px; }
-    .pp-gallery-grid-2 { grid-template-columns: 1fr; gap: 2px; }
-    .pp-cta { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px 20px; }
+
+  html, body { background: #efe9dd; margin: 0; }
+
+  .cs { background: #efe9dd; color: #1a1a1a; min-height: 100vh; font-family: "Montserrat", sans-serif; }
+
+  /* HEADER — primera imagen como fondo, contenido superpuesto abajo a la izquierda */
+  .cs-header {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #fff;
+  }
+  .cs-header-media { position: absolute; inset: 0; z-index: 0; }
+  .cs-header-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cs-header-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 35%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.7) 100%);
+  }
+
+  .cs-titleblock {
+    position: absolute;
+    bottom: 60px;
+    left: 40px;
+    right: 40px;
+    z-index: 2;
+    max-width: 720px;
+    text-align: left;
+  }
+  .cs-cat { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,241,232,0.88); font-weight: 500; margin-bottom: 20px; text-shadow: 0 1px 16px rgba(0,0,0,0.45); }
+  .cs-title { font-size: clamp(44px, 7vw, 108px); font-weight: 700; letter-spacing: -0.025em; line-height: 0.95; color: #fff; margin: 0 0 26px; text-shadow: 0 2px 28px rgba(0,0,0,0.4); }
+  .cs-desc { max-width: 520px; font-size: 15px; line-height: 1.6; color: rgba(245,241,232,0.95); font-weight: 400; text-shadow: 0 1px 16px rgba(0,0,0,0.45); }
+  .cs-desc p { margin: 0; }
+
+  .cs-gallery { display: block; padding: 0; }
+  .cs-gallery img { width: 100%; height: auto; display: block; background: #e7e1d4; }
+  .cs-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .cs-row-2 img { width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+
+  .cs-back { text-align: center; padding: 120px 24px 100px; }
+  .cs-back a {
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: #1a1a1a; text-decoration: none; font-weight: 500;
+    border-bottom: 1px solid currentColor; padding-bottom: 5px;
+    transition: opacity .2s;
+  }
+  .cs-back a:hover { opacity: 0.55; }
+
+  .cs-footer { background: #111; color: rgba(255,255,255,0.55); padding: 70px 24px 40px; text-align: center; font-family: "Montserrat", sans-serif; }
+  .cs-footer-logo { display: inline-block; margin-bottom: 28px; }
+  .cs-footer-logo img { height: 40px; display: block; opacity: 0.95; }
+  .cs-footer-links { display: flex; justify-content: center; gap: 22px; margin-bottom: 22px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .cs-footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .cs-footer-links a:hover { color: #fff; }
+  .cs-footer-sep { color: rgba(255,255,255,0.2); }
+  .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; }
+
+  @media (max-width: 768px) {
+    .cs-titleblock { bottom: 32px; left: 20px; right: 20px; }
+    .cs-cat { margin-bottom: 14px; font-size: 10px; }
+    .cs-title { font-size: clamp(36px, 12vw, 72px); margin-bottom: 20px; }
+    .cs-desc { font-size: 14px; line-height: 1.55; }
+    .cs-back { padding: 80px 20px 60px; }
+    .cs-footer { padding: 50px 20px 30px; }
+    .cs-footer-links { flex-wrap: wrap; gap: 14px; font-size: 10px; }
+  }
+  @media (max-width: 480px) {
+    .cs-titleblock { bottom: 28px; left: 18px; right: 18px; }
+    .cs-title { font-size: clamp(32px, 14vw, 56px); margin-bottom: 16px; }
+    .cs-desc { font-size: 13px; }
   }
 </style>
 
@@ -62,67 +98,42 @@ import Layout from "../../../layouts/Layout.astro";
 }
 `}</script>
 
-<div class="pp">
-  <nav class="pp-nav">
-    <a href="/trabajos">← Trabajos</a>
-    <a href="/" class="pp-nav-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
-    <a href="/">Contacto</a>
-  </nav>
+<div class="cs">
 
-  <div class="pp-header">
-    <span class="pp-title">Cónclave Design <em>· Marketing</em></span>
-  </div>
-
-  <div class="pp-meta">
-    <div class="pp-meta-item">
-      <div class="pp-meta-label">Categoría</div>
-      <div class="pp-meta-value">Redes Sociales</div>
+  <section class="cs-header">
+    <div class="cs-header-media">
+      <img src="/images/conclave/rrss-01.jpg" alt="Cónclave pub Los Villares Jaén — Marketing redes sociales Ascndr" fetchpriority="high"/>
     </div>
-    <div class="pp-meta-item">
-      <div class="pp-meta-label">Año</div>
-      <div class="pp-meta-value">MMXXVI</div>
+    <div class="cs-header-overlay"></div>
+    <div class="cs-titleblock">
+      <div class="cs-cat">Redes Sociales · Marketing</div>
+      <h1 class="cs-title">Briefing</h1>
+      <div class="cs-desc">
+        <p>Estrategia de contenido y gestión de redes sociales para Cónclave pub. Diseño de publicaciones para Instagram y dirección creativa del feed.</p>
+      </div>
     </div>
-    <div class="pp-meta-item">
-      <div class="pp-meta-label">Cliente</div>
-      <div class="pp-meta-value">Cónclave Pub · Los Villares (Jaén)</div>
-    </div>
+  </section>
+
+  <div class="cs-gallery">
+    <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Cónclave Los Villares Jaén — Ascndr gestión redes" loading="lazy"/>
   </div>
 
-  <div class="pp-desc">
-    <p>Estrategia de contenido visual y gestión de redes sociales para Cónclave pub en Los Villares (Jaén). Diseño de publicaciones para Instagram, mockups y dirección creativa del feed.</p>
+  <div class="cs-back">
+    <a href="/trabajos">Volver a Trabajos</a>
   </div>
 
-  <div class="pp-gallery">
-    <div class="pp-gallery-grid-2">
-      <img src="/images/conclave/rrss-01.jpg" alt="Contenido Instagram Cónclave pub Los Villares Jaén — Ascndr marketing redes sociales" loading="lazy"/>
-      <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Semana Santa Cónclave Los Villares Jaén — Ascndr gestión redes" loading="lazy"/>
+  <footer class="cs-footer">
+    <a href="/" class="cs-footer-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
+    <div class="cs-footer-links">
+      <a href="/trabajos">Trabajos</a>
+      <span class="cs-footer-sep">·</span>
+      <a href="/contacto">Contacto</a>
+      <span class="cs-footer-sep">·</span>
+      <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
     </div>
-  </div>
+    <p class="cs-footer-copy">© Ascndr 2026 · Marca Registrada</p>
+  </footer>
 
-  <div class="pp-cta">
-    <span class="pp-cta-text">¿Tienes un proyecto similar?</span>
-    <a href="/" class="pp-cta-btn">Hablemos →</a>
-  </div>
 </div>
-
-<script is:inline>
-(function(){
-  var nav = document.querySelector(".pp-nav");
-  var header = document.querySelector(".pp-header");
-  var last = 0;
-  function setHeaderPad(){
-    if(header && nav) header.style.paddingTop = (nav.offsetHeight + 12) + "px";
-  }
-  setHeaderPad();
-  window.addEventListener("resize", setHeaderPad);
-  window.addEventListener("scroll", function(){
-    var cur = window.scrollY;
-    if(cur <= 10){ nav.classList.remove("hidden"); }
-    else if(cur > last){ nav.classList.add("hidden"); }
-    else{ nav.classList.remove("hidden"); }
-    last = cur;
-  }, {passive:true});
-})();
-</script>
 
 </Layout>

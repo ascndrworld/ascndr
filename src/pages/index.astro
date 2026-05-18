@@ -232,7 +232,7 @@ import Layout from "../layouts/Layout.astro";
   <!-- Grid de proyectos -->
   <div class="works-grid" id="worksGrid">
 
-    <article class="work-card size-md-v" data-category="direction" onclick="openGalleryConclave()" style="cursor:pointer">
+    <a class="work-card size-md-v" data-category="direction" href="/trabajos/direccion-creativa/conclave">
       <div class="work-media" style="background-image:url('/images/conclave/portada-conclave2.jpg'); background-size:cover; background-position:center;"></div>
       <span class="work-tag">Dirección Creativa</span>
       <span class="work-arrow">↗</span>
@@ -243,10 +243,10 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <div class="work-year">MMXXV</div>
       </div>
-    </article>
+    </a>
 
     <!-- Halloween Fest -->
-    <article class="work-card size-lg" data-category="branding" onclick="openGallery()" style="cursor:pointer;">
+    <a class="work-card size-lg" data-category="branding" href="/trabajos/branding/halloweenfest">
       <div class="work-media" style="background-image:url('/images/halloween-fest/pulsera-portada.jpg');"></div>
       <span class="work-tag">Branding</span>
       <span class="work-arrow">↗</span>
@@ -257,10 +257,10 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <div class="work-year">MMXXIV — MMXXV</div>
       </div>
-    </article>
+    </a>
 
     <!-- Cónclave Design (Redes Sociales) -->
-    <article class="work-card size-lg" data-category="social" onclick="openGalleryConclaveDesign()" style="cursor:pointer;">
+    <a class="work-card size-lg" data-category="social" href="/trabajos/redes-sociales/conclave-design">
       <div class="work-media work-media-fade">
         <div class="work-media-img" style="background-image:url('/images/conclave/rrss-01.jpg');"></div>
         <div class="work-media-img work-media-img-alt" style="background-image:url('/images/conclave/rrss-02.jpg');"></div>
@@ -274,10 +274,10 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <div class="work-year">MMXXVI</div>
       </div>
-    </article>
+    </a>
 
     <!-- 3ª Ed. Halloween Fest (Fotografía) -->
-    <article class="work-card size-md-v" data-category="photography" onclick="openGalleryHalloween3()" style="cursor:pointer;">
+    <a class="work-card size-md-v" data-category="photography" href="/trabajos/fotografia/halloweenfest-fotografia">
       <div class="work-media" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg'); background-size:cover; background-position:center;"></div>
       <span class="work-tag">Fotografía</span>
       <span class="work-arrow">↗</span>
@@ -288,7 +288,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <div class="work-year">MMXXV</div>
       </div>
-    </article>
+    </a>
 
   </div>
 
@@ -752,376 +752,6 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 
-<div class="gallery-overlay" id="galleryHalloween">
-  <div class="gallery-header">
-    <span class="gallery-title">Halloween Fest <em>· Branding</em></span>
-    <button class="gallery-close" onclick="closeGallery()">✕</button>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item gallery-item-wide" onclick="openLightbox(0)">
-      <img src="/images/halloween-fest/tickets.jpg" alt="Diseño de tickets Halloween Fest — Ascndr Jaén" loading="lazy" style="object-fit:cover;"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(1)">
-      <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial Halloween Fest — Dirección creativa Ascndr" loading="lazy"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(2)">
-      <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel Halloween Fest 3ª edición — Diseño gráfico Ascndr" loading="lazy"/>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(3)">
-      <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditación Halloween Fest — Identidad visual Ascndr Jaén" loading="lazy"/>
-    </div>
-    <div class="gallery-item gallery-item-wide" onclick="openLightbox(4)">
-      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP Halloween Fest — Branding evento Ascndr" loading="lazy" style="object-fit:cover;"/>
-    </div>
-  </div>
-  </div>
-  <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightbox(-1)">&#8249;</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt=""/>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightbox(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <span class="lightbox-counter" id="lightboxCounter"></span>
-</div>
-
-
-<script is:inline>
-var hwImgs=["/images/halloween-fest/tickets.jpg","/images/halloween-fest/cartel-oficial.jpg","/images/halloween-fest/cartel-3-0.jpg","/images/halloween-fest/acreditacion.jpg","/images/halloween-fest/pulseras.jpg"];
-var lbIndex=0;
-function openGallery(){document.getElementById("galleryHalloween").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGallery(){document.getElementById("galleryHalloween").classList.remove("open");document.body.style.overflow="";}
-function openLightbox(i){lbIndex=i;document.getElementById("lightboxImg").src=hwImgs[i];document.getElementById("lightboxCounter").textContent=(i+1)+" / "+hwImgs.length;document.getElementById("lightboxOverlay").classList.add("open");}
-function closeLightbox(){document.getElementById("lightboxOverlay").classList.remove("open");}
-function moveLightbox(dir){lbIndex=(lbIndex+dir+hwImgs.length)%hwImgs.length;document.getElementById("lightboxImg").src=hwImgs[lbIndex];document.getElementById("lightboxCounter").textContent=(lbIndex+1)+" / "+hwImgs.length;}
-</script>
-
-<!-- Galería Cónclave Design (Marketing Visual / RRSS) -->
-<div class="gallery-overlay" id="galleryConclaveDesign">
-  <div class="gallery-header">
-    <span class="gallery-title">Cónclave Design <em>· Marketing</em></span>
-    <button class="gallery-close" onclick="closeGalleryConclaveDesign()">✕</button>
-  </div>
-  <div class="gallery-content">
-    <div class="ds-grid">
-      <div class="ds-item" onclick="openLightboxDesign(0)">
-        <img src="/images/conclave/rrss-01.jpg" alt="Contenido redes sociales Cónclave pub Jaén — Ascndr Marketing" loading="lazy"/>
-      </div>
-      <div class="ds-item" onclick="openLightboxDesign(1)">
-        <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Cónclave pub Jaén — Gestión redes sociales Ascndr" loading="lazy"/>
-      </div>
-    </div>
-  </div>
-</div>
-<style>
-.ds-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
-}
-@media (max-width: 640px) {
-  .ds-grid { grid-template-columns: 1fr; }
-}
-.ds-item {
-  cursor: pointer;
-  overflow: hidden;
-}
-.ds-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform .35s ease;
-}
-.ds-item:hover img { transform: scale(1.02); }
-</style>
-<div class="lightbox-overlay" id="lightboxDesignOverlay" onclick="closeLightboxDesign()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxDesign(-1)">&#8249;</button>
-  <img class="lightbox-img" id="lightboxDesignImg" src="" alt=""/>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxDesign(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightboxDesign()">✕</button>
-  <span class="lightbox-counter" id="lightboxDesignCounter"></span>
-</div>
-
-<script is:inline>
-var dsImgs=["/images/conclave/rrss-01.jpg","/images/conclave/rrss-02.jpg"];
-var dsIndex=0;
-function openGalleryConclaveDesign(){document.getElementById("galleryConclaveDesign").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGalleryConclaveDesign(){document.getElementById("galleryConclaveDesign").classList.remove("open");document.body.style.overflow="";closeLightboxDesign();}
-function openLightboxDesign(i){dsIndex=i;document.getElementById("lightboxDesignImg").src=dsImgs[i];document.getElementById("lightboxDesignCounter").textContent=(i+1)+" / "+dsImgs.length;document.getElementById("lightboxDesignOverlay").classList.add("open");}
-function closeLightboxDesign(){document.getElementById("lightboxDesignOverlay").classList.remove("open");}
-function moveLightboxDesign(dir){dsIndex=(dsIndex+dir+dsImgs.length)%dsImgs.length;document.getElementById("lightboxDesignImg").src=dsImgs[dsIndex];document.getElementById("lightboxDesignCounter").textContent=(dsIndex+1)+" / "+dsImgs.length;}
-</script>
-
-<!-- Galería Cónclave -->
-<div class="gallery-overlay gallery-conclave" id="galleryConclave">
-  <div class="gallery-header">
-    <span class="gallery-title">Cónclave <em>· Dirección Creativa</em></span>
-    <button class="gallery-close" onclick="closeGalleryConclave()">✕</button>
-  </div>
-
-  <div class="gallery-content">
-    <header class="gallery-cv-header">
-      <p class="gallery-cv-description">
-        Transformación completa del antiguo Milenio 2.0 en Cónclave: un espacio donde reunirse para tomar decisiones. El proyecto incluyó naming, logotipo y dirección de identidad visual, además de la reforma del local con nueva iluminación, paleta cromática, mejora en la distribución del espacio y elementos decorativos. Un enfoque actual para un lugar pensado como punto de encuentro.
-      </p>
-    </header>
-
-    <section class="gallery-cv-section">
-      <h3 class="gallery-cv-section-title">Antes</h3>
-      <div class="gallery-cv-grid gallery-cv-grid-2">
-        <div class="gallery-cv-item" onclick="openLightboxConclave(0)">
-          <img src="/images/conclave/antes-01.jpg" alt="Milenio 2.0 antes del rebranding — Dirección creativa Ascndr Jaén" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(1)">
-          <img src="/images/conclave/antes-02.jpg" alt="Interior Milenio 2.0 antes del rebranding — Ascndr Jaén" loading="lazy"/>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery-cv-section">
-      <h3 class="gallery-cv-section-title">Nueva identidad</h3>
-      <div class="gallery-cv-grid gallery-cv-grid-1">
-        <div class="gallery-cv-item gallery-cv-item-video gallery-cv-item-logo" onclick="openLightboxConclave(2)">
-          <video src="/images/conclave/reveal-logo.mp4" poster="/images/conclave/reveal-logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-          <span class="gallery-cv-video-tag">Nuevo logo</span>
-        </div>
-        <div class="gallery-cv-item gallery-cv-item-video" onclick="openLightboxConclave(3)">
-          <video src="/images/conclave/reveal-nombre.mp4" poster="/images/conclave/reveal-nombre-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-          <span class="gallery-cv-video-tag">Nuevo nombre</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery-cv-section">
-      <h3 class="gallery-cv-section-title">El pub hoy</h3>
-      <div class="gallery-cv-grid gallery-cv-grid-pub">
-        <div class="gallery-cv-item" onclick="openLightboxConclave(4)">
-          <img src="/images/conclave/despues-01.jpg" alt="Cónclave pub Jaén tras el rebranding — Identidad visual Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(5)">
-          <img src="/images/conclave/despues-02.jpg" alt="Interior Cónclave pub Jaén — Dirección creativa Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(6)">
-          <img src="/images/conclave/despues-03.jpg" alt="Espacio Cónclave pub Jaén — Rebranding completo Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item" onclick="openLightboxConclave(7)">
-          <img src="/images/conclave/despues-04.jpg" alt="Ambiente Cónclave pub Jaén — Estudio creativo Ascndr" loading="lazy"/>
-        </div>
-        <div class="gallery-cv-item gallery-cv-item-video gallery-cv-item-tall" onclick="openLightboxConclave(8)">
-          <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
-
-<!-- Lightbox Cónclave (foto + vídeo) -->
-<div class="lightbox-overlay lightbox-conclave" id="lightboxConclaveOverlay" onclick="closeLightboxConclave()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxConclave(-1)">&#8249;</button>
-  <div class="lightbox-cv-wrap" onclick="event.stopPropagation()">
-    <img class="lightbox-img" id="lightboxConclaveImg" src="" alt="" style="display:none"/>
-    <video class="lightbox-cv-video" id="lightboxConclaveVideo" controls playsinline style="display:none"></video>
-  </div>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxConclave(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightboxConclave()">✕</button>
-  <span class="lightbox-counter" id="lightboxConclaveCounter"></span>
-</div>
-
-<script is:inline>
-var cvItems=[
-  {type:"img",src:"/images/conclave/antes-01.jpg"},
-  {type:"img",src:"/images/conclave/antes-02.jpg"},
-  {type:"video",src:"/images/conclave/reveal-logo.mp4",poster:"/images/conclave/reveal-logo-poster.jpg"},
-  {type:"video",src:"/images/conclave/reveal-nombre.mp4",poster:"/images/conclave/reveal-nombre-poster.jpg"},
-  {type:"img",src:"/images/conclave/despues-01.jpg"},
-  {type:"img",src:"/images/conclave/despues-02.jpg"},
-  {type:"img",src:"/images/conclave/despues-03.jpg"},
-  {type:"img",src:"/images/conclave/despues-04.jpg"},
-  {type:"video",src:"/images/conclave/evento.mp4",poster:"/images/conclave/evento-poster.jpg"}
-];
-var cvIndex=0;
-function openGalleryConclave(){document.getElementById("galleryConclave").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGalleryConclave(){document.getElementById("galleryConclave").classList.remove("open");document.body.style.overflow="";closeLightboxConclave();}
-function renderLightboxConclave(){var it=cvItems[cvIndex];var im=document.getElementById("lightboxConclaveImg");var vd=document.getElementById("lightboxConclaveVideo");if(it.type==="img"){vd.pause();vd.removeAttribute("src");vd.style.display="none";im.src=it.src;im.style.display="block";}else{im.style.display="none";im.removeAttribute("src");vd.src=it.src;if(it.poster)vd.poster=it.poster;vd.style.display="block";vd.play().catch(function(){});}document.getElementById("lightboxConclaveCounter").textContent=(cvIndex+1)+" / "+cvItems.length;}
-function openLightboxConclave(i){cvIndex=i;renderLightboxConclave();document.getElementById("lightboxConclaveOverlay").classList.add("open");}
-function moveLightboxConclave(dir){cvIndex=(cvIndex+dir+cvItems.length)%cvItems.length;renderLightboxConclave();}
-function closeLightboxConclave(){var vd=document.getElementById("lightboxConclaveVideo");vd.pause();vd.removeAttribute("src");document.getElementById("lightboxConclaveOverlay").classList.remove("open");}
-</script>
-
-<!-- ════ CSS GALERÍA HW3 ════ -->
-<style>
-.gallery-header-hw3 {
-  align-items: flex-start !important;
-}
-.gallery-header-hw3-left {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.gallery-hw3-credits {
-  font-size: 0.78rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: #888;
-  margin: 0;
-  padding: 0;
-}
-
-/*
-  GRID — proporciones reales con vw
-  Foto vertical 2:3 en 4/12 cols = 33.3vw ancho → altura ideal = 50vw
-  Foto horizontal 3:2 en 12/12 = 100vw ancho → altura ideal = 33vw (la hacemos 40vw para que se vea con más presencia)
-  Tall × 2 filas verticales = 100vw (2 × 50vw)
-*/
-.hw3-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows:
-    40vw    /* F1 — horizontal grande */
-    50vw    /* F2 — tall izq + 2 vert der */
-    50vw    /* F3 — tall cont + 2 vert der */
-    50vw    /* F4 — 3 verticales */
-    50vw    /* F5 — 2 vert izq + tall der */
-    50vw;   /* F6 — wide8 + tall cont */
-  gap: 5px;
-}
-
-.hw3-item {
-  overflow: hidden;
-  cursor: pointer;
-  background: #111;
-  min-height: 0;
-}
-.hw3-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .38s ease;
-}
-.hw3-item:hover img { transform: scale(1.03); }
-
-.hw3-f1      { grid-column: 1 / 13; grid-row: 1; }
-.hw3-f23tall { grid-column: 1 / 5;  grid-row: 2 / 4; }
-.hw3-f2b     { grid-column: 5 / 9;  grid-row: 2; }
-.hw3-f2c     { grid-column: 9 / 13; grid-row: 2; }
-.hw3-f3b     { grid-column: 5 / 9;  grid-row: 3; }
-.hw3-f3c     { grid-column: 9 / 13; grid-row: 3; }
-.hw3-f4a     { grid-column: 1 / 5;  grid-row: 4; }
-.hw3-f4b     { grid-column: 5 / 9;  grid-row: 4; }
-.hw3-f4c     { grid-column: 9 / 13; grid-row: 4; }
-.hw3-f5a     { grid-column: 1 / 5;  grid-row: 5; }
-.hw3-f5b     { grid-column: 5 / 9;  grid-row: 5; }
-.hw3-f56tall { grid-column: 9 / 13; grid-row: 5 / 7; }
-.hw3-f6wide  { grid-column: 1 / 9;  grid-row: 6; }
-
-@media (max-width: 768px) {
-  .hw3-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: none; grid-auto-rows: 56vw; }
-  [class*="hw3-f"] { grid-column: span 2 !important; grid-row: span 1 !important; }
-}
-@media (max-width: 480px) {
-  .hw3-grid { grid-template-columns: 1fr; grid-auto-rows: 80vw; }
-  [class*="hw3-f"] { grid-column: span 1 !important; grid-row: span 1 !important; }
-}
-</style>
-
-<!-- Galería Halloween Fest · Desde dentro -->
-<div class="gallery-overlay gallery-hw3" id="galleryHalloween3">
-  <div class="gallery-header gallery-header-hw3">
-    <div class="gallery-header-hw3-left">
-      <span class="gallery-title">Halloween Fest <em>· Desde dentro</em></span>
-      <p class="gallery-hw3-credits">Shot by: @alvarojimenez7 · @bydorian__</p>
-    </div>
-    <button class="gallery-close" onclick="closeGalleryHalloween3()">✕</button>
-  </div>
-  <div class="gallery-content">
-    <div class="hw3-grid">
-
-      <!-- F1 — Horizontal escenario, ancho completo, 40vw alto -->
-      <div class="hw3-item hw3-f1" onclick="openLightboxHalloween3(0)">
-        <img src="/images/halloween-fest/hw3-01.jpg" alt="Escenario Halloween Fest 3ª edición Jaén — Fotografía Ascndr" loading="lazy"/>
-      </div>
-
-      <!-- F2-3 tall izq: DJ vinilo (vertical, ocupa filas 2-3 = 100vw) -->
-      <div class="hw3-item hw3-f23tall" onclick="openLightboxHalloween3(5)">
-        <img src="/images/halloween-fest/hw3-06.jpg" alt="DJ en Halloween Fest Jaén — Cobertura fotográfica Ascndr" loading="lazy"/>
-      </div>
-      <!-- F2 der: escenario azul + pista baile -->
-      <div class="hw3-item hw3-f2b" onclick="openLightboxHalloween3(2)">
-        <img src="/images/halloween-fest/hw3-03.jpg" alt="Escenario con luces azules Halloween Fest Jaén — Fotografía de evento" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f2c" onclick="openLightboxHalloween3(3)">
-        <img src="/images/halloween-fest/hw3-04.jpg" alt="Pista de baile Halloween Fest Jaén — Fotografía evento Ascndr" loading="lazy"/>
-      </div>
-      <!-- F3 der: ambiente + DJ zombie -->
-      <div class="hw3-item hw3-f3b" onclick="openLightboxHalloween3(4)">
-        <img src="/images/halloween-fest/hw3-05.jpg" alt="Ambiente Halloween Fest Jaén — Shooting fotográfico Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f3c" onclick="openLightboxHalloween3(7)">
-        <img src="/images/halloween-fest/hw3-08.jpg" alt="DJ con maquillaje zombie Halloween Fest Jaén — Fotografía Ascndr" loading="lazy"/>
-      </div>
-
-      <!-- F4 — Tres verticales a plena proporción -->
-      <div class="hw3-item hw3-f4a" onclick="openLightboxHalloween3(1)">
-        <img src="/images/halloween-fest/hw3-02.jpg" alt="Escenario con luces amarillas Halloween Fest Jaén — Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f4b" onclick="openLightboxHalloween3(9)">
-        <img src="/images/halloween-fest/hw3-10.jpg" alt="Asistentes disfrazados Halloween Fest Jaén — Cobertura fotográfica Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f4c" onclick="openLightboxHalloween3(10)">
-        <img src="/images/halloween-fest/hw3-11.jpg" alt="Disfraces Halloween Fest Jaén — Fotografía de evento Ascndr" loading="lazy"/>
-      </div>
-
-      <!-- F5 izq: Pioneer + micro -->
-      <div class="hw3-item hw3-f5a" onclick="openLightboxHalloween3(6)">
-        <img src="/images/halloween-fest/hw3-07.jpg" alt="DJ con Pioneer en Halloween Fest Jaén — Fotografía Ascndr" loading="lazy"/>
-      </div>
-      <div class="hw3-item hw3-f5b" onclick="openLightboxHalloween3(8)">
-        <img src="/images/halloween-fest/hw3-09.jpg" alt="Artista en escenario Halloween Fest Jaén — Ascndr fotografía" loading="lazy"/>
-      </div>
-      <!-- F5-6 tall der: grupo staff (filas 5-6 = 100vw) -->
-      <div class="hw3-item hw3-f56tall" onclick="openLightboxHalloween3(11)">
-        <img src="/images/halloween-fest/hw3-12.jpg" alt="Staff Halloween Fest Jaén — Cobertura fotográfica Ascndr" loading="lazy"/>
-      </div>
-      <!-- F6 wide8: equipo (8 cols, cierra izq bajo F5) -->
-      <div class="hw3-item hw3-f6wide" onclick="openLightboxHalloween3(12)">
-        <img src="/images/halloween-fest/hw3-13.jpg" alt="Equipo organizador Halloween Fest Jaén — Ascndr estudio creativo" loading="lazy"/>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- Lightbox HW3 -->
-<div class="lightbox-overlay" id="lightboxHalloween3Overlay" onclick="closeLightboxHalloween3()">
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();moveLightboxHalloween3(-1)">&#8249;</button>
-  <img class="lightbox-img" id="lightboxHalloween3Img" src="" alt=""/>
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();moveLightboxHalloween3(1)">&#8250;</button>
-  <button class="lightbox-close" onclick="closeLightboxHalloween3()">✕</button>
-  <span class="lightbox-counter" id="lightboxHalloween3Counter"></span>
-</div>
-
-<script is:inline>
-var hw3Imgs=[
-  "/images/halloween-fest/hw3-01.jpg",
-  "/images/halloween-fest/hw3-02.jpg",
-  "/images/halloween-fest/hw3-03.jpg",
-  "/images/halloween-fest/hw3-04.jpg",
-  "/images/halloween-fest/hw3-05.jpg",
-  "/images/halloween-fest/hw3-06.jpg",
-  "/images/halloween-fest/hw3-07.jpg",
-  "/images/halloween-fest/hw3-08.jpg",
-  "/images/halloween-fest/hw3-09.jpg",
-  "/images/halloween-fest/hw3-10.jpg",
-  "/images/halloween-fest/hw3-11.jpg",
-  "/images/halloween-fest/hw3-12.jpg",
-  "/images/halloween-fest/hw3-13.jpg"
-];
-var hw3Index=0;
-function openGalleryHalloween3(){document.getElementById("galleryHalloween3").classList.add("open");document.body.style.overflow="hidden";window.scrollTo(0,0);}
-function closeGalleryHalloween3(){document.getElementById("galleryHalloween3").classList.remove("open");document.body.style.overflow="";closeLightboxHalloween3();}
-function openLightboxHalloween3(i){hw3Index=i;document.getElementById("lightboxHalloween3Img").src=hw3Imgs[i];document.getElementById("lightboxHalloween3Counter").textContent=(i+1)+" / "+hw3Imgs.length;document.getElementById("lightboxHalloween3Overlay").classList.add("open");}
-function closeLightboxHalloween3(){document.getElementById("lightboxHalloween3Overlay").classList.remove("open");}
-function moveLightboxHalloween3(dir){hw3Index=(hw3Index+dir+hw3Imgs.length)%hw3Imgs.length;document.getElementById("lightboxHalloween3Img").src=hw3Imgs[hw3Index];document.getElementById("lightboxHalloween3Counter").textContent=(hw3Index+1)+" / "+hw3Imgs.length;}
-</script>
 
 
 <!-- ════ TABLER ICONS (para modal ¿Qué buscas?) ════ -->

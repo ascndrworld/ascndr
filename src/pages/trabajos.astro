@@ -24,37 +24,37 @@ import Layout from "../layouts/Layout.astro";
 <!-- GRID — 4 columnas cuadradas, gap:0, igual Somos -->
 <div class="tp-grid" id="tpGrid">
 
-  <div class="tp-item" data-category="direction" onclick="openGalleryConclave()">
+  <a class="tp-item" data-category="direction" href="/trabajos/direccion-creativa/conclave">
     <div class="tp-img" style="background-image:url('/images/conclave/portada-conclave2.jpg')"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Dirección Creativa</span>
       <span class="tp-hover-title">Cónclave</span>
     </div>
-  </div>
+  </a>
 
-  <div class="tp-item" data-category="branding" onclick="openGallery()">
+  <a class="tp-item" data-category="branding" href="/trabajos/branding/halloweenfest">
     <div class="tp-img" style="background-image:url('/images/halloween-fest/pulsera-portada.jpg')"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Branding</span>
       <span class="tp-hover-title">Halloween Fest</span>
     </div>
-  </div>
+  </a>
 
-  <div class="tp-item" data-category="social" onclick="openGalleryConclaveDesign()">
+  <a class="tp-item" data-category="social" href="/trabajos/redes-sociales/conclave-design">
     <div class="tp-img" style="background-image:url('/images/conclave/rrss-01.jpg')"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Redes Sociales</span>
       <span class="tp-hover-title">Briefing</span>
     </div>
-  </div>
+  </a>
 
-  <div class="tp-item" data-category="photography" onclick="openGalleryHalloween3()">
+  <a class="tp-item" data-category="photography" href="/trabajos/fotografia/halloweenfest-fotografia">
     <div class="tp-img" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg')"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Fotografía</span>
       <span class="tp-hover-title">Shooting 3ª edición</span>
     </div>
-  </div>
+  </a>
 
 </div>
 
@@ -115,10 +115,6 @@ import Layout from "../layouts/Layout.astro";
     });
   })();
 
-  function openGallery() { window.location.href = '/'; }
-  function openGalleryConclave() { window.location.href = '/'; }
-  function openGalleryConclaveDesign() { window.location.href = '/'; }
-  function openGalleryHalloween3() { window.location.href = '/'; }
 </script>
 
 <style>
@@ -218,6 +214,9 @@ import Layout from "../layouts/Layout.astro";
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
   .tp-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .tp-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }

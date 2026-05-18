@@ -9,52 +9,95 @@ import Layout from "../../../layouts/Layout.astro";
 
 <style is:global>
   @import "../../../styles/global.css";
-  body { background: #111; margin: 0; }
-  .pp { background: #111; color: #f0ece6; min-height: 100vh; font-family: "Montserrat", sans-serif; }
-  .pp-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 32px;
-    background: rgba(17,17,17,0.97);
-    border-bottom: 0.5px solid #1e1e1e;
-    transition: transform .35s ease;
+
+  html, body { background: #efe9dd; margin: 0; }
+
+  .cs { background: #efe9dd; color: #1a1a1a; min-height: 100vh; font-family: "Montserrat", sans-serif; }
+
+  /* HEADER — primera imagen como fondo, contenido superpuesto abajo a la izquierda */
+  .cs-header {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #fff;
   }
-  .pp-nav.hidden { transform: translateY(-100%); }
-  .pp-nav a { color: #555; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
-  .pp-nav a:hover { color: #f0ece6; }
-  .pp-nav-logo img { height: 44px; width: auto; display: block; }
-  .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 32px 24px; border-bottom: 0.5px solid #1e1e1e; }
-  .pp-title { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: #f0ece6; text-transform: uppercase; }
-  .pp-title em { color: #555; font-style: normal; }
-  .pp-meta { display: flex; border-bottom: 0.5px solid #1e1e1e; }
-  .pp-meta-item { flex: 1; padding: 18px 32px; border-right: 0.5px solid #1e1e1e; }
-  .pp-meta-item:last-child { border-right: none; }
-  .pp-meta-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #444; margin-bottom: 6px; }
-  .pp-meta-value { font-size: 12px; color: #f0ece6; font-weight: 500; letter-spacing: .02em; }
-  .pp-desc { padding: 36px 32px 40px; border-bottom: 0.5px solid #1e1e1e; max-width: 720px; }
-  .pp-desc p { font-size: 13px; line-height: 1.85; color: #888; margin: 0; }
-  .pp-gallery { padding: 3px; }
-  .pp-gallery-wide { width: 100%; margin-bottom: 3px; }
-  .pp-gallery-wide img { width: 100%; height: 70vh; min-height: 300px; object-fit: cover; display: block; }
-  .pp-gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
-  .pp-gallery-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: filter .3s; }
-  .pp-gallery-grid img:hover { filter: brightness(1.08); }
-  .pp-cta { display: flex; align-items: center; justify-content: space-between; padding: 32px; border-top: 0.5px solid #1e1e1e; margin-top: 3px; }
-  .pp-cta-text { font-size: 11px; color: #444; letter-spacing: .06em; text-transform: uppercase; }
-  .pp-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: #141414; border: 0.5px solid #2a2a2a; border-radius: 999px; padding: 10px 22px; color: #f0ece6; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; font-family: "Montserrat", sans-serif; transition: border-color .2s; }
-  .pp-cta-btn:hover { border-color: #c8753a; }
-  @media (max-width: 640px) {
-    .pp-nav { padding: 14px 20px; }
-    .pp-header { padding: 12px 20px 20px; }
-    .pp-meta { flex-direction: column; }
-    .pp-meta-item { border-right: none; border-bottom: 0.5px solid #1e1e1e; padding: 14px 20px; }
-    .pp-meta-item:last-child { border-bottom: none; }
-    .pp-desc { padding: 28px 20px; }
-    .pp-gallery { padding: 2px; }
-    .pp-gallery-wide img { height: 50vw; min-height: 200px; }
-    .pp-gallery-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
-    .pp-gallery-wide { margin-bottom: 2px; }
-    .pp-cta { flex-direction: column; gap: 16px; align-items: flex-start; padding: 24px 20px; }
+  .cs-header-media { position: absolute; inset: 0; z-index: 0; }
+  .cs-header-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cs-header-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 35%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.7) 100%);
+  }
+
+  /* Bloque inferior izquierdo: categoría + título + descripción */
+  .cs-titleblock {
+    position: absolute;
+    bottom: 60px;
+    left: 40px;
+    right: 40px;
+    z-index: 2;
+    max-width: 720px;
+    text-align: left;
+  }
+  .cs-cat { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,241,232,0.88); font-weight: 500; margin-bottom: 20px; text-shadow: 0 1px 16px rgba(0,0,0,0.45); }
+  .cs-title { font-size: clamp(44px, 7vw, 108px); font-weight: 700; letter-spacing: -0.025em; line-height: 0.95; color: #fff; margin: 0 0 26px; text-shadow: 0 2px 28px rgba(0,0,0,0.4); }
+  .cs-desc { max-width: 520px; font-size: 15px; line-height: 1.6; color: rgba(245,241,232,0.95); font-weight: 400; text-shadow: 0 1px 16px rgba(0,0,0,0.45); }
+  .cs-desc p { margin: 0; }
+
+  /* GALLERY — mix-blend-mode darken iguala los fondos al crema de la página */
+  .cs-gallery { display: block; padding: 0; background: #efe9dd; }
+  .cs-gallery img, .cs-gallery video {
+    width: 100%; height: auto; display: block;
+    background: #efe9dd;
+    mix-blend-mode: darken;
+  }
+  /* Mockups con fondo cream ligeramente más oscuro: brillamos un punto para que darken los iguale */
+  .cs-gallery img[src*="cartel-oficial"],
+  .cs-gallery img[src*="acreditacion"] {
+    filter: brightness(1.06);
+  }
+  /* Acreditación es 1067×800 nativos: limitamos ancho para evitar upscale, mantiene calidad y se ve completa */
+  .cs-gallery img[src*="acreditacion"] {
+    max-width: 1067px;
+    margin: 0 auto;
+  }
+  /* 2 columnas para los carteles */
+  .cs-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #efe9dd; }
+  .cs-row-2 img { width: 100%; height: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; background: #efe9dd; mix-blend-mode: darken; }
+
+  /* BACK */
+  .cs-back { text-align: center; padding: 120px 24px 100px; }
+  .cs-back a {
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: #1a1a1a; text-decoration: none; font-weight: 500;
+    border-bottom: 1px solid currentColor; padding-bottom: 5px;
+    transition: opacity .2s;
+  }
+  .cs-back a:hover { opacity: 0.55; }
+
+  /* FOOTER — oscuro estilo Somos */
+  .cs-footer { background: #111; color: rgba(255,255,255,0.55); padding: 70px 24px 40px; text-align: center; font-family: "Montserrat", sans-serif; }
+  .cs-footer-logo { display: inline-block; margin-bottom: 28px; }
+  .cs-footer-logo img { height: 40px; display: block; opacity: 0.95; }
+  .cs-footer-links { display: flex; justify-content: center; gap: 22px; margin-bottom: 22px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .cs-footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .cs-footer-links a:hover { color: #fff; }
+  .cs-footer-sep { color: rgba(255,255,255,0.2); }
+  .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; }
+
+  @media (max-width: 768px) {
+    .cs-titleblock { bottom: 32px; left: 20px; right: 20px; }
+    .cs-cat { margin-bottom: 14px; font-size: 10px; }
+    .cs-title { font-size: clamp(36px, 12vw, 72px); margin-bottom: 20px; }
+    .cs-desc { font-size: 14px; line-height: 1.55; }
+    .cs-back { padding: 80px 20px 60px; }
+    .cs-footer { padding: 50px 20px 30px; }
+    .cs-footer-links { flex-wrap: wrap; gap: 14px; font-size: 10px; }
+  }
+  @media (max-width: 480px) {
+    .cs-titleblock { bottom: 28px; left: 18px; right: 18px; }
+    .cs-title { font-size: clamp(32px, 14vw, 56px); margin-bottom: 16px; }
+    .cs-desc { font-size: 13px; }
   }
 </style>
 
@@ -67,82 +110,55 @@ import Layout from "../../../layouts/Layout.astro";
   "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
   "url": "https://ascndrworld.com/trabajos/branding/halloweenfest",
   "image": "https://ascndrworld.com/images/halloween-fest/pulsera-portada.jpg",
-  "keywords": ["branding", "identidad visual", "evento", "Halloween", "Los Villares", "Jaén", "diseño gráfico"],
+  "keywords": ["branding", "identidad visual", "evento", "Halloween", "Los Villares", "Jaén"],
   "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
   "dateCreated": "2024",
   "genre": "Branding · Identidad Visual · Evento"
 }
 `}</script>
 
-<div class="pp">
-  <nav class="pp-nav">
-    <a href="/trabajos">← Trabajos</a>
-    <a href="/" class="pp-nav-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
-    <a href="/">Contacto</a>
-  </nav>
+<div class="cs">
 
-  <div class="pp-header">
-    <span class="pp-title">Halloween Fest <em>· Branding</em></span>
-  </div>
-
-  <div class="pp-meta">
-    <div class="pp-meta-item">
-      <div class="pp-meta-label">Categoría</div>
-      <div class="pp-meta-value">Branding · Evento</div>
-    </div>
-    <div class="pp-meta-item">
-      <div class="pp-meta-label">Año</div>
-      <div class="pp-meta-value">MMXXIV — MMXXV</div>
-    </div>
-    <div class="pp-meta-item">
-      <div class="pp-meta-label">Cliente</div>
-      <div class="pp-meta-value">Halloween Fest · Los Villares (Jaén)</div>
-    </div>
-  </div>
-
-  <div class="pp-desc">
-    <p>Diseño de identidad visual completa para Halloween Fest, el evento de referencia de la noche de Halloween en Los Villares (Jaén). Dos ediciones consecutivas con dirección creativa integral: logo, carteles, pulseras VIP, acreditaciones y todos los materiales gráficos del evento.</p>
-  </div>
-
-  <div class="pp-gallery">
-    <div class="pp-gallery-wide">
+  <section class="cs-header">
+    <div class="cs-header-media">
       <img src="/images/halloween-fest/pulsera-portada.jpg" alt="Halloween Fest Los Villares Jaén — Branding e identidad visual por Ascndr" fetchpriority="high"/>
     </div>
-    <div class="pp-gallery-wide" style="margin-top:3px;">
-      <img src="/images/halloween-fest/tickets.jpg" alt="Tickets Halloween Fest Los Villares Jaén — branding Ascndr" loading="lazy" style="height:60vh;min-height:260px;"/>
+    <div class="cs-header-overlay"></div>
+    <div class="cs-titleblock">
+      <div class="cs-cat">Branding · Identidad Visual</div>
+      <h1 class="cs-title">Halloween Fest</h1>
+      <div class="cs-desc">
+        <p>Identidad visual integral para Halloween Fest en Los Villares (Jaén): logo, carteles, pulseras VIP y acreditaciones en dos ediciones consecutivas.</p>
+      </div>
     </div>
-    <div class="pp-gallery-grid" style="margin-top:3px;">
+  </section>
+
+  <div class="cs-gallery">
+    <img src="/images/halloween-fest/tickets.jpg" alt="Tickets Halloween Fest Los Villares Jaén — branding Ascndr" loading="lazy"/>
+    <div class="cs-row-2">
       <img src="/images/halloween-fest/cartel-oficial.jpg" alt="Cartel oficial Halloween Fest Los Villares Jaén — diseño Ascndr" loading="lazy"/>
       <img src="/images/halloween-fest/cartel-3-0.jpg" alt="Cartel 3ª edición Halloween Fest Jaén — Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditación Halloween Fest Los Villares Jaén — diseño gráfico Ascndr" loading="lazy"/>
-      <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP Halloween Fest Los Villares Jaén — identidad visual Ascndr" loading="lazy"/>
     </div>
+    <img src="/images/halloween-fest/acreditacion.jpg" alt="Acreditación Halloween Fest Los Villares Jaén — diseño gráfico Ascndr" loading="lazy"/>
+    <img src="/images/halloween-fest/pulseras.jpg" alt="Pulseras VIP Halloween Fest Los Villares Jaén — identidad visual Ascndr" loading="lazy"/>
   </div>
 
-  <div class="pp-cta">
-    <span class="pp-cta-text">¿Tienes un proyecto similar?</span>
-    <a href="/" class="pp-cta-btn">Hablemos →</a>
+  <div class="cs-back">
+    <a href="/trabajos">Volver a Trabajos</a>
   </div>
+
+  <footer class="cs-footer">
+    <a href="/" class="cs-footer-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
+    <div class="cs-footer-links">
+      <a href="/trabajos">Trabajos</a>
+      <span class="cs-footer-sep">·</span>
+      <a href="/contacto">Contacto</a>
+      <span class="cs-footer-sep">·</span>
+      <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="cs-footer-copy">© Ascndr 2026 · Marca Registrada</p>
+  </footer>
+
 </div>
-
-<script is:inline>
-(function(){
-  var nav = document.querySelector(".pp-nav");
-  var header = document.querySelector(".pp-header");
-  var last = 0;
-  function setHeaderPad(){
-    if(header && nav) header.style.paddingTop = (nav.offsetHeight + 12) + "px";
-  }
-  setHeaderPad();
-  window.addEventListener("resize", setHeaderPad);
-  window.addEventListener("scroll", function(){
-    var cur = window.scrollY;
-    if(cur <= 10){ nav.classList.remove("hidden"); }
-    else if(cur > last){ nav.classList.add("hidden"); }
-    else{ nav.classList.remove("hidden"); }
-    last = cur;
-  }, {passive:true});
-})();
-</script>
 
 </Layout>
