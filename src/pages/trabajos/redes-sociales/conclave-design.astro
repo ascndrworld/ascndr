@@ -5,7 +5,38 @@ import Layout from "../../../layouts/Layout.astro";
   title="Cónclave Design — Marketing y Redes Sociales · Ascndr"
   description="Gestión de contenido visual e Instagram marketing para Cónclave pub en Los Villares (Jaén). Estrategia de redes sociales, diseño de publicaciones y mockups por Ascndr."
   canonical="https://ascndrworld.com/trabajos/redes-sociales/conclave-design"
+  ogImage="https://ascndrworld.com/images/conclave/rrss-01.jpg"
+  ogImageAlt="Diseños de publicaciones de Instagram para Cónclave por Ascndr"
 >
+
+<Fragment slot="head">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ascndrworld.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Trabajos", "item": "https://ascndrworld.com/trabajos" },
+          { "@type": "ListItem", "position": 3, "name": "Redes Sociales", "item": "https://ascndrworld.com/trabajos#social" },
+          { "@type": "ListItem", "position": 4, "name": "Cónclave Design", "item": "https://ascndrworld.com/trabajos/redes-sociales/conclave-design" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Cónclave Design — Marketing y Redes Sociales",
+        "headline": "Gestión de contenido visual e Instagram marketing para Cónclave",
+        "description": "Gestión de contenido visual e Instagram marketing para Cónclave pub en Los Villares (Jaén). Estrategia de redes sociales, diseño de publicaciones y mockups.",
+        "url": "https://ascndrworld.com/trabajos/redes-sociales/conclave-design",
+        "image": "https://ascndrworld.com/images/conclave/rrss-01.jpg",
+        "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
+        "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
+        "keywords": ["redes sociales", "Instagram", "marketing digital", "diseño gráfico", "Cónclave", "Jaén"],
+        "inLanguage": "es-ES"
+      }
+    ]
+  })} />
+</Fragment>
 
 <style is:global>
   @import "../../../styles/global.css";

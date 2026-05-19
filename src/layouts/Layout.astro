@@ -4,13 +4,16 @@ export interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 const {
   title = "Ascndr · Consultoría Creativa - Branding, Lanzamientos y RRSS",
   description = "Ascndr es una consultoría creativa especializada en estrategia en redes sociales, branding, identidad visual, dirección creativa de eventos y dirección de proyectos multimedia.",
-  canonical = "https://ascndrworld.com"
+  canonical = "https://ascndrworld.com",
+  ogImage = "https://ascndrworld.com/images/og-ascndr.jpg",
+  ogImageAlt = "Ascndr — Consultoría creativa: branding, dirección creativa y redes sociales"
 } = Astro.props;
-const ogImage = "https://ascndrworld.com/images/og-ascndr.jpg";
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -23,7 +26,15 @@ const ogImage = "https://ascndrworld.com/images/og-ascndr.jpg";
   <meta name="description" content={description}/>
   <meta name="robots" content="index, follow"/>
   <meta name="author" content="Ascndr"/>
+  <meta name="theme-color" content="#0a0a0a"/>
   <link rel="canonical" href={canonical}/>
+
+  <!-- ── Favicons ── -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 
   <!-- ── Open Graph ── -->
   <meta property="og:type" content="website"/>
@@ -34,6 +45,7 @@ const ogImage = "https://ascndrworld.com/images/og-ascndr.jpg";
   <meta property="og:image" content={ogImage}/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content={ogImageAlt}/>
   <meta property="og:locale" content="es_ES"/>
 
   <!-- ── Twitter Card ── -->
@@ -41,6 +53,7 @@ const ogImage = "https://ascndrworld.com/images/og-ascndr.jpg";
   <meta name="twitter:title" content={title}/>
   <meta name="twitter:description" content={description}/>
   <meta name="twitter:image" content={ogImage}/>
+  <meta name="twitter:image:alt" content={ogImageAlt}/>
 
   <!-- ── Schema.org LocalBusiness ── -->
   <script type="application/ld+json" is:inline>{`
@@ -78,6 +91,8 @@ const ogImage = "https://ascndrworld.com/images/og-ascndr.jpg";
       try { emailjs.init({ publicKey: "RD0iA6EqENiEBxPXO" }); } catch(e) {}
     })();
   </script>
+
+  <slot name="head"/>
 </head>
 <body>
   <Header />
