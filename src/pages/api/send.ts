@@ -69,8 +69,8 @@ export const GET: APIRoute = async ({ url }) => {
                 <tr>
                   <td style="border-top:1px solid #18181b;padding-top:20px;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;text-align:center;line-height:1.6;" align="center">
                     <p style="margin:0;">
-                      <span style="color:#3f3f46;">© 2026 ASCNDR. Todos los derechos reservados.<br/>Recibes este correo porque nos escribiste a través de </span><a target="_blank" href="https://ascndrworld.com" style="color:#52525b;text-decoration:none;">ascndrworld.com</a><span style="color:#3f3f46;">.<br/></span>
-                      <a target="_blank" href="https://ascndrworld.com/privacidad" style="color:#52525b;text-decoration:underline;">Política de privacidad</a>
+                      <span style="color:#3f3f46;">© 2026 ASCNDR. Todos los derechos reservados.<br/>Recibes este correo porque nos escribiste a través de </span><a target="_blank" href="https://www.ascndrworld.com" style="color:#52525b;text-decoration:none;">ascndrworld.com</a><span style="color:#3f3f46;">.<br/></span>
+                      <a target="_blank" href="https://www.ascndrworld.com/privacidad" style="color:#52525b;text-decoration:underline;">Política de privacidad</a>
                     </p>
                   </td>
                 </tr>

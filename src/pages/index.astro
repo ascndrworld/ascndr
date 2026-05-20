@@ -1071,18 +1071,18 @@ function qmReset(reopen) {
 <script is:inline>
 (function(){
   var sectionCanonicals = {
-    "/":                              "https://ascndrworld.com/",
-    "/trabajos":                      "https://ascndrworld.com/trabajos",
-    "/trabajos/branding":             "https://ascndrworld.com/trabajos/branding",
-    "/trabajos/redes-sociales":       "https://ascndrworld.com/trabajos/redes-sociales",
-    "/trabajos/fotografia":           "https://ascndrworld.com/trabajos/fotografia",
-    "/trabajos/direccion-creativa":   "https://ascndrworld.com/trabajos/direccion-creativa",
-    "/terminos":                      "https://ascndrworld.com/terminos",
-    "/privacidad":                    "https://ascndrworld.com/privacidad"
+    "/":                              "https://www.ascndrworld.com/",
+    "/trabajos":                      "https://www.ascndrworld.com/trabajos",
+    "/trabajos/branding":             "https://www.ascndrworld.com/trabajos/branding",
+    "/trabajos/redes-sociales":       "https://www.ascndrworld.com/trabajos/redes-sociales",
+    "/trabajos/fotografia":           "https://www.ascndrworld.com/trabajos/fotografia",
+    "/trabajos/direccion-creativa":   "https://www.ascndrworld.com/trabajos/direccion-creativa",
+    "/terminos":                      "https://www.ascndrworld.com/terminos",
+    "/privacidad":                    "https://www.ascndrworld.com/privacidad"
   };
   function updateCanonical() {
     var path = window.location.pathname.replace(/\/+$/, "") || "/";
-    var url = sectionCanonicals[path] || ("https://ascndrworld.com" + path);
+    var url = sectionCanonicals[path] || ("https://www.ascndrworld.com" + path);
     var tag = document.querySelector("link[rel='canonical']");
     if (tag) tag.setAttribute("href", url);
   }
@@ -1101,27 +1101,27 @@ function qmReset(reopen) {
     "@type": "CreativeWork",
     "name": "Halloween Fest — Branding e Identidad Visual",
     "description": "Diseño de identidad visual completa para Halloween Fest Jaén: logo, carteles, pulseras, acreditaciones y dirección creativa del evento.",
-    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
+    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
     "keywords": ["branding", "identidad visual", "evento", "Halloween", "Jaén"],
-    "image": "https://ascndrworld.com/images/halloween-fest/pulsera-portada.jpg"
+    "image": "https://www.ascndrworld.com/images/halloween-fest/pulsera-portada.jpg"
   },
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": "Cónclave — Dirección Creativa y Rebranding",
     "description": "Transformación completa del pub Milenio 2.0 en Cónclave: naming, identidad visual, señalética y gestión de redes sociales en Jaén.",
-    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
+    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
     "keywords": ["rebranding", "dirección creativa", "pub", "hostelería", "Jaén"],
-    "image": "https://ascndrworld.com/images/conclave/portada-conclave2.jpg"
+    "image": "https://www.ascndrworld.com/images/conclave/portada-conclave2.jpg"
   },
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": "3ª Ed. Halloween Fest — Fotografía de Evento",
     "description": "Cobertura fotográfica profesional de la tercera edición de Halloween Fest Jaén desde dentro del evento.",
-    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://ascndrworld.com" },
+    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
     "keywords": ["fotografía", "cobertura evento", "Halloween", "Jaén"],
-    "image": "https://ascndrworld.com/images/halloween-fest/portada-halloween3.jpg"
+    "image": "https://www.ascndrworld.com/images/halloween-fest/portada-halloween3.jpg"
   }
 ]
 `}</script>
