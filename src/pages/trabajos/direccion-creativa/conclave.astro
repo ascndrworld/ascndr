@@ -84,6 +84,18 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-row-2-sq { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   .cs-row-2-sq img, .cs-row-2-sq video { width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
 
+  /* Etiquetas de seccion de la galeria — antes / proceso / el pub hoy */
+  .cs-gallery-label {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #F7EFDB;
+    background: #000;
+    margin: 0;
+    padding: 18px 24px;
+  }
+
   .cs-back { text-align: center; padding: 120px 24px 100px; background: #000; }
   .cs-back a {
     font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
@@ -107,6 +119,7 @@ import Layout from "../../../layouts/Layout.astro";
     .cs-cat { margin-bottom: 14px; font-size: 10px; }
     .cs-title { font-size: clamp(36px, 12vw, 72px); margin-bottom: 20px; }
     .cs-desc { font-size: 14px; line-height: 1.55; }
+    .cs-gallery-label { font-size: 11px; padding: 14px 20px; }
     .cs-back { padding: 80px 20px 60px; }
     .cs-footer { padding: 50px 20px 30px; }
     .cs-footer-links { flex-wrap: wrap; gap: 14px; font-size: 10px; }
@@ -151,22 +164,24 @@ import Layout from "../../../layouts/Layout.astro";
   </section>
 
   <div class="cs-gallery">
+    <h2 class="cs-gallery-label">Antes</h2>
     <div class="cs-row-2">
       <img src="/images/conclave/antes-01.jpg" alt="Milenio 2.0 antes del rebranding — Los Villares Jaén" loading="lazy"/>
       <img src="/images/conclave/antes-02.jpg" alt="Interior Milenio 2.0 antes de la transformación — Los Villares Jaén" loading="lazy"/>
     </div>
+    <h2 class="cs-gallery-label">Proceso</h2>
     <div class="cs-row-2-sq">
       <video src="/images/conclave/reveal-logo.mp4" poster="/images/conclave/reveal-logo-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
       <video src="/images/conclave/reveal-nombre.mp4" poster="/images/conclave/reveal-nombre-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
     </div>
-    <img src="/images/conclave/despues-01.jpg" alt="Cónclave pub Los Villares Jaén interior tras el rebranding — Ascndr" loading="lazy"/>
+    <h2 class="cs-gallery-label">El pub hoy</h2>
     <div class="cs-row-2">
-      <img src="/images/conclave/despues-02.jpg" alt="Cónclave pub Los Villares Jaén nueva identidad visual — Ascndr" loading="lazy"/>
       <img src="/images/conclave/despues-03.jpg" alt="Espacio Cónclave Los Villares Jaén rebranding completo — Ascndr" loading="lazy"/>
+      <img src="/images/conclave/despues-01.jpg" alt="Cónclave pub Los Villares Jaén interior tras el rebranding — Ascndr" loading="lazy"/>
     </div>
     <div class="cs-row-2">
+      <img src="/images/conclave/despues-02.jpg" alt="Cónclave pub Los Villares Jaén nueva identidad visual — Ascndr" loading="lazy"/>
       <img src="/images/conclave/despues-04.jpg" alt="Ambiente Cónclave pub Los Villares Jaén dirección creativa — Ascndr" loading="lazy"/>
-      <img src="/images/conclave/despues-05.jpg" alt="Detalle Cónclave pub Los Villares Jaén — Ascndr estudio creativo" loading="lazy"/>
     </div>
     <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
   </div>
