@@ -37,6 +37,8 @@
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.55);
     animation: ccIn 0.45s ease both;
   }
+  /* El atributo [hidden] debe ganar a display:flex (si no, no se oculta). */
+  .cc[hidden] { display: none; }
   @keyframes ccIn {
     from { opacity: 0; transform: translateY(100%); }
     to   { opacity: 1; transform: translateY(0); }
