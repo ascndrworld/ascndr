@@ -449,95 +449,6 @@
       text-transform: uppercase;
     }
 
-    /* ════ COOKIE BANNER — barra inferior full-width ════ */
-    .cookie-banner {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 150;
-      background: #000;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid #2a2a2a;
-      padding: 20px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      transform: translateY(100%);
-      opacity: 0;
-      transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .4s ease;
-      font-family: "Montserrat", sans-serif;
-    }
-    .cookie-banner.visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    .cookie-banner.hiding {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-
-    .cookie-text {
-      flex: 1 1 auto;
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.04em;
-      line-height: 1.65;
-      color: #9a9a9a;
-      max-width: 720px;
-    }
-    .cookie-text a {
-      color: #c8c8c8;
-      text-decoration: none;
-      border-bottom: 1px solid #3a3a3a;
-      padding-bottom: 1px;
-      transition: color .25s, border-color .25s;
-    }
-    .cookie-text a:hover {
-      color: var(--ink);
-      border-bottom-color: #666;
-    }
-
-    .cookie-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 0 0 auto;
-    }
-    .cookie-btn {
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 0 22px;
-      height: 38px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: background .25s, border-color .25s, color .25s;
-      white-space: nowrap;
-    }
-    .cookie-btn-reject {
-      background: transparent;
-      border: 1px solid #363636;
-      color: #888;
-    }
-    .cookie-btn-reject:hover {
-      border-color: #555;
-      color: #b8b8b8;
-    }
-    .cookie-btn-accept {
-      background: var(--ink);
-      border: 1px solid var(--ink);
-      color: #1a1a1a;
-    }
-    .cookie-btn-accept:hover {
-      background: #e8e8dc;
-      border-color: #e8e8dc;
-    }
-
     /* ════ DRAWER (query form) — batido.xyz style ════ */
     .drawer-overlay {
       display: none; position: fixed; inset: 0;
@@ -1065,29 +976,6 @@
         letter-spacing: 0.16em;
       }
 
-      /* COOKIE BANNER — móvil: apilar texto y botones */
-      .cookie-banner {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 16px;
-        padding: 18px 20px 20px;
-      }
-      .cookie-text {
-        font-size: 10.5px;
-        line-height: 1.6;
-        text-align: left;
-      }
-      .cookie-actions {
-        width: 100%;
-        gap: 8px;
-      }
-      .cookie-btn {
-        flex: 1 1 0;
-        font-size: 10px;
-        letter-spacing: 0.12em;
-        padding: 0 14px;
-        height: 40px;
-      }
 
       /* INNER PAGES (privacy / terms) */
       #privacy, #terms {
@@ -2279,15 +2167,6 @@
   .drawer-title { font-size: 22px; }
   .modal { padding: 32px 20px 24px; width: 92%; }
   .modal-title { font-size: 22px; }
-
-  /* Cookie banner */
-  .cookie-banner {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    padding: 16px;
-  }
-  .cookie-text { font-size: 10px; }
 
   /* Q Modal */
   .qmodal { width: 92vw; padding: 28px 20px; }

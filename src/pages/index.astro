@@ -369,17 +369,6 @@ import Layout from "../layouts/Layout.astro";
   </div>
 </div>
 
-<!-- ════ COOKIE BANNER ════ -->
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
-  <p class="cookie-text">
-    Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar tu experiencia. Puedes aceptarlas, rechazarlas o consultar más información en nuestra <a href="/privacidad">política de privacidad</a>.
-  </p>
-  <div class="cookie-actions">
-    <button class="cookie-btn cookie-btn-reject" onclick="handleCookie('rejected')">Rechazar</button>
-    <button class="cookie-btn cookie-btn-accept" onclick="handleCookie('accepted')">Aceptar</button>
-  </div>
-</div>
-
 <script>
   /* ════ ROUTING: URLs amigables por sección ════ */
   /* Mapa bidireccional entre id de página y ruta de URL */
@@ -664,30 +653,6 @@ import Layout from "../layouts/Layout.astro";
     if (e.key === "Escape") { closeDrawer(); closeModal(); }
   });
 
-  /* ════ COOKIE BANNER ════ */
-  const COOKIE_KEY = "ascndr_cookie_consent";
-
-  function initCookieBanner() {
-    try {
-      if (localStorage.getItem(COOKIE_KEY)) return; // ya decidido, no mostrar
-    } catch (e) { /* localStorage bloqueado → mostrar igualmente */ }
-
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    // pequeño delay para que entre después del halo de bienvenida
-    setTimeout(() => banner.classList.add("visible"), 1200);
-  }
-
-  function handleCookie(choice) {
-    try { localStorage.setItem(COOKIE_KEY, choice); } catch (e) {}
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    banner.classList.remove("visible");
-    banner.classList.add("hiding");
-    setTimeout(() => banner.remove(), 600);
-  }
-
-  window.addEventListener("load", initCookieBanner);
 </script>
 
 
@@ -1444,31 +1409,6 @@ function qmReset(reopen) {
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") { closeDrawer(); closeModal(); }
   });
-
-  /* ════ COOKIE BANNER ════ */
-  const COOKIE_KEY = "ascndr_cookie_consent";
-
-  function initCookieBanner() {
-    try {
-      if (localStorage.getItem(COOKIE_KEY)) return; // ya decidido, no mostrar
-    } catch (e) { /* localStorage bloqueado → mostrar igualmente */ }
-
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    // pequeño delay para que entre después del halo de bienvenida
-    setTimeout(() => banner.classList.add("visible"), 1200);
-  }
-
-  function handleCookie(choice) {
-    try { localStorage.setItem(COOKIE_KEY, choice); } catch (e) {}
-    const banner = document.getElementById("cookieBanner");
-    if (!banner) return;
-    banner.classList.remove("visible");
-    banner.classList.add("hiding");
-    setTimeout(() => banner.remove(), 600);
-  }
-
-  window.addEventListener("load", initCookieBanner);
 
   /* ════ PROTECCIÓN DESCARGA ════ */
   /* Bloquea clic derecho, arrastrar imágenes y el atributo download en vídeos */
