@@ -17,28 +17,34 @@
 </div>
 
 <style>
+  /* Barra de ancho completo anclada al borde inferior de la página.
+     En PC: texto a la izquierda, pills a la derecha. */
   .cc {
     position: fixed;
-    left: 50%;
-    bottom: 1.25rem;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 9999;
-    width: min(640px, calc(100vw - 2rem));
+    width: 100%;
     background: var(--field-bg, #1a1a1a);
-    border: 1px solid var(--dim, #2e2e2e);
-    border-radius: 14px;
-    padding: 1.1rem 1.25rem;
+    border-top: 1px solid var(--dim, #2e2e2e);
+    padding: 1rem clamp(1.25rem, 4vw, 40px);
     display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
-    animation: ccIn 0.4s ease both;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.75rem;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.55);
+    animation: ccIn 0.45s ease both;
   }
   @keyframes ccIn {
-    from { opacity: 0; transform: translate(-50%, 1rem); }
-    to   { opacity: 1; transform: translate(-50%, 0); }
+    from { opacity: 0; transform: translateY(100%); }
+    to   { opacity: 1; transform: translateY(0); }
   }
   .cc__text {
+    flex: 1;
+    min-width: 0;
+    max-width: 80ch;
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
     font-size: 0.82rem;
@@ -50,6 +56,7 @@
     text-decoration: underline;
   }
   .cc__actions {
+    flex-shrink: 0;
     display: flex;
     gap: 0.6rem;
     justify-content: flex-end;
@@ -75,7 +82,13 @@
     color: #000;
   }
   .cc__btn:hover { opacity: 0.82; }
-  @media (max-width: 480px) {
+  /* Móvil: el texto y las pills se apilan, las pills a ancho completo. */
+  @media (max-width: 640px) {
+    .cc {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.9rem;
+    }
     .cc__actions { justify-content: stretch; }
     .cc__btn { flex: 1; }
   }
