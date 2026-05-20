@@ -1,0 +1,130 @@
+---
+/*
+ * CookieConsent.astro — Banner de consentimiento RGPD.
+ * Al aceptar actualiza Google Consent Mode v2 y concede el Meta Pixel.
+ */
+---
+<div id="cookie-consent" class="cc" hidden>
+  <p class="cc__text">
+    Usamos cookies propias y de terceros para analizar el tráfico y mejorar tu
+    experiencia. Puedes aceptarlas todas o rechazarlas. Más información en nuestra
+    <a href="/privacidad">política de privacidad</a>.
+  </p>
+  <div class="cc__actions">
+    <button type="button" id="cc-reject" class="cc__btn cc__btn--ghost">Rechazar</button>
+    <button type="button" id="cc-accept" class="cc__btn cc__btn--solid">Aceptar</button>
+  </div>
+</div>
+
+<style>
+  .cc {
+    position: fixed;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: min(640px, calc(100vw - 2rem));
+    background: var(--field-bg, #1a1a1a);
+    border: 1px solid var(--dim, #2e2e2e);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    animation: ccIn 0.4s ease both;
+  }
+  @keyframes ccIn {
+    from { opacity: 0; transform: translate(-50%, 1rem); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+  }
+  .cc__text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink, #F7EFDB);
+  }
+  .cc__text a {
+    color: var(--ink, #F7EFDB);
+    text-decoration: underline;
+  }
+  .cc__actions {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: flex-end;
+  }
+  .cc__btn {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.55rem 1.3rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, background 0.2s ease;
+  }
+  .cc__btn--ghost {
+    background: transparent;
+    border: 1px solid var(--dim, #2e2e2e);
+    color: var(--ink, #F7EFDB);
+  }
+  .cc__btn--solid {
+    background: var(--ink, #F7EFDB);
+    border: 1px solid var(--ink, #F7EFDB);
+    color: #000;
+  }
+  .cc__btn:hover { opacity: 0.82; }
+  @media (max-width: 480px) {
+    .cc__actions { justify-content: stretch; }
+    .cc__btn { flex: 1; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var KEY = 'ascndr_cookie_consent';
+    var banner = document.getElementById('cookie-consent');
+    if (!banner) return;
+
+    function save(value) {
+      try { localStorage.setItem(KEY, value); } catch (e) {}
+    }
+
+    function grant() {
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+      if (typeof window.fbq === 'function') {
+        window.fbq('consent', 'grant');
+        window.fbq('track', 'PageView');
+      }
+    }
+
+    function hide() { banner.setAttribute('hidden', ''); }
+
+    var stored;
+    try { stored = localStorage.getItem(KEY); } catch (e) { stored = null; }
+
+    // Solo mostramos el banner si aún no hay decisión guardada.
+    if (stored !== 'accepted' && stored !== 'rejected') {
+      banner.removeAttribute('hidden');
+    }
+
+    document.getElementById('cc-accept').addEventListener('click', function () {
+      save('accepted');
+      grant();
+      hide();
+    });
+
+    document.getElementById('cc-reject').addEventListener('click', function () {
+      save('rejected');
+      hide();
+    });
+  })();
+</script>

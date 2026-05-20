@@ -1,0 +1,73 @@
+---
+/*
+ * Analytics.astro — Tracking centralizado con Google Consent Mode v2.
+ *
+ * Cada herramienta solo se carga si su variable de entorno está definida
+ * (ver .env.example). Antes de cargar nada, se declara el consentimiento
+ * por defecto como DENEGADO; el banner de cookies lo concede al aceptar.
+ */
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
+const META_PIXEL_ID = import.meta.env.PUBLIC_META_PIXEL_ID;
+const GSC_VERIFICATION = import.meta.env.PUBLIC_GSC_VERIFICATION;
+---
+{GSC_VERIFICATION && (
+  <meta name="google-site-verification" content={GSC_VERIFICATION} />
+)}
+
+{/* ── Consent Mode v2 — debe ejecutarse ANTES que cualquier etiqueta ── */}
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+  // Si el usuario ya aceptó en una visita previa, concedemos al instante
+  // (evita perder el primer pageview de los visitantes recurrentes).
+  try {
+    if (localStorage.getItem('ascndr_cookie_consent') === 'accepted') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
+  } catch (e) {}
+</script>
+
+{/* ── Google Tag Manager ── */}
+{GTM_ID && (
+  <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`} />
+)}
+
+{/* ── Google Analytics 4 (directo) ── */}
+{GA4_ID && (
+  <Fragment>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+    <script is:inline set:html={`gtag('js', new Date()); gtag('config', '${GA4_ID}');`} />
+  </Fragment>
+)}
+
+{/* ── Meta Pixel (Facebook / Instagram) ── */}
+{META_PIXEL_ID && (
+  <script is:inline set:html={`
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    var fbConsent = 'revoke';
+    try { if (localStorage.getItem('ascndr_cookie_consent') === 'accepted') fbConsent = 'grant'; } catch(e){}
+    fbq('consent', fbConsent);
+    fbq('init', '${META_PIXEL_ID}');
+    fbq('track', 'PageView');
+  `} />
+)}

@@ -985,6 +985,7 @@
     .info-table .val ul { list-style:none; }
     .info-table .val ul li::before { content:"· "; color:#8a8a8a; }
     .section-title { font-size:10px; letter-spacing:.22em; font-weight:400; color:var(--ink); text-transform:uppercase; margin:36px 0 12px; }
+    .subsection-title { font-size:11px; letter-spacing:.05em; font-weight:500; color:#d8d8d8; margin:24px 0 10px; }
     .body-text { font-size:12px; font-weight:300; color:#b8b8b8; line-height:1.95; margin-bottom:14px; }
     .body-text a { color:#d8d8d8; text-decoration:underline; text-decoration-color:#555; transition:color .2s, text-decoration-color .2s; }
     .body-text a:hover { color:var(--ink); text-decoration-color:#888; }

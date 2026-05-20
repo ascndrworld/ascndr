@@ -1,5 +1,8 @@
 ---
 import Header from "../components/Header.astro";
+import Analytics from "../components/Analytics.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 export interface Props {
   title?: string;
   description?: string;
@@ -20,6 +23,9 @@ const {
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+  <!-- ── Analytics & tracking ── -->
+  <Analytics />
 
   <!-- ── SEO básico ── -->
   <title>{title}</title>
@@ -95,8 +101,15 @@ const {
   <slot name="head"/>
 </head>
 <body>
+  {GTM_ID && (
+    <noscript>
+      <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+  )}
   <Header />
   <slot />
+  <CookieConsent />
 </body>
 </html>
 <style is:global>
