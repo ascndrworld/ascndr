@@ -41,9 +41,13 @@ import Layout from "../../../layouts/Layout.astro";
 <style is:global>
   @import "../../../styles/global.css";
 
-  html, body { background: #efe9dd; margin: 0; }
+  html { background: #000; margin: 0; }
+  body { background: #000; margin: 0; }
 
-  .cs { background: #efe9dd; color: #1a1a1a; min-height: 100vh; font-family: "Montserrat", sans-serif; }
+  .cs {
+    background: linear-gradient(to top, #000 320px, #efe9dd 320px);
+    color: #1a1a1a; min-height: 100vh; font-family: "Montserrat", sans-serif;
+  }
 
   /* HEADER — primera imagen como fondo, contenido superpuesto abajo a la izquierda */
   .cs-header {
@@ -80,10 +84,10 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   .cs-row-2 img { width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
 
-  .cs-back { text-align: center; padding: 120px 24px 100px; }
+  .cs-back { text-align: center; padding: 120px 24px 100px; background: #000; }
   .cs-back a {
     font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
-    color: #1a1a1a; text-decoration: none; font-weight: 500;
+    color: #F7EFDB; text-decoration: none; font-weight: 500;
     border-bottom: 1px solid currentColor; padding-bottom: 5px;
     transition: opacity .2s;
   }
@@ -96,7 +100,7 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
   .cs-footer-links a:hover { color: #fff; }
   .cs-footer-sep { color: rgba(255,255,255,0.2); }
-  .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; }
+  .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; text-transform: uppercase; }
 
   @media (max-width: 768px) {
     .cs-titleblock { bottom: 32px; left: 20px; right: 20px; }
