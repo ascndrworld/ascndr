@@ -78,7 +78,7 @@
      evita el "corte" visual que dejaba el ::before. */
   .site-header {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: env(safe-area-inset-top, 0px); left: 0; right: 0;
     z-index: 9999;
     display: flex;
     align-items: center;
