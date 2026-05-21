@@ -60,9 +60,19 @@
         || document.body.scrollTop
         || 0;
     }
+    function isMobile() {
+      return window.matchMedia('(max-width: 768px)').matches;
+    }
     function onScroll() {
       if (!header) return;
-      header.classList.toggle('scrolled', getScrollY() > 20);
+      var y = getScrollY();
+      header.classList.toggle('scrolled', y > 20);
+      // Móvil: header transparente y estático, visible solo arriba del todo
+      if (isMobile()) {
+        header.classList.toggle('header-hidden', y > 8);
+      } else {
+        header.classList.remove('header-hidden');
+      }
     }
     // El contenedor real puede ser window, document o body según el layout
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -89,7 +99,7 @@
     background-color: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    transition: height 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
+    transition: height 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, transform 0.35s ease;
   }
   .site-header.scrolled {
     height: 70px;
@@ -230,7 +240,14 @@
   /* Tablet — la hamburguesa ya está centrada vertical (top:50% + translateY) */
   @media (max-width: 768px) {
     .site-header { height: 90px; padding: 0 24px; }
-    .site-header.scrolled { height: 60px; }
+    /* En móvil el header se mantiene transparente y solo visible arriba del todo */
+    .site-header.scrolled {
+      height: 90px;
+      background-color: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .site-header.header-hidden { transform: translateY(-100%); }
     .site-logo img { height: 40px; }
     .site-header.scrolled .site-logo img { height: 26px; }
     .site-hamburger { right: 20px; }
