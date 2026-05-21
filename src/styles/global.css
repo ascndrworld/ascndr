@@ -12,12 +12,14 @@
     }
 
     html, body {
-      height: 100%;
       background: var(--bg);
       color: var(--ink);
       font-family: "Montserrat", sans-serif;
       font-weight: 300;
-      overflow-x: hidden;
+      /* clip (no hidden): evita scroll horizontal sin convertir el body
+         en un scroll-container — así scrollea el documento de forma
+         nativa y Safari iOS puede contraer su barra inferior. */
+      overflow-x: clip;
     }
 
     /* ── fade keyframe ── */
@@ -2096,7 +2098,7 @@
 
 /* Evitar overflow horizontal en móvil */
 @media (max-width: 768px) {
-  html, body { overflow-x: hidden; }
+  html, body { overflow-x: clip; }
 
   /* Works page en index SPA */
   #works { padding: 32px 16px 60px; }
