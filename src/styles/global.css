@@ -2028,17 +2028,18 @@
   .home-hero-content {
     flex: 1 !important;
     justify-content: flex-end !important;
-    align-items: flex-start !important;
+    align-items: flex-end !important;
     padding-top: 0 !important;
     padding-left: 20px !important;
     padding-right: 20px !important;
-    padding-bottom: 28px !important;
+    padding-bottom: 72px !important;
   }
   .home-hero-title {
     font-size: 52px !important;
     line-height: 54px !important;
     letter-spacing: -2px !important;
     margin-bottom: 20px !important;
+    text-align: right !important;
   }
   .home-hero-btn {
     font-size: 13px !important;
@@ -2065,7 +2066,7 @@
   .home-hero-content {
     padding-left: 16px !important;
     padding-right: 16px !important;
-    padding-bottom: 24px !important;
+    padding-bottom: 64px !important;
   }
   .home-hero-title {
     font-size: 42px !important;
