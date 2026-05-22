@@ -118,8 +118,7 @@ import Layout from "../../../layouts/Layout.astro";
   }
 </style>
 
-<script type="application/ld+json" is:inline>{`
-{
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Cónclave Design — Marketing y Redes Sociales",
@@ -131,8 +130,7 @@ import Layout from "../../../layouts/Layout.astro";
   "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
   "dateCreated": "2026",
   "genre": "Redes Sociales · Marketing Visual"
-}
-`}</script>
+})} />
 
 <div class="cs">
 

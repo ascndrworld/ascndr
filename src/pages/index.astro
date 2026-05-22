@@ -1059,8 +1059,7 @@ function qmReset(reopen) {
 </script>
 
 <!-- ── Schema.org: portfolio de proyectos ── -->
-<script type="application/ld+json" is:inline>{`
-[
+<script type="application/ld+json" is:inline set:html={JSON.stringify([
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -1088,8 +1087,7 @@ function qmReset(reopen) {
     "keywords": ["fotografía", "cobertura evento", "Halloween", "Jaén"],
     "image": "https://www.ascndrworld.com/images/halloween-fest/portada-halloween3.jpg"
   }
-]
-`}</script>
+])} />
 
 </Layout>
 

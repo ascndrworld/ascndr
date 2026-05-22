@@ -121,8 +121,7 @@ import Layout from "../../../layouts/Layout.astro";
   }
 </style>
 
-<script type="application/ld+json" is:inline>{`
-{
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "Halloween Fest — Fotografía de Evento",
@@ -134,8 +133,7 @@ import Layout from "../../../layouts/Layout.astro";
   "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
   "dateCreated": "2025",
   "genre": "Fotografía · Evento"
-}
-`}</script>
+})} />
 
 <div class="cs">
 

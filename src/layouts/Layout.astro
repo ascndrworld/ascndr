@@ -69,28 +69,24 @@ const {
   <meta name="twitter:image:alt" content={ogImageAlt}/>
 
   <!-- ── Schema.org LocalBusiness ── -->
-  <script type="application/ld+json" is:inline>{`
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Ascndr",
-      "description": "Estudio creativo en Jaén especializado en branding, identidad visual, dirección creativa de eventos, fotografía y gestión de redes sociales.",
-      "url": "https://www.ascndrworld.com",
-      "logo": "https://www.ascndrworld.com/ascndr-logo.png",
-      "image": "${ogImage}",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Jaén",
-        "addressRegion": "Andalucía",
-        "addressCountry": "ES"
-      },
-      "areaServed": ["Jaén", "Andalucía", "España"],
-      "serviceType": ["Branding", "Identidad Visual", "Dirección Creativa", "Fotografía de Eventos", "Gestión de Redes Sociales", "Marketing Digital"],
-      "sameAs": [
-        "https://www.instagram.com/ascndrworld"
-      ]
-    }
-  `}</script>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Ascndr",
+    "description": "Estudio creativo en Jaén especializado en branding, identidad visual, dirección creativa de eventos, fotografía y gestión de redes sociales.",
+    "url": "https://www.ascndrworld.com",
+    "logo": "https://www.ascndrworld.com/ascndr-logo.png",
+    "image": ogImage,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jaén",
+      "addressRegion": "Andalucía",
+      "addressCountry": "ES"
+    },
+    "areaServed": ["Jaén", "Andalucía", "España"],
+    "serviceType": ["Branding", "Identidad Visual", "Dirección Creativa", "Fotografía de Eventos", "Gestión de Redes Sociales", "Marketing Digital"],
+    "sameAs": ["https://www.instagram.com/ascndrworld"]
+  })} />
 
   <!-- ── Fuentes ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
