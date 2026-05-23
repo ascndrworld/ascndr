@@ -1,0 +1,87 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+<Layout
+  title="Eventsy — Web y Aplicaciones · Ascndr"
+  description="Eventsy: proyecto web y de aplicaciones desarrollado por Ascndr."
+  canonical="https://www.ascndrworld.com/trabajos/web/eventsy"
+>
+
+<section class="ev-wrap">
+  <div class="ev-inner">
+    <img src="/images/eventsy/logo-eventsy.png" alt="Logo de Eventsy" class="ev-logo" />
+    <p class="ev-cat">Web · Aplicaciones</p>
+    <h1 class="ev-title">Próximamente</h1>
+    <p class="ev-text">Estamos preparando el case study de Eventsy. Vuelve pronto.</p>
+    <a class="ev-back" href="/trabajos">‹ Volver a trabajos</a>
+  </div>
+</section>
+
+<style>
+  body { background: #F5F1DC !important; }
+
+  .ev-wrap {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 24px 80px;
+    background: #F5F1DC;
+    font-family: "Montserrat", sans-serif;
+    color: #1a1a1a;
+  }
+  .ev-inner {
+    max-width: 720px;
+    text-align: center;
+  }
+  .ev-logo {
+    max-width: 100%;
+    width: 480px;
+    height: auto;
+    display: block;
+    margin: 0 auto 32px;
+  }
+  .ev-cat {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(26,26,26,0.55);
+    margin: 0 0 12px;
+  }
+  .ev-title {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+  .ev-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(26,26,26,0.7);
+    margin: 0 0 40px;
+  }
+  .ev-back {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    text-decoration: none;
+    border: 1.5px solid rgba(26,26,26,0.4);
+    padding: 12px 28px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ev-back:hover { background: #1a1a1a; color: #F5F1DC; }
+
+  @media (max-width: 768px) {
+    .ev-wrap { padding: 110px 20px 60px; }
+    .ev-logo { width: 320px; margin-bottom: 24px; }
+    .ev-title { font-size: 32px; }
+    .ev-text { font-size: 15px; }
+  }
+</style>
+
+</Layout>

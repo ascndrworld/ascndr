@@ -21,6 +21,7 @@ import Layout from "../layouts/Layout.astro";
       <li><button class="tp-filter-option" type="button" role="option" data-filter="social">Redes Sociales</button></li>
       <li><button class="tp-filter-option" type="button" role="option" data-filter="photography">Fotografía</button></li>
       <li><button class="tp-filter-option" type="button" role="option" data-filter="direction">Dirección Creativa</button></li>
+      <li><button class="tp-filter-option" type="button" role="option" data-filter="web">Web</button></li>
     </ul>
   </div>
 </div>
@@ -41,6 +42,14 @@ import Layout from "../layouts/Layout.astro";
     <div class="tp-hover">
       <span class="tp-hover-cat">Branding</span>
       <span class="tp-hover-title">Halloween Fest</span>
+    </div>
+  </a>
+
+  <a class="tp-item tp-item--strip" data-category="web" href="/trabajos/web/eventsy">
+    <div class="tp-img tp-img--logo" style="background-image:url('/images/eventsy/logo-eventsy.png')"></div>
+    <div class="tp-hover">
+      <span class="tp-hover-cat">Web</span>
+      <span class="tp-hover-title">Aplicaciones</span>
     </div>
   </a>
 
@@ -198,17 +207,25 @@ import Layout from "../layouts/Layout.astro";
   .tp-filter-option:hover { color: #F7EFDB; background: rgba(255,255,255,0.04); }
   .tp-filter-option.active { color: #F7EFDB; font-weight: 600; }
 
-  /* GRID — mosaico asimétrico 3 cols × 4 rows, estilo Somos
-     Layout (4 trabajos):
+  /* GRID — mosaico asimétrico 3 cols × 5 rows, estilo Somos
+     Layout (5 trabajos):
        A A B
        A A B
+       E E E   ← strip full width, media altura
        C D D
        C D D
-     A,D: 2×2 grande · B,C: 1×2 alto
-     row-height = (100vh - filter_section ≈ 200px) / 2 → A+B ocupan justo el viewport */
+     A,D: 2×2 grande · B,C: 1×2 alto · E: 3×1 (full-width, ½ altura)
+     row-height = (100vh - filter_section ≈ 220px) / 2 → A+B ocupan justo el viewport */
   .tp-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    /* filas 1-2: top (Cónclave/Halloween) · fila 3: tira Eventsy (40% más alta que media) · filas 4-5: bottom */
+    grid-template-rows:
+      calc((100vh - 220px) / 2)
+      calc((100vh - 220px) / 2)
+      calc((100vh - 220px) * 0.7)
+      calc((100vh - 220px) / 2)
+      calc((100vh - 220px) / 2);
     grid-auto-rows: calc((100vh - 220px) / 2);
     gap: 0;
     background: var(--bg, #000000);
@@ -224,8 +241,10 @@ import Layout from "../layouts/Layout.astro";
   }
   .tp-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .tp-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }
-  .tp-item:nth-child(3) { grid-column: span 1; grid-row: span 2; }
-  .tp-item:nth-child(4) { grid-column: span 2; grid-row: span 2; }
+  .tp-item:nth-child(3) { grid-column: span 3; grid-row: span 1; }
+  .tp-item:nth-child(4) { grid-column: span 1; grid-row: span 2; }
+  .tp-item:nth-child(5) { grid-column: span 2; grid-row: span 2; }
+
 
   /* Cuando hay un filtro activo, vuelve a rejilla uniforme 4 cols cuadrada
      para evitar huecos al ocultar items */
@@ -247,6 +266,13 @@ import Layout from "../layouts/Layout.astro";
     transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
   }
   .tp-item:hover .tp-img { transform: scale(1.05); }
+
+  /* Tira Eventsy — sin fondo añadido; logo escalado al 38% sobre el fondo de la página */
+  .tp-img--logo {
+    background-size: 38% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
   /* HOVER — rgba(0,0,0,0.7), texto abajo izquierda */
   .tp-hover {
@@ -325,16 +351,27 @@ import Layout from "../layouts/Layout.astro";
     .tp-item:nth-child(1),
     .tp-item:nth-child(2),
     .tp-item:nth-child(3),
-    .tp-item:nth-child(4) {
+    .tp-item:nth-child(4),
+    .tp-item:nth-child(5) {
       grid-column: auto;
       grid-row: auto;
       aspect-ratio: 1 / 1;
       margin: 0;
     }
+    /* Strip Eventsy en móvil: full-width (2 cols), alto suficiente para ver el logo entero con cover */
+    .tp-item:nth-child(3),
+    .tp-item.tp-item--strip {
+      grid-column: span 2;
+      aspect-ratio: 3 / 1;
+    }
     .tp-grid.filtered {
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: auto;
       gap: 0;
+    }
+    .tp-grid.filtered .tp-item.tp-item--strip {
+      grid-column: auto;
+      aspect-ratio: 1 / 1;
     }
     /* Overlay siempre visible en móvil (sin :hover) con gradiente abajo */
     .tp-hover {
