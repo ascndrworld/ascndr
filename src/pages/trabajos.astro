@@ -358,11 +358,11 @@ import Layout from "../layouts/Layout.astro";
       aspect-ratio: 1 / 1;
       margin: 0;
     }
-    /* Strip Eventsy en móvil: full-width (2 cols), alto suficiente para ver el logo entero con cover */
+    /* Strip Eventsy en móvil: full-width (2 cols), proporción razonada con las cuadradas de arriba/abajo */
     .tp-item:nth-child(3),
     .tp-item.tp-item--strip {
       grid-column: span 2;
-      aspect-ratio: 3 / 1;
+      aspect-ratio: 2 / 1;
     }
     .tp-grid.filtered {
       grid-template-columns: repeat(2, 1fr);
