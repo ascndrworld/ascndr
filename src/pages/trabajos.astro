@@ -228,6 +228,9 @@ import Layout from "../layouts/Layout.astro";
       calc((100vh - 220px) / 2);
     grid-auto-rows: calc((100vh - 220px) / 2);
     gap: 0;
+    /* Mata cualquier hueco fantasma por nodos de texto entre <a> items */
+    font-size: 0;
+    line-height: 0;
     background: var(--bg, #000000);
   }
 
@@ -236,8 +239,12 @@ import Layout from "../layouts/Layout.astro";
     overflow: hidden;
     cursor: pointer;
     display: block;
+    vertical-align: top;
     text-decoration: none;
     color: inherit;
+    /* Restablece la tipografía dentro del item (el grid usa font-size:0/line-height:0) */
+    font-size: 16px;
+    line-height: 1.4;
   }
   .tp-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .tp-item:nth-child(2) { grid-column: span 1; grid-row: span 2; }
@@ -358,11 +365,11 @@ import Layout from "../layouts/Layout.astro";
       aspect-ratio: 1 / 1;
       margin: 0;
     }
-    /* Strip Eventsy en móvil: full-width (2 cols), tira rectangular bien fina */
+    /* Strip Eventsy en móvil: banner rectangular fino */
     .tp-item:nth-child(3),
     .tp-item.tp-item--strip {
       grid-column: span 2;
-      aspect-ratio: 4 / 1;
+      aspect-ratio: 6 / 1;
     }
     .tp-grid.filtered {
       grid-template-columns: repeat(2, 1fr);
@@ -381,8 +388,8 @@ import Layout from "../layouts/Layout.astro";
     }
     .tp-hover-title { font-size: 15px; }
     .tp-hover-cat { font-size: 11px; }
-    .tp-cta { padding: 40px 24px; }
-    .tp-cta p { font-size: 14px; }
+    .tp-cta { padding: 22px 24px 32px; }
+    .tp-cta p { font-size: 14px; margin-bottom: 14px; }
   }
 
   /* Móvil pequeño */
