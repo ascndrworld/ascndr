@@ -349,6 +349,8 @@ import Layout from "../layouts/Layout.astro";
     .tp-filter-option { font-size: 14px; padding: 9px 20px; }
     .tp-grid {
       grid-template-columns: repeat(2, 1fr);
+      /* Anula las 5 filas explícitas de desktop — en móvil solo hay 3 filas (top/strip/bottom) */
+      grid-template-rows: none;
       grid-auto-rows: auto;
       gap: 0;
       row-gap: 0;
