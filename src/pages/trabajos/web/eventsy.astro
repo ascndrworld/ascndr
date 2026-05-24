@@ -3,85 +3,164 @@ import Layout from "../../../layouts/Layout.astro";
 ---
 <Layout
   title="Eventsy — Web y Aplicaciones · Ascndr"
-  description="Eventsy: proyecto web y de aplicaciones desarrollado por Ascndr."
+  description="Eventsy: plataforma web y app para crear, gestionar y controlar eventos. Diseño y desarrollo de producto digital por Ascndr."
   canonical="https://www.ascndrworld.com/trabajos/web/eventsy"
+  ogImage="https://www.ascndrworld.com/images/eventsy/portada-eventsy.jpg"
+  ogImageAlt="Eventsy — plataforma web y aplicación móvil diseñada por Ascndr"
 >
 
-<section class="ev-wrap">
-  <div class="ev-inner">
-    <img src="/images/eventsy/logo-eventsy.png" alt="Logo de Eventsy" class="ev-logo" />
-    <p class="ev-cat">Web · Aplicaciones</p>
-    <h1 class="ev-title">Próximamente</h1>
-    <p class="ev-text">Estamos preparando el case study de Eventsy. Vuelve pronto.</p>
-    <a class="ev-back" href="/trabajos">‹ Volver a trabajos</a>
-  </div>
-</section>
+<Fragment slot="head">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ascndrworld.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Trabajos", "item": "https://www.ascndrworld.com/trabajos" },
+          { "@type": "ListItem", "position": 3, "name": "Web", "item": "https://www.ascndrworld.com/trabajos#web" },
+          { "@type": "ListItem", "position": 4, "name": "Eventsy", "item": "https://www.ascndrworld.com/trabajos/web/eventsy" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Eventsy — Web y Aplicaciones",
+        "headline": "Plataforma web y app para gestión de eventos",
+        "description": "Diseño y desarrollo de Eventsy: plataforma web responsive y aplicación móvil para crear, gestionar y controlar el acceso a eventos.",
+        "url": "https://www.ascndrworld.com/trabajos/web/eventsy",
+        "image": "https://www.ascndrworld.com/images/eventsy/portada-eventsy.jpg",
+        "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
+        "keywords": ["web", "aplicación", "diseño de producto", "UX/UI", "Eventsy", "eventos"],
+        "inLanguage": "es-ES"
+      }
+    ]
+  })} />
+</Fragment>
 
-<style>
-  body { background: #F5F1DC !important; }
+<style is:global>
+  @import "../../../styles/global.css";
 
-  .ev-wrap {
+  html { background: #000; margin: 0; }
+  body { background: #000; margin: 0; }
+
+  .cs {
+    background: #000;
+    color: #fff; min-height: 100vh; font-family: "Montserrat", sans-serif;
+  }
+
+  /* HEADER — isologo centrado + bloque de texto inferior-izquierda */
+  .cs-header {
+    position: relative;
+    width: 100%;
     min-height: 100vh;
     min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 140px 24px 80px;
-    background: #F5F1DC;
-    font-family: "Montserrat", sans-serif;
-    color: #1a1a1a;
+    overflow: hidden;
+    color: #fff;
   }
-  .ev-inner {
-    max-width: 720px;
-    text-align: center;
-  }
-  .ev-logo {
-    max-width: 100%;
-    width: 480px;
+  .cs-header-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(70px, 8vw, 110px);
     height: auto;
     display: block;
-    margin: 0 auto 32px;
+    z-index: 1;
   }
-  .ev-cat {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(26,26,26,0.55);
-    margin: 0 0 12px;
+  .cs-titleblock {
+    position: absolute;
+    bottom: 60px;
+    left: 40px;
+    right: 40px;
+    z-index: 2;
+    text-align: left;
+    max-width: 720px;
   }
-  .ev-title {
-    font-size: 44px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin: 0 0 16px;
+  .cs-cat { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,241,232,0.7); font-weight: 500; margin-bottom: 18px; }
+  .cs-title { font-size: clamp(44px, 7vw, 108px); font-weight: 700; letter-spacing: -0.025em; line-height: 0.95; color: #fff; margin: 0 0 24px; }
+  .cs-desc { font-size: 15px; line-height: 1.6; color: rgba(245,241,232,0.85); font-weight: 400; max-width: 520px; }
+  .cs-desc p { margin: 0; }
+
+  /* GALLERY — imágenes tal cual se subieron, sin blend modes */
+  .cs-gallery {
+    display: block; padding: 0;
+    background: #c4c4c4;
   }
-  .ev-text {
-    font-size: 16px;
-    line-height: 1.6;
-    color: rgba(26,26,26,0.7);
-    margin: 0 0 40px;
+  .cs-gallery img {
+    width: 100%; height: auto; display: block;
   }
-  .ev-back {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #1a1a1a;
-    text-decoration: none;
-    border: 1.5px solid rgba(26,26,26,0.4);
-    padding: 12px 28px;
-    transition: background 0.2s, color 0.2s;
+
+  /* BACK */
+  .cs-back { text-align: center; padding: 120px 24px 100px; background: #000; }
+  .cs-back a {
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: #F7EFDB; text-decoration: none; font-weight: 500;
+    border-bottom: 1px solid currentColor; padding-bottom: 5px;
+    transition: opacity .2s;
   }
-  .ev-back:hover { background: #1a1a1a; color: #F5F1DC; }
+  .cs-back a:hover { opacity: 0.55; }
+
+  /* FOOTER */
+  .cs-footer { background: #000; color: rgba(255,255,255,0.55); padding: 70px 24px 40px; text-align: center; font-family: "Montserrat", sans-serif; }
+  .cs-footer-logo { display: inline-block; margin-bottom: 28px; }
+  .cs-footer-logo img { height: 40px; display: block; opacity: 0.95; }
+  .cs-footer-links { display: flex; justify-content: center; gap: 22px; margin-bottom: 22px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .cs-footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .cs-footer-links a:hover { color: #fff; }
+  .cs-footer-sep { color: rgba(255,255,255,0.2); }
+  .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; text-transform: uppercase; }
 
   @media (max-width: 768px) {
-    .ev-wrap { padding: 110px 20px 60px; }
-    .ev-logo { width: 320px; margin-bottom: 24px; }
-    .ev-title { font-size: 32px; }
-    .ev-text { font-size: 15px; }
+    .cs-titleblock { bottom: 32px; left: 20px; right: 20px; }
+    .cs-cat { margin-bottom: 14px; font-size: 10px; }
+    .cs-title { font-size: clamp(36px, 12vw, 72px); margin-bottom: 18px; }
+    .cs-desc { font-size: 14px; line-height: 1.55; }
+    .cs-back { padding: 80px 20px 60px; }
+    .cs-footer { padding: 50px 20px 30px; }
+    .cs-footer-links { flex-wrap: wrap; gap: 14px; font-size: 10px; }
+  }
+  @media (max-width: 480px) {
+    .cs-titleblock { bottom: 28px; left: 18px; right: 18px; }
+    .cs-title { font-size: clamp(32px, 14vw, 56px); }
+    .cs-desc { font-size: 13px; }
   }
 </style>
+
+<div class="cs">
+
+  <section class="cs-header">
+    <img src="/images/eventsy/isologo-eventsy.png" alt="Isologo de Eventsy" class="cs-header-logo" fetchpriority="high"/>
+    <div class="cs-titleblock">
+      <div class="cs-cat">Web · Aplicaciones</div>
+      <h1 class="cs-title">Eventsy</h1>
+      <div class="cs-desc">
+        <p>Plataforma web y aplicación móvil para crear, gestionar y controlar el acceso a eventos. Diseño de producto, UX/UI y desarrollo end-to-end.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-gallery">
+    <img src="/images/eventsy/portada-eventsy.jpg" alt="Eventsy — plataforma web y app móvil" loading="lazy"/>
+    <img src="/images/eventsy/paginas.jpg" alt="Pantallas de creación y configuración de evento en Eventsy — diseño UI Ascndr" loading="lazy"/>
+    <img src="/images/eventsy/moviles-app.jpg" alt="Aplicación móvil Eventsy — dashboard, escáner de entradas y métricas en tiempo real" loading="lazy"/>
+  </div>
+
+  <div class="cs-back">
+    <a href="/trabajos">Volver a Trabajos</a>
+  </div>
+
+  <footer class="cs-footer">
+    <a href="/" class="cs-footer-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
+    <div class="cs-footer-links">
+      <a href="/trabajos">Trabajos</a>
+      <span class="cs-footer-sep">·</span>
+      <a href="/contacto">Contacto</a>
+      <span class="cs-footer-sep">·</span>
+      <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="cs-footer-copy">© Ascndr 2026 · Marca Registrada</p>
+  </footer>
+
+</div>
 
 </Layout>
