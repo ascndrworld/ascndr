@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ascndrworld.com/sitemap.xml
+Sitemap: https://www.ascndrworld.com/sitemap-index.xml

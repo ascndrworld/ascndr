@@ -6,8 +6,5 @@
       "destination": "https://www.ascndrworld.com/:path*",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
   ]
 }

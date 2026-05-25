@@ -8,6 +8,9 @@ import Layout from "../layouts/Layout.astro";
   canonical="https://www.ascndrworld.com/trabajos"
 >
 
+<!-- ENCABEZADO SEO (oculto visualmente, accesible para Googlebot y lectores) -->
+<h1 class="tp-sr-only">Portfolio de Ascndr — Branding, Dirección Creativa, Fotografía y Redes Sociales</h1>
+
 <!-- FILTROS — desplegable centrado, estilo Somos -->
 <div class="tp-filter-section">
   <div class="tp-filter-dropdown" id="tpDropdown">
@@ -132,6 +135,18 @@ import Layout from "../layouts/Layout.astro";
 
 <style>
   body { background: var(--bg, #000000) !important; }
+
+  .tp-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   .tp-filter-section {
     padding-top: 140px;
