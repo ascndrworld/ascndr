@@ -1160,6 +1160,13 @@
     .work-card.size-sm   { grid-column: span 4; grid-row: span 2; }
     .work-card.size-wide { grid-column: span 12; grid-row: span 4; }
 
+    /* Variante strip: ancho completo, baja */
+    .work-card--strip {
+      grid-column: span 12;
+      grid-row: span 2;
+      background: linear-gradient(135deg, #0f1116 0%, #1a1d28 100%);
+    }
+
     /* Imagen de la tarjeta (placeholder con gradient hasta que pongas las reales) */
     .work-media {
       position: absolute;
@@ -1172,6 +1179,18 @@
     .work-card:hover .work-media {
       transform: scale(1.04);
       filter: saturate(1) brightness(0.9);
+    }
+
+    /* Variante logo: centrado, sin recorte, sin filtro de oscurecido */
+    .work-media--logo {
+      background-size: clamp(160px, 18vw, 280px) auto;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: none;
+    }
+    .work-card:hover .work-media--logo {
+      filter: none;
+      transform: scale(1.04);
     }
 
     /* Overlay degradado inferior para legibilidad */
@@ -1335,6 +1354,7 @@
       .work-card.size-md   { grid-column: span 6; grid-row: span 2; }
       .work-card.size-sm   { grid-column: span 3; grid-row: span 2; }
       .work-card.size-wide { grid-column: span 6; grid-row: span 2; }
+      .work-card--strip    { grid-column: span 6; grid-row: span 2; }
     }
     @media (max-width: 640px) {
       #works { padding: 32px 18px 56px; }
@@ -1351,6 +1371,7 @@
       .work-card.size-md,
       .work-card.size-wide { grid-column: span 2; grid-row: span 2; }
       .work-card.size-sm   { grid-column: span 1; grid-row: span 2; }
+      .work-card--strip    { grid-column: span 2; grid-row: span 1; }
       .work-info { padding: 14px 14px; }
       .work-name { font-size: 13px; }
       .works-cta {
@@ -2302,12 +2323,25 @@
   cursor: pointer;
 }
 
+.hs-work-item--strip {
+  grid-column: 1 / -1;
+  aspect-ratio: 6/1;
+  background: linear-gradient(135deg, #0f1116 0%, #1a1d28 100%);
+}
+
 .hs-work-img {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.hs-work-img--logo {
+  background-size: clamp(180px, 22vw, 320px) auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
 }
 .hs-work-item:hover .hs-work-img { transform: scale(1.05); }
 
@@ -2453,5 +2487,6 @@
   .hs-services-text { font-size: 14px; }
   .hs-works { grid-template-columns: 1fr; }
   .hs-work-item { aspect-ratio: 3/2; }
+  .hs-work-item--strip { aspect-ratio: 4/1; }
   .hs-footer-middle { gap: 28px; }
 }
