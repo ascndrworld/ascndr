@@ -99,7 +99,6 @@ export const GET: APIRoute = async ({ url }) => {
       to: email,
       reply_to: "frank@ascndrworld.com",
       subject: "Bienvenido a Ascndr",
-      reply_to: "frank@ascndrworld.com",
       html: htmlCliente,
     });
 
