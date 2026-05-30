@@ -2325,7 +2325,7 @@
 
 .hs-work-item--strip {
   grid-column: 1 / -1;
-  aspect-ratio: 6/1;
+  aspect-ratio: 8/3;
   background: linear-gradient(135deg, #0f1116 0%, #1a1d28 100%);
 }
 
@@ -2487,6 +2487,6 @@
   .hs-services-text { font-size: 14px; }
   .hs-works { grid-template-columns: 1fr; }
   .hs-work-item { aspect-ratio: 3/2; }
-  .hs-work-item--strip { aspect-ratio: 4/1; }
+  .hs-work-item--strip { aspect-ratio: 3/2; }
   .hs-footer-middle { gap: 28px; }
 }
