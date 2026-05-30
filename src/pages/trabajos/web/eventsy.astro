@@ -10,6 +10,7 @@ import Layout from "../../../layouts/Layout.astro";
 >
 
 <Fragment slot="head">
+  <link rel="preload" as="image" href="/images/eventsy/portada-carrusel.png" fetchpriority="high" />
   <script type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
@@ -48,7 +49,7 @@ import Layout from "../../../layouts/Layout.astro";
     color: #fff; min-height: 100vh; font-family: "Montserrat", sans-serif;
   }
 
-  /* HEADER — isologo centrado + bloque de texto inferior-izquierda */
+  /* HEADER — portada (isologo ya integrado) + bloque de texto inferior-izquierda */
   .cs-header {
     position: relative;
     width: 100%;
@@ -56,16 +57,15 @@ import Layout from "../../../layouts/Layout.astro";
     min-height: 100svh;
     overflow: hidden;
     color: #fff;
+    background: #1b0c2e url("/images/eventsy/portada-carrusel.png") center / cover no-repeat;
   }
-  .cs-header-logo {
+  .cs-header::after {
+    content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: clamp(70px, 8vw, 110px);
-    height: auto;
-    display: block;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.18) 38%, rgba(0,0,0,0) 68%);
     z-index: 1;
+    pointer-events: none;
   }
   .cs-titleblock {
     position: absolute;
@@ -81,12 +81,13 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-desc { font-size: 15px; line-height: 1.6; color: rgba(245,241,232,0.85); font-weight: 400; max-width: 520px; }
   .cs-desc p { margin: 0; }
 
-  /* GALLERY — imágenes tal cual se subieron, sin blend modes */
+  /* GALLERY — mockups sobre fondo gris unificado */
   .cs-gallery {
     display: block; padding: 0;
-    background: #c4c4c4;
+    background: #d3d3d3;
   }
-  .cs-gallery img {
+  .cs-shot { margin: 0; display: block; background: #d3d3d3; }
+  .cs-shot img {
     width: 100%; height: auto; display: block;
   }
 
@@ -110,6 +111,9 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-footer-sep { color: rgba(255,255,255,0.2); }
   .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; text-transform: uppercase; }
 
+  /* Hint de scroll — solo móvil */
+  .cs-scrollhint { display: none; }
+
   @media (max-width: 768px) {
     .cs-titleblock { bottom: 32px; left: 20px; right: 20px; }
     .cs-cat { margin-bottom: 14px; font-size: 10px; }
@@ -118,6 +122,27 @@ import Layout from "../../../layouts/Layout.astro";
     .cs-back { padding: 80px 20px 60px; }
     .cs-footer { padding: 50px 20px 30px; }
     .cs-footer-links { flex-wrap: wrap; gap: 14px; font-size: 10px; }
+
+    /* Ampliar el contenido: mockups a tamaño legible con scroll horizontal */
+    .cs-scrollhint {
+      display: block;
+      margin: 0; padding: 14px 20px 12px;
+      background: #d3d3d3; color: #555;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      text-align: center; font-weight: 500;
+    }
+    .cs-shot {
+      overflow-x: auto; overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+    .cs-shot::-webkit-scrollbar { display: none; }
+    .cs-shot + .cs-shot { margin-top: 6px; }
+    .cs-shot img {
+      width: auto; height: 82vh; max-height: 600px;
+      scroll-snap-align: center;
+    }
   }
   @media (max-width: 480px) {
     .cs-titleblock { bottom: 28px; left: 18px; right: 18px; }
@@ -129,7 +154,6 @@ import Layout from "../../../layouts/Layout.astro";
 <div class="cs">
 
   <section class="cs-header">
-    <img src="/images/eventsy/isologo-eventsy.png" alt="Isologo de Eventsy" class="cs-header-logo" fetchpriority="high"/>
     <div class="cs-titleblock">
       <div class="cs-cat">Web · Aplicaciones</div>
       <h1 class="cs-title">Eventsy</h1>
@@ -140,9 +164,10 @@ import Layout from "../../../layouts/Layout.astro";
   </section>
 
   <div class="cs-gallery">
-    <img src="/images/eventsy/portada-eventsy.jpg" alt="Eventsy — plataforma web y app móvil" loading="lazy"/>
-    <img src="/images/eventsy/paginas.jpg" alt="Pantallas de creación y configuración de evento en Eventsy — diseño UI Ascndr" loading="lazy"/>
-    <img src="/images/eventsy/moviles-app.jpg" alt="Aplicación móvil Eventsy — dashboard, escáner de entradas y métricas en tiempo real" loading="lazy"/>
+    <p class="cs-scrollhint">Desliza para ver el detalle →</p>
+    <figure class="cs-shot"><img src="/images/eventsy/portada-eventsy.jpg" alt="Eventsy — plataforma web y app móvil" loading="lazy"/></figure>
+    <figure class="cs-shot"><img src="/images/eventsy/paginas.jpg" alt="Pantallas de creación y configuración de evento en Eventsy — diseño UI Ascndr" loading="lazy"/></figure>
+    <figure class="cs-shot"><img src="/images/eventsy/moviles-app.jpg" alt="Aplicación móvil Eventsy — dashboard, escáner de entradas y métricas en tiempo real" loading="lazy"/></figure>
   </div>
 
   <div class="cs-back">
