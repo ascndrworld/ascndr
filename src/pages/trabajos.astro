@@ -60,7 +60,7 @@ import Layout from "../layouts/Layout.astro";
     <div class="tp-img" style="background-image:url('/images/eventsy/portada-carrusel.png'); background-position:center 45%;"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Web</span>
-      <span class="tp-hover-title">Aplicaciones</span>
+      <span class="tp-hover-title">Eventsy</span>
     </div>
   </a>
 
@@ -372,11 +372,11 @@ import Layout from "../layouts/Layout.astro";
       aspect-ratio: 1 / 1;
       margin: 0;
     }
-    /* Strip Fotografía en móvil: ancho completo, misma altura que una tarjeta */
+    /* Strip Fotografía en móvil: ancho completo y cuadrada (más alta) */
     .tp-item:nth-child(5),
     .tp-item.tp-item--strip {
       grid-column: span 2;
-      aspect-ratio: 2 / 1;
+      aspect-ratio: 1 / 1;
     }
     .tp-grid.filtered {
       grid-template-columns: repeat(2, 1fr);
