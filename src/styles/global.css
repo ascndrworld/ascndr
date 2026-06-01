@@ -2475,9 +2475,20 @@
   .hs-services { padding: 80px 24px; }
   .hs-services-title { font-size: 56px; letter-spacing: -2px; margin-bottom: 28px; }
   .hs-services-text { font-size: 16px; }
-  .hs-works { grid-template-columns: 1fr 1fr; }
-  .hs-work-name { font-size: 22px; }
-  .hs-work-overlay { opacity: 1; background: rgba(0,0,0,0.45); }
+  /* Móvil: una sola columna full-width, un proyecto debajo de otro (estilo Somos) */
+  .hs-works { grid-template-columns: 1fr; }
+  .hs-work-item { aspect-ratio: 16/9; }
+  .hs-work-item--strip { grid-column: auto; aspect-ratio: 16/9; }
+  .hs-work-overlay {
+    opacity: 1;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  .hs-work-cat { display: none; }
+  .hs-work-name { font-size: 26px; }
   .hs-footer { padding: 48px 24px 32px; }
   .hs-footer-middle { gap: 40px; }
 }
@@ -2485,8 +2496,6 @@
 @media (max-width: 480px) {
   .hs-services-title { font-size: 42px; letter-spacing: -1.5px; }
   .hs-services-text { font-size: 14px; }
-  .hs-works { grid-template-columns: 1fr; }
-  .hs-work-item { aspect-ratio: 3/2; }
-  .hs-work-item--strip { aspect-ratio: 3/2; }
+  .hs-work-name { font-size: 24px; }
   .hs-footer-middle { gap: 28px; }
 }
