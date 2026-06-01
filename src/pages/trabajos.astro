@@ -29,7 +29,7 @@ import Layout from "../layouts/Layout.astro";
   </div>
 </div>
 
-<!-- GRID — 4 columnas cuadradas, gap:0, igual Somos -->
+<!-- GRID — columnas iguales cuadradas, gap:0, igual /proyectos de Somos -->
 <div class="tp-grid" id="tpGrid">
 
   <a class="tp-item" data-category="direction" href="/trabajos/direccion-creativa/conclave">
@@ -64,7 +64,7 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </a>
 
-  <a class="tp-item tp-item--strip" data-category="photography" href="/trabajos/fotografia/halloweenfest-fotografia">
+  <a class="tp-item" data-category="photography" href="/trabajos/fotografia/halloweenfest-fotografia">
     <div class="tp-img" style="background-image:url('/images/halloween-fest/portada-halloween3.jpg')"></div>
     <div class="tp-hover">
       <span class="tp-hover-cat">Fotografía</span>
@@ -231,17 +231,10 @@ import Layout from "../layouts/Layout.astro";
        F F F   F = Fotografía (3×1, tira full-width)
      A,E: 2×2 grande · B,C: 1×2 alto · F: 3×1 (full-width, altura de un hero)
      row-height = (100vh - filter_section ≈ 220px) / 2 → A+B ocupan justo el viewport */
+  /* GRID — columnas iguales cuadradas, gap 0 (estilo /proyectos de Somos) */
   .tp-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* filas 1-4: cuadros (Cónclave/Halloween · Briefing/Eventsy) · fila 5: tira Fotografía (misma altura que una tarjeta completa) */
-    grid-template-rows:
-      calc((100vh - 220px) / 2)
-      calc((100vh - 220px) / 2)
-      calc((100vh - 220px) / 2)
-      calc((100vh - 220px) / 2)
-      calc(100vh - 220px);
-    grid-auto-rows: calc((100vh - 220px) / 2);
     gap: 0;
     /* Mata cualquier hueco fantasma por nodos de texto entre <a> items */
     font-size: 0;
@@ -257,27 +250,10 @@ import Layout from "../layouts/Layout.astro";
     vertical-align: top;
     text-decoration: none;
     color: inherit;
+    aspect-ratio: 1 / 1;
     /* Restablece la tipografía dentro del item (el grid usa font-size:0/line-height:0) */
     font-size: 16px;
     line-height: 1.4;
-  }
-  .tp-item:nth-child(1) { grid-column: span 2; grid-row: span 2; } /* Cónclave */
-  .tp-item:nth-child(2) { grid-column: span 1; grid-row: span 2; } /* Halloween Fest */
-  .tp-item:nth-child(3) { grid-column: span 1; grid-row: span 2; } /* Briefing */
-  .tp-item:nth-child(4) { grid-column: span 2; grid-row: span 2; } /* Eventsy */
-  .tp-item:nth-child(5) { grid-column: span 3; grid-row: span 1; } /* Fotografía (tira, altura de un hero) */
-
-
-  /* Cuando hay un filtro activo, vuelve a rejilla uniforme 4 cols cuadrada
-     para evitar huecos al ocultar items */
-  .tp-grid.filtered {
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: auto;
-  }
-  .tp-grid.filtered .tp-item {
-    grid-column: auto;
-    grid-row: auto;
-    aspect-ratio: 1 / 1;
   }
 
   .tp-img {
@@ -301,7 +277,8 @@ import Layout from "../layouts/Layout.astro";
     justify-content: flex-end;
     padding: 20px;
   }
-  .tp-item:hover .tp-hover { opacity: 1; }
+  .tp-item:hover .tp-hover,
+  .tp-item.is-touch-active .tp-hover { opacity: 1; }
 
   .tp-hover-title {
     font-family: "Montserrat", sans-serif;
@@ -346,55 +323,21 @@ import Layout from "../layouts/Layout.astro";
   }
   .tp-cta a:hover { background: #fff; color: #000; }
 
-  /* Tablet/Móvil — grid 2 columnas de cuadrados + tira Fotografía al final */
+  /* Tablet/Móvil — una sola columna, un trabajo debajo de otro */
   @media (max-width: 768px) {
     .tp-filter-section { padding-top: 110px; padding-bottom: 16px; }
     .tp-filter-trigger { font-size: 18px; }
     .tp-filter-menu { min-width: 220px; }
     .tp-filter-option { font-size: 14px; padding: 9px 20px; }
-    .tp-grid {
-      grid-template-columns: repeat(2, 1fr);
-      /* Anula las 5 filas explícitas de desktop — en móvil mandan los aspect-ratio */
-      grid-template-rows: none;
-      grid-auto-rows: auto;
-      gap: 0;
-      row-gap: 0;
-      column-gap: 0;
-    }
-    .tp-item,
-    .tp-item:nth-child(1),
-    .tp-item:nth-child(2),
-    .tp-item:nth-child(3),
-    .tp-item:nth-child(4),
-    .tp-item:nth-child(5) {
-      grid-column: auto;
-      grid-row: auto;
-      aspect-ratio: 1 / 1;
-      margin: 0;
-    }
-    /* Strip Fotografía en móvil: ancho completo y cuadrada (más alta) */
-    .tp-item:nth-child(5),
-    .tp-item.tp-item--strip {
-      grid-column: span 2;
-      aspect-ratio: 1 / 1;
-    }
-    .tp-grid.filtered {
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: auto;
-      gap: 0;
-    }
-    .tp-grid.filtered .tp-item.tp-item--strip {
-      grid-column: auto;
-      aspect-ratio: 1 / 1;
-    }
-    /* Overlay siempre visible en móvil (sin :hover) con gradiente abajo */
+    .tp-grid { grid-template-columns: 1fr; }
+    /* Overlay oculto; al tocar/deslizar el dedo se oscurece y salen los datos */
     .tp-hover {
-      opacity: 1;
-      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.7) 100%);
-      padding: 12px;
+      opacity: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
     }
-    .tp-hover-title { font-size: 15px; }
-    .tp-hover-cat { font-size: 11px; }
+    .tp-hover-title { font-size: 18px; }
+    .tp-hover-cat { font-size: 13px; }
     .tp-cta { padding: 22px 24px 32px; }
     .tp-cta p { font-size: 14px; margin-bottom: 14px; }
   }

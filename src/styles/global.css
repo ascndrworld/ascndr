@@ -2356,7 +2356,8 @@
   padding: 28px;
   transition: opacity 0.3s ease;
 }
-.hs-work-item:hover .hs-work-overlay { opacity: 1; }
+.hs-work-item:hover .hs-work-overlay,
+.hs-work-item.is-touch-active .hs-work-overlay { opacity: 1; }
 
 .hs-work-cat {
   font-family: "Montserrat", sans-serif;
@@ -2479,16 +2480,26 @@
   .hs-works { grid-template-columns: 1fr; }
   .hs-work-item { aspect-ratio: 16/9; }
   .hs-work-item--strip { grid-column: auto; aspect-ratio: 16/9; }
+  /* Overlay oculto por defecto; aparece al tocar/deslizar el dedo por la tarjeta (estilo Somos) */
   .hs-work-overlay {
-    opacity: 1;
-    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    background: rgba(0,0,0,0.45);
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 20px;
+    transition: opacity 0.3s ease;
   }
+  .hs-work-item:hover .hs-work-overlay,
+.hs-work-item.is-touch-active .hs-work-overlay { opacity: 1; }
   .hs-work-cat { display: none; }
-  .hs-work-name { font-size: 26px; }
+  .hs-work-name {
+    font-size: 26px;
+    transform: translateY(14px);
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .hs-work-item:hover .hs-work-name,
+  .hs-work-item.is-touch-active .hs-work-name { transform: translateY(0); }
   .hs-footer { padding: 48px 24px 32px; }
   .hs-footer-middle { gap: 40px; }
 }

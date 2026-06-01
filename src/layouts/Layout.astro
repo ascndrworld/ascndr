@@ -113,6 +113,37 @@ const {
   <Header />
   <slot />
   <CookieConsent />
+
+  <!-- Revela el caption de las tarjetas al DESLIZAR el dedo por encima (táctil),
+       sin abrir el proyecto; un toque limpio sí navega. En escritorio manda :hover. -->
+  <script is:inline>
+    (function(){
+      var SEL = '.tp-item, .hs-work-item';
+      var active = null, moved = false;
+      function setActive(el){
+        if (active === el) return;
+        if (active) active.classList.remove('is-touch-active');
+        active = el;
+        if (el) el.classList.add('is-touch-active');
+      }
+      document.addEventListener('touchstart', function(){ moved = false; }, { passive: true });
+      document.addEventListener('touchmove', function(e){
+        moved = true;
+        var t = e.touches[0];
+        if (!t) return;
+        var el = document.elementFromPoint(t.clientX, t.clientY);
+        setActive(el && el.closest ? el.closest(SEL) : null);
+      }, { passive: true });
+      document.addEventListener('touchend', function(){ setActive(null); }, { passive: true });
+      document.addEventListener('touchcancel', function(){ setActive(null); }, { passive: true });
+      // Si venías deslizando, cancela la apertura accidental de la tarjeta.
+      document.addEventListener('click', function(e){
+        if (!moved) return;
+        var item = e.target && e.target.closest ? e.target.closest(SEL) : null;
+        if (item) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
+    })();
+  </script>
 </body>
 </html>
 <style is:global>
