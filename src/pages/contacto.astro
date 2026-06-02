@@ -17,6 +17,7 @@ import Layout from "../layouts/Layout.astro";
     <p class="ct-eyebrow">CONTACTO</p>
     <h1 class="ct-title">iniciar<br/>proyecto</h1>
     <p class="ct-sub">Cuéntanos qué tienes en mente. Te respondemos en menos de 24h.</p>
+    <p class="ct-direct">¿Prefieres el correo? Escríbenos a <a href="mailto:frank@ascndrworld.com">frank@ascndrworld.com</a></p>
   </section>
 
   <section class="ct-form-wrap" id="ctFormWrap">
@@ -57,10 +58,6 @@ import Layout from "../layouts/Layout.astro";
       <p>Nos pondremos en contacto contigo muy pronto.</p>
       <a href="/" class="ct-success-back">Volver al inicio →</a>
     </div>
-
-    <p class="ct-direct">
-      O escríbenos directamente a <a href="mailto:frank@ascndrworld.com">frank@ascndrworld.com</a>
-    </p>
   </section>
 </main>
 
@@ -136,13 +133,17 @@ import Layout from "../layouts/Layout.astro";
   .ct-page {
     min-height: 100vh;
     padding: 140px 40px 80px;
-    max-width: 720px;
+    max-width: 1040px;
     margin: 0 auto;
     font-family: "Montserrat", sans-serif;
+    display: grid;
+    grid-template-columns: 1fr minmax(360px, 440px);
+    gap: clamp(48px, 5vw, 72px);
+    align-items: start;
   }
 
-  /* HERO ── título estilo landing */
-  .ct-hero { margin-bottom: 56px; }
+  /* HERO ── título estilo landing, columna izquierda */
+  .ct-hero { margin-bottom: 0; }
   .ct-eyebrow {
     font-size: 12px;
     letter-spacing: 0.25em;
@@ -151,7 +152,7 @@ import Layout from "../layouts/Layout.astro";
     font-weight: 500;
   }
   .ct-title {
-    font-size: 90px;
+    font-size: clamp(56px, 6vw, 84px);
     font-weight: 800;
     line-height: 0.95;
     letter-spacing: -4px;
@@ -295,12 +296,10 @@ import Layout from "../layouts/Layout.astro";
   .ct-success-back:hover { border-color: #F7EFDB; }
 
   .ct-direct {
-    margin-top: 56px;
-    padding-top: 28px;
-    border-top: 1px solid rgba(247, 239, 219, 0.08);
-    font-size: 13px;
-    color: rgba(247, 239, 219, 0.45);
-    letter-spacing: 0.04em;
+    margin-top: 24px;
+    font-size: 14px;
+    color: rgba(247, 239, 219, 0.5);
+    letter-spacing: 0.02em;
   }
   .ct-direct a {
     color: #F7EFDB;
@@ -309,8 +308,13 @@ import Layout from "../layouts/Layout.astro";
   }
 
   /* Responsive */
+  /* Tablet y móvil: una sola columna (título arriba, formulario debajo) */
+  @media (max-width: 900px) {
+    .ct-page { display: block; max-width: 720px; }
+    .ct-hero { margin-bottom: 48px; }
+  }
   @media (max-width: 768px) {
-    .ct-page { padding: 120px 24px 60px; }
+    .ct-page { padding: 120px 24px 60px; display: block; max-width: 720px; }
     .ct-title { font-size: 60px; letter-spacing: -2.5px; }
     .ct-sub { font-size: 15px; }
     .ct-hero { margin-bottom: 40px; }
