@@ -1,11 +1,11 @@
 ---
-title: "¿Cuánto cuesta el branding de un negocio en Jaén?"
-description: "Qué incluye realmente el branding de un negocio, de qué depende el precio y qué puedes esperar invertir en Jaén. Una guía clara para decidir con cabeza, sin sorpresas."
-pubDate: 2026-06-03
+title: "¿Cuánto cuesta el branding de un negocio?"
+description: "Qué incluye realmente el branding de un negocio, de qué depende el precio y qué puedes esperar invertir. Una guía clara para decidir con cabeza, sin sorpresas."
+pubDate: 2026-05-06
 author: "Ascndr"
 category: "Branding"
 cover: "/images/conclave/rrss-01.jpg"
-coverAlt: "Branding de un negocio en Jaén aplicado en redes sociales — proyecto de Ascndr"
+coverAlt: "Branding de un negocio aplicado en redes sociales — proyecto de Ascndr"
 draft: false
 ---
 
@@ -28,9 +28,9 @@ Estos son los factores que mueven de verdad un presupuesto de branding:
 - **Las aplicaciones.** Cuántos soportes hay que diseñar: carta, cartelería, señalética del local, packaging, plantillas de redes, merchandising…
 - **El punto de partida.** No es lo mismo crear una marca nueva que reposicionar una existente que ya arrastra una percepción en el público.
 
-## Qué puedes esperar invertir en Jaén
+## Qué puedes esperar invertir
 
-Sin humo y con rangos reales para un negocio local en Jaén y provincia. Cada proyecto se presupuesta a medida, pero esto te da una referencia para situarte:
+Sin humo y con rangos reales para un negocio local. Cada proyecto se presupuesta a medida, pero esto te da una referencia para situarte:
 
 - **Identidad de marca esencial** *(para arrancar bien desde el día uno):* logotipo, paleta, tipografías y un manual básico de uso. Suele moverse en una **inversión inicial contenida**, pensada para negocios que empiezan.
 - **Branding completo** *(lo que de verdad cambia las cosas):* estrategia, naming si hace falta, sistema visual completo y sus aplicaciones principales. Aquí la inversión es **mayor**, porque el trabajo y el impacto también lo son.
@@ -42,10 +42,10 @@ La cifra exacta sale de una conversación de 20 minutos sobre tu negocio. Cualqu
 
 Una marca bien hecha te ahorra dinero en sitios que no esperas: ganas tiempo porque tienes plantillas y criterios claros, tu publicidad rinde más porque la gente te reconoce, y dejas de rehacer cosas cada seis meses. Un branding barato y flojo, en cambio, se nota —y el cliente lo nota antes de entrar por la puerta.
 
-En hostelería, eventos y comercio local de Jaén esto es especialmente cierto: compites por la atención, y la primera impresión la da tu marca, no tu producto.
+En hostelería, eventos y comercio local esto es especialmente cierto: compites por la atención, y la primera impresión la da tu marca, no tu producto.
 
 ## Hablemos de tu proyecto
 
-Si te estás planteando crear o renovar la marca de tu negocio, lo más útil es ponerle números a *tu* caso concreto, no a un caso genérico. En **Ascndr** trabajamos el branding y la dirección creativa de negocios en Jaén y toda Andalucía, del concepto a la ejecución.
+Si te estás planteando crear o renovar la marca de tu negocio, lo más útil es ponerle números a *tu* caso concreto, no a un caso genérico. En **Ascndr** trabajamos el branding y la dirección creativa de negocios, del concepto a la ejecución.
 
 [Cuéntanos tu proyecto](/contacto) y te damos una orientación clara de qué necesitas y qué inversión tiene sentido. Sin compromiso y sin humo.

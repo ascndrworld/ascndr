@@ -10,14 +10,14 @@ const fmt = (d: Date) =>
 ---
 <Layout
   title="Blog | Ascndr — Branding, eventos y marca"
-  description="Ideas, casos y aprendizajes sobre branding, dirección creativa, eventos y redes sociales desde Jaén. El blog de Ascndr, consultoría creativa."
+  description="Ideas, casos y aprendizajes sobre branding, dirección creativa, eventos y redes sociales. El blog de Ascndr, consultoría creativa."
   canonical="https://www.ascndrworld.com/blog"
 >
   <main class="bl-page">
     <header class="bl-head">
       <p class="bl-eyebrow">BLOG</p>
       <h1 class="bl-title">Ideas, casos y marca</h1>
-      <p class="bl-sub">Branding, dirección creativa, eventos y redes sociales. Lo que aprendemos trabajando, desde Jaén.</p>
+      <p class="bl-sub">Branding, dirección creativa, eventos y redes sociales. Lo que aprendemos trabajando.</p>
     </header>
 
     {posts.length === 0 ? (
@@ -27,8 +27,8 @@ const fmt = (d: Date) =>
         {posts.map((post) => (
           <li class="bl-card">
             <a class="bl-card-link" href={`/blog/${post.id}`}>
-              <div class="bl-card-media">
-                <img src={post.data.cover} alt={post.data.coverAlt} loading="lazy" />
+              <div class="bl-card-media" style={`${post.data.coverAspect ? `aspect-ratio: ${post.data.coverAspect};` : ''}${post.data.coverBg ? `background: ${post.data.coverBg};` : ''}`}>
+                <img src={post.data.cover} alt={post.data.coverAlt} loading="lazy" style={`object-position: ${post.data.coverPosition}${post.data.coverScale ? `; transform: scale(${post.data.coverScale})` : ''}${post.data.coverFit ? `; object-fit: ${post.data.coverFit}` : ''}`} />
               </div>
               <div class="bl-card-body">
                 <span class="bl-card-cat">{post.data.category}</span>
@@ -72,7 +72,7 @@ const fmt = (d: Date) =>
   .bl-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px 32px; }
   .bl-card { margin: 0; }
   .bl-card-link { display: block; text-decoration: none; color: inherit; }
-  .bl-card-media { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #111; border-radius: 4px; }
+  .bl-card-media { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #111; border-radius: 4px; }
   .bl-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
   .bl-card-link:hover .bl-card-media img { transform: scale(1.04); }
   .bl-card-body { padding: 18px 2px 0; }

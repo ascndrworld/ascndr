@@ -97,7 +97,9 @@ const jsonld = {
     </header>
 
     <figure class="post-cover">
-      <img src={data.cover} alt={data.coverAlt} fetchpriority="high" />
+      <div class="post-cover-frame" style={data.coverBg ? `background: ${data.coverBg}` : ''}>
+        <img src={data.cover} alt={data.coverAlt} fetchpriority="high" style={`object-position: ${data.coverPosition}${data.coverAspect ? `; aspect-ratio: ${data.coverAspect}` : ''}${data.coverScale ? `; transform: scale(${data.coverScale})` : ''}${data.coverFit ? `; object-fit: ${data.coverFit}` : ''}`} />
+      </div>
     </figure>
 
     <div class="post-content">
@@ -193,7 +195,8 @@ const jsonld = {
   .post-dot { color: rgba(247,239,219,0.5); margin: 0 2px; }
 
   .post-cover { margin: 0 0 8px; padding: 0 40px; }
-  .post-cover img { width: 100%; height: auto; display: block; border-radius: 4px; }
+  .post-cover-frame { overflow: hidden; border-radius: 4px; }
+  .post-cover img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; display: block; }
 
   .post-content { margin: 0; padding: 48px 40px 20px; }
   .post-content :global(p) { font-size: 17px; line-height: 1.8; color: rgba(255,255,255,0.78); margin: 0 0 22px; }
@@ -261,6 +264,7 @@ const jsonld = {
   @media (max-width: 768px) {
     .post-hero { padding: 110px 20px 24px; }
     .post-cover { padding: 0 20px; }
+    .post-cover img { aspect-ratio: 4 / 3; }
     .post-content { padding: 36px 20px 16px; }
     .post-content :global(p), .post-content :global(ul), .post-content :global(ol) { font-size: 16px; }
     .post-content :global(> p:first-of-type) { font-size: 17px; }

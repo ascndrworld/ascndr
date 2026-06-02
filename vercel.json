@@ -10,6 +10,11 @@
       "source": "/trabajos/redes-sociales/conclave-design",
       "destination": "/trabajos/redes-sociales/briefing",
       "permanent": true
+    },
+    {
+      "source": "/blog/cuanto-cuesta-el-branding-de-un-negocio-en-jaen",
+      "destination": "/blog/cuanto-cuesta-el-branding-de-un-negocio",
+      "permanent": true
     }
   ]
 }

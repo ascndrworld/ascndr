@@ -12,6 +12,11 @@ const blog = defineCollection({
     category: z.string(),
     cover: z.string(),
     coverAlt: z.string(),
+    coverPosition: z.string().default('center'),
+    coverAspect: z.string().optional(),
+    coverScale: z.string().optional(),
+    coverFit: z.string().optional(),
+    coverBg: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });

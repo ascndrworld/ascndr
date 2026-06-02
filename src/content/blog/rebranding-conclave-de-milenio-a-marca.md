@@ -1,15 +1,16 @@
 ---
 title: "Cómo creamos el branding de Cónclave: de Milenio 2.0 a una marca nueva"
-description: "El caso real del rebranding de un pub en Los Villares (Jaén): naming, identidad visual y dirección creativa para reposicionar un local de hostelería de arriba abajo."
-pubDate: 2026-06-02
+description: "El caso real del rebranding de un pub: naming, identidad visual y dirección creativa para reposicionar un local de hostelería de arriba abajo."
+pubDate: 2026-04-21
 author: "Ascndr"
 category: "Branding"
-cover: "/images/conclave/portada-conclave2.jpg"
-coverAlt: "Cónclave — Rebranding y dirección creativa de pub en Jaén por Ascndr"
+cover: "/images/conclave/portada-blog-conclave.png"
+coverAlt: "Cónclave — Rebranding y dirección creativa de un pub por Ascndr"
+coverPosition: "center 26%"
 draft: false
 ---
 
-Cuando un negocio de hostelería deja de conectar con su público, un cambio de carta o de música no basta. A veces hay que ir a la raíz: **la marca**. Eso es exactamente lo que hicimos con Cónclave, el rebranding integral de un pub en Los Villares (Jaén) que arrancó por el sitio menos evidente y más importante: el nombre.
+Cuando un negocio de hostelería deja de conectar con su público, un cambio de carta o de música no basta. A veces hay que ir a la raíz: **la marca**. Eso es exactamente lo que hicimos con Cónclave, el rebranding integral de un pub que arrancó por el sitio menos evidente y más importante: el nombre.
 
 ## El punto de partida: un local desgastado
 
@@ -51,4 +52,4 @@ Puedes ver el proyecto completo, con imágenes, en nuestra ficha de [Cónclave �
 
 Si tu local o tu marca ya no transmiten lo que eres —o lo que quieres ser—, el problema casi nunca es solo "el logo". Es la marca al completo: cómo se llama, cómo se ve y cómo se comunica.
 
-En **Ascndr** trabajamos el branding y la dirección creativa de negocios de hostelería, eventos y marcas en Jaén y toda Andalucía, del concepto a la ejecución. Si quieres darle una vuelta a tu marca, [cuéntanos tu proyecto](/contacto) y le damos forma juntos.
+En **Ascndr** trabajamos el branding y la dirección creativa de negocios de hostelería, eventos y marcas, del concepto a la ejecución. Si quieres darle una vuelta a tu marca, [cuéntanos tu proyecto](/contacto) y le damos forma juntos.
