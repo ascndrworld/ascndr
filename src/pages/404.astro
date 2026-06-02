@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout
+  title="Página no encontrada | Ascndr"
+  description="La página que buscas no existe o ha cambiado de dirección. Vuelve al inicio o explora los trabajos de Ascndr."
+  canonical="https://www.ascndrworld.com/404"
+>
+  <main class="nf-page">
+    <p class="nf-code">404</p>
+    <h1 class="nf-title">Esta página se ha perdido.</h1>
+    <p class="nf-text">El enlace que has seguido no existe o el contenido se ha movido. Pero hay mucho que ver por aquí.</p>
+    <div class="nf-actions">
+      <a class="nf-btn nf-btn--primary" href="/">Volver al inicio</a>
+      <a class="nf-btn" href="/trabajos">Ver trabajos</a>
+      <a class="nf-btn" href="/contacto">Contacto</a>
+    </div>
+  </main>
+
+  <style>
+    .nf-page {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 1.5rem 6rem;
+      gap: 1rem;
+    }
+    .nf-code {
+      font-size: clamp(4rem, 18vw, 9rem);
+      font-weight: 800;
+      line-height: 1;
+      margin: 0;
+      letter-spacing: -0.04em;
+      opacity: 0.9;
+    }
+    .nf-title {
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      font-weight: 600;
+      margin: 0;
+    }
+    .nf-text {
+      max-width: 38ch;
+      opacity: 0.7;
+      margin: 0 0 1.5rem;
+      line-height: 1.5;
+    }
+    .nf-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+    .nf-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      text-decoration: none;
+      color: inherit;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .nf-btn:hover { opacity: 0.7; }
+    .nf-btn--primary {
+      background: #fff;
+      color: #0a0a0a;
+      border-color: #fff;
+    }
+    .nf-btn--primary:hover { opacity: 0.85; }
+  </style>
+</Layout>

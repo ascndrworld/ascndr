@@ -2332,8 +2332,10 @@
 .hs-work-img {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 
@@ -2509,4 +2511,42 @@
   .hs-services-text { font-size: 14px; }
   .hs-work-name { font-size: 24px; }
   .hs-footer-middle { gap: 28px; }
+}
+
+/* ── Caso de estudio: bloque de texto (SEO) en las fichas de proyecto ── */
+.cs-study {
+  background: #000;
+  color: rgba(255,255,255,0.85);
+  font-family: "Montserrat", sans-serif;
+  padding: 90px 24px 20px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.cs-study h2 {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 46px 0 16px;
+}
+.cs-study h2:first-of-type { margin-top: 0; }
+.cs-study p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.72);
+  margin: 0 0 18px;
+}
+.cs-study ul {
+  margin: 0 0 18px;
+  padding-left: 1.2em;
+  color: rgba(255,255,255,0.72);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.cs-study li { margin-bottom: 8px; }
+.cs-study strong { color: #fff; font-weight: 600; }
+@media (max-width: 768px) {
+  .cs-study { padding: 60px 20px 14px; }
+  .cs-study p, .cs-study ul { font-size: 15px; }
+  .cs-study h2 { margin: 36px 0 14px; }
 }
