@@ -28,6 +28,11 @@ export default defineConfig({
           item.priority = 0.9;
         } else if (path === '/trabajos') {
           item.priority = 0.9;
+        } else if (path === '/blog') {
+          item.priority = 0.8;
+          item.changefreq = 'weekly';
+        } else if (path.startsWith('/blog/')) {
+          item.priority = 0.7;
         }
         return item;
       },

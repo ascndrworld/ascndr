@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+---
+<Layout
+  title="Blog | Ascndr — Branding, eventos y marca"
+  description="Ideas, casos y aprendizajes sobre branding, dirección creativa, eventos y redes sociales desde Jaén. El blog de Ascndr, consultoría creativa."
+  canonical="https://www.ascndrworld.com/blog"
+>
+  <main class="bl-page">
+    <header class="bl-head">
+      <p class="bl-eyebrow">BLOG</p>
+      <h1 class="bl-title">Ideas, casos y marca</h1>
+      <p class="bl-sub">Branding, dirección creativa, eventos y redes sociales. Lo que aprendemos trabajando, desde Jaén.</p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p class="bl-empty">Pronto publicaremos los primeros artículos.</p>
+    ) : (
+      <ul class="bl-list">
+        {posts.map((post) => (
+          <li class="bl-card">
+            <a class="bl-card-link" href={`/blog/${post.id}`}>
+              <div class="bl-card-media">
+                <img src={post.data.cover} alt={post.data.coverAlt} loading="lazy" />
+              </div>
+              <div class="bl-card-body">
+                <span class="bl-card-cat">{post.data.category}</span>
+                <h2 class="bl-card-title">{post.data.title}</h2>
+                <p class="bl-card-desc">{post.data.description}</p>
+                <time class="bl-card-date" datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </main>
+
+  <footer class="bl-footer">
+    <div class="bl-footer-links">
+      <a href="/trabajos">Trabajos</a>
+      <span class="bl-sep">·</span>
+      <a href="/contacto">Contacto</a>
+      <span class="bl-sep">·</span>
+      <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="bl-copy">© Ascndr 2026 · Marca Registrada</p>
+  </footer>
+</Layout>
+
+<style>
+  .bl-page {
+    background: #000;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    min-height: 100vh;
+    padding: 160px 24px 40px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .bl-head { max-width: 720px; margin: 0 auto 64px; text-align: center; }
+  .bl-eyebrow { font-size: 11px; letter-spacing: 0.32em; color: rgba(247,239,219,0.7); font-weight: 500; margin: 0 0 16px; }
+  .bl-title { font-size: clamp(34px, 6vw, 64px); font-weight: 700; letter-spacing: -0.025em; line-height: 1; margin: 0 0 18px; }
+  .bl-sub { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.6); margin: 0; }
+  .bl-empty { text-align: center; color: rgba(255,255,255,0.5); }
+
+  .bl-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
+  .bl-card { margin: 0; }
+  .bl-card-link { display: block; text-decoration: none; color: inherit; }
+  .bl-card-media { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #111; border-radius: 4px; }
+  .bl-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .bl-card-link:hover .bl-card-media img { transform: scale(1.04); }
+  .bl-card-body { padding: 18px 2px 0; }
+  .bl-card-cat { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,239,219,0.7); font-weight: 500; }
+  .bl-card-title { font-size: 21px; font-weight: 600; line-height: 1.25; margin: 10px 0 8px; letter-spacing: -0.01em; }
+  .bl-card-link:hover .bl-card-title { color: #F7EFDB; }
+  .bl-card-desc { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.6); margin: 0 0 12px; }
+  .bl-card-date { font-size: 12px; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); }
+
+  .bl-footer { background: #000; color: rgba(255,255,255,0.55); padding: 70px 24px 40px; text-align: center; font-family: "Montserrat", sans-serif; border-top: 1px solid rgba(255,255,255,0.06); }
+  .bl-footer-links { display: flex; justify-content: center; gap: 22px; margin-bottom: 18px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .bl-footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .bl-footer-links a:hover { color: #fff; }
+  .bl-sep { color: rgba(255,255,255,0.2); }
+  .bl-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; }
+
+  @media (max-width: 768px) {
+    .bl-page { padding: 120px 20px 32px; }
+    .bl-head { margin-bottom: 44px; }
+    .bl-list { grid-template-columns: 1fr; gap: 36px; }
+  }
+</style>

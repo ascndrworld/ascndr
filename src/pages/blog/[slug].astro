@@ -1,0 +1,154 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { data } = post;
+
+const url = `https://www.ascndrworld.com/blog/${post.id}`;
+const cover = `https://www.ascndrworld.com${data.cover}`;
+const fmt = (d: Date) =>
+  d.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+
+const jsonld = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ascndrworld.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.ascndrworld.com/blog" },
+        { "@type": "ListItem", "position": 3, "name": data.title, "item": url },
+      ],
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": data.title,
+      "description": data.description,
+      "image": cover,
+      "url": url,
+      "datePublished": data.pubDate.toISOString(),
+      "dateModified": (data.updatedDate ?? data.pubDate).toISOString(),
+      "inLanguage": "es-ES",
+      "author": { "@type": "Organization", "name": data.author, "url": "https://www.ascndrworld.com" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ascndr",
+        "logo": { "@type": "ImageObject", "url": "https://www.ascndrworld.com/ascndr-logo.png" },
+      },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+      "articleSection": data.category,
+    },
+  ],
+};
+---
+<Layout
+  title={`${data.title} | Ascndr`}
+  description={data.description}
+  canonical={url}
+  ogImage={cover}
+  ogImageAlt={data.coverAlt}
+>
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonld)} />
+  </Fragment>
+
+  <article class="post">
+    <header class="post-hero">
+      <div class="post-hero-inner">
+        <a class="post-back" href="/blog">← Blog</a>
+        <span class="post-cat">{data.category}</span>
+        <h1 class="post-title">{data.title}</h1>
+        <p class="post-meta">
+          Por {data.author} · <time datetime={data.pubDate.toISOString()}>{fmt(data.pubDate)}</time>
+        </p>
+      </div>
+    </header>
+
+    <figure class="post-cover">
+      <img src={data.cover} alt={data.coverAlt} fetchpriority="high" />
+    </figure>
+
+    <div class="post-content">
+      <Content />
+    </div>
+
+    <div class="post-cta">
+      <p>¿Quieres elevar tu marca?</p>
+      <a href="/contacto">Iniciar proyecto ›</a>
+    </div>
+  </article>
+
+  <footer class="bl-footer">
+    <a href="/" class="bl-footer-logo"><img src="/ascndr-logo.png" alt="Ascndr" /></a>
+    <div class="bl-footer-links">
+      <a href="/trabajos">Trabajos</a>
+      <span class="bl-sep">·</span>
+      <a href="/blog">Blog</a>
+      <span class="bl-sep">·</span>
+      <a href="/contacto">Contacto</a>
+      <span class="bl-sep">·</span>
+      <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="bl-copy">© Ascndr 2026 · Marca Registrada</p>
+  </footer>
+</Layout>
+
+<style>
+  .post { background: #000; color: #fff; font-family: "Montserrat", sans-serif; }
+
+  .post-hero { padding: 150px 24px 32px; }
+  .post-hero-inner { max-width: 760px; margin: 0 auto; }
+  .post-back { display: inline-block; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 28px; transition: color .2s; }
+  .post-back:hover { color: #F7EFDB; }
+  .post-cat { display: block; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,239,219,0.7); font-weight: 500; margin-bottom: 14px; }
+  .post-title { font-size: clamp(30px, 5vw, 52px); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 18px; }
+  .post-meta { font-size: 13px; color: rgba(255,255,255,0.45); margin: 0; }
+
+  .post-cover { margin: 0 auto 8px; max-width: 980px; padding: 0 24px; }
+  .post-cover img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
+  .post-content { max-width: 720px; margin: 0 auto; padding: 48px 24px 20px; }
+  .post-content :global(p) { font-size: 17px; line-height: 1.8; color: rgba(255,255,255,0.78); margin: 0 0 22px; }
+  .post-content :global(h2) { font-size: clamp(22px, 3vw, 30px); font-weight: 700; color: #fff; letter-spacing: -0.01em; margin: 48px 0 18px; }
+  .post-content :global(h3) { font-size: 20px; font-weight: 600; color: #fff; margin: 34px 0 12px; }
+  .post-content :global(ul), .post-content :global(ol) { font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.78); margin: 0 0 22px; padding-left: 1.2em; }
+  .post-content :global(li) { margin-bottom: 10px; }
+  .post-content :global(strong) { color: #fff; font-weight: 600; }
+  .post-content :global(a) { color: #F7EFDB; text-decoration: underline; text-underline-offset: 3px; }
+  .post-content :global(a:hover) { opacity: 0.75; }
+  .post-content :global(blockquote) {
+    margin: 32px 0; padding: 4px 0 4px 24px;
+    border-left: 2px solid rgba(247,239,219,0.6);
+    font-size: 20px; line-height: 1.5; font-style: italic; color: rgba(255,255,255,0.9);
+  }
+  .post-content :global(img) { width: 100%; height: auto; border-radius: 4px; margin: 12px 0; }
+
+  .post-cta { text-align: center; padding: 60px 24px 90px; }
+  .post-cta p { font-size: 16px; color: rgba(255,255,255,0.5); margin: 0 0 20px; }
+  .post-cta a { font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #F7EFDB; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.5); padding: 12px 28px; transition: background .2s, color .2s; }
+  .post-cta a:hover { background: #fff; color: #000; }
+
+  .bl-footer { background: #000; color: rgba(255,255,255,0.55); padding: 60px 24px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+  .bl-footer-logo { display: inline-block; margin-bottom: 24px; }
+  .bl-footer-logo img { height: 38px; display: block; opacity: 0.95; }
+  .bl-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin-bottom: 18px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .bl-footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .bl-footer-links a:hover { color: #fff; }
+  .bl-sep { color: rgba(255,255,255,0.2); }
+  .bl-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; }
+
+  @media (max-width: 768px) {
+    .post-hero { padding: 110px 20px 24px; }
+    .post-cover { padding: 0 20px; }
+    .post-content { padding: 36px 20px 16px; }
+    .post-content :global(p), .post-content :global(ul), .post-content :global(ol) { font-size: 16px; }
+  }
+</style>
