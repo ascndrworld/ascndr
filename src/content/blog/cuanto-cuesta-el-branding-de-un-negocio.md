@@ -10,7 +10,7 @@ coverPosition: "center 70%"
 draft: false
 ---
 
-Es la primera pregunta que nos hace casi todo el mundo: **¿cuánto cuesta hacer el branding de mi negocio?** Y la respuesta honesta es la que menos gusta de primeras: *depende*. Pero no depende de un capricho, depende de cosas concretas que puedes entender en cinco minutos. Vamos a explicártelas para que, cuando pidas presupuesto —a nosotros o a quien sea—, sepas exactamente qué estás comprando.
+Es la primera pregunta que nos hace casi todo el mundo: **¿cuánto cuesta hacer el branding de mi negocio?** Y la respuesta honesta es la que menos gusta de primeras: *depende*. Pero no depende de un capricho, depende de cosas concretas que puedes entender en cinco minutos. Vamos a explicártelas para que, cuando pidas presupuesto (a nosotros o a quien sea), sepas exactamente qué estás comprando.
 
 ## Branding no es "un logo"
 
@@ -18,7 +18,7 @@ El error más caro que comete un negocio es pensar que el branding es el logotip
 
 Cuando alguien te pide 50 € por "un logo", no te está vendiendo branding. Te está vendiendo un archivo. Y un archivo suelto, sin un sistema detrás, suele costar más caro a la larga: lo acabas rehaciendo.
 
-> El branding no es un gasto estético, es la inversión que hace que todo lo demás —tu publicidad, tus redes, tu local— trabaje a tu favor en lugar de en contra.
+> Un buen branding hace que todo lo demás (tu publicidad, tus redes, tu local) trabaje a tu favor en lugar de en contra. Por eso es inversión, no gasto.
 
 ## De qué depende el precio
 
@@ -41,7 +41,7 @@ La cifra exacta sale de una conversación de 20 minutos sobre tu negocio. Cualqu
 
 ## Por qué invertir bien en branding sale más barato
 
-Una marca bien hecha te ahorra dinero en sitios que no esperas: ganas tiempo porque tienes plantillas y criterios claros, tu publicidad rinde más porque la gente te reconoce, y dejas de rehacer cosas cada seis meses. Un branding barato y flojo, en cambio, se nota —y el cliente lo nota antes de entrar por la puerta.
+Una marca bien hecha te ahorra dinero en sitios que no esperas: ganas tiempo porque tienes plantillas y criterios claros, tu publicidad rinde más porque la gente te reconoce, y dejas de rehacer cosas cada seis meses. Un branding barato y flojo, en cambio, se nota, y el cliente lo percibe antes de entrar por la puerta.
 
 En hostelería, eventos y comercio local esto es especialmente cierto: compites por la atención, y la primera impresión la da tu marca, no tu producto.
 

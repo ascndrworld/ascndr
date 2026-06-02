@@ -16,7 +16,7 @@ Cuando un negocio de hostelería deja de conectar con su público, un cambio de 
 
 El local se llamaba **Milenio 2.0**. Un nombre que en su día funcionó, pero que con el tiempo se había quedado anclado en otra época. La imagen ya no decía nada al público al que el local quería llegar, y eso se notaba: un sitio puede tener buena ubicación y buen ambiente, pero si su marca proyecta "desfasado", el cliente lo asume antes de entrar.
 
-El reto no era maquillar. Era **reposicionar el local entero** y darle una identidad con la que volver a ser un sitio de referencia en la noche de la zona.
+El reto iba mucho más allá de maquillar: había que **reposicionar el local entero** y darle una identidad con la que volver a ser un sitio de referencia en la noche de la zona.
 
 ## Por qué empezamos por el naming
 
@@ -44,7 +44,7 @@ Acompañamos el lanzamiento de la nueva etapa en redes, trasladando la identidad
 
 ## El resultado
 
-Cónclave pasó de ser un local con una imagen agotada a una marca **sólida, nueva y reconocible**, con nombre, espacio y comunicación alineados bajo una misma dirección creativa. Un reposicionamiento completo, no un retoque.
+Cónclave pasó de ser un local con una imagen agotada a una marca **sólida, nueva y reconocible**, con nombre, espacio y comunicación alineados bajo una misma dirección creativa. Un reposicionamiento de arriba abajo.
 
 Puedes ver el proyecto completo, con imágenes, en nuestra ficha de [Cónclave — Dirección Creativa](/trabajos/direccion-creativa/conclave).
 

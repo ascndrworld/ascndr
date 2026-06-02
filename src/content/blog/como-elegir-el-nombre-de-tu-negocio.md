@@ -19,7 +19,7 @@ Es el error más común: querer un nombre que diga exactamente a qué te dedicas
 
 Los nombres que funcionan no describen, **evocan**. No le cuentan al cliente lo que haces; le dejan una imagen mental y una sensación. Ya habrá tiempo de explicar el servicio en el resto de la marca.
 
-> Un buen nombre no es el que mejor describe tu negocio, es el que mejor se recuerda y mejor te diferencia del de al lado.
+> Lo que de verdad cuenta en un nombre: que la gente lo recuerde y que te separe del de al lado. Describir a qué te dedicas es lo de menos.
 
 ## Qué hace fuerte a un nombre
 
@@ -47,6 +47,6 @@ El nombre no fue un capricho estético: fue la primera pieza estratégica de tod
 
 ## La clave: no es solo el nombre, es lo que viene después
 
-Un gran nombre con una marca floja detrás se desaprovecha. Y un nombre normal con una identidad bien construida puede funcionar de maravilla. El naming es el principio, no el final: importa, pero importa **dentro de un sistema**.
+Un gran nombre con una marca floja detrás se desaprovecha. Y un nombre normal con una identidad bien construida puede funcionar de maravilla. El naming es solo el arranque: importa, pero importa **dentro de un sistema**.
 
-Si estás montando un negocio o pensando en renovarlo y no tienes claro el nombre —o sospechas que el actual te está frenando—, en **Ascndr** trabajamos el naming y la identidad completa de marcas. [Cuéntanos tu proyecto](/contacto) y le buscamos nombre juntos.
+Si estás montando un negocio o pensando en renovarlo y no tienes claro el nombre (o sospechas que el actual te está frenando), en **Ascndr** trabajamos el naming y la identidad completa de marcas. [Cuéntanos tu proyecto](/contacto) y le buscamos nombre juntos.

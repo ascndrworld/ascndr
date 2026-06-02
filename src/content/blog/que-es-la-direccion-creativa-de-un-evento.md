@@ -10,13 +10,13 @@ coverPosition: "center 62%"
 draft: false
 ---
 
-Mucha gente organiza un evento pensando en lo evidente: fecha, sitio, artistas, barra. Y luego, casi al final, "el cartel". El problema es que ese orden deja fuera lo que de verdad hace que un evento se sienta grande: **la dirección creativa**. Que no es el cartel, es lo que hace que el cartel, la entrada, el espacio y las redes cuenten todos la misma historia.
+Mucha gente organiza un evento pensando en lo evidente: fecha, sitio, artistas, barra. Y luego, casi al final, "el cartel". El problema es que ese orden deja fuera lo que de verdad hace que un evento se sienta grande: **la dirección creativa**. Es decir, lo que hace que el cartel, la entrada, el espacio y las redes cuenten todos la misma historia.
 
 ## Qué es (y qué no es) la dirección creativa
 
 La dirección creativa de un evento es la **idea que lo unifica todo**. Es decidir qué mundo quieres que viva la gente y aplicarlo con coherencia a cada punto de contacto: desde la primera story que anuncia la fecha hasta la pulsera que llevan en la muñeca esa noche.
 
-No es "diseñar un cartel bonito". Es asegurarte de que ese cartel, la cuenta de Instagram, la señalética de la entrada y la ambientación del recinto **se reconozcan como parte de lo mismo**. Cuando eso pasa, el asistente percibe un evento serio, cuidado, que merece la pena. Cuando no pasa, percibe una fiesta más.
+Va mucho más allá de "diseñar un cartel bonito": consiste en asegurarte de que ese cartel, la cuenta de Instagram, la señalética de la entrada y la ambientación del recinto **se reconozcan como parte de lo mismo**. Cuando eso pasa, el asistente percibe un evento serio, cuidado, que merece la pena. Cuando no pasa, percibe una fiesta más.
 
 > La gente no recuerda un evento por una sola cosa. Lo recuerda por la sensación de que todo encajaba. Eso no pasa por casualidad: se dirige.
 

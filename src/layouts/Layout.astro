@@ -9,13 +9,15 @@ export interface Props {
   canonical?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  ogType?: string;
 }
 const {
   title = "Ascndr · Consultoría Creativa - Branding, Lanzamientos y RRSS",
   description = "Ascndr es una consultoría creativa especializada en estrategia en redes sociales, branding, identidad visual, dirección creativa de eventos y dirección de proyectos multimedia.",
   canonical = "https://www.ascndrworld.com",
   ogImage = "https://www.ascndrworld.com/images/og-ascndr.jpg",
-  ogImageAlt = "Ascndr — Consultoría creativa: branding, dirección creativa y redes sociales"
+  ogImageAlt = "Ascndr — Consultoría creativa: branding, dirección creativa y redes sociales",
+  ogType = "website"
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -50,7 +52,7 @@ const {
   <meta name="apple-mobile-web-app-title" content="Ascndr"/>
 
   <!-- ── Open Graph ── -->
-  <meta property="og:type" content="website"/>
+  <meta property="og:type" content={ogType}/>
   <meta property="og:site_name" content="Ascndr"/>
   <meta property="og:title" content={title}/>
   <meta property="og:description" content={description}/>
@@ -100,14 +102,6 @@ const {
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-
-  <!-- ── EmailJS ── -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script is:inline>
-    (function(){
-      try { emailjs.init({ publicKey: "RD0iA6EqENiEBxPXO" }); } catch(e) {}
-    })();
-  </script>
 
   <slot name="head"/>
 </head>

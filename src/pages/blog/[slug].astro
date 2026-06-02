@@ -11,6 +11,17 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const { data } = post;
 
+// Autor real detrás de los artículos — señal E-E-A-T (persona, no solo marca).
+// Ajusta nombre/cargo/bio a tu gusto; alimenta el schema y la firma visible.
+const AUTHOR = {
+  name: "Frank Martos",
+  initials: "FM",
+  jobTitle: "Fundador y director creativo de Ascndr",
+  bio: "Fundador de Ascndr. Dirige los proyectos de branding, dirección creativa y redes sociales del estudio, del concepto a la ejecución.",
+  url: "https://www.ascndrworld.com",
+  sameAs: ["https://www.instagram.com/ascndr.world"],
+};
+
 const url = `https://www.ascndrworld.com/blog/${post.id}`;
 const cover = `https://www.ascndrworld.com${data.cover}`;
 const fmt = (d: Date) =>
@@ -58,7 +69,14 @@ const jsonld = {
       "datePublished": data.pubDate.toISOString(),
       "dateModified": (data.updatedDate ?? data.pubDate).toISOString(),
       "inLanguage": "es-ES",
-      "author": { "@type": "Organization", "name": data.author, "url": "https://www.ascndrworld.com" },
+      "author": {
+        "@type": "Person",
+        "name": AUTHOR.name,
+        "jobTitle": AUTHOR.jobTitle,
+        "url": AUTHOR.url,
+        "sameAs": AUTHOR.sameAs,
+        "worksFor": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
+      },
       "publisher": {
         "@type": "Organization",
         "name": "Ascndr",
@@ -76,9 +94,9 @@ const jsonld = {
   canonical={url}
   ogImage={cover}
   ogImageAlt={data.coverAlt}
+  ogType="article"
 >
   <Fragment slot="head">
-    <meta property="og:type" content="article" />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonld)} />
   </Fragment>
 
@@ -91,7 +109,7 @@ const jsonld = {
         <h1 class="post-title">{data.title}</h1>
         <p class="post-lead">{data.description}</p>
         <p class="post-meta">
-          Por {data.author} <span class="post-dot">·</span> <time datetime={data.pubDate.toISOString()}>{fmt(data.pubDate)}</time> <span class="post-dot">·</span> {readingMin} min de lectura
+          Por {AUTHOR.name} <span class="post-dot">·</span> <time datetime={data.pubDate.toISOString()}>{fmt(data.pubDate)}</time> <span class="post-dot">·</span> {readingMin} min de lectura
         </p>
       </div>
     </header>
@@ -105,6 +123,16 @@ const jsonld = {
     <div class="post-content">
       <Content />
     </div>
+
+    <aside class="post-author">
+      <span class="post-author-avatar" aria-hidden="true">{AUTHOR.initials}</span>
+      <div class="post-author-info">
+        <span class="post-author-eyebrow">Escrito por</span>
+        <p class="post-author-name">{AUTHOR.name}</p>
+        <p class="post-author-role">{AUTHOR.jobTitle}</p>
+        <p class="post-author-bio">{AUTHOR.bio}</p>
+      </div>
+    </aside>
 
     <div class="post-share">
       <span class="post-share-label">Compartir</span>
@@ -217,6 +245,18 @@ const jsonld = {
   }
   .post-content :global(img) { width: 100%; height: auto; border-radius: 4px; margin: 12px 0; }
 
+  /* Autor — firma con persona real (E-E-A-T) */
+  .post-author { margin: 8px 0 0; padding: 28px 40px; display: flex; align-items: flex-start; gap: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .post-author-avatar {
+    flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #F7EFDB; color: #000; font-weight: 700; font-size: 16px; letter-spacing: 0.04em;
+  }
+  .post-author-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .post-author-name { font-size: 17px; font-weight: 600; color: #fff; margin: 4px 0 2px; }
+  .post-author-role { font-size: 13px; color: rgba(247,239,219,0.7); margin: 0 0 8px; }
+  .post-author-bio { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.6); margin: 0; max-width: 60ch; }
+
   /* Compartir */
   .post-share { margin: 0; padding: 28px 40px; display: flex; align-items: center; gap: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
   .post-share-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
@@ -268,6 +308,7 @@ const jsonld = {
     .post-content { padding: 36px 20px 16px; }
     .post-content :global(p), .post-content :global(ul), .post-content :global(ol) { font-size: 16px; }
     .post-content :global(> p:first-of-type) { font-size: 17px; }
+    .post-author { padding: 24px 20px; }
     .post-share { padding: 24px 20px; }
     .post-related { padding: 16px 20px 70px; }
     .post-related-list { grid-template-columns: 1fr; gap: 24px; }

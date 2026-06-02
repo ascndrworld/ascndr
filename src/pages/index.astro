@@ -22,7 +22,7 @@ import Layout from "../layouts/Layout.astro";
     loop
     playsinline
     webkit-playsinline="true"
-    preload="auto"
+    preload="metadata"
     disablepictureinpicture
     aria-hidden="true"
     poster="/video/hero-poster.jpg"
@@ -104,13 +104,6 @@ import Layout from "../layouts/Layout.astro";
         <h3 class="hs-work-name">Eventsy</h3>
       </div>
     </a>
-    <a class="hs-work-item hs-work-item--strip" href="/trabajos/fotografia/halloweenfest-fotografia">
-      <img class="hs-work-img" src="/images/halloween-fest/portada-halloween3.jpg" alt="Fotografía de evento — 3ª edición de Halloween Fest en Jaén por Ascndr" loading="lazy"/>
-      <div class="hs-work-overlay">
-        <span class="hs-work-cat">Fotografía</span>
-        <h3 class="hs-work-name">Shooting 3ª edición</h3>
-      </div>
-    </a>
   </section>
 
   <!-- ════ FOOTER GLOBAL ════ -->
@@ -149,21 +142,6 @@ import Layout from "../layouts/Layout.astro";
     <p class="hs-footer-copy">© Ascndr 2026 · Marca Registrada</p>
   </footer>
 
-  <!-- FOOTER mínimo antiguo (oculto, para SPA) -->
-  <div style="display:none">
-  <footer class="home-footer">
-    <ul class="home-footer-nav">
-      <li><a href="/trabajos">Trabajos</a></li>
-      <li><span>·</span></li>
-      <li><a href="/terminos">Términos</a></li>
-      <li><span>·</span></li>
-      <li><a href="/privacidad">Privacidad</a></li>
-      <li><span>·</span></li>
-      <li><a href="/contacto">Contacto</a></li>
-    </ul>
-    <p class="home-copyright">© Ascndr 2026 · Marca Registrada</p>
-  </footer>
-  </div><!-- cierre div oculto -->
 
 </div><!-- cierre #home -->
 
@@ -207,15 +185,6 @@ img, video {
     "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
     "keywords": ["rebranding", "dirección creativa", "pub", "hostelería", "Jaén"],
     "image": "https://www.ascndrworld.com/images/conclave/portada-conclave2.jpg"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "3ª Ed. Halloween Fest — Fotografía de Evento",
-    "description": "Cobertura fotográfica profesional de la tercera edición de Halloween Fest Jaén desde dentro del evento.",
-    "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
-    "keywords": ["fotografía", "cobertura evento", "Halloween", "Jaén"],
-    "image": "https://www.ascndrworld.com/images/halloween-fest/portada-halloween3.jpg"
   }
 ])} />
 

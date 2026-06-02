@@ -7,6 +7,10 @@ import Layout from "../layouts/Layout.astro";
   description="Cuéntanos tu proyecto y te respondemos en menos de 24h. Consultoría creativa en branding, dirección creativa y redes sociales desde Jaén."
   canonical="https://www.ascndrworld.com/contacto"
 >
+  <Fragment slot="head">
+    <!-- EmailJS — solo se carga en esta página (defer, no bloquea el render) -->
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  </Fragment>
 
 <main class="ct-page">
   <section class="ct-hero">
@@ -64,6 +68,7 @@ import Layout from "../layouts/Layout.astro";
   (function() {
     const SERVICE_ID  = "service_itdpucz";
     const TEMPLATE_ID = "template_a9a415g";
+    const PUBLIC_KEY  = "RD0iA6EqENiEBxPXO";
 
     const form    = document.getElementById('ctForm');
     const success = document.getElementById('ctSuccess');
@@ -109,6 +114,7 @@ import Layout from "../layouts/Layout.astro";
         if (typeof emailjs === 'undefined' || !emailjs.send) {
           throw new Error('SDK EmailJS no cargado');
         }
+        emailjs.init({ publicKey: PUBLIC_KEY });
         await emailjs.send(SERVICE_ID, TEMPLATE_ID, params);
         form.hidden = true;
         success.hidden = false;
