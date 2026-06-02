@@ -2473,6 +2473,17 @@
   text-transform: uppercase;
 }
 
+/* Footer en móvil: los 5 enlaces en una sola línea */
+@media (max-width: 480px) {
+  .hs-footer-nav { flex-wrap: nowrap; gap: 7px; }
+  .hs-footer-nav a { font-size: 9px; letter-spacing: 0.05em; white-space: nowrap; }
+  .hs-footer-nav span { font-size: 9px; }
+}
+@media (max-width: 360px) {
+  .hs-footer-nav { gap: 5px; }
+  .hs-footer-nav a { font-size: 8px; letter-spacing: 0.03em; }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .hs-services { padding: 80px 24px; }

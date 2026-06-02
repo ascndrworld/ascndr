@@ -61,9 +61,7 @@ const fmt = (d: Date) =>
     color: #fff;
     font-family: "Montserrat", sans-serif;
     min-height: 100vh;
-    padding: 160px 24px 40px;
-    max-width: 1040px;
-    margin: 0 auto;
+    padding: 160px 40px 40px;
   }
   .bl-head { max-width: 720px; margin: 0 auto 64px; text-align: center; }
   .bl-eyebrow { font-size: 11px; letter-spacing: 0.32em; color: rgba(247,239,219,0.7); font-weight: 500; margin: 0 0 16px; }
@@ -71,7 +69,7 @@ const fmt = (d: Date) =>
   .bl-sub { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.6); margin: 0; }
   .bl-empty { text-align: center; color: rgba(255,255,255,0.5); }
 
-  .bl-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
+  .bl-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px 32px; }
   .bl-card { margin: 0; }
   .bl-card-link { display: block; text-decoration: none; color: inherit; }
   .bl-card-media { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #111; border-radius: 4px; }
@@ -95,5 +93,8 @@ const fmt = (d: Date) =>
     .bl-page { padding: 120px 20px 32px; }
     .bl-head { margin-bottom: 44px; }
     .bl-list { grid-template-columns: 1fr; gap: 36px; }
+  }
+  @media (max-width: 480px) {
+    .bl-footer-links { flex-wrap: nowrap; gap: 9px; font-size: 10px; letter-spacing: 0.1em; }
   }
 </style>
