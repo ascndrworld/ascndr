@@ -4,10 +4,11 @@ description: "Tener Instagram no es tener estrategia. Te explicamos la diferenci
 pubDate: 2026-03-19
 author: "Ascndr"
 category: "Redes Sociales"
-cover: "/images/conclave/rrss-02.jpg"
-coverAlt: "Gestión de redes sociales para negocio local — feed de Instagram diseñado por Ascndr"
+cover: "/images/blog/redes.jpg"
+coverAlt: "Diseño de carteles de Instagram para Cónclave — gestión de redes de Ascndr"
 coverFit: "contain"
 coverBg: "#efe9dd"
+coverScale: "1.35"
 draft: false
 ---
 

@@ -4,8 +4,9 @@ description: "Qué incluye realmente el branding de un negocio, de qué depende 
 pubDate: 2026-05-06
 author: "Ascndr"
 category: "Branding"
-cover: "/images/conclave/rrss-01.jpg"
-coverAlt: "Branding de un negocio aplicado en redes sociales — proyecto de Ascndr"
+cover: "/images/conclave/portada-blog-branding.jpg"
+coverAlt: "Local en plena reforma durante un proyecto de branding de Ascndr"
+coverPosition: "center 70%"
 draft: false
 ---
 

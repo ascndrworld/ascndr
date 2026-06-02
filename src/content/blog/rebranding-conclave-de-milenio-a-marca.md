@@ -1,5 +1,5 @@
 ---
-title: "Cómo creamos el branding de Cónclave: de Milenio 2.0 a una marca nueva"
+title: "Cómo creamos el rebranding de Cónclave: de Milenio 2.0 a una marca nueva"
 description: "El caso real del rebranding de un pub: naming, identidad visual y dirección creativa para reposicionar un local de hostelería de arriba abajo."
 pubDate: 2026-04-21
 author: "Ascndr"

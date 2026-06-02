@@ -4,8 +4,10 @@ description: "El naming es la primera decisión de tu marca y la más difícil d
 pubDate: 2026-02-25
 author: "Ascndr"
 category: "Branding"
-cover: "/images/conclave/reveal-nombre-poster.jpg"
-coverAlt: "Naming de marca — reveal del nombre Cónclave, proyecto de Ascndr"
+cover: "/images/blog/naming.jpg"
+coverAlt: "Naming de marca — logo Cónclave entre hiedra, proyecto de Ascndr"
+coverPosition: "center 38%"
+coverScale: "1.4"
 draft: false
 ---
 

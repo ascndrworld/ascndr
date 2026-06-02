@@ -15,7 +15,6 @@ const fmt = (d: Date) =>
 >
   <main class="bl-page">
     <header class="bl-head">
-      <p class="bl-eyebrow">BLOG</p>
       <h1 class="bl-title">Ideas, casos y marca</h1>
       <p class="bl-sub">Branding, dirección creativa, eventos y redes sociales. Lo que aprendemos trabajando.</p>
     </header>
@@ -69,7 +68,7 @@ const fmt = (d: Date) =>
   .bl-sub { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.6); margin: 0; }
   .bl-empty { text-align: center; color: rgba(255,255,255,0.5); }
 
-  .bl-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px 32px; }
+  .bl-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .bl-card { margin: 0; }
   .bl-card-link { display: block; text-decoration: none; color: inherit; }
   .bl-card-media { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #111; border-radius: 4px; }
@@ -89,6 +88,9 @@ const fmt = (d: Date) =>
   .bl-sep { color: rgba(255,255,255,0.2); }
   .bl-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; }
 
+  @media (max-width: 1024px) {
+    .bl-list { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 768px) {
     .bl-page { padding: 120px 20px 32px; }
     .bl-head { margin-bottom: 44px; }

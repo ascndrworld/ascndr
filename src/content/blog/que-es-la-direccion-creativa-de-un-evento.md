@@ -4,10 +4,9 @@ description: "Un evento no es solo música y un cartel. La dirección creativa e
 pubDate: 2026-04-14
 author: "Ascndr"
 category: "Eventos"
-cover: "/images/halloween-fest/portada-blog-eventos.jpg"
-coverAlt: "Dirección creativa de eventos — cartel del Halloween Fest diseñado por Ascndr"
-coverFit: "contain"
-coverBg: "#05060a"
+cover: "/images/halloween-fest/portada-blog-eventos-2.jpg"
+coverAlt: "Ambiente del Halloween Fest — calabaza y foco, dirección creativa de Ascndr"
+coverPosition: "center 62%"
 draft: false
 ---
 
