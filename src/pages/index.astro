@@ -358,7 +358,7 @@ img, video {
   color: rgba(247, 239, 219, 0.6);
   margin: 0;
 }
-/* Puntos del carrusel — solo visibles en móvil (ver responsive) */
+/* Marcadores de carrusel — solo visibles en móvil (ver responsive) */
 .proc-dots, .tst-dots { display: none; }
 
 /* ── CTA DE CIERRE ── */
@@ -485,25 +485,13 @@ img, video {
   .proc-num { font-size: 44px; }
   .proc-name { font-size: 22px; }
   .proc-desc { font-size: 15px; }
+  /* Contenedores de los marcadores (los botones se estilan en el <style global>) */
   .proc-dots {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 32px;
-  }
-  .proc-dot, .tst-dot {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: rgba(247, 239, 219, 0.25);
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-  .proc-dot[aria-selected="true"], .tst-dot[aria-selected="true"] {
-    background: #F7EFDB;
-    transform: scale(1.25);
+    align-items: center;
+    gap: 8px;
+    margin-top: 34px;
   }
 
   /* Testimonios → carrusel de una cita (autoplay + swipe) */
@@ -529,11 +517,65 @@ img, video {
   .tst-dots {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 36px;
+    align-items: center;
+    gap: 13px;
+    margin-top: 38px;
   }
 }
 
+</style>
+
+<!-- ── Estilos de los marcadores (botones creados por JS → fuera del scope de Astro) ── -->
+<style is:global>
+  /* Proceso → barras "palito" con relleno de progreso (premium) */
+  .proc-dot {
+    width: 20px;
+    height: 3px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: rgba(247, 239, 219, 0.2);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+  }
+  .proc-dot[aria-selected="true"] {
+    width: 48px;
+    background: rgba(247, 239, 219, 0.22);
+  }
+  /* Relleno que acompaña al autoplay (5s, sincronizado con el temporizador JS) */
+  .proc-dot[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #F7EFDB;
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: procFill 5s linear forwards;
+  }
+  @keyframes procFill { to { transform: scaleX(1); } }
+  /* En pausa (tras tocar): la barra activa queda fija y llena, sin animación */
+  .proc-dots.is-paused .proc-dot[aria-selected="true"] { background: #F7EFDB; }
+  .proc-dots.is-paused .proc-dot[aria-selected="true"]::after { display: none; }
+
+  /* Testimonios → puntos con halo (premium) */
+  .tst-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(247, 239, 219, 0.25);
+    cursor: pointer;
+    transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  }
+  .tst-dot[aria-selected="true"] {
+    background: #F7EFDB;
+    transform: scale(1.15);
+    box-shadow: 0 0 0 4px rgba(247, 239, 219, 0.14);
+  }
 </style>
 
 
@@ -601,7 +643,7 @@ img, video {
           b.setAttribute("role", "tab");
           b.setAttribute("aria-label", label + " " + (i + 1));
           b.addEventListener("click", function () {
-            paused = true; stop();
+            pause();
             goTo(i);
           });
           dotsWrap.appendChild(b);
@@ -629,6 +671,7 @@ img, video {
         timer = setInterval(next, DELAY);
       }
       function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function pause() { paused = true; stop(); dotsWrap.classList.add("is-paused"); }
 
       // Sincroniza los puntos cuando el usuario desliza a mano
       var scrollT = null;
@@ -641,9 +684,9 @@ img, video {
       }, { passive: true });
 
       // Al tocar/interactuar, se detiene el autoplay
-      track.addEventListener("touchstart", function () { paused = true; stop(); }, { passive: true });
+      track.addEventListener("touchstart", function () { pause(); }, { passive: true });
 
-      function enable() { buildDots(); setActive(0); paused = false; start(); }
+      function enable() { buildDots(); dotsWrap.classList.remove("is-paused"); setActive(0); paused = false; start(); }
       function disable() { stop(); }
 
       return function apply() { mq.matches ? enable() : disable(); };
