@@ -53,18 +53,18 @@ function shell(body: string) {
   [data-ogsb] .bg-inner { background-color: #000000 !important; }
 </style>
 </head>
-<body style="margin:0;padding:0;background-color:#0a0a0a;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-outer" style="background-color:#0a0a0a;">
-    <tr><td align="center" style="padding:32px 16px;">
-      <table role="presentation" width="600" cellpadding="0" cellspacing="0" class="bg-inner" style="width:100%;max-width:600px;background-color:#000000;border:1px solid rgba(247,239,219,0.12);">
-        <tr><td align="center" style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);text-align:center;">
+<body style="margin:0;padding:0;background-color:#0a0a0a;" bgcolor="#0a0a0a">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-outer" bgcolor="#0a0a0a" style="background-color:#0a0a0a;">
+    <tr><td align="center" bgcolor="#0a0a0a" style="padding:32px 16px;background-color:#0a0a0a;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" class="bg-inner" bgcolor="#000000" style="width:100%;max-width:600px;background-color:#000000;border:1px solid rgba(247,239,219,0.12);">
+        <tr><td align="center" bgcolor="#000000" style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);text-align:center;background-color:#000000;">
           <img src="${LOGO}" width="138" alt="Ascndr" style="display:block;border:0;width:138px;height:auto;margin:0 auto;">
         </td></tr>
-        <tr><td style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#F7EFDB;">
+        <tr><td bgcolor="#000000" style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#F7EFDB;background-color:#000000;">
           ${body}
         </td></tr>
-        <tr><td style="padding:26px 40px;border-top:1px solid rgba(247,239,219,0.12);font-family:Montserrat,Helvetica,Arial,sans-serif;">
-          <p style="margin:0;font-size:12px;line-height:1.7;letter-spacing:0.03em;color:rgba(247,239,219,0.45);">
+        <tr><td align="center" bgcolor="#000000" style="padding:26px 40px;border-top:1px solid rgba(247,239,219,0.12);font-family:Montserrat,Helvetica,Arial,sans-serif;text-align:center;background-color:#000000;">
+          <p style="margin:0;font-size:12px;line-height:1.7;letter-spacing:0.03em;color:rgba(247,239,219,0.45);text-align:center;">
             Ascndr · Consultoría creativa<br>
             <a href="${SITE}" style="color:rgba(247,239,219,0.7);text-decoration:none;">ascndrworld.com</a>
             &nbsp;·&nbsp;
@@ -142,7 +142,7 @@ export const POST: APIRoute = async ({ request }) => {
   const autoHtml = shell(`
     <h1 style="margin:0 0 22px;font-size:28px;font-weight:800;letter-spacing:-0.5px;color:#F7EFDB;">Gracias, ${esc(name)}</h1>
     <p style="margin:0 0 16px;font-size:16px;line-height:1.65;color:rgba(247,239,219,0.85);">Hemos recibido tu mensaje y lo estamos revisando. Te responderemos personalmente en <strong style="color:#F7EFDB;">menos de 24 horas</strong>.</p>
-    <p style="margin:30px 0 0;font-size:15px;line-height:1.6;color:rgba(247,239,219,0.85);">Un saludo,<br><strong style="color:#F7EFDB;">Frank</strong> · Ascndr</p>`);
+    <p style="margin:30px 0 0;font-size:15px;line-height:1.6;color:rgba(247,239,219,0.85);">Un saludo,<br><strong style="color:#F7EFDB;">Frank</strong></p>`);
 
   // 1) Aviso a ti (obligatorio) — responder va directo al cliente
   try {
