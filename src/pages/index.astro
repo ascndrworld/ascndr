@@ -70,7 +70,7 @@ import Layout from "../layouts/Layout.astro";
   <section class="hs-services">
     <h2 class="hs-services-title">consultoría<br/>creativa</h2>
     <p class="hs-services-text">La identidad visual es la primera impresión que se lleva un cliente de tu marca. Trabajamos para que sea la correcta.</p>
-    <p class="hs-services-text">Branding, dirección creativa, fotografía, redes sociales. Todo bajo una misma visión estratégica.</p>
+    <p class="hs-services-text">Branding, dirección creativa, web, redes sociales. Todo bajo una misma visión estratégica.</p>
     <a class="hs-services-btn" href="/contacto">INICIAR PROYECTO</a>
   </section>
 
@@ -164,6 +164,37 @@ import Layout from "../layouts/Layout.astro";
         <p class="proc-desc">Ponemos tu marca en el mundo y te dejamos las herramientas para mantenerla.</p>
       </li>
     </ol>
+  </section>
+
+  <!-- ════ TESTIMONIOS ════ -->
+  <section class="tst" id="testimonios">
+    <div class="tst-head">
+      <span class="svc-eyebrow">TESTIMONIOS</span>
+      <h2 class="svc-title">confían en nosotros</h2>
+    </div>
+    <div class="tst-grid">
+      <figure class="tst-item">
+        <blockquote class="tst-quote">Llevo muchos años trabajando en la noche y pensaba que un cambio tan drástico no iba a funcionar, pero han rejuvenecido mi negocio. Tomé la decisión correcta: ahora mi local vuelve a ser el punto de encuentro en el pueblo.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-name">Lorenzo Hidalgo</span>
+          <span class="tst-role">Dueño de Pub Milenio · +26 años en el sector</span>
+        </figcaption>
+      </figure>
+      <figure class="tst-item">
+        <blockquote class="tst-quote">En las dos primeras ediciones se nos veía como un evento poco profesional. Hace 2 años que trabajamos juntos y nuestro evento ahora crea comunidad y llega a más gente en cada edición.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-name">Luis Ramírez</span>
+          <span class="tst-role">Founder de Halloween Fest · 4 ediciones consecutivas</span>
+        </figcaption>
+      </figure>
+      <figure class="tst-item">
+        <blockquote class="tst-quote">Quería crear una aplicación web seria desde el primer día. Nos orientaron sobre variables y herramientas que desconocíamos. Nuestra marca está presente entre promotores de eventos.</blockquote>
+        <figcaption class="tst-author">
+          <span class="tst-name">Juan Delgado</span>
+          <span class="tst-role">CEO y Co-Founder de Eventsy</span>
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- ════ CTA DE CIERRE ════ -->
@@ -363,12 +394,61 @@ img, video {
 }
 .cta-btn:hover { background: transparent; color: #F7EFDB; }
 
+/* ── TESTIMONIOS ── */
+.tst {
+  background: #000;
+  color: #F7EFDB;
+  font-family: "Montserrat", sans-serif;
+  padding: clamp(72px, 9vw, 120px) 10px;
+}
+.tst-head { margin: 0 0 clamp(40px, 5vw, 64px); text-align: right; }
+.tst-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.tst-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(24px, 2.5vw, 40px);
+  border-left: 1px solid rgba(247, 239, 219, 0.18);
+}
+.tst-item:first-child { border-left: none; padding-left: 10px; }
+.tst-quote {
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.6;
+  color: rgba(247, 239, 219, 0.9);
+  font-weight: 400;
+  margin: 0 0 28px;
+}
+.tst-quote::before {
+  content: "\201C";
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 52px;
+  line-height: 0.5;
+  color: rgba(247, 239, 219, 0.35);
+  margin-bottom: 16px;
+}
+.tst-author {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: auto;
+}
+.tst-name { font-size: 15px; font-weight: 700; color: #fff; }
+.tst-role { font-size: 12px; letter-spacing: 0.03em; color: rgba(247, 239, 219, 0.5); }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .svc-grid { grid-template-columns: 1fr 1fr; }
   .svc-item:nth-child(odd) { border-left: none; }
   .svc-item:nth-child(n+3) { border-top: 1px solid rgba(247, 239, 219, 0.14); }
   .proc-steps { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+  .tst-grid { grid-template-columns: 1fr; }
+  .tst-item { border-left: none; border-top: 1px solid rgba(247, 239, 219, 0.14); padding: 28px 0 0; }
+  .tst-item:first-child { border-top: none; padding: 0; }
+  .tst-head { text-align: left; }
 }
 @media (max-width: 600px) {
   .svc-grid { grid-template-columns: 1fr; }
