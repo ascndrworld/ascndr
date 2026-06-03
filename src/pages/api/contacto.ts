@@ -10,7 +10,7 @@ const FROM_REPLY  = "Ascndr <frank@ascndrworld.com>";     // remitente de la aut
 
 // ── Marca (para el diseño de los emails) ──
 const SITE = "https://www.ascndrworld.com";
-const LOGO = "https://www.ascndrworld.com/ascndr-logo.png";
+const BAND = "https://www.ascndrworld.com/email-logo-band.png"; // logo crema sobre banda negra (imagen: Gmail no la recolorea)
 const IG   = "https://www.instagram.com/ascndr.world";
 
 const RESEND_API_KEY =
@@ -35,49 +35,34 @@ function isValidEmail(v: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 }
 
-// "Plantilla" base de los emails: cabecera con logo + pie, estética Ascndr
+// "Plantilla" base de los emails: cabecera (banda con logo, imagen) + cuerpo claro + pie.
+// El cuerpo es claro a propósito: Gmail recolorea fondos pero NO imágenes, así que la
+// banda negra con el logo crema se ve siempre bien, y el resto sobrevive al modo oscuro.
 function shell(body: string) {
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<meta name="supported-color-schemes" content="dark">
-<style>
-  :root { color-scheme: dark; supported-color-schemes: dark; }
-  body, .bg-outer { background-color: #0a0a0a !important; }
-  .bg-inner, .ed-cell { background-color: #000000 !important; }
-  .t-cream { color: #F7EFDB !important; }
-  .t-dim { color: #b9b29e !important; }
-  /* iOS / Apple Mail en modo oscuro: forzar el mismo fondo negro y textos crema */
-  @media (prefers-color-scheme: dark) {
-    body, .bg-outer { background-color: #0a0a0a !important; }
-    .bg-inner, .ed-cell { background-color: #000000 !important; }
-    .t-cream { color: #F7EFDB !important; }
-    .t-dim { color: #b9b29e !important; }
-  }
-  /* Outlook (modo oscuro) */
-  [data-ogsc] body, [data-ogsb] body { background-color: #0a0a0a !important; }
-  [data-ogsb] .bg-inner, [data-ogsb] .ed-cell { background-color: #000000 !important; }
-</style>
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
 </head>
-<body style="margin:0;padding:0;background-color:#0a0a0a;" bgcolor="#0a0a0a">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-outer" bgcolor="#0a0a0a" style="background-color:#0a0a0a;">
-    <tr><td align="center" bgcolor="#0a0a0a" style="padding:32px 16px;background-color:#0a0a0a;">
-      <table role="presentation" width="600" cellpadding="0" cellspacing="0" class="bg-inner" bgcolor="#000000" style="width:100%;max-width:600px;background-color:#000000;border:1px solid rgba(247,239,219,0.12);">
-        <tr><td align="center" class="ed-cell" bgcolor="#000000" style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);text-align:center;background-color:#000000;">
-          <img src="${LOGO}" width="138" alt="Ascndr" style="display:block;border:0;width:138px;height:auto;margin:0 auto;">
+<body style="margin:0;padding:0;background-color:#e7e2d4;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#e7e2d4" style="background-color:#e7e2d4;">
+    <tr><td align="center" style="padding:32px 16px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="width:100%;max-width:600px;background-color:#ffffff;border:1px solid rgba(0,0,0,0.08);">
+        <tr><td style="padding:0;font-size:0;line-height:0;">
+          <img src="${BAND}" alt="Ascndr" width="600" style="display:block;border:0;width:100%;max-width:600px;height:auto;">
         </td></tr>
-        <tr><td class="ed-cell t-cream" bgcolor="#000000" style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#F7EFDB;background-color:#000000;">
+        <tr><td style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#141414;">
           ${body}
         </td></tr>
-        <tr><td align="center" class="ed-cell" bgcolor="#000000" style="padding:26px 40px;border-top:1px solid rgba(247,239,219,0.12);font-family:Montserrat,Helvetica,Arial,sans-serif;text-align:center;background-color:#000000;">
-          <p class="t-dim" style="margin:0;font-size:12px;line-height:1.7;letter-spacing:0.03em;color:rgba(247,239,219,0.45);text-align:center;">
+        <tr><td align="center" style="padding:26px 40px;border-top:1px solid rgba(0,0,0,0.08);font-family:Montserrat,Helvetica,Arial,sans-serif;text-align:center;">
+          <p style="margin:0;font-size:12px;line-height:1.7;letter-spacing:0.03em;color:#8a857a;text-align:center;">
             Ascndr · Consultoría creativa<br>
-            <a href="${SITE}" style="color:rgba(247,239,219,0.7);text-decoration:none;">ascndrworld.com</a>
+            <a href="${SITE}" style="color:#5a564e;text-decoration:none;">ascndrworld.com</a>
             &nbsp;·&nbsp;
-            <a href="${IG}" style="color:rgba(247,239,219,0.7);text-decoration:none;">Instagram</a>
+            <a href="${IG}" style="color:#5a564e;text-decoration:none;">Instagram</a>
           </p>
         </td></tr>
       </table>
@@ -89,12 +74,12 @@ function shell(body: string) {
 
 function field(label: string, value: string) {
   return `<tr><td style="padding:0 0 20px;">
-    <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(247,239,219,0.45);margin:0 0 4px;">${label}</div>
-    <div style="font-size:16px;line-height:1.5;color:#F7EFDB;">${value}</div>
+    <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#9a948a;margin:0 0 4px;">${label}</div>
+    <div style="font-size:16px;line-height:1.5;color:#141414;">${value}</div>
   </td></tr>`;
 }
 
-const BTN = "display:inline-block;background:#F7EFDB;color:#000000;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:14px 30px;";
+const BTN = "display:inline-block;background:#000000;color:#F7EFDB;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:14px 30px;";
 
 async function sendEmail(payload: Record<string, unknown>) {
   const res = await fetch("https://api.resend.com/emails", {
@@ -138,20 +123,20 @@ export const POST: APIRoute = async ({ request }) => {
   if (!isValidEmail(email)) return json(400, { error: "Revisa el formato del email." });
 
   const notifyHtml = shell(`
-    <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(247,239,219,0.5);margin:0 0 8px;">Nuevo contacto</div>
-    <h1 style="margin:0 0 30px;font-size:26px;font-weight:800;letter-spacing:-0.5px;color:#F7EFDB;">Tienes un mensaje nuevo</h1>
+    <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#9a948a;margin:0 0 8px;">Nuevo contacto</div>
+    <h1 style="margin:0 0 30px;font-size:26px;font-weight:800;letter-spacing:-0.5px;color:#141414;">Tienes un mensaje nuevo</h1>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
       ${field("Nombre", esc(name))}
-      ${field("Email", `<a href="mailto:${esc(email)}" style="color:#F7EFDB;text-decoration:underline;">${esc(email)}</a>`)}
+      ${field("Email", `<a href="mailto:${esc(email)}" style="color:#141414;text-decoration:underline;">${esc(email)}</a>`)}
       ${field("Dónde está", esc(phone) || "No facilitado")}
       ${field("Proyecto", esc(consulta).replace(/\n/g, "<br>") || "Sin consulta previa")}
     </table>
     <a href="mailto:${esc(email)}" style="${BTN}margin-top:10px;">Responder a ${esc(name)}</a>`);
 
   const autoHtml = shell(`
-    <h1 style="margin:0 0 22px;font-size:28px;font-weight:800;letter-spacing:-0.5px;color:#F7EFDB;">Gracias, ${esc(name)}</h1>
-    <p style="margin:0 0 16px;font-size:16px;line-height:1.65;color:rgba(247,239,219,0.85);">Hemos recibido tu mensaje y lo estamos revisando. Te responderemos personalmente en <strong style="color:#F7EFDB;">menos de 24 horas</strong>.</p>
-    <p style="margin:30px 0 0;font-size:15px;line-height:1.6;color:rgba(247,239,219,0.85);">Un saludo,<br><strong style="color:#F7EFDB;">Frank</strong></p>`);
+    <h1 style="margin:0 0 22px;font-size:28px;font-weight:800;letter-spacing:-0.5px;color:#141414;">Gracias, ${esc(name)}</h1>
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.65;color:#4a4744;">Hemos recibido tu mensaje y lo estamos revisando. Te responderemos personalmente en <strong style="color:#141414;">menos de 24 horas</strong>.</p>
+    <p style="margin:30px 0 0;font-size:15px;line-height:1.6;color:#4a4744;">Un saludo,<br><strong style="color:#141414;">Frank</strong></p>`);
 
   // 1) Aviso a ti (obligatorio) — responder va directo al cliente
   try {
