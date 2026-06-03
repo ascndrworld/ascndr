@@ -7,10 +7,6 @@ import Layout from "../layouts/Layout.astro";
   description="Cuéntanos tu proyecto y te respondemos en menos de 24h. Consultoría creativa en branding, dirección creativa y redes sociales desde Jaén."
   canonical="https://www.ascndrworld.com/contacto"
 >
-  <Fragment slot="head">
-    <!-- EmailJS — solo se carga en esta página (defer, no bloquea el render) -->
-    <script is:inline defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  </Fragment>
 
 <main class="ct-page">
   <section class="ct-hero">
@@ -63,10 +59,6 @@ import Layout from "../layouts/Layout.astro";
 
 <script is:inline>
   (function() {
-    const SERVICE_ID  = "service_itdpucz";
-    const TEMPLATE_ID = "template_a9a415g";
-    const PUBLIC_KEY  = "RD0iA6EqENiEBxPXO";
-
     const form    = document.getElementById('ctForm');
     const success = document.getElementById('ctSuccess');
     const wrap    = document.getElementById('ctFormWrap');
@@ -87,10 +79,6 @@ import Layout from "../layouts/Layout.astro";
       const consulta = document.getElementById('ctConsulta').value.trim();
       const honeypot = document.getElementById('ctWebsite').value;
 
-      if (honeypot) {
-        form.hidden = true; success.hidden = false;
-        return;
-      }
       if (!nombre || !email) { showErr('Completa al menos nombre y email.'); return; }
       if (!isValidEmail(email)) { showErr('Revisa el formato del email.'); return; }
 
@@ -99,20 +87,20 @@ import Layout from "../layouts/Layout.astro";
       btn.classList.add('sending');
       btn.textContent = 'Enviando…';
 
-      const params = {
-        name: nombre,
-        email: email,
-        phone: telefono || 'No facilitado',
-        consulta: consulta || 'Sin consulta previa',
-        reply_to: email
-      };
-
       try {
-        if (typeof emailjs === 'undefined' || !emailjs.send) {
-          throw new Error('SDK EmailJS no cargado');
-        }
-        emailjs.init({ publicKey: PUBLIC_KEY });
-        await emailjs.send(SERVICE_ID, TEMPLATE_ID, params);
+        const res = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: nombre,
+            email: email,
+            phone: telefono,
+            consulta: consulta,
+            website: honeypot
+          })
+        });
+        if (!res.ok) throw new Error('Envío rechazado (' + res.status + ')');
+
         form.hidden = true;
         success.hidden = false;
         wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
