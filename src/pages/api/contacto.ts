@@ -42,29 +42,38 @@ function shell(body: string) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark only">
-<meta name="supported-color-schemes" content="dark only">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
 <style>
-  :root { color-scheme: dark only; supported-color-schemes: dark only; }
+  :root { color-scheme: dark; supported-color-schemes: dark; }
   body, .bg-outer { background-color: #0a0a0a !important; }
-  .bg-inner { background-color: #000000 !important; }
-  /* Outlook (modo oscuro): mantener el fondo negro */
+  .bg-inner, .ed-cell { background-color: #000000 !important; }
+  .t-cream { color: #F7EFDB !important; }
+  .t-dim { color: #b9b29e !important; }
+  /* iOS / Apple Mail en modo oscuro: forzar el mismo fondo negro y textos crema */
+  @media (prefers-color-scheme: dark) {
+    body, .bg-outer { background-color: #0a0a0a !important; }
+    .bg-inner, .ed-cell { background-color: #000000 !important; }
+    .t-cream { color: #F7EFDB !important; }
+    .t-dim { color: #b9b29e !important; }
+  }
+  /* Outlook (modo oscuro) */
   [data-ogsc] body, [data-ogsb] body { background-color: #0a0a0a !important; }
-  [data-ogsb] .bg-inner { background-color: #000000 !important; }
+  [data-ogsb] .bg-inner, [data-ogsb] .ed-cell { background-color: #000000 !important; }
 </style>
 </head>
 <body style="margin:0;padding:0;background-color:#0a0a0a;" bgcolor="#0a0a0a">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-outer" bgcolor="#0a0a0a" style="background-color:#0a0a0a;">
     <tr><td align="center" bgcolor="#0a0a0a" style="padding:32px 16px;background-color:#0a0a0a;">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" class="bg-inner" bgcolor="#000000" style="width:100%;max-width:600px;background-color:#000000;border:1px solid rgba(247,239,219,0.12);">
-        <tr><td align="center" bgcolor="#000000" style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);text-align:center;background-color:#000000;">
+        <tr><td align="center" class="ed-cell" bgcolor="#000000" style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);text-align:center;background-color:#000000;">
           <img src="${LOGO}" width="138" alt="Ascndr" style="display:block;border:0;width:138px;height:auto;margin:0 auto;">
         </td></tr>
-        <tr><td bgcolor="#000000" style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#F7EFDB;background-color:#000000;">
+        <tr><td class="ed-cell t-cream" bgcolor="#000000" style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#F7EFDB;background-color:#000000;">
           ${body}
         </td></tr>
-        <tr><td align="center" bgcolor="#000000" style="padding:26px 40px;border-top:1px solid rgba(247,239,219,0.12);font-family:Montserrat,Helvetica,Arial,sans-serif;text-align:center;background-color:#000000;">
-          <p style="margin:0;font-size:12px;line-height:1.7;letter-spacing:0.03em;color:rgba(247,239,219,0.45);text-align:center;">
+        <tr><td align="center" class="ed-cell" bgcolor="#000000" style="padding:26px 40px;border-top:1px solid rgba(247,239,219,0.12);font-family:Montserrat,Helvetica,Arial,sans-serif;text-align:center;background-color:#000000;">
+          <p class="t-dim" style="margin:0;font-size:12px;line-height:1.7;letter-spacing:0.03em;color:rgba(247,239,219,0.45);text-align:center;">
             Ascndr · Consultoría creativa<br>
             <a href="${SITE}" style="color:rgba(247,239,219,0.7);text-decoration:none;">ascndrworld.com</a>
             &nbsp;·&nbsp;
