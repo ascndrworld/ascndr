@@ -42,14 +42,23 @@ function shell(body: string) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark only">
+<meta name="supported-color-schemes" content="dark only">
+<style>
+  :root { color-scheme: dark only; supported-color-schemes: dark only; }
+  body, .bg-outer { background-color: #0a0a0a !important; }
+  .bg-inner { background-color: #000000 !important; }
+  /* Outlook (modo oscuro): mantener el fondo negro */
+  [data-ogsc] body, [data-ogsb] body { background-color: #0a0a0a !important; }
+  [data-ogsb] .bg-inner { background-color: #000000 !important; }
+</style>
 </head>
-<body style="margin:0;padding:0;background:#0a0a0a;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;">
+<body style="margin:0;padding:0;background-color:#0a0a0a;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-outer" style="background-color:#0a0a0a;">
     <tr><td align="center" style="padding:32px 16px;">
-      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#000000;border:1px solid rgba(247,239,219,0.12);">
-        <tr><td style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);">
-          <img src="${LOGO}" width="138" alt="Ascndr" style="display:block;border:0;width:138px;height:auto;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" class="bg-inner" style="width:100%;max-width:600px;background-color:#000000;border:1px solid rgba(247,239,219,0.12);">
+        <tr><td align="center" style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);text-align:center;">
+          <img src="${LOGO}" width="138" alt="Ascndr" style="display:block;border:0;width:138px;height:auto;margin:0 auto;">
         </td></tr>
         <tr><td style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#F7EFDB;">
           ${body}
@@ -131,11 +140,9 @@ export const POST: APIRoute = async ({ request }) => {
     <a href="mailto:${esc(email)}" style="${BTN}margin-top:10px;">Responder a ${esc(name)}</a>`);
 
   const autoHtml = shell(`
-    <h1 style="margin:0 0 22px;font-size:28px;font-weight:800;letter-spacing:-0.5px;color:#F7EFDB;">Gracias, ${esc(name)} <span style="color:rgba(247,239,219,0.5);">✦</span></h1>
+    <h1 style="margin:0 0 22px;font-size:28px;font-weight:800;letter-spacing:-0.5px;color:#F7EFDB;">Gracias, ${esc(name)}</h1>
     <p style="margin:0 0 16px;font-size:16px;line-height:1.65;color:rgba(247,239,219,0.85);">Hemos recibido tu mensaje y lo estamos revisando. Te responderemos personalmente en <strong style="color:#F7EFDB;">menos de 24 horas</strong>.</p>
-    <p style="margin:0 0 30px;font-size:16px;line-height:1.65;color:rgba(247,239,219,0.85);">Mientras tanto, puedes echar un vistazo a algunos de nuestros proyectos.</p>
-    <a href="${SITE}/trabajos" style="${BTN}">Ver proyectos</a>
-    <p style="margin:34px 0 0;font-size:15px;line-height:1.6;color:rgba(247,239,219,0.85);">Un saludo,<br><strong style="color:#F7EFDB;">Frank</strong> · Ascndr</p>`);
+    <p style="margin:30px 0 0;font-size:15px;line-height:1.6;color:rgba(247,239,219,0.85);">Un saludo,<br><strong style="color:#F7EFDB;">Frank</strong> · Ascndr</p>`);
 
   // 1) Aviso a ti (obligatorio) — responder va directo al cliente
   try {
