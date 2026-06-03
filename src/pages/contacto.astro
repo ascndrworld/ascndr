@@ -116,6 +116,8 @@ import Layout from "../layouts/Layout.astro";
         form.hidden = true;
         success.hidden = false;
         wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Tras mostrar "Mensaje recibido", lleva a la home automáticamente
+        setTimeout(function() { window.location.href = '/'; }, 2500);
       } catch (err) {
         console.error('Contacto error:', err);
         showErr('No hemos podido enviar el mensaje. Inténtalo en unos segundos.');
@@ -124,6 +126,27 @@ import Layout from "../layouts/Layout.astro";
         btn.innerHTML = original;
       }
     });
+  })();
+</script>
+
+<!-- En móvil, la línea del correo baja debajo del formulario; en escritorio vuelve al hero -->
+<script is:inline>
+  (function () {
+    var direct = document.querySelector('.ct-direct');
+    var hero = document.querySelector('.ct-hero');
+    var page = document.querySelector('.ct-page');
+    var formWrap = document.getElementById('ctFormWrap');
+    if (!direct || !hero || !page || !formWrap) return;
+    var mq = window.matchMedia('(max-width: 900px)');
+    function apply() {
+      if (mq.matches) {
+        if (direct.previousElementSibling !== formWrap) page.appendChild(direct);
+      } else {
+        if (direct.parentNode !== hero) hero.appendChild(direct);
+      }
+    }
+    apply();
+    (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply));
   })();
 </script>
 
