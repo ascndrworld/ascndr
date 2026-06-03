@@ -8,6 +8,11 @@ const OWNER_EMAIL = "frank@ascndrworld.com";              // a quién le llega e
 const FROM_NOTIFY = "Web Ascndr <frank@ascndrworld.com>"; // remitente del aviso
 const FROM_REPLY  = "Ascndr <frank@ascndrworld.com>";     // remitente de la auto-respuesta
 
+// ── Marca (para el diseño de los emails) ──
+const SITE = "https://www.ascndrworld.com";
+const LOGO = "https://www.ascndrworld.com/ascndr-logo.png";
+const IG   = "https://www.instagram.com/ascndr.world";
+
 const RESEND_API_KEY =
   import.meta.env.RESEND_API_KEY ??
   (globalThis as any).process?.env?.RESEND_API_KEY;
@@ -29,6 +34,49 @@ function esc(s: string) {
 function isValidEmail(v: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 }
+
+// "Plantilla" base de los emails: cabecera con logo + pie, estética Ascndr
+function shell(body: string) {
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+</head>
+<body style="margin:0;padding:0;background:#0a0a0a;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;">
+    <tr><td align="center" style="padding:32px 16px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#000000;border:1px solid rgba(247,239,219,0.12);">
+        <tr><td style="padding:34px 40px 26px;border-bottom:1px solid rgba(247,239,219,0.12);">
+          <img src="${LOGO}" width="138" alt="Ascndr" style="display:block;border:0;width:138px;height:auto;">
+        </td></tr>
+        <tr><td style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#F7EFDB;">
+          ${body}
+        </td></tr>
+        <tr><td style="padding:26px 40px;border-top:1px solid rgba(247,239,219,0.12);font-family:Montserrat,Helvetica,Arial,sans-serif;">
+          <p style="margin:0;font-size:12px;line-height:1.7;letter-spacing:0.03em;color:rgba(247,239,219,0.45);">
+            Ascndr · Consultoría creativa<br>
+            <a href="${SITE}" style="color:rgba(247,239,219,0.7);text-decoration:none;">ascndrworld.com</a>
+            &nbsp;·&nbsp;
+            <a href="${IG}" style="color:rgba(247,239,219,0.7);text-decoration:none;">Instagram</a>
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+function field(label: string, value: string) {
+  return `<tr><td style="padding:0 0 20px;">
+    <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(247,239,219,0.45);margin:0 0 4px;">${label}</div>
+    <div style="font-size:16px;line-height:1.5;color:#F7EFDB;">${value}</div>
+  </td></tr>`;
+}
+
+const BTN = "display:inline-block;background:#F7EFDB;color:#000000;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:14px 30px;";
 
 async function sendEmail(payload: Record<string, unknown>) {
   const res = await fetch("https://api.resend.com/emails", {
@@ -71,21 +119,23 @@ export const POST: APIRoute = async ({ request }) => {
   if (!name || !email) return json(400, { error: "Completa al menos nombre y email." });
   if (!isValidEmail(email)) return json(400, { error: "Revisa el formato del email." });
 
-  const notifyHtml = `
-    <div style="font-family:Arial,sans-serif;font-size:15px;color:#111;line-height:1.6">
-      <h2 style="margin:0 0 16px">Nuevo mensaje desde la web</h2>
-      <p><strong>Nombre:</strong> ${esc(name)}</p>
-      <p><strong>Email:</strong> ${esc(email)}</p>
-      <p><strong>Dónde está:</strong> ${esc(phone) || "No facilitado"}</p>
-      <p><strong>Proyecto:</strong><br>${esc(consulta).replace(/\n/g, "<br>") || "Sin consulta previa"}</p>
-    </div>`;
+  const notifyHtml = shell(`
+    <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(247,239,219,0.5);margin:0 0 8px;">Nuevo contacto</div>
+    <h1 style="margin:0 0 30px;font-size:26px;font-weight:800;letter-spacing:-0.5px;color:#F7EFDB;">Tienes un mensaje nuevo</h1>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      ${field("Nombre", esc(name))}
+      ${field("Email", `<a href="mailto:${esc(email)}" style="color:#F7EFDB;text-decoration:underline;">${esc(email)}</a>`)}
+      ${field("Dónde está", esc(phone) || "No facilitado")}
+      ${field("Proyecto", esc(consulta).replace(/\n/g, "<br>") || "Sin consulta previa")}
+    </table>
+    <a href="mailto:${esc(email)}" style="${BTN}margin-top:10px;">Responder a ${esc(name)}</a>`);
 
-  const autoHtml = `
-    <div style="font-family:Arial,sans-serif;font-size:15px;color:#111;line-height:1.6">
-      <p>Hola ${esc(name)},</p>
-      <p>Gracias por escribirnos. Hemos recibido tu mensaje y te responderemos en menos de 24h.</p>
-      <p>Un saludo,<br>Frank · Ascndr</p>
-    </div>`;
+  const autoHtml = shell(`
+    <h1 style="margin:0 0 22px;font-size:28px;font-weight:800;letter-spacing:-0.5px;color:#F7EFDB;">Gracias, ${esc(name)} <span style="color:rgba(247,239,219,0.5);">✦</span></h1>
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.65;color:rgba(247,239,219,0.85);">Hemos recibido tu mensaje y lo estamos revisando. Te responderemos personalmente en <strong style="color:#F7EFDB;">menos de 24 horas</strong>.</p>
+    <p style="margin:0 0 30px;font-size:16px;line-height:1.65;color:rgba(247,239,219,0.85);">Mientras tanto, puedes echar un vistazo a algunos de nuestros proyectos.</p>
+    <a href="${SITE}/trabajos" style="${BTN}">Ver proyectos</a>
+    <p style="margin:34px 0 0;font-size:15px;line-height:1.6;color:rgba(247,239,219,0.85);">Un saludo,<br><strong style="color:#F7EFDB;">Frank</strong> · Ascndr</p>`);
 
   // 1) Aviso a ti (obligatorio) — responder va directo al cliente
   try {
