@@ -164,6 +164,7 @@ import Layout from "../layouts/Layout.astro";
         <p class="proc-desc">Ponemos tu marca en el mundo y te dejamos las herramientas para mantenerla.</p>
       </li>
     </ol>
+    <div class="proc-dots" role="tablist" aria-label="Navegación del proceso"></div>
   </section>
 
   <!-- ════ TESTIMONIOS ════ -->
@@ -195,6 +196,7 @@ import Layout from "../layouts/Layout.astro";
         </figcaption>
       </figure>
     </div>
+    <div class="tst-dots" role="tablist" aria-label="Navegación de testimonios"></div>
   </section>
 
   <!-- ════ CTA DE CIERRE ════ -->
@@ -356,6 +358,8 @@ img, video {
   color: rgba(247, 239, 219, 0.6);
   margin: 0;
 }
+/* Puntos del carrusel — solo visibles en móvil (ver responsive) */
+.proc-dots, .tst-dots { display: none; }
 
 /* ── CTA DE CIERRE ── */
 .cta {
@@ -455,8 +459,79 @@ img, video {
   .svc-item { border-left: none; border-top: 1px solid rgba(247, 239, 219, 0.14); padding: 28px 20px; }
   .svc-item:first-child { border-top: none; padding-left: 20px; }
   .svc-name { min-height: 0; }
-  .proc-steps { grid-template-columns: 1fr; }
   .works-head { text-align: left; }
+
+  /* Proceso → carrusel de un paso (autoplay + swipe) */
+  .proc-steps {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+    margin: 0 -10px;
+    padding: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .proc-steps::-webkit-scrollbar { display: none; }
+  .proc-step {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    scroll-snap-align: center;
+    border-top: none;
+    padding: 0 10px;
+  }
+  .proc-num { font-size: 44px; }
+  .proc-name { font-size: 22px; }
+  .proc-desc { font-size: 15px; }
+  .proc-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .proc-dot, .tst-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(247, 239, 219, 0.25);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .proc-dot[aria-selected="true"], .tst-dot[aria-selected="true"] {
+    background: #F7EFDB;
+    transform: scale(1.25);
+  }
+
+  /* Testimonios → carrusel de una cita (autoplay + swipe) */
+  .tst-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+    margin: 0 -10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tst-grid::-webkit-scrollbar { display: none; }
+  .tst-item, .tst-item:first-child {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    scroll-snap-align: center;
+    border-top: none;
+    padding: 0 10px;
+  }
+  .tst-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 36px;
+  }
 }
 
 </style>
@@ -500,6 +575,89 @@ img, video {
     v.setAttribute("controlslist", "nodownload");
     v.addEventListener("contextmenu", function(e){ e.preventDefault(); });
   });
+</script>
+
+<!-- ── Carruseles de móvil (proceso + testimonios): autoplay + swipe + puntos ── -->
+<script is:inline>
+  (function () {
+    var mq = window.matchMedia("(max-width: 600px)");
+
+    function initCarousel(trackSel, dotsSel, itemSel, dotClass, label) {
+      var track = document.querySelector(trackSel);
+      var dotsWrap = document.querySelector(dotsSel);
+      if (!track || !dotsWrap) return;
+
+      var items = Array.prototype.slice.call(track.querySelectorAll(itemSel));
+      if (items.length < 2) return;
+      var DELAY = 5000;
+      var timer = null, current = 0, built = false, paused = false;
+
+      function buildDots() {
+        if (built) return;
+        items.forEach(function (_, i) {
+          var b = document.createElement("button");
+          b.className = dotClass;
+          b.type = "button";
+          b.setAttribute("role", "tab");
+          b.setAttribute("aria-label", label + " " + (i + 1));
+          b.addEventListener("click", function () {
+            paused = true; stop();
+            goTo(i);
+          });
+          dotsWrap.appendChild(b);
+        });
+        built = true;
+      }
+
+      function setActive(i) {
+        current = i;
+        var dots = dotsWrap.children;
+        for (var d = 0; d < dots.length; d++) {
+          dots[d].setAttribute("aria-selected", d === i ? "true" : "false");
+        }
+      }
+
+      function goTo(i) {
+        track.scrollTo({ left: items[i].offsetLeft - track.offsetLeft, behavior: "smooth" });
+        setActive(i);
+      }
+
+      function next() { goTo((current + 1) % items.length); }
+
+      function start() {
+        if (paused || timer) return;
+        timer = setInterval(next, DELAY);
+      }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+      // Sincroniza los puntos cuando el usuario desliza a mano
+      var scrollT = null;
+      track.addEventListener("scroll", function () {
+        if (scrollT) clearTimeout(scrollT);
+        scrollT = setTimeout(function () {
+          var i = Math.round(track.scrollLeft / track.clientWidth);
+          if (i !== current) setActive(Math.max(0, Math.min(items.length - 1, i)));
+        }, 80);
+      }, { passive: true });
+
+      // Al tocar/interactuar, se detiene el autoplay
+      track.addEventListener("touchstart", function () { paused = true; stop(); }, { passive: true });
+
+      function enable() { buildDots(); setActive(0); paused = false; start(); }
+      function disable() { stop(); }
+
+      return function apply() { mq.matches ? enable() : disable(); };
+    }
+
+    var carousels = [
+      initCarousel(".proc-steps", ".proc-dots", ".proc-step", "proc-dot", "Paso"),
+      initCarousel(".tst-grid", ".tst-dots", ".tst-item", "tst-dot", "Testimonio")
+    ].filter(Boolean);
+
+    function applyAll() { carousels.forEach(function (fn) { fn(); }); }
+    applyAll();
+    (mq.addEventListener ? mq.addEventListener("change", applyAll) : mq.addListener(applyAll));
+  })();
 </script>
 
 </Layout>
