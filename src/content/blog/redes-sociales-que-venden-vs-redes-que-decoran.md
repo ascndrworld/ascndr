@@ -39,7 +39,7 @@ Si todo tu feed es del tipo 1, gustas pero no vendes. Si todo es del tipo 3, can
 
 ## La coherencia visual es lo que te hace reconocible
 
-Aquí entra la marca. Cuando una story, un cartel y una publicación se reconocen como parte del mismo mundo, dejas de ser "una cuenta más" y empiezas a ser **una marca**. Esa coherencia (tipografías, colores, tono) es la que hace que alguien te identifique sin leer el nombre. Lo trabajamos, por ejemplo, en la [gestión de redes de Briefing](/trabajos/redes-sociales/briefing): un feed reconocible al primer vistazo.
+Aquí entra la marca. Cuando una story, un cartel y una publicación se reconocen como parte del mismo mundo, dejas de ser "una cuenta más" y empiezas a ser **una marca**. Esa coherencia (tipografías, colores, tono) es la que hace que alguien te identifique sin leer el nombre. Lo trabajamos, por ejemplo, en la [gestión de redes de Briefing](/proyectos/redes-sociales/briefing): un feed reconocible al primer vistazo.
 
 ## Antes de publicar la próxima foto, pregúntate esto
 

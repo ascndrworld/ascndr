@@ -30,7 +30,7 @@ Un evento con dirección creativa vende mejor por tres motivos:
 
 ## Un caso real: el Halloween Fest
 
-En el [Halloween Fest](/trabajos/branding/halloweenfest) llevamos una sola idea creativa a todo el evento: cartelería, identidad, entradas, pulseras, acreditaciones y comunicación en redes. Todo bajo el mismo universo visual.
+En el [Halloween Fest](/proyectos/branding/halloweenfest) llevamos una sola idea creativa a todo el evento: cartelería, identidad, entradas, pulseras, acreditaciones y comunicación en redes. Todo bajo el mismo universo visual.
 
 El resultado no fue "un cartel chulo": fue un evento que **se sentía coherente de principio a fin**, desde que veías el primer anuncio hasta que entrabas por la puerta. Esa sensación de conjunto es exactamente lo que aporta la dirección creativa.
 

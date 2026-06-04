@@ -41,7 +41,7 @@ Aquí es donde mucha gente se enamora de un nombre y se lleva el disgusto despu�
 
 ## Un caso real: de "Milenio 2.0" a Cónclave
 
-Cuando reposicionamos un pub, el punto de partida fue precisamente el nombre. "Milenio 2.0" arrastraba una imagen agotada, así que lo cambiamos por **Cónclave**: corto, con carácter y con una imagen mental potente sobre la que construir toda la marca. Puedes ver cómo quedó en la [ficha del proyecto](/trabajos/direccion-creativa/conclave).
+Cuando reposicionamos un pub, el punto de partida fue precisamente el nombre. "Milenio 2.0" arrastraba una imagen agotada, así que lo cambiamos por **Cónclave**: corto, con carácter y con una imagen mental potente sobre la que construir toda la marca. Puedes ver cómo quedó en la [ficha del proyecto](/proyectos/direccion-creativa/conclave).
 
 El nombre no fue un capricho estético: fue la primera pieza estratégica de todo el rebranding.
 

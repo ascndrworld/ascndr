@@ -24,9 +24,9 @@ export default defineConfig({
           item.changefreq = 'yearly';
         } else if (path === '/contacto') {
           item.priority = 0.8;
-        } else if (path.startsWith('/trabajos/')) {
+        } else if (path.startsWith('/proyectos/')) {
           item.priority = 0.9;
-        } else if (path === '/trabajos') {
+        } else if (path === '/proyectos') {
           item.priority = 0.9;
         } else if (path === '/blog') {
           item.priority = 0.8;

@@ -35,7 +35,7 @@ Sin humo y con rangos reales para un negocio local. Cada proyecto se presupuesta
 
 - **Identidad de marca esencial** *(para arrancar bien desde el día uno):* logotipo, paleta, tipografías y un manual básico de uso. Suele moverse en una **inversión inicial contenida**, pensada para negocios que empiezan.
 - **Branding completo** *(lo que de verdad cambia las cosas):* estrategia, naming si hace falta, sistema visual completo y sus aplicaciones principales. Aquí la inversión es **mayor**, porque el trabajo y el impacto también lo son.
-- **Rebranding y dirección creativa integral** *(reposicionar un negocio entero):* como hicimos con [Cónclave](/trabajos/direccion-creativa/conclave), donde tocamos nombre, identidad, espacio físico y redes. Es el proyecto más ambicioso y se presupuesta en función de todo lo que incluya.
+- **Rebranding y dirección creativa integral** *(reposicionar un negocio entero):* como hicimos con [Cónclave](/proyectos/direccion-creativa/conclave), donde tocamos nombre, identidad, espacio físico y redes. Es el proyecto más ambicioso y se presupuesta en función de todo lo que incluya.
 
 La cifra exacta sale de una conversación de 20 minutos sobre tu negocio. Cualquiera que te dé un número cerrado **antes** de conocer tu proyecto, te está dando un número inventado.
 

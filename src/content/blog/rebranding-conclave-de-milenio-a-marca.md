@@ -46,7 +46,7 @@ Acompañamos el lanzamiento de la nueva etapa en redes, trasladando la identidad
 
 Cónclave pasó de ser un local con una imagen agotada a una marca **sólida, nueva y reconocible**, con nombre, espacio y comunicación alineados bajo una misma dirección creativa. Un reposicionamiento de arriba abajo.
 
-Puedes ver el proyecto completo, con imágenes, en nuestra ficha de [Cónclave — Dirección Creativa](/trabajos/direccion-creativa/conclave).
+Puedes ver el proyecto completo, con imágenes, en nuestra ficha de [Cónclave — Dirección Creativa](/proyectos/direccion-creativa/conclave).
 
 ## ¿Tu negocio necesita un rebranding?
 
