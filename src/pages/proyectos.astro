@@ -80,6 +80,19 @@ import Layout from "../layouts/Layout.astro";
   <a href="/contacto">Iniciar proyecto ›</a>
 </div>
 
+<!-- FOOTER -->
+<footer class="tp-footer">
+  <a href="/" class="tp-footer-logo"><img src="/ascndr-logo.png" alt="Ascndr"/></a>
+  <div class="tp-footer-links">
+    <a href="/proyectos">Proyectos</a>
+    <span class="tp-footer-sep">·</span>
+    <a href="/contacto">Contacto</a>
+    <span class="tp-footer-sep">·</span>
+    <a href="https://www.instagram.com/ascndr.world" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p class="tp-footer-copy">© Ascndr 2026 · Marca Registrada</p>
+</footer>
+
 <script is:inline>
   (function() {
     var grid = document.getElementById('tpGrid');
@@ -222,16 +235,9 @@ import Layout from "../layouts/Layout.astro";
   .tp-filter-option:hover { color: #F7EFDB; background: rgba(255,255,255,0.04); }
   .tp-filter-option.active { color: #F7EFDB; font-weight: 600; }
 
-  /* GRID — mosaico asimétrico 3 cols × 5 rows, estilo Somos
-     Layout (5 trabajos):
-       A A B   A = Cónclave (2×2)
-       A A B   B = Halloween Fest (1×2)
-       C E E   C = Briefing (1×2)
-       C E E   E = Eventsy (2×2, mismas proporciones que Cónclave)
-       F F F   F = Fotografía (3×1, tira full-width)
-     A,E: 2×2 grande · B,C: 1×2 alto · F: 3×1 (full-width, altura de un hero)
-     row-height = (100vh - filter_section ≈ 220px) / 2 → A+B ocupan justo el viewport */
-  /* GRID — columnas iguales cuadradas, gap 0 (estilo /proyectos de Somos) */
+  /* GRID — 3 columnas, gap 0. El mosaico (spans) se define más abajo, solo en
+     escritorio y en la vista sin filtrar; al filtrar, las tarjetas vuelven a
+     ser cuadradas con colocación automática. */
   .tp-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -302,10 +308,26 @@ import Layout from "../layouts/Layout.astro";
     margin-bottom: 12px;
   }
 
+  /* ── MOSAICO (escritorio · vista sin filtrar) ──
+     Fila 1:  Cónclave (cols 1-2)  ·  Halloween Fest (col 3)
+     Fila 2:  Eventsy (col 1)      ·  Briefing (cols 2-3)
+     Fila 3:  Fotografía (ancho completo)
+     Las tarjetas anchas usan aspect-ratio 2/1 y 3/1 para conservar la misma
+     altura (1 columna) que sus vecinas cuadradas. */
+  @media (min-width: 769px) {
+    .tp-grid:not(.filtered) .tp-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; aspect-ratio: 2 / 1; } /* Cónclave */
+    .tp-grid:not(.filtered) .tp-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1; }                      /* Halloween Fest */
+    .tp-grid:not(.filtered) .tp-item:nth-child(3) { grid-column: 2 / 4; grid-row: 2; aspect-ratio: 2 / 1; } /* Briefing */
+    .tp-grid:not(.filtered) .tp-item:nth-child(4) { grid-column: 1 / 2; grid-row: 2; }                      /* Eventsy */
+    .tp-grid:not(.filtered) .tp-item:nth-child(5) { grid-column: 1 / 4; grid-row: 3; aspect-ratio: 3 / 1; } /* Fotografía */
+  }
+
   /* CTA */
   .tp-cta {
     background: var(--bg, #000000);
-    padding: 60px 40px;
+    /* Mismo hueco arriba (130px) que el que hay entre el botón y el footer
+       (60px de este padding inferior + 70px del padding superior del footer). */
+    padding: 130px 40px 60px;
     text-align: center;
     font-family: "Montserrat", sans-serif;
     border-top: 1px solid rgba(255,255,255,0.06);
@@ -327,6 +349,31 @@ import Layout from "../layouts/Layout.astro";
     transition: background 0.2s, color 0.2s;
   }
   .tp-cta a:hover { background: #fff; color: #000; }
+
+  /* FOOTER — mismo estilo que las fichas de proyecto */
+  .tp-footer {
+    background: #000;
+    color: rgba(255,255,255,0.55);
+    padding: 70px 24px 40px;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .tp-footer-logo { display: inline-block; margin-bottom: 28px; }
+  .tp-footer-logo img { height: 40px; display: block; opacity: 0.95; }
+  .tp-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-bottom: 18px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .tp-footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .tp-footer-links a:hover { color: #fff; }
+  .tp-footer-sep { color: rgba(255,255,255,0.2); }
+  .tp-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; text-transform: uppercase; }
 
   /* Tablet/Móvil — una sola columna, un trabajo debajo de otro */
   @media (max-width: 768px) {
