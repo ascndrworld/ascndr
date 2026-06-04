@@ -5,8 +5,8 @@ import Layout from "../../../layouts/Layout.astro";
   title="Cónclave Design — Marketing y Redes Sociales · Ascndr"
   description="Gestión de contenido visual e Instagram marketing para Cónclave pub en Los Villares (Jaén). Estrategia de redes sociales, diseño de publicaciones y mockups por Ascndr."
   canonical="https://www.ascndrworld.com/trabajos/redes-sociales/briefing"
-  ogImage="https://www.ascndrworld.com/images/conclave/rrss-01.jpg"
-  ogImageAlt="Diseños de publicaciones de Instagram para Cónclave por Ascndr"
+  ogImage="https://www.ascndrworld.com/images/conclave/rrss-02.jpg"
+  ogImageAlt="Feed de Instagram de Cónclave con diseños de publicaciones por Ascndr"
 >
 
 <Fragment slot="head">
@@ -28,7 +28,7 @@ import Layout from "../../../layouts/Layout.astro";
         "headline": "Gestión de contenido visual e Instagram marketing para Cónclave",
         "description": "Gestión de contenido visual e Instagram marketing para Cónclave pub en Los Villares (Jaén). Estrategia de redes sociales, diseño de publicaciones y mockups.",
         "url": "https://www.ascndrworld.com/trabajos/redes-sociales/briefing",
-        "image": "https://www.ascndrworld.com/images/conclave/rrss-01.jpg",
+        "image": "https://www.ascndrworld.com/images/conclave/rrss-02.jpg",
         "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
         "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
         "keywords": ["redes sociales", "Instagram", "marketing digital", "diseño gráfico", "Cónclave", "Jaén"],
@@ -116,6 +116,18 @@ import Layout from "../../../layouts/Layout.astro";
     .cs-title { font-size: clamp(32px, 14vw, 56px); margin-bottom: 16px; }
     .cs-desc { font-size: 13px; }
   }
+
+  /* MÓVIL — primer mockup (dos móviles): recortamos el margen beige lateral
+     con un encuadre más vertical para que los teléfonos se vean grandes,
+     sin desbordar ni salirse de la pantalla. Solo afecta a esta imagen. */
+  @media (max-width: 600px) {
+    .cs-gallery > img:first-child {
+      aspect-ratio: 5 / 6;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
 </style>
 
 <script type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -125,7 +137,7 @@ import Layout from "../../../layouts/Layout.astro";
   "description": "Gestión de contenido visual e Instagram marketing para Cónclave pub en Los Villares (Jaén). Estrategia, diseño de publicaciones y mockups.",
   "creator": { "@type": "Organization", "name": "Ascndr", "url": "https://www.ascndrworld.com" },
   "url": "https://www.ascndrworld.com/trabajos/redes-sociales/briefing",
-  "image": "https://www.ascndrworld.com/images/conclave/rrss-01.jpg",
+  "image": "https://www.ascndrworld.com/images/conclave/rrss-02.jpg",
   "keywords": ["redes sociales", "Instagram", "marketing visual", "contenido", "pub", "Los Villares", "Jaén"],
   "locationCreated": { "@type": "Place", "name": "Los Villares, Jaén, España" },
   "dateCreated": "2026",
@@ -136,7 +148,7 @@ import Layout from "../../../layouts/Layout.astro";
 
   <section class="cs-header">
     <div class="cs-header-media">
-      <img src="/images/conclave/rrss-01.jpg" alt="Cónclave pub Los Villares Jaén — Marketing redes sociales Ascndr" fetchpriority="high"/>
+      <img src="/images/conclave/rrss-02.jpg" alt="Feed de Instagram de Cónclave con diseños de publicaciones — Redes sociales por Ascndr" fetchpriority="high"/>
     </div>
     <div class="cs-header-overlay"></div>
     <div class="cs-titleblock">
@@ -149,8 +161,7 @@ import Layout from "../../../layouts/Layout.astro";
   </section>
 
   <div class="cs-gallery">
-    <img src="/images/conclave/rrss-01.jpg" alt="Cónclave pub Los Villares Jaén — Marketing redes sociales Ascndr" loading="lazy"/>
-    <img src="/images/conclave/rrss-02.jpg" alt="Mockup Instagram Cónclave Los Villares Jaén — Ascndr gestión redes" loading="lazy"/>
+    <img src="/images/conclave/rrss-01.jpg" alt="Mockup de dos móviles con stories de Instagram de Cónclave — Diseño de redes por Ascndr" loading="lazy"/>
   </div>
 
   <section class="cs-study">
