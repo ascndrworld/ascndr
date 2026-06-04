@@ -138,6 +138,37 @@ export const POST: APIRoute = async ({ request }) => {
     <p style="margin:0 0 16px;font-size:16px;line-height:1.65;color:#4a4744;">Hemos recibido tu mensaje y lo estamos revisando. Te responderemos personalmente en <strong style="color:#141414;">menos de 24 horas</strong>.</p>
     <p style="margin:30px 0 0;font-size:15px;line-height:1.6;color:#4a4744;">Un saludo,<br><strong style="color:#141414;">Frank</strong></p>`);
 
+  // Versiones en texto plano (alternativa al HTML: mejora entregabilidad y accesibilidad).
+  const notifyText = [
+    "NUEVO CONTACTO",
+    "",
+    "Tienes un mensaje nuevo.",
+    "",
+    `Nombre: ${name}`,
+    `Email: ${email}`,
+    `Dónde está: ${phone || "No facilitado"}`,
+    `Proyecto: ${consulta || "Sin consulta previa"}`,
+    "",
+    `Responder: ${email}`,
+    "",
+    "—",
+    "Ascndr · Consultoría creativa",
+    "ascndrworld.com · instagram.com/ascndr.world",
+  ].join("\n");
+
+  const autoText = [
+    `Gracias, ${name}`,
+    "",
+    "Hemos recibido tu mensaje y lo estamos revisando. Te responderemos personalmente en menos de 24 horas.",
+    "",
+    "Un saludo,",
+    "Frank",
+    "",
+    "—",
+    "Ascndr · Consultoría creativa",
+    "ascndrworld.com · instagram.com/ascndr.world",
+  ].join("\n");
+
   // 1) Aviso a ti (obligatorio) — responder va directo al cliente
   try {
     await sendEmail({
@@ -146,6 +177,7 @@ export const POST: APIRoute = async ({ request }) => {
       reply_to: email,
       subject: `Nuevo contacto: ${name}`,
       html: notifyHtml,
+      text: notifyText,
     });
   } catch (err) {
     console.error("Error enviando aviso:", err);
@@ -160,6 +192,7 @@ export const POST: APIRoute = async ({ request }) => {
       reply_to: OWNER_EMAIL,
       subject: "Hemos recibido tu mensaje ✦",
       html: autoHtml,
+      text: autoText,
     });
   } catch (err) {
     console.warn("Auto-respuesta no enviada:", err);
