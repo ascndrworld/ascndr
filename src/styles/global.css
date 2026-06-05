@@ -2286,9 +2286,7 @@
   background: #000;
   color: rgba(255,255,255,0.85);
   font-family: "Montserrat", sans-serif;
-  padding: 90px 24px 20px;
-  max-width: 760px;
-  margin: 0 auto;
+  padding: 90px max(24px, calc((100% - 760px) / 2)) 20px;
 }
 .cs-study h2 {
   font-size: clamp(20px, 3vw, 28px);
@@ -2314,7 +2312,7 @@
 .cs-study li { margin-bottom: 8px; }
 .cs-study strong { color: #fff; font-weight: 600; }
 @media (max-width: 768px) {
-  .cs-study { padding: 60px 20px 14px; }
+  .cs-study { padding: 60px max(20px, calc((100% - 760px) / 2)) 14px; }
   .cs-study p, .cs-study ul { font-size: 15px; }
   .cs-study h2 { margin: 36px 0 14px; }
 }

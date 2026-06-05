@@ -1,5 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// Marcas que han confiado — logos reales, en su color original, integrados
+// en el hero debajo del CTA, en movimiento (marquee). Se repite el set y luego
+// se duplica el grupo entero para que el bucle no tenga saltos.
+// scale = ajuste óptico por logo para que se vean a la misma altura real
+// (cada PNG rellena su caja distinto: Halloween lleva subtítulo y letras altas).
+const logos = [
+  { name: "Halloween Fest", src: "/images/marcas/halloween-fest.png", scale: 1.34 },
+  { name: "Cónclave", src: "/images/marcas/conclave.png", scale: 1.13 },
+  { name: "Eventsy", src: "/images/marcas/eventsy.png", scale: 0.98 },
+];
+const group = Array.from({ length: 4 }, () => logos).flat();
 ---
 
 <Layout
@@ -65,6 +77,25 @@ import Layout from "../layouts/Layout.astro";
   </div>
 
   </div><!-- /#home -->
+
+  <!-- ════ MARCAS QUE HAN CONFIADO (strip en movimiento, bajo el header) ════ -->
+  <section class="brandstrip" aria-label="Marcas que han confiado en Ascndr">
+    <p class="brandstrip-eyebrow">Han confiado en nosotros</p>
+    <!-- PC: 3 logos fijos y centrados (de momento; con más marcas → movimiento) -->
+    <div class="brandstrip-static">
+      {logos.map((b) => (
+        <img class="brandstrip-logo" src={b.src} alt={b.name} loading="lazy" style={`--brand-scale:${b.scale}`} />
+      ))}
+    </div>
+    <!-- Móvil: en movimiento (marquee) -->
+    <div class="brandstrip-marquee" aria-hidden="true">
+      <div class="brandstrip-track">
+        {[...group, ...group].map((b) => (
+          <img class="brandstrip-logo" src={b.src} alt={b.name} loading="lazy" style={`--brand-scale:${b.scale}`} />
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- ════ SECCIÓN SERVICIOS — igual que "branding" en Somos ════ -->
   <section class="hs-services">
@@ -170,7 +201,7 @@ import Layout from "../layouts/Layout.astro";
   <!-- ════ TESTIMONIOS ════ -->
   <section class="tst" id="testimonios">
     <div class="tst-head">
-      <span class="svc-eyebrow">confían en nosotros</span>
+      <span class="svc-eyebrow">lo que dicen</span>
       <h2 class="svc-title">testimonios</h2>
     </div>
     <div class="tst-grid">
@@ -261,6 +292,80 @@ img, video {
 .gallery-cv-item img,
 .lightbox-img {
   pointer-events: auto;
+}
+
+/* ════ MARCAS EN EL HERO (logos en color original, bajo el CTA) ════ */
+.brandstrip {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  padding: clamp(30px, 4vw, 50px) 0;
+  border-top: 1px solid rgba(247, 239, 219, 0.08);
+  border-bottom: 1px solid rgba(247, 239, 219, 0.08);
+}
+.brandstrip-eyebrow {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(247, 239, 219, 0.5);
+  margin: 0 0 clamp(22px, 3vw, 34px);
+  padding: 0 24px;
+}
+/* PC: los 3 logos fijos y centrados */
+.brandstrip-static {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(40px, 7vw, 100px);
+  padding: 0 24px;
+}
+/* Móvil: marquee (oculto en PC) */
+.brandstrip-marquee { display: none; }
+.brandstrip-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: brandstrip-scroll 28s linear infinite;
+}
+.brandstrip-marquee:hover .brandstrip-track { animation-play-state: paused; }
+.brandstrip-logo {
+  height: calc(clamp(32px, 4.4vw, 50px) * var(--brand-scale, 1));
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: opacity .3s ease;
+}
+.brandstrip-static:hover .brandstrip-logo { opacity: 1; }
+.brandstrip-track .brandstrip-logo { margin: 0 clamp(28px, 6vw, 44px); }
+@keyframes brandstrip-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brandstrip-track { animation: none; }
+}
+
+/* En móvil/tablet: ocultar fijos, mostrar marquee con fade en los bordes */
+@media (max-width: 768px) {
+  .brandstrip-static { display: none; }
+  .brandstrip-marquee { display: block; position: relative; overflow: hidden; }
+  .brandstrip-marquee::before,
+  .brandstrip-marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(32px, 12vw, 80px);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .brandstrip-marquee::before { left: 0;  background: linear-gradient(to right, #000, transparent); }
+  .brandstrip-marquee::after  { right: 0; background: linear-gradient(to left,  #000, transparent); }
 }
 
 /* ════════════════════════════════════════════════════════
