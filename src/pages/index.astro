@@ -352,19 +352,13 @@ img, video {
 /* En móvil/tablet: ocultar fijos, mostrar marquee con fade en los bordes */
 @media (max-width: 768px) {
   .brandstrip-static { display: none; }
-  .brandstrip-marquee { display: block; position: relative; overflow: hidden; }
-  .brandstrip-marquee::before,
-  .brandstrip-marquee::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: clamp(32px, 12vw, 80px);
-    z-index: 2;
-    pointer-events: none;
+  .brandstrip-marquee {
+    display: block;
+    overflow: hidden;
+    /* Difumina los logos a negro en los bordes (revela el fondo de la franja) */
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
   }
-  .brandstrip-marquee::before { left: 0;  background: linear-gradient(to right, #000, transparent); }
-  .brandstrip-marquee::after  { right: 0; background: linear-gradient(to left,  #000, transparent); }
 }
 
 /* ════════════════════════════════════════════════════════
