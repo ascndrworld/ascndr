@@ -132,16 +132,28 @@ import Layout from "../../../layouts/Layout.astro";
       text-align: center; font-weight: 500;
     }
     .cs-shot {
-      overflow-x: auto; overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x proximity;
-      scrollbar-width: none;
+      overflow: hidden;
     }
-    .cs-shot::-webkit-scrollbar { display: none; }
-    .cs-shot + .cs-shot { margin-top: 6px; }
+    .cs-shot + .cs-shot { margin-top: 0; }
     .cs-shot img {
-      width: auto; height: 82vh; max-height: 600px;
-      scroll-snap-align: center;
+      width: 100%; height: auto; max-height: none;
+    }
+    /* Primera imagen (móviles): se recorta el gris de los lados para que los
+       móviles se vean más grandes, pero sin scroll horizontal */
+    .cs-shot--lead { overflow-x: hidden; }
+    .cs-shot--lead img {
+      width: 170%; height: auto; max-height: none;
+      margin-left: -35%;
+    }
+    /* Segunda imagen (tres móviles): un poco más grande, recortando el gris */
+    .cs-shot--zoom img {
+      width: 180%; height: auto; max-height: none;
+      margin-left: -40%;
+    }
+    /* Tercera imagen (móvil venta de evento): más grande, recortando el gris */
+    .cs-shot--zoom3 img {
+      width: 150%; height: auto; max-height: none;
+      margin-left: -25%;
     }
   }
   @media (max-width: 480px) {
@@ -164,10 +176,9 @@ import Layout from "../../../layouts/Layout.astro";
   </section>
 
   <div class="cs-gallery">
-    <p class="cs-scrollhint">Desliza para ver el detalle →</p>
-    <figure class="cs-shot"><img src="/images/eventsy/portada-eventsy.jpg" alt="Eventsy — plataforma web y app móvil" loading="lazy"/></figure>
-    <figure class="cs-shot"><img src="/images/eventsy/paginas.jpg" alt="Pantallas de creación y configuración de evento en Eventsy — diseño UI Ascndr" loading="lazy"/></figure>
-    <figure class="cs-shot"><img src="/images/eventsy/moviles-app.jpg" alt="Aplicación móvil Eventsy — dashboard, escáner de entradas y métricas en tiempo real" loading="lazy"/></figure>
+    <figure class="cs-shot cs-shot--lead"><img src="/images/eventsy/portada-eventsy.jpg" alt="Eventsy — registro y creación de evento en la app móvil" loading="lazy"/></figure>
+    <figure class="cs-shot cs-shot--zoom"><img src="/images/eventsy/moviles-app.jpg?v=3" alt="Aplicación móvil Eventsy — dashboard, escáner de entradas y métricas en tiempo real" loading="lazy"/></figure>
+    <figure class="cs-shot cs-shot--zoom3"><img src="/images/eventsy/paginas.jpg?v=4" alt="Página de venta de un evento en Eventsy — La Delicia Fest, compra de entradas desde el móvil" loading="lazy"/></figure>
   </div>
 
   <section class="cs-study">
