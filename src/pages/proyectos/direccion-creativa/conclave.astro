@@ -89,6 +89,97 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-row-2-sq { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   .cs-row-2-sq img, .cs-row-2-sq video { width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
 
+  /* Vídeo vertical final (9:16) presentado como reel acotado + texto al lado */
+  .cs-reel {
+    background: radial-gradient(115% 100% at 32% 46%, #1c1c20 0%, #0d0d0f 46%, #000 80%);
+    color: #F7EFDB;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 64px;
+    padding: 96px 60px;
+  }
+  .cs-reel-video { display: flex; justify-content: center; align-items: center; }
+  /* Mockup realista iPhone 16 Pro Max (titanio natural, de frente) */
+  .cs-phone {
+    position: relative;
+    height: min(80vh, 740px);
+    aspect-ratio: 77.6 / 163;        /* proporción del cuerpo del Pro Max */
+    border-radius: 58px;
+    padding: 5px;                    /* raíl de titanio visible */
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E"),
+      linear-gradient(118deg, #8f8c86 0%, #ddd9d2 11%, #a8a59f 28%, #ece8e1 50%, #a8a59f 72%, #ddd9d2 89%, #8f8c86 100%);
+    background-blend-mode: overlay, normal;
+    box-shadow:
+      inset 0 0 0 0.5px rgba(255,255,255,0.5),
+      inset 0 1px 2px rgba(255,255,255,0.6),
+      inset 0 -1px 2px rgba(0,0,0,0.35),
+      0 2px 6px rgba(0,0,0,0.45),
+      0 18px 40px rgba(0,0,0,0.55),
+      0 44px 90px rgba(0,0,0,0.6);
+  }
+  /* Brillo especular del raíl de titanio (luz de estudio) */
+  .cs-phone::before {
+    content: ""; position: absolute; inset: 0;
+    border-radius: 58px; pointer-events: none; z-index: 1;
+    background: linear-gradient(118deg, transparent 0%, rgba(255,255,255,0.4) 9%, transparent 17%, transparent 83%, rgba(255,255,255,0.32) 91%, transparent 100%);
+    mix-blend-mode: screen;
+  }
+  .cs-phone-screen {
+    position: relative; width: 100%; height: 100%;
+    box-sizing: border-box;
+    border-radius: 52px;
+    background: #000;
+    padding: 6px;                    /* bisel negro fino y uniforme */
+    overflow: hidden;
+    z-index: 2;
+    box-shadow: inset 0 0 0 1px #000, 0 0 0 0.5px rgba(255,255,255,0.14);
+  }
+  .cs-phone-screen video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    border-radius: 46px; background: #111;
+  }
+  /* Reflejo de cristal sobre la pantalla */
+  .cs-phone-screen::after {
+    content: ""; position: absolute; inset: 6px;
+    border-radius: 46px; pointer-events: none; z-index: 2;
+    background: linear-gradient(125deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 12%, transparent 30%);
+  }
+  /* Isla dinámica */
+  .cs-phone-island {
+    position: absolute; z-index: 4;
+    top: 17px; left: 50%; transform: translateX(-50%);
+    width: 30%; max-width: 118px; height: 27px;
+    background: #000; border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 4px rgba(255,255,255,0.04);
+  }
+  /* Lente/sensor dentro de la isla */
+  .cs-phone-island::after {
+    content: ""; position: absolute;
+    right: 11%; top: 50%; transform: translateY(-50%);
+    width: 9px; height: 9px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #2b3542 0%, #0a0d12 60%, #000 100%);
+    box-shadow: inset 0 0 2px rgba(80,120,180,0.55);
+  }
+  /* Botones laterales de titanio */
+  .cs-btn {
+    position: absolute; z-index: 0;
+    background: linear-gradient(to bottom, #c8c5bf, #6e6b66 50%, #98948e);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.45), inset 0 0 1px rgba(255,255,255,0.5);
+  }
+  .cs-btn-action  { left: -3px; top: 16%;   width: 3.5px; height: 4.2%; border-radius: 3px 1px 1px 3px; }
+  .cs-btn-volup   { left: -3px; top: 24%;   width: 3.5px; height: 7.5%; border-radius: 3px 1px 1px 3px; }
+  .cs-btn-voldown { left: -3px; top: 33.5%; width: 3.5px; height: 7.5%; border-radius: 3px 1px 1px 3px; }
+  .cs-btn-power   { right: -3px; top: 23%;  width: 3.5px; height: 12%;  border-radius: 1px 3px 3px 1px; }
+  .cs-btn-camera  { right: -3px; top: 40%;  width: 3.5px; height: 6.5%; border-radius: 1px 3px 3px 1px; }
+  .cs-reel-text { max-width: 420px; }
+  .cs-reel-title {
+    font-size: clamp(28px, 3.4vw, 46px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.05;
+    margin: 0 0 22px; color: #fff;
+  }
+  .cs-reel-text p { font-size: 16px; line-height: 1.7; color: rgba(247,239,219,0.82); margin: 0; }
+
   /* Etiquetas de seccion de la galeria — antes / proceso / el pub hoy */
   .cs-gallery-label {
     font-size: 12px;
@@ -131,6 +222,14 @@ import Layout from "../../../layouts/Layout.astro";
     .cs-title { font-size: clamp(36px, 12vw, 72px); margin-bottom: 20px; }
     .cs-desc { font-size: 14px; line-height: 1.55; }
     .cs-gallery-label { font-size: 11px; padding: 14px 20px; }
+    .cs-reel { grid-template-columns: 1fr; gap: 36px; padding: 56px 22px; text-align: center; }
+    .cs-phone { height: auto; width: min(74vw, 290px); border-radius: 50px; }
+    .cs-phone::before { border-radius: 50px; }
+    .cs-phone-screen { border-radius: 44px; padding: 5px; }
+    .cs-phone-screen video { border-radius: 39px; }
+    .cs-phone-screen::after { inset: 5px; border-radius: 39px; }
+    .cs-phone-island { top: 13px; height: 22px; width: 33%; }
+    .cs-reel-text { max-width: 520px; margin: 0 auto; }
     .cs-back { padding: 80px 20px 60px; }
     .cs-footer { padding: 50px 20px 30px; }
     .cs-footer-links { flex-wrap: wrap; gap: 14px; font-size: 10px; }
@@ -192,8 +291,27 @@ import Layout from "../../../layouts/Layout.astro";
       <img src="/images/conclave/despues-02.jpg" alt="Cónclave pub Los Villares Jaén nueva identidad visual — Ascndr" loading="lazy"/>
       <img src="/images/conclave/despues-04.jpg" alt="Ambiente Cónclave pub Los Villares Jaén dirección creativa — Ascndr" loading="lazy"/>
     </div>
-    <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
   </div>
+
+  <section class="cs-reel">
+    <div class="cs-reel-video">
+      <div class="cs-phone">
+        <span class="cs-btn cs-btn-action"></span>
+        <span class="cs-btn cs-btn-volup"></span>
+        <span class="cs-btn cs-btn-voldown"></span>
+        <span class="cs-btn cs-btn-power"></span>
+        <span class="cs-btn cs-btn-camera"></span>
+        <div class="cs-phone-screen">
+          <video src="/images/conclave/evento.mp4" poster="/images/conclave/evento-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <span class="cs-phone-island"></span>
+        </div>
+      </div>
+    </div>
+    <div class="cs-reel-text">
+      <h2 class="cs-reel-title">El tardeo en Carnaval</h2>
+      <p>Uno de los eventos que dirigimos para Cónclave: el tardeo de Carnaval. Cartelería, ambientación y comunicación en redes pensadas para llenar el local una tarde de disfraces, música y barra a tope. La marca en acción, viviéndose con su propia gente.</p>
+    </div>
+  </section>
 
   <section class="cs-study">
     <h2>El reto</h2>
