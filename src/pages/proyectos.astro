@@ -382,6 +382,12 @@ import Layout from "../layouts/Layout.astro";
     .tp-filter-menu { min-width: 220px; }
     .tp-filter-option { font-size: 14px; padding: 9px 20px; }
     .tp-grid { grid-template-columns: 1fr; }
+    /* Orden en móvil: Cónclave, Halloween, Eventsy, Fotografía y Briefing al final */
+    .tp-grid .tp-item:nth-child(1) { order: 1; } /* Cónclave */
+    .tp-grid .tp-item:nth-child(2) { order: 2; } /* Halloween Fest */
+    .tp-grid .tp-item:nth-child(4) { order: 3; } /* Eventsy */
+    .tp-grid .tp-item:nth-child(5) { order: 4; } /* Fotografía */
+    .tp-grid .tp-item:nth-child(3) { order: 5; } /* Briefing */
     /* Overlay oculto; al tocar/deslizar el dedo se oscurece y salen los datos */
     .tp-hover {
       opacity: 0;
