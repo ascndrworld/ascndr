@@ -120,6 +120,12 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; text-transform: uppercase; }
 
   @media (max-width: 768px) {
+    /* Galería a una sola columna en móvil, imágenes/vídeos completos */
+    .cs-row-2, .cs-row-2-sq { grid-template-columns: 1fr; }
+    .cs-row-2 img, .cs-row-2 video,
+    .cs-row-2-sq img, .cs-row-2-sq video {
+      height: auto; aspect-ratio: auto; object-fit: contain;
+    }
     .cs-titleblock { bottom: 32px; left: 20px; right: 20px; }
     .cs-cat { margin-bottom: 14px; font-size: 10px; }
     .cs-title { font-size: clamp(36px, 12vw, 72px); margin-bottom: 20px; }

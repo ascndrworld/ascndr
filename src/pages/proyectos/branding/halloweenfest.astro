@@ -97,9 +97,9 @@ import Layout from "../../../layouts/Layout.astro";
     max-width: 1067px;
     margin: 0 auto;
   }
-  /* 2 columnas para los carteles */
-  .cs-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #efe9dd; }
-  .cs-row-2 img { width: 100%; height: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; background: #efe9dd; mix-blend-mode: darken; }
+  /* Carteles apilados, uno debajo del otro */
+  .cs-row-2 { display: block; background: #efe9dd; }
+  .cs-row-2 img { width: 100%; height: auto; display: block; background: #efe9dd; mix-blend-mode: darken; }
 
   /* BACK */
   .cs-back { text-align: center; padding: 120px 24px 100px; background: #000; }
@@ -122,6 +122,18 @@ import Layout from "../../../layouts/Layout.astro";
   .cs-footer-copy { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.14em; margin-top: 14px; text-transform: uppercase; }
 
   @media (max-width: 768px) {
+    /* Ampliar un poco entradas y carteles en móvil (el sobrante es crema y se funde con el fondo) */
+    .cs-gallery { overflow: hidden; }
+    .cs-gallery img[src*="tickets"] {
+      width: 130%;
+      max-width: none;
+      margin-left: -15%;
+    }
+    .cs-row-2 img {
+      width: 144%;
+      max-width: none;
+      margin-left: -22%;
+    }
     .cs-titleblock { bottom: 32px; left: 20px; right: 20px; }
     .cs-cat { margin-bottom: 14px; font-size: 10px; }
     .cs-title { font-size: clamp(36px, 12vw, 72px); margin-bottom: 20px; }
