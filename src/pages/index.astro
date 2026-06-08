@@ -233,36 +233,42 @@ const group = Array.from({ length: 4 }, () => logos).flat();
     </a>
   </section>
 
-  <!-- ════ CÓMO TRABAJAMOS — proceso ════ -->
-  <section class="proc" id="proceso">
-    <div class="proc-head">
-      <span class="proc-eyebrow">CÓMO TRABAJAMOS</span>
-      <h2 class="proc-title">el proceso</h2>
+  <!-- ════ CÓMO TRABAJAMOS — proceso (scroll horizontal fijado) ════ -->
+  <section class="proc proc-h" id="proceso">
+    <div class="proc-pin">
+      <div class="proc-sticky">
+        <div class="proc-head">
+          <span class="proc-eyebrow">CÓMO TRABAJAMOS</span>
+          <h2 class="proc-title">el proceso</h2>
+        </div>
+        <div class="proc-viewport">
+          <ol class="proc-track">
+        <li class="proc-panel">
+          <span class="proc-num">01</span>
+          <h3 class="proc-name">Hablamos</h3>
+          <p class="proc-desc">Nos cuentas tu proyecto y entendemos tu negocio, tu público y a dónde quieres llegar.</p>
+        </li>
+        <li class="proc-panel">
+          <span class="proc-num">02</span>
+          <h3 class="proc-name">Estrategia</h3>
+          <p class="proc-desc">Definimos el rumbo: posicionamiento, concepto y qué necesita tu marca para destacar.</p>
+        </li>
+        <li class="proc-panel">
+          <span class="proc-num">03</span>
+          <h3 class="proc-name">Creamos</h3>
+          <p class="proc-desc">Diseñamos la identidad, las piezas y el contenido, todo bajo una misma visión.</p>
+        </li>
+        <li class="proc-panel">
+          <span class="proc-num">04</span>
+          <h3 class="proc-name">Lanzamos</h3>
+          <p class="proc-desc">Ponemos tu marca en el mundo y te dejamos las herramientas para mantenerla.</p>
+        </li>
+          </ol>
+        </div>
+        <div class="proc-progress" aria-hidden="true"><span class="proc-progress-bar"></span></div>
+        <div class="proc-dots" role="tablist" aria-label="Navegación del proceso"></div>
+      </div>
     </div>
-    <ol class="proc-steps">
-      <li class="proc-spark" aria-hidden="true"></li>
-      <li class="proc-step">
-        <span class="proc-num">01</span>
-        <h3 class="proc-name">Hablamos</h3>
-        <p class="proc-desc">Nos cuentas tu proyecto y entendemos tu negocio, tu público y a dónde quieres llegar.</p>
-      </li>
-      <li class="proc-step">
-        <span class="proc-num">02</span>
-        <h3 class="proc-name">Estrategia</h3>
-        <p class="proc-desc">Definimos el rumbo: posicionamiento, concepto y qué necesita tu marca para destacar.</p>
-      </li>
-      <li class="proc-step">
-        <span class="proc-num">03</span>
-        <h3 class="proc-name">Creamos</h3>
-        <p class="proc-desc">Diseñamos la identidad, las piezas y el contenido, todo bajo una misma visión.</p>
-      </li>
-      <li class="proc-step">
-        <span class="proc-num">04</span>
-        <h3 class="proc-name">Lanzamos</h3>
-        <p class="proc-desc">Ponemos tu marca en el mundo y te dejamos las herramientas para mantenerla.</p>
-      </li>
-    </ol>
-    <div class="proc-dots" role="tablist" aria-label="Navegación del proceso"></div>
   </section>
 
   <!-- ════ TESTIMONIOS ════ -->
@@ -463,11 +469,13 @@ img, video {
   margin-bottom: 18px;
   font-weight: 500;
 }
+/* Título de sección a tamaño "etiqueta": contenido grande (filas/mosaico) como
+   protagonista; el encabezado enmarca sin competir (registro Locomotive/Obys). */
 .svc-title, .proc-title {
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(28px, 3.4vw, 40px);
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -2px;
+  line-height: 1;
+  letter-spacing: -0.02em;
   text-transform: lowercase;
   margin: 0;
 }
@@ -552,7 +560,8 @@ img, video {
    Nada se desliza: la fila se ilumina, el nombre aclara color, aparece la flecha
    y SOLO se abre la descripción. */
 @media (hover: hover) {
-  .svc-row:hover { background: #0b0b0b; }
+  /* la fila se ilumina y se desplaza un poco a la derecha (sin deslizar las palabras) */
+  .svc-row:hover { background: #0b0b0b; padding-left: 28px; }
   .svc-row:hover .svc-icon { opacity: 1; }
   .svc-row:hover .svc-name { color: #F7EFDB; }
   .svc-row:hover .svc-arrow { opacity: 0.85; }
@@ -583,116 +592,82 @@ img, video {
   .svc.svc-anim.is-in .svc-row::after { animation: none; }
 }
 
-/* ── CÓMO TRABAJAMOS — cabecera alineada a la izquierda ── */
-.proc-head { margin: 0 0 48px; text-align: left; }
-.proc-steps {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-.proc-step {
-  padding-top: 24px;
-  border-top: 1px solid rgba(247, 239, 219, 0.18);
-}
+/* ── EL PROCESO — SCROLL HORIZONTAL FIJADO (Active Theory) ──
+   La sección se 'fija' (sticky) y los pasos avanzan en horizontal según el scroll
+   vertical (lo mueve el JS). Barra de progreso abajo. Móvil: swipe horizontal. */
+.proc-h { padding: 0; }
+.proc-head { margin: 0; text-align: left; }
 .proc-num {
-  font-size: 34px;
+  display: block;
+  font-size: clamp(80px, 11vw, 190px);
   font-weight: 800;
-  letter-spacing: -1px;
-  color: rgba(247, 239, 219, 0.25);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(247, 239, 219, 0.14);
+  margin: 0 0 clamp(8px, 1.4vw, 18px);
 }
 .proc-name {
-  font-size: 19px;
-  font-weight: 700;
-  margin: 14px 0 10px;
+  font-size: clamp(30px, 4.4vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  color: #F7EFDB;
 }
 .proc-desc {
-  font-size: 14px;
+  font-size: clamp(15px, 1.2vw, 17px);
   line-height: 1.7;
   color: rgba(247, 239, 219, 0.6);
+  max-width: 42ch;
   margin: 0;
 }
-/* Marcadores de carrusel — solo visibles en móvil (ver responsive) */
 .proc-dots, .tst-dots { display: none; }
-/* El punto de luz del timeline solo existe en la animación de PC */
-.proc-spark { display: none; }
 
-/* ── ANIMACIÓN "EL PROCESO" (solo PC): timeline que se dibuja + spark + cascada ── */
-@media (min-width: 901px) {
-  .proc-steps { position: relative; }
-  .proc-step { border-top: none; position: relative; }
-
-  /* línea base tenue (siempre visible) */
-  .proc-steps::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: rgba(247, 239, 219, 0.18); z-index: 0;
+/* PC: pin + sticky + track horizontal */
+@media (min-width: 769px) {
+  .proc-pin { position: relative; height: 420vh; }
+  .proc-sticky {
+    position: sticky; top: 0; height: 100vh; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(40px, 7vh, 96px) 10px;
+    box-sizing: border-box;
   }
-  /* línea de progreso luminosa (estado final por defecto → degradación sin JS) */
-  .proc-steps::after {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(to right, rgba(247, 239, 219, 0.55), #F7EFDB);
-    transform: scaleX(1); transform-origin: left center; z-index: 1;
+  .proc-sticky .proc-head { position: absolute; top: clamp(40px, 7vh, 96px); left: 10px; }
+  .proc-viewport { overflow: hidden; width: 100%; }
+  .proc-track { display: flex; list-style: none; margin: 0; padding: 0; width: max-content; will-change: transform; }
+  .proc-panel {
+    flex: 0 0 min(72vw, 720px);
+    box-sizing: border-box;
+    padding-right: clamp(48px, 8vw, 150px);
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .proc.proc-anim .proc-steps::after { transform: scaleX(0); }
-  .proc.proc-anim.is-in .proc-steps::after {
-    transform: scaleX(1);
-    transition: transform 2.6s cubic-bezier(0.65, 0, 0.35, 1);
+  .proc-progress {
+    position: absolute; bottom: clamp(40px, 7vh, 84px); left: 10px; right: 10px;
+    height: 2px; background: rgba(247, 239, 219, 0.16);
   }
-
-  /* nodo de cada paso, sobre la línea */
-  .proc-step::before {
-    content: ""; position: absolute; top: -3.5px; left: 0;
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #F7EFDB; box-shadow: 0 0 0 4px #000; z-index: 2;
-    transform: scale(1);
-  }
-  .proc.proc-anim .proc-step::before { transform: scale(0); }
-  .proc.proc-anim.is-in .proc-step::before {
-    transform: scale(1);
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  /* punto de luz que recorre la línea */
-  .proc-spark {
-    display: block; position: absolute; top: 0; left: 0;
-    width: 7px; height: 7px; margin: -3px 0 0 -3px; border-radius: 50%;
-    background: #fff; z-index: 3; pointer-events: none; opacity: 0;
-    box-shadow: 0 0 8px 2px rgba(247, 239, 219, 0.9), 0 0 18px 5px rgba(247, 239, 219, 0.35);
-  }
-  .proc.proc-anim.is-in .proc-spark {
-    animation: procSpark 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-  }
-
-  /* contenido en cascada */
-  .proc.proc-anim .proc-num,
-  .proc.proc-anim .proc-name,
-  .proc.proc-anim .proc-desc { opacity: 0; transform: translateY(16px); }
-  .proc.proc-anim.is-in .proc-num,
-  .proc.proc-anim.is-in .proc-name,
-  .proc.proc-anim.is-in .proc-desc {
-    opacity: 1; transform: none;
-    transition: opacity 0.8s ease, transform 0.95s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* sincronía con el paso del spark (nth-child 2..5 = los 4 pasos; el 1 es el spark) */
-  .proc.proc-anim.is-in .proc-step:nth-child(2)::before { transition-delay: 0s; }
-  .proc.proc-anim.is-in .proc-step:nth-child(3)::before { transition-delay: 0.65s; }
-  .proc.proc-anim.is-in .proc-step:nth-child(4)::before { transition-delay: 1.3s; }
-  .proc.proc-anim.is-in .proc-step:nth-child(5)::before { transition-delay: 1.95s; }
-  .proc.proc-anim.is-in .proc-step:nth-child(2) :is(.proc-num, .proc-name, .proc-desc) { transition-delay: 0.2s; }
-  .proc.proc-anim.is-in .proc-step:nth-child(3) :is(.proc-num, .proc-name, .proc-desc) { transition-delay: 0.85s; }
-  .proc.proc-anim.is-in .proc-step:nth-child(4) :is(.proc-num, .proc-name, .proc-desc) { transition-delay: 1.5s; }
-  .proc.proc-anim.is-in .proc-step:nth-child(5) :is(.proc-num, .proc-name, .proc-desc) { transition-delay: 2.15s; }
+  .proc-progress-bar { display: block; height: 100%; width: 0%; background: #F7EFDB; transition: width 0.1s linear; }
 }
-@keyframes procSpark {
-  0%   { left: 0;    opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .proc-spark { display: none !important; }
+
+/* Móvil/tablet ≤768: sin pin — swipe horizontal nativo */
+@media (max-width: 768px) {
+  .proc-h { padding: clamp(72px, 9vw, 120px) 0; }
+  .proc-pin { height: auto; }
+  .proc-sticky { position: static; height: auto; display: block; }
+  .proc-sticky .proc-head { position: static; padding: 0 10px; margin: 0 0 clamp(20px, 4vw, 36px); }
+  .proc-viewport {
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .proc-viewport::-webkit-scrollbar { display: none; }
+  .proc-track { display: flex; list-style: none; margin: 0; padding: 0; width: max-content; }
+  /* una tarjeta por pantalla (slide), igual que el carrusel que teníamos antes */
+  .proc-panel {
+    flex: 0 0 100vw; scroll-snap-align: center; box-sizing: border-box; padding: 0 16px;
+  }
+  .proc-num { font-size: clamp(64px, 22vw, 120px); }
+  .proc-name { font-size: clamp(26px, 8.5vw, 38px); }  /* igual que "Branding" en servicios */
+  .proc-progress { display: none; }
 }
 
 /* ── CTA DE CIERRE ── */
@@ -780,8 +755,6 @@ img, video {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  /* servicios ya van a 2 columnas por defecto */
-  .proc-steps { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
   .tst-grid { grid-template-columns: 1fr; }
   .tst-item { border-left: none; border-top: 1px solid rgba(247, 239, 219, 0.14); padding: 28px 0 0; }
   .tst-item:first-child { border-top: none; padding: 0; }
@@ -795,37 +768,13 @@ img, video {
   .svc-desc { margin-left: calc(28px + 16px); font-size: 14px; }
   .works-head { text-align: right; }
 
-  /* Proceso → carrusel de un paso (autoplay + swipe) */
-  .proc-steps {
-    display: flex;
-    grid-template-columns: none;
-    gap: 0;
-    margin: 0 -10px;
-    padding: 0;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
-  }
-  .proc-steps::-webkit-scrollbar { display: none; }
-  .proc-step {
-    flex: 0 0 100%;
-    box-sizing: border-box;
-    scroll-snap-align: center;
-    border-top: none;
-    padding: 0 10px;
-  }
-  .proc-num { font-size: 56px; }
-  .proc-name { font-size: 22px; }
-  .proc-desc { font-size: 15px; }
-  /* Contenedores de los marcadores (los botones se estilan en el <style global>) */
+  /* El proceso en móvil: slide/carrusel de una tarjeta (autoplay + swipe + puntos) */
   .proc-dots {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    margin-top: 34px;
+    gap: 13px;
+    margin-top: 30px;
   }
 
   /* Testimonios → carrusel de una cita (autoplay + swipe) */
@@ -1029,7 +978,7 @@ img, video {
     }
 
     var carousels = [
-      initCarousel(".proc-steps", ".proc-dots", ".proc-step", "proc-dot", "Paso"),
+      initCarousel(".proc-viewport", ".proc-dots", ".proc-panel", "proc-dot", "Paso"),
       initCarousel(".tst-grid", ".tst-dots", ".tst-item", "tst-dot", "Testimonio")
     ].filter(Boolean);
 
@@ -1039,21 +988,34 @@ img, video {
   })();
 </script>
 
-<!-- ── "El proceso": timeline que se dibuja al entrar en pantalla (PC) ── -->
+<!-- ── "El proceso": scroll horizontal fijado (PC). La sección se queda fija y los
+     pasos avanzan en horizontal según el progreso de scroll vertical. ── -->
 <script is:inline>
   (function () {
-    var proc = document.getElementById("proceso");
-    if (!proc) return;
-    // Respeta reduce-motion: deja todo visible y estático
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    proc.classList.add("proc-anim");
-    if (!("IntersectionObserver" in window)) { proc.classList.add("is-in"); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { proc.classList.add("is-in"); io.disconnect(); }
-      });
-    }, { threshold: 0.35 });
-    io.observe(proc);
+    var sec = document.getElementById("proceso");
+    if (!sec || !sec.classList.contains("proc-h")) return;
+    var pin = sec.querySelector(".proc-pin");
+    var track = sec.querySelector(".proc-track");
+    var bar = sec.querySelector(".proc-progress-bar");
+    if (!pin || !track) return;
+    var mq = window.matchMedia("(min-width: 769px)");
+    var ticking = false;
+    function update() {
+      ticking = false;
+      if (!mq.matches) { track.style.transform = ""; if (bar) bar.style.width = ""; return; }
+      var total = pin.offsetHeight - window.innerHeight;
+      var scrolled = Math.min(Math.max(-pin.getBoundingClientRect().top, 0), total);
+      var p = total > 0 ? scrolled / total : 0;
+      var maxX = track.scrollWidth - track.parentElement.clientWidth;
+      if (maxX < 0) maxX = 0;
+      track.style.transform = "translate3d(" + (-p * maxX).toFixed(2) + "px,0,0)";
+      if (bar) bar.style.width = (p * 100).toFixed(2) + "%";
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update);
+    if (mq.addEventListener) mq.addEventListener("change", update); else mq.addListener(update);
+    update();
   })();
 </script>
 
