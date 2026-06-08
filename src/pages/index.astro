@@ -245,28 +245,43 @@ const group = Array.from({ length: 4 }, () => logos).flat();
           <ol class="proc-track">
         <li class="proc-panel">
           <span class="proc-num">01</span>
-          <h3 class="proc-name">Hablamos</h3>
-          <p class="proc-desc">Nos cuentas tu proyecto y entendemos tu negocio, tu público y a dónde quieres llegar.</p>
+          <div class="proc-text">
+            <h3 class="proc-name">Hablamos</h3>
+            <p class="proc-desc">Nos cuentas tu proyecto y entendemos tu negocio, tu público y a dónde quieres llegar.</p>
+          </div>
         </li>
         <li class="proc-panel">
           <span class="proc-num">02</span>
-          <h3 class="proc-name">Estrategia</h3>
-          <p class="proc-desc">Definimos el rumbo: posicionamiento, concepto y qué necesita tu marca para destacar.</p>
+          <div class="proc-text">
+            <h3 class="proc-name">Estrategia</h3>
+            <p class="proc-desc">Definimos el rumbo: posicionamiento, concepto y qué necesita tu marca para destacar.</p>
+          </div>
         </li>
         <li class="proc-panel">
           <span class="proc-num">03</span>
-          <h3 class="proc-name">Creamos</h3>
-          <p class="proc-desc">Diseñamos la identidad, las piezas y el contenido, todo bajo una misma visión.</p>
+          <div class="proc-text">
+            <h3 class="proc-name">Creamos</h3>
+            <p class="proc-desc">Diseñamos la identidad, las piezas y el contenido, todo bajo una misma visión.</p>
+          </div>
         </li>
         <li class="proc-panel">
           <span class="proc-num">04</span>
-          <h3 class="proc-name">Lanzamos</h3>
-          <p class="proc-desc">Ponemos tu marca en el mundo y te dejamos las herramientas para mantenerla.</p>
+          <div class="proc-text">
+            <h3 class="proc-name">Lanzamos</h3>
+            <p class="proc-desc">Ponemos tu marca en el mundo y te dejamos las herramientas para mantenerla.</p>
+          </div>
         </li>
           </ol>
         </div>
-        <div class="proc-progress" aria-hidden="true"><span class="proc-progress-bar"></span></div>
-        <div class="proc-dots" role="tablist" aria-label="Navegación del proceso"></div>
+        <div class="proc-controls">
+          <button class="proc-arrow" type="button" data-dir="-1" aria-label="Paso anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4.5 7.5 12 15 19.5"/></svg>
+          </button>
+          <div class="proc-dots" role="tablist" aria-label="Navegación del proceso"></div>
+          <button class="proc-arrow" type="button" data-dir="1" aria-label="Paso siguiente">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5 16.5 12 9 19.5"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -622,31 +637,58 @@ img, video {
   max-width: 42ch;
   margin: 0;
 }
-.proc-dots, .tst-dots { display: none; }
+.tst-dots { display: none; }
+.proc-dots { display: flex; justify-content: center; align-items: center; gap: 13px; }
+.proc-controls { display: flex; align-items: center; justify-content: center; }
+.proc-arrow { display: none; }  /* flechas solo en PC */
 
-/* PC: pin + sticky + track horizontal */
+/* PC: carrusel (slide como en móvil) — una tarjeta por pantalla con número gigante
+   + texto; autoplay + flechas + puntos + swipe/scroll horizontal. Sin scroll fijado. */
 @media (min-width: 769px) {
-  .proc-pin { position: relative; height: 420vh; }
-  .proc-sticky {
-    position: sticky; top: 0; height: 100vh; overflow: hidden;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: clamp(40px, 7vh, 96px) 10px;
-    box-sizing: border-box;
+  .proc-h { padding: clamp(96px, 12vh, 168px) clamp(24px, 5vw, 88px); }
+  .proc-pin { position: static; height: auto; }
+  .proc-sticky { position: static; height: auto; display: block; overflow: visible; padding: 0; }
+  .proc-sticky .proc-head { position: static; margin: 0 0 clamp(40px, 5vw, 72px); }
+
+  .proc-viewport {
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
   }
-  .proc-sticky .proc-head { position: absolute; top: clamp(40px, 7vh, 96px); left: 10px; }
-  .proc-viewport { overflow: hidden; width: 100%; }
-  .proc-track { display: flex; list-style: none; margin: 0; padding: 0; width: max-content; will-change: transform; }
+  .proc-viewport::-webkit-scrollbar { display: none; }
+  .proc-track { display: flex; list-style: none; margin: 0; padding: 0; width: 100%; }
   .proc-panel {
-    flex: 0 0 min(72vw, 720px);
-    box-sizing: border-box;
-    padding-right: clamp(48px, 8vw, 150px);
-    display: flex; flex-direction: column; justify-content: center;
+    flex: 0 0 100%; scroll-snap-align: center; box-sizing: border-box;
+    display: flex; align-items: center; gap: clamp(36px, 5vw, 96px);
+    min-height: clamp(320px, 44vh, 460px);
   }
-  .proc-progress {
-    position: absolute; bottom: clamp(40px, 7vh, 84px); left: 10px; right: 10px;
-    height: 2px; background: rgba(247, 239, 219, 0.16);
+  .proc-num {
+    flex: 0 0 auto; margin: 0;
+    font-size: clamp(140px, 22vw, 340px); line-height: 0.8;
+    color: rgba(247, 239, 219, 0.92);
   }
-  .proc-progress-bar { display: block; height: 100%; width: 0%; background: #F7EFDB; transition: width 0.1s linear; }
+  .proc-text { max-width: 46ch; }
+  .proc-name { font-size: clamp(34px, 4vw, 64px); margin: 0 0 18px; }
+  .proc-desc { font-size: clamp(15px, 1.15vw, 18px); max-width: 42ch; }
+
+  /* flechas + puntos centrados debajo */
+  .proc-controls { gap: clamp(24px, 2.5vw, 40px); margin-top: clamp(28px, 3.5vw, 52px); }
+  .proc-arrow {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: 50%; padding: 0;
+    border: 1px solid rgba(247, 239, 219, 0.18); background: transparent;
+    color: #F7EFDB; cursor: pointer;
+    transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .proc-arrow svg {
+    width: 19px; height: 19px; display: block;
+    fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .proc-arrow:hover { border-color: rgba(247, 239, 219, 0.85); background: rgba(247, 239, 219, 0.05); }
+  .proc-arrow[data-dir="1"]:hover svg  { transform: translateX(3px); }
+  .proc-arrow[data-dir="-1"]:hover svg { transform: translateX(-3px); }
+  .proc-arrow:active { transform: scale(0.93); }
+  .proc-arrow:focus-visible { outline: none; border-color: #F7EFDB; box-shadow: 0 0 0 4px rgba(247, 239, 219, 0.14); }
 }
 
 /* Móvil/tablet ≤768: sin pin — swipe horizontal nativo */
@@ -904,12 +946,13 @@ img, video {
   });
 </script>
 
-<!-- ── Carruseles de móvil (proceso + testimonios): autoplay + swipe + puntos ── -->
+<!-- ── Carruseles (proceso = todos los anchos; testimonios = solo móvil): autoplay +
+     swipe/scroll + puntos (+ flechas en proceso) ── -->
 <script is:inline>
   (function () {
-    var mq = window.matchMedia("(max-width: 600px)");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function initCarousel(trackSel, dotsSel, itemSel, dotClass, label) {
+    function initCarousel(trackSel, dotsSel, itemSel, dotClass, label, enableMq, arrowSel) {
       var track = document.querySelector(trackSel);
       var dotsWrap = document.querySelector(dotsSel);
       if (!track || !dotsWrap) return;
@@ -952,70 +995,56 @@ img, video {
       function next() { goTo((current + 1) % items.length); }
 
       function start() {
-        if (paused || timer) return;
+        if (paused || timer || reduce) return;
         timer = setInterval(next, DELAY);
       }
       function stop() { if (timer) { clearInterval(timer); timer = null; } }
       function pause() { paused = true; stop(); dotsWrap.classList.add("is-paused"); }
 
-      // Sincroniza los puntos cuando el usuario desliza a mano
-      var scrollT = null;
+      // Sincroniza los puntos EN VIVO mientras el usuario desliza/scrollea
+      // (rAF en vez de debounce: el indicador cambia al cruzar la mitad, sin retardo)
+      var raf = null;
       track.addEventListener("scroll", function () {
-        if (scrollT) clearTimeout(scrollT);
-        scrollT = setTimeout(function () {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = null;
           var i = Math.round(track.scrollLeft / track.clientWidth);
-          if (i !== current) setActive(Math.max(0, Math.min(items.length - 1, i)));
-        }, 80);
+          i = Math.max(0, Math.min(items.length - 1, i));
+          if (i !== current) setActive(i);
+        });
       }, { passive: true });
 
       // Al tocar/interactuar, se detiene el autoplay
       track.addEventListener("touchstart", function () { pause(); }, { passive: true });
 
+      // Flechas (opcional, p. ej. en proceso): saltan con wrap-around
+      if (arrowSel) {
+        Array.prototype.forEach.call(document.querySelectorAll(arrowSel), function (btn) {
+          btn.addEventListener("click", function () {
+            pause();
+            var dir = parseInt(btn.getAttribute("data-dir"), 10) || 1;
+            goTo((current + dir + items.length) % items.length);
+          });
+        });
+      }
+
       function enable() { buildDots(); dotsWrap.classList.remove("is-paused"); setActive(0); paused = false; start(); }
       function disable() { stop(); }
 
-      return function apply() { mq.matches ? enable() : disable(); };
+      return function apply() { enableMq.matches ? enable() : disable(); };
     }
 
-    var carousels = [
-      initCarousel(".proc-viewport", ".proc-dots", ".proc-panel", "proc-dot", "Paso"),
-      initCarousel(".tst-grid", ".tst-dots", ".tst-item", "tst-dot", "Testimonio")
+    var procMq = window.matchMedia("(min-width: 0px)");   // proceso: carrusel en todos los anchos
+    var tstMq = window.matchMedia("(max-width: 600px)");  // testimonios: solo móvil
+
+    var apply = [
+      initCarousel(".proc-viewport", ".proc-dots", ".proc-panel", "proc-dot", "Paso", procMq, ".proc-arrow"),
+      initCarousel(".tst-grid", ".tst-dots", ".tst-item", "tst-dot", "Testimonio", tstMq)
     ].filter(Boolean);
 
-    function applyAll() { carousels.forEach(function (fn) { fn(); }); }
+    function applyAll() { apply.forEach(function (fn) { fn(); }); }
     applyAll();
-    (mq.addEventListener ? mq.addEventListener("change", applyAll) : mq.addListener(applyAll));
-  })();
-</script>
-
-<!-- ── "El proceso": scroll horizontal fijado (PC). La sección se queda fija y los
-     pasos avanzan en horizontal según el progreso de scroll vertical. ── -->
-<script is:inline>
-  (function () {
-    var sec = document.getElementById("proceso");
-    if (!sec || !sec.classList.contains("proc-h")) return;
-    var pin = sec.querySelector(".proc-pin");
-    var track = sec.querySelector(".proc-track");
-    var bar = sec.querySelector(".proc-progress-bar");
-    if (!pin || !track) return;
-    var mq = window.matchMedia("(min-width: 769px)");
-    var ticking = false;
-    function update() {
-      ticking = false;
-      if (!mq.matches) { track.style.transform = ""; if (bar) bar.style.width = ""; return; }
-      var total = pin.offsetHeight - window.innerHeight;
-      var scrolled = Math.min(Math.max(-pin.getBoundingClientRect().top, 0), total);
-      var p = total > 0 ? scrolled / total : 0;
-      var maxX = track.scrollWidth - track.parentElement.clientWidth;
-      if (maxX < 0) maxX = 0;
-      track.style.transform = "translate3d(" + (-p * maxX).toFixed(2) + "px,0,0)";
-      if (bar) bar.style.width = (p * 100).toFixed(2) + "%";
-    }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", update);
-    if (mq.addEventListener) mq.addEventListener("change", update); else mq.addListener(update);
-    update();
+    (tstMq.addEventListener ? tstMq.addEventListener("change", applyAll) : tstMq.addListener(applyAll));
   })();
 </script>
 
