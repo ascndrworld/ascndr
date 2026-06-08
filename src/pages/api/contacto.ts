@@ -105,21 +105,25 @@ async function sendEmail(payload: Record<string, unknown>) {
   return res.json();
 }
 
-// Envía un mensaje al chat de Telegram del dueño (parse_mode HTML; escapa el contenido con esc()).
-async function sendTelegram(text: string) {
+// Envía un mensaje al chat de Telegram del dueño (parse_mode HTML; escapa el
+// contenido con esc()). replyMarkup opcional = botones inline (aprobar/descartar).
+async function sendTelegram(text: string, replyMarkup?: unknown) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
     console.warn("Telegram sin configurar (faltan TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID).");
     return;
   }
+  const body: Record<string, unknown> = {
+    chat_id: TELEGRAM_CHAT_ID,
+    text,
+    parse_mode: "HTML",
+    disable_web_page_preview: true,
+  };
+  if (replyMarkup) body.reply_markup = replyMarkup;
+
   const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text,
-      parse_mode: "HTML",
-      disable_web_page_preview: true,
-    }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) {
     const detail = await res.text().catch(() => "");
@@ -240,8 +244,15 @@ export const POST: APIRoute = async ({ request }) => {
     "📝 <b>Consulta</b>",
     esc(consulta) || "Sin consulta previa",
   ].join("\n");
+  // Botones: el dossier (que cuesta API) NO se lanza solo. Tú decides desde Telegram.
+  const tgButtons = {
+    inline_keyboard: [[
+      { text: "🔎 Investigar", callback_data: "dossier" },
+      { text: "✖️ Descartar", callback_data: "dismiss" },
+    ]],
+  };
   try {
-    await sendTelegram(tgText);
+    await sendTelegram(tgText, tgButtons);
   } catch (err) {
     console.warn("Aviso Telegram no enviado:", err);
   }

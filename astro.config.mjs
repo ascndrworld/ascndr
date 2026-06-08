@@ -9,7 +9,11 @@ export default defineConfig({
   build: {
     format: 'file',
   },
-  adapter: vercel(),
+  adapter: vercel({
+    // El dossier del lead corre en segundo plano (waitUntil) tras responder al
+    // formulario; le damos margen para que termine antes de congelar la función.
+    maxDuration: 60,
+  }),
   integrations: [
     sitemap({
       changefreq: 'monthly',
