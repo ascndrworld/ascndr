@@ -111,9 +111,9 @@ const group = Array.from({ length: 4 }, () => logos).flat();
       <span class="svc-eyebrow">QUÉ HACEMOS</span>
       <h2 class="svc-title">servicios</h2>
     </div>
-    <div class="svc-grid">
-      <article class="svc-item">
-        <div class="svc-top">
+    <ul class="svc-rows">
+      <li class="svc-row">
+        <div class="svc-row-main">
           <span class="svc-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M11 21a1 1 0 0 1 0-19 9.5 8.5 0 0 1 9.5 8.5 4.5 4.5 0 0 1-4.5 4.5h-2a1.6 1.6 0 0 0-1.28 2.56l.27.36A1.6 1.6 0 0 1 11 21z"/>
@@ -126,11 +126,18 @@ const group = Array.from({ length: 4 }, () => logos).flat();
             </svg>
           </span>
           <h3 class="svc-name">Branding</h3>
+          <span class="svc-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
+            </svg>
+          </span>
         </div>
-        <p class="svc-desc">Naming, logo, tipografías, color y el sistema visual completo que hace que tu marca se reconozca y se recuerde.</p>
-      </article>
-      <article class="svc-item">
-        <div class="svc-top">
+        <div class="svc-reveal"><div class="svc-reveal-inner">
+          <p class="svc-desc">Naming, logo, tipografías, color y el sistema visual completo que hace que tu marca se reconozca y se recuerde.</p>
+        </div></div>
+      </li>
+      <li class="svc-row">
+        <div class="svc-row-main">
           <span class="svc-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
@@ -138,11 +145,18 @@ const group = Array.from({ length: 4 }, () => logos).flat();
             </svg>
           </span>
           <h3 class="svc-name">Dirección Creativa</h3>
+          <span class="svc-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
+            </svg>
+          </span>
         </div>
-        <p class="svc-desc">La idea que lo unifica todo. Eventos, lanzamientos y campañas donde cada pieza cuenta la misma historia.</p>
-      </article>
-      <article class="svc-item">
-        <div class="svc-top">
+        <div class="svc-reveal"><div class="svc-reveal-inner">
+          <p class="svc-desc">La idea que lo unifica todo. Eventos, lanzamientos y campañas donde cada pieza cuenta la misma historia.</p>
+        </div></div>
+      </li>
+      <li class="svc-row">
+        <div class="svc-row-main">
           <span class="svc-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="16 18 22 12 16 6"/>
@@ -150,11 +164,18 @@ const group = Array.from({ length: 4 }, () => logos).flat();
             </svg>
           </span>
           <h3 class="svc-name">Web</h3>
+          <span class="svc-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
+            </svg>
+          </span>
         </div>
-        <p class="svc-desc">Diseño y desarrollo de webs y productos digitales a medida: UX/UI y código, pensados para reflejar tu marca y funcionar de verdad.</p>
-      </article>
-      <article class="svc-item">
-        <div class="svc-top">
+        <div class="svc-reveal"><div class="svc-reveal-inner">
+          <p class="svc-desc">Diseño y desarrollo de webs y productos digitales a medida: UX/UI y código, pensados para reflejar tu marca y funcionar de verdad.</p>
+        </div></div>
+      </li>
+      <li class="svc-row">
+        <div class="svc-row-main">
           <span class="svc-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
@@ -163,10 +184,17 @@ const group = Array.from({ length: 4 }, () => logos).flat();
             </svg>
           </span>
           <h3 class="svc-name">Redes Sociales</h3>
+          <span class="svc-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
+            </svg>
+          </span>
         </div>
-        <p class="svc-desc">Estrategia y contenido con intención: un feed reconocible que atrae, genera confianza y convierte.</p>
-      </article>
-    </div>
+        <div class="svc-reveal"><div class="svc-reveal-inner">
+          <p class="svc-desc">Estrategia y contenido con intención: un feed reconocible que atrae, genera confianza y convierte.</p>
+        </div></div>
+      </li>
+    </ul>
   </section>
 
   <!-- ════ SECCIÓN PROYECTOS DESTACADOS ════ -->
@@ -363,12 +391,23 @@ img, video {
   padding: 0 24px;
 }
 /* Móvil: marquee (oculto en PC) */
-.brandstrip-marquee { display: none; }
+.brandstrip-marquee { display: none; position: relative; }
+/* Desvanecido en los bordes con degradados estáticos ENCIMA (no con mask sobre
+   el contenido animado): en iOS la máscara sobre un track en movimiento recompone
+   la capa cada frame y provoca tirones/parones. Estos overlays no se animan. */
+.brandstrip-marquee::before,
+.brandstrip-marquee::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 16%;
+  z-index: 2; pointer-events: none;
+}
+.brandstrip-marquee::before { left: 0;  background: linear-gradient(to right, #000 0, transparent 100%); }
+.brandstrip-marquee::after  { right: 0; background: linear-gradient(to left,  #000 0, transparent 100%); }
 .brandstrip-track {
   display: flex;
   align-items: center;
   width: max-content;
   will-change: transform;
+  backface-visibility: hidden;
   animation: brandstrip-scroll 28s linear infinite;
 }
 .brandstrip-logo {
@@ -382,8 +421,8 @@ img, video {
 .brandstrip-static:hover .brandstrip-logo { opacity: 1; }
 .brandstrip-track .brandstrip-logo { margin: 0 clamp(28px, 6vw, 44px); }
 @keyframes brandstrip-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .brandstrip-track { animation: none; }
@@ -395,9 +434,7 @@ img, video {
   .brandstrip-marquee {
     display: block;
     overflow: hidden;
-    /* Difumina los logos a negro en los bordes (revela el fondo de la franja) */
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+    /* El desvanecido lo dan ahora los overlays ::before/::after (ver arriba) */
   }
 }
 
@@ -435,52 +472,115 @@ img, video {
   margin: 0;
 }
 
-/* ── SERVICIOS DESGLOSADOS ── */
-.svc-head { padding: 0 10px; margin: 0 0 40px; }
-/* Rejilla a ancho completo: solo separadores entre columnas, sin líneas
-   arriba/abajo ni en los lados. Las tarjetas igualan altura (stretch) para
-   que los separadores y las descripciones queden alineados. */
-.svc-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+/* ── SERVICIOS — filas XL con hover-reveal ──
+   Cada servicio es una fila a todo el ancho: icono + nombre en tipografía
+   grande + flecha. Al pasar el ratón la fila se ilumina, el contenido se
+   desplaza y se despliega la descripción. Cascada de entrada al entrar en
+   pantalla (reusa #servicios → .svc-anim/.is-in). */
+.svc-head { padding: 0 10px; margin: 0 0 clamp(20px, 2.6vw, 36px); }
+
+.svc-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(247, 239, 219, 0.14);
 }
-.svc-item {
-  background: #000;
-  padding: 26px 40px;
-  border-left: 1px solid rgba(247, 239, 219, 0.14);
-  transition: background 0.3s ease;
+.svc-row {
+  position: relative;
+  padding: clamp(22px, 3vw, 36px) 10px;
+  transition: background 0.4s ease, padding-left 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.svc-item:nth-child(odd) { border-left: none; padding-left: 10px; }   /* columna izquierda alineada al título */
-.svc-item:nth-child(n+3) { border-top: 1px solid rgba(247, 239, 219, 0.14); }  /* separador entre las dos filas */
-.svc-item:hover { background: #0b0b0b; }
-/* Cabecera del servicio: icono a la izquierda + título */
-.svc-top {
+/* separador inferior como pseudo-elemento (animable: pulso de brillo al entrar) */
+.svc-row::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: rgba(247, 239, 219, 0.14);
+}
+.svc-row-main {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin: 0 0 12px;
-  min-height: 2.3em;   /* reserva 2 líneas: todas las descripciones quedan a la misma altura */
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 28px);
 }
 .svc-icon {
   flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  margin-top: 2px;
+  width: clamp(30px, 3.4vw, 42px);
+  height: clamp(30px, 3.4vw, 42px);
   color: #F7EFDB;
-  opacity: 0.85;
+  opacity: 0.65;
+  transition: opacity 0.4s ease;
 }
 .svc-icon svg { width: 100%; height: 100%; display: block; }
 .svc-name {
-  font-size: 22px;
-  font-weight: 700;
+  flex: 1 1 auto;
+  font-size: clamp(30px, 5.4vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin: 0;
-  letter-spacing: -0.01em;
+  color: rgba(247, 239, 219, 0.9);
+  /* el nombre NO se mueve al hover; solo aclara el color */
+  transition: color 0.35s ease;
 }
+.svc-arrow {
+  flex-shrink: 0;
+  width: clamp(22px, 2.4vw, 30px);
+  height: clamp(22px, 2.4vw, 30px);
+  color: #F7EFDB;
+  opacity: 0;
+  /* solo aparece (fundido), sin desplazarse */
+  transition: opacity 0.4s ease;
+}
+.svc-arrow svg { width: 100%; height: 100%; display: block; }
+
+/* descripción que se despliega (truco grid-template-rows 0fr → 1fr, animable) */
+.svc-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+.svc-reveal-inner { overflow: hidden; min-height: 0; }
 .svc-desc {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   color: rgba(247, 239, 219, 0.6);
-  margin: 0;
+  max-width: 62ch;
+  /* alinea el texto con el nombre, dejando el hueco del icono a la izquierda */
+  margin: 14px 0 0 calc(clamp(30px, 3.4vw, 42px) + clamp(16px, 2.2vw, 28px));
+}
+
+/* ── HOVER (solo dispositivos con puntero) ──
+   Nada se desliza: la fila se ilumina, el nombre aclara color, aparece la flecha
+   y SOLO se abre la descripción. */
+@media (hover: hover) {
+  .svc-row:hover { background: #0b0b0b; }
+  .svc-row:hover .svc-icon { opacity: 1; }
+  .svc-row:hover .svc-name { color: #F7EFDB; }
+  .svc-row:hover .svc-arrow { opacity: 0.85; }
+  .svc-row:hover .svc-reveal { grid-template-rows: 1fr; opacity: 1; }
+}
+/* En táctil no hay hover: descripción siempre visible, sin flecha */
+@media (hover: none) {
+  .svc-reveal { grid-template-rows: 1fr; opacity: 1; }
+  .svc-arrow { display: none; }
+  .svc-name { color: #F7EFDB; }
+}
+
+/* ── ENTRADA al entrar en pantalla ──
+   Los títulos NO se mueven (sin cascada): aparecen estáticos. Lo único que entra
+   es el pulso de brillo suave en los separadores, fila a fila. */
+.svc.svc-anim.is-in .svc-row:nth-child(1)::after { animation: svcLineGlow 1.2s ease-out 0.05s; }
+.svc.svc-anim.is-in .svc-row:nth-child(2)::after { animation: svcLineGlow 1.2s ease-out 0.18s; }
+.svc.svc-anim.is-in .svc-row:nth-child(3)::after { animation: svcLineGlow 1.2s ease-out 0.31s; }
+.svc.svc-anim.is-in .svc-row:nth-child(4)::after { animation: svcLineGlow 1.2s ease-out 0.44s; }
+
+/* El separador aparece con un pulso de luz suave que sube y se asienta */
+@keyframes svcLineGlow {
+  0%   { box-shadow: 0 0 0 0 rgba(247, 239, 219, 0); }
+  45%  { box-shadow: 0 0 9px 1px rgba(247, 239, 219, 0.45); }
+  100% { box-shadow: 0 0 0 0 rgba(247, 239, 219, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc.svc-anim.is-in .svc-row::after { animation: none; }
 }
 
 /* ── CÓMO TRABAJAMOS — cabecera alineada a la izquierda ── */
@@ -688,11 +788,11 @@ img, video {
   .tst-head { text-align: right; }
 }
 @media (max-width: 600px) {
-  .svc-grid { grid-template-columns: 1fr; }
-  .svc-item { border-left: none; border-top: 1px solid rgba(247, 239, 219, 0.14); padding: 28px 20px; }
-  .svc-item:nth-child(odd) { padding-left: 20px; }
-  .svc-item:first-child { border-top: none; }
-  .svc-top { min-height: 0; align-items: center; }
+  /* Servicios: filas más compactas; nombre e icono centrados verticalmente */
+  .svc-row { padding: 22px 10px; }
+  .svc-name { font-size: clamp(26px, 8.5vw, 38px); }
+  .svc-icon { width: 28px; height: 28px; }
+  .svc-desc { margin-left: calc(28px + 16px); font-size: 14px; }
   .works-head { text-align: right; }
 
   /* Proceso → carrusel de un paso (autoplay + swipe) */
@@ -954,6 +1054,23 @@ img, video {
       });
     }, { threshold: 0.35 });
     io.observe(proc);
+  })();
+</script>
+
+<!-- ── "Servicios": la cruz se dibuja + iconos pop + cascada (rejilla 2×2, PC) ── -->
+<script is:inline>
+  (function () {
+    var svc = document.getElementById("servicios");
+    if (!svc) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    svc.classList.add("svc-anim");
+    if (!("IntersectionObserver" in window)) { svc.classList.add("is-in"); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { svc.classList.add("is-in"); io.disconnect(); }
+      });
+    }, { threshold: 0.35 });
+    io.observe(svc);
   })();
 </script>
 
