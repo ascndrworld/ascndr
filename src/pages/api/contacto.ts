@@ -17,6 +17,14 @@ const RESEND_API_KEY =
   import.meta.env.RESEND_API_KEY ??
   (globalThis as any).process?.env?.RESEND_API_KEY;
 
+// ── Telegram (aviso instantáneo de nuevo lead) ──
+const TELEGRAM_BOT_TOKEN =
+  import.meta.env.TELEGRAM_BOT_TOKEN ??
+  (globalThis as any).process?.env?.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID =
+  import.meta.env.TELEGRAM_CHAT_ID ??
+  (globalThis as any).process?.env?.TELEGRAM_CHAT_ID;
+
 function json(status: number, body: unknown) {
   return new Response(JSON.stringify(body), {
     status,
@@ -93,6 +101,29 @@ async function sendEmail(payload: Record<string, unknown>) {
   if (!res.ok) {
     const detail = await res.text().catch(() => "");
     throw new Error(`Resend ${res.status}: ${detail}`);
+  }
+  return res.json();
+}
+
+// Envía un mensaje al chat de Telegram del dueño (parse_mode HTML; escapa el contenido con esc()).
+async function sendTelegram(text: string) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.warn("Telegram sin configurar (faltan TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID).");
+    return;
+  }
+  const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text,
+      parse_mode: "HTML",
+      disable_web_page_preview: true,
+    }),
+  });
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    throw new Error(`Telegram ${res.status}: ${detail}`);
   }
   return res.json();
 }
@@ -196,6 +227,23 @@ export const POST: APIRoute = async ({ request }) => {
     });
   } catch (err) {
     console.warn("Auto-respuesta no enviada:", err);
+  }
+
+  // 3) Aviso instantáneo a Telegram (no bloquea: si falla, el email ya salió)
+  const tgText = [
+    "📩 <b>Nuevo cliente</b> · formulario web",
+    "",
+    `👤 <b>${esc(name)}</b>`,
+    `✉️ ${esc(email)}`,
+    `📍 ${esc(phone) || "—"}`,
+    "",
+    "📝 <b>Consulta</b>",
+    esc(consulta) || "Sin consulta previa",
+  ].join("\n");
+  try {
+    await sendTelegram(tgText);
+  } catch (err) {
+    console.warn("Aviso Telegram no enviado:", err);
   }
 
   return json(200, { ok: true });
