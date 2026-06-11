@@ -99,10 +99,10 @@ const group = Array.from({ length: 4 }, () => logos).flat();
 
   <!-- ════ SECCIÓN SERVICIOS — igual que "branding" en Somos ════ -->
   <section class="hs-services">
-    <h2 class="hs-services-title">consultoría<br/>creativa</h2>
-    <p class="hs-services-text">La identidad visual es la primera impresión que se lleva un cliente de tu marca. Trabajamos para que sea la correcta.</p>
-    <p class="hs-services-text">Branding, dirección creativa, web, redes sociales. Todo bajo una misma visión estratégica.</p>
-    <a class="hs-services-btn" href="/contacto">HABLEMOS DE TU MARCA</a>
+    <h2 class="hs-services-title" data-reveal>consultoría<br/>creativa</h2>
+    <p class="hs-services-text" data-reveal>La identidad visual es la primera impresión que se lleva un cliente de tu marca. Trabajamos para que sea la correcta.</p>
+    <p class="hs-services-text" data-reveal>Branding, dirección creativa, web, redes sociales. Todo bajo una misma visión estratégica.</p>
+    <a class="hs-services-btn" href="/contacto" data-reveal>HABLEMOS DE TU MARCA</a>
   </section>
 
   <!-- ════ SECCIÓN SERVICIOS DESGLOSADOS ════ -->
@@ -198,33 +198,33 @@ const group = Array.from({ length: 4 }, () => logos).flat();
   </section>
 
   <!-- ════ SECCIÓN PROYECTOS DESTACADOS ════ -->
-  <div class="works-head">
+  <div class="works-head" data-reveal>
     <span class="svc-eyebrow">NUESTRA EXPERIENCIA</span>
     <h2 class="svc-title">proyectos</h2>
   </div>
   <section class="hs-works">
-    <a class="hs-work-item" href="/proyectos/direccion-creativa/conclave">
+    <a class="hs-work-item" href="/proyectos/direccion-creativa/conclave" data-reveal>
       <img class="hs-work-img" src="/images/conclave/portada-conclave2.jpg" alt="Cónclave — Rebranding y dirección creativa de pub en Jaén por Ascndr" loading="lazy" style="object-position:center 44%;"/>
       <div class="hs-work-overlay">
         <span class="hs-work-cat">Dirección Creativa</span>
         <h3 class="hs-work-name">Cónclave</h3>
       </div>
     </a>
-    <a class="hs-work-item" href="/proyectos/branding/halloweenfest">
+    <a class="hs-work-item" href="/proyectos/branding/halloweenfest" data-reveal>
       <img class="hs-work-img" src="/images/halloween-fest/pulsera-portada.jpg" alt="Halloween Fest — Branding e identidad visual de evento en Los Villares, Jaén" loading="lazy"/>
       <div class="hs-work-overlay">
         <span class="hs-work-cat">Branding</span>
         <h3 class="hs-work-name">Halloween Fest</h3>
       </div>
     </a>
-    <a class="hs-work-item" href="/proyectos/web/eventsy">
+    <a class="hs-work-item" href="/proyectos/web/eventsy" data-reveal>
       <img class="hs-work-img" src="/images/eventsy/portada-carrusel.png" alt="Eventsy — Diseño de plataforma web y app de gestión de eventos por Ascndr" loading="lazy"/>
       <div class="hs-work-overlay">
         <span class="hs-work-cat">Web</span>
         <h3 class="hs-work-name">Eventsy</h3>
       </div>
     </a>
-    <a class="hs-work-item" href="/proyectos/redes-sociales/briefing">
+    <a class="hs-work-item" href="/proyectos/redes-sociales/briefing" data-reveal>
       <img class="hs-work-img" src="/images/conclave/rrss-02.jpg" alt="Briefing — Gestión de redes sociales y contenido para Cónclave en Jaén" loading="lazy"/>
       <div class="hs-work-overlay">
         <span class="hs-work-cat">Redes Sociales</span>
@@ -288,7 +288,7 @@ const group = Array.from({ length: 4 }, () => logos).flat();
 
   <!-- ════ TESTIMONIOS ════ -->
   <section class="tst" id="testimonios">
-    <div class="tst-head">
+    <div class="tst-head" data-reveal>
       <span class="svc-eyebrow">lo que dicen</span>
       <h2 class="svc-title">testimonios</h2>
     </div>
@@ -320,9 +320,9 @@ const group = Array.from({ length: 4 }, () => logos).flat();
 
   <!-- ════ CTA DE CIERRE ════ -->
   <section class="cta" id="empecemos">
-    <h2 class="cta-title">¿elevamos<br/>tu marca?</h2>
-    <p class="cta-text">Cuéntanos qué tienes en mente. Te respondemos en menos de 24h.</p>
-    <a class="cta-btn" href="/contacto">INICIAR PROYECTO</a>
+    <h2 class="cta-title" data-reveal>¿elevamos<br/>tu marca?</h2>
+    <p class="cta-text" data-reveal>Cuéntanos qué tienes en mente. Te respondemos en menos de 24h.</p>
+    <a class="cta-btn" href="/contacto" data-reveal>INICIAR PROYECTO</a>
   </section>
 
   <!-- ════ FOOTER GLOBAL ════ -->
@@ -792,7 +792,7 @@ img, video {
   gap: 3px;
   margin-top: auto;
 }
-.tst-name { font-size: 15px; font-weight: 700; color: #fff; }
+.tst-name { font-size: 15px; font-weight: 700; color: var(--ink); }
 .tst-role { font-size: 12px; letter-spacing: 0.03em; color: rgba(247, 239, 219, 0.5); }
 
 /* ── RESPONSIVE ── */

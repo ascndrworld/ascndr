@@ -23,6 +23,8 @@ const {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Marca JS activo cuanto antes (sin flash) para habilitar el scroll-reveal. -->
+  <script is:inline>document.documentElement.className += " js";</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 
@@ -115,6 +117,49 @@ const {
   <Header />
   <slot />
   <CookieConsent />
+
+  <!-- Scroll-reveal global: el contenido marcado con [data-reveal] aparece
+       subiendo al entrar en pantalla (estilo dialedweb.com). Un único
+       IntersectionObserver para toda la página; stagger automático entre
+       hermanos directos que comparten el mismo padre. -->
+  <script is:inline>
+    (function () {
+      var root = document.documentElement;
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var nodes = [].slice.call(document.querySelectorAll("[data-reveal]"));
+      if (!nodes.length) return;
+
+      // Sin IntersectionObserver: revela todo de golpe.
+      if (!("IntersectionObserver" in window)) {
+        nodes.forEach(function (el) { el.classList.add("is-revealed"); });
+        return;
+      }
+
+      // Stagger automático: a cada hermano [data-reveal] dentro de un mismo
+      // padre se le asigna un retardo creciente, salvo que ya traiga uno propio.
+      var counters = [];
+      nodes.forEach(function (el) {
+        if (el.style.getPropertyValue("--reveal-delay")) return;
+        var p = el.parentNode;
+        var idx = counters.indexOf(p);
+        var n;
+        if (idx === -1) { counters.push(p); n = 0; }
+        else { n = (counters[idx]._rc = (counters[idx]._rc || 0) + 1); }
+        if (n > 0) el.style.setProperty("--reveal-delay", (n * 90) + "ms");
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-revealed");
+            io.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+
+      nodes.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
   <!-- Revela el caption de las tarjetas al DESLIZAR el dedo por encima (táctil),
        sin abrir el proyecto; un toque limpio sí navega. En escritorio manda :hover. -->
