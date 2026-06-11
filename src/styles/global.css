@@ -1788,7 +1788,7 @@
   pointer-events: none;
 }
 
-/* HERO CONTENT — left:10px exacto Somos, arriba tras header */
+/* HERO CONTENT — alineado al mismo inset que los títulos de sección */
 .home-hero-content {
   position: relative;
   z-index: 5;
@@ -1798,7 +1798,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding-top: 168px;
-  padding-left: 10px;
+  padding-left: clamp(24px, 5vw, 88px);
   padding-right: 40px;
   width: 100%;
 }

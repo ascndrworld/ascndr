@@ -64,10 +64,18 @@
     function isMobile() {
       return window.matchMedia('(max-width: 768px)').matches;
     }
+    // El header se vuelve negro/compacto al SALIR del hero (#home), no a los 20px.
+    // Umbral = alto del hero menos un margen, para que la transición acompañe la
+    // llegada de la primera sección. Constante (no usa el alto del header) para
+    // que el cambio de altura 100→70 no provoque oscilación en el límite.
+    var hero = document.getElementById('home');
+    function scrollThreshold() {
+      return hero ? Math.max(20, hero.offsetHeight - 90) : 20;
+    }
     function onScroll() {
       if (!header) return;
       var y = getScrollY();
-      header.classList.toggle('scrolled', y > 20);
+      header.classList.toggle('scrolled', y > scrollThreshold());
       // Móvil: header transparente y estático, visible solo arriba del todo
       if (isMobile()) {
         header.classList.toggle('header-hidden', y > 8);
@@ -102,22 +110,30 @@
     -webkit-backdrop-filter: none;
     transition: height 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, transform 0.35s ease;
   }
+  /* Sobre el hero: grande y transparente. Al pasar a la primera sección (lo activa
+     el JS al salir del hero) transiciona limpio a barra negra y se encoge. */
   .site-header.scrolled {
     height: 70px;
-    background-color: rgba(0, 0, 0, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .site-logo {
     display: flex;
     align-items: center;
+    /* El wordmark pesa abajo (la "A" alta deja hueco arriba): el centro de masa
+       cae ~5px por debajo del centro geométrico. Lo subimos para que quede
+       ópticamente centrado y a la misma altura que el hamburger. */
+    transform: translateY(-5px);
   }
   .site-logo img {
     height: 44px;
     width: auto;
     display: block;
     transition: height 0.4s ease;
+    /* sombra sutil para que el logo no se pierda sobre el hero */
+    filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.5));
   }
   .site-header.scrolled .site-logo img {
     height: 28px;
@@ -126,7 +142,7 @@
   .site-hamburger {
     position: absolute;
     top: 50%;
-    right: 30px;
+    right: clamp(24px, 5vw, 88px);
     transform: translateY(-50%);
     background: none;
     border: none;
@@ -140,6 +156,8 @@
     height: 30px;
     justify-content: center;
     align-items: flex-end;
+    /* sombra sutil para no perderse sobre el contenido al deslizar */
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
   }
   .site-hamburger span {
     display: block;
@@ -170,10 +188,13 @@
   }
   .site-menu.open { opacity: 1; pointer-events: all; }
 
+  /* La ✕ se coloca justo encima del hamburger: mismo inset a la derecha y
+     centrada en la vertical del header (100px → 50px). */
   .site-menu-close {
     position: absolute;
-    top: 28px;
-    right: 30px;
+    top: 50px;
+    right: clamp(24px, 5vw, 88px);
+    transform: translateY(-50%);
     background: none;
     border: none;
     color: rgba(255,255,255,0.7);
@@ -183,7 +204,7 @@
     line-height: 1;
     transition: color 0.2s, transform 0.3s ease;
   }
-  .site-menu-close:hover { color: #F7EFDB; transform: rotate(90deg); }
+  .site-menu-close:hover { color: #F7EFDB; transform: translateY(-50%) rotate(90deg); }
 
   .site-menu-links {
     list-style: none;
@@ -252,7 +273,7 @@
     .site-logo img { height: 40px; }
     .site-header.scrolled .site-logo img { height: 26px; }
     .site-hamburger { right: 20px; }
-    .site-menu-close { top: 20px; right: 20px; }
+    .site-menu-close { top: 45px; right: 20px; }
     .site-menu-links li a { font-size: 44px; line-height: 1.15; letter-spacing: -1px; }
     .site-menu-bottom { bottom: 20px; }
   }
@@ -264,6 +285,7 @@
     .site-logo img { height: 34px; }
     .site-header.scrolled .site-logo img { height: 24px; }
     .site-hamburger { right: 16px; }
+    .site-menu-close { top: 40px; right: 16px; }
     .site-menu-links li a { font-size: 36px; }
   }
   @media (max-width: 360px) {

@@ -125,13 +125,7 @@ const group = Array.from({ length: 4 }, () => logos).flat();
               <path d="M15.6 8.4 13 11l2.6-.6z" fill="currentColor" stroke="none"/>
             </svg>
           </span>
-          <h3 class="svc-name">Branding</h3>
-          <span class="svc-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
-            </svg>
-          </span>
-        </div>
+          <h3 class="svc-name">Branding</h3>        </div>
         <div class="svc-reveal"><div class="svc-reveal-inner">
           <p class="svc-desc">Naming, logo, tipografías, color y el sistema visual completo que hace que tu marca se reconozca y se recuerde.</p>
         </div></div>
@@ -144,13 +138,7 @@ const group = Array.from({ length: 4 }, () => logos).flat();
               <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
             </svg>
           </span>
-          <h3 class="svc-name">Dirección Creativa</h3>
-          <span class="svc-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
-            </svg>
-          </span>
-        </div>
+          <h3 class="svc-name">Dirección Creativa</h3>        </div>
         <div class="svc-reveal"><div class="svc-reveal-inner">
           <p class="svc-desc">La idea que lo unifica todo. Eventos, lanzamientos y campañas donde cada pieza cuenta la misma historia.</p>
         </div></div>
@@ -163,13 +151,7 @@ const group = Array.from({ length: 4 }, () => logos).flat();
               <polyline points="8 6 2 12 8 18"/>
             </svg>
           </span>
-          <h3 class="svc-name">Web</h3>
-          <span class="svc-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
-            </svg>
-          </span>
-        </div>
+          <h3 class="svc-name">Web</h3>        </div>
         <div class="svc-reveal"><div class="svc-reveal-inner">
           <p class="svc-desc">Diseño y desarrollo de webs y productos digitales a medida: UX/UI y código, pensados para reflejar tu marca y funcionar de verdad.</p>
         </div></div>
@@ -183,13 +165,7 @@ const group = Array.from({ length: 4 }, () => logos).flat();
               <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
             </svg>
           </span>
-          <h3 class="svc-name">Redes Sociales</h3>
-          <span class="svc-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
-            </svg>
-          </span>
-        </div>
+          <h3 class="svc-name">Redes Sociales</h3>        </div>
         <div class="svc-reveal"><div class="svc-reveal-inner">
           <p class="svc-desc">Estrategia y contenido con intención: un feed reconocible que atrae, genera confianza y convierte.</p>
         </div></div>
@@ -470,7 +446,7 @@ img, video {
 /* Menos espacio arriba: pegadas a la sección anterior */
 .svc  { padding: clamp(24px, 3vw, 44px) 0 clamp(44px, 5vw, 72px); }
 .proc { padding: clamp(72px, 9vw, 120px) 10px clamp(72px, 9vw, 116px); }
-.works-head { padding: clamp(48px, 6vw, 88px) 10px clamp(24px, 3vw, 36px); text-align: right; }
+.works-head { padding: clamp(48px, 6vw, 88px) 10px clamp(44px, 5vw, 64px); text-align: left; }
 /* La intro "consultoría creativa" deja menos hueco abajo para juntarse con servicios */
 .hs-services { padding-bottom: clamp(40px, 5vw, 64px); }
 
@@ -511,12 +487,19 @@ img, video {
 .svc-row {
   position: relative;
   padding: clamp(22px, 3vw, 36px) 10px;
-  transition: background 0.4s ease, padding-left 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: padding-left 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* separador inferior como pseudo-elemento (animable: pulso de brillo al entrar) */
 .svc-row::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
   background: rgba(247, 239, 219, 0.14);
+}
+/* barra de acento a la izquierda — crece al pasar el ratón (sin fondo de relleno) */
+.svc-row::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: #F7EFDB;
+  opacity: 0; transform: scaleY(0); transform-origin: center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
 }
 .svc-row-main {
   display: flex;
@@ -543,17 +526,6 @@ img, video {
   /* el nombre NO se mueve al hover; solo aclara el color */
   transition: color 0.35s ease;
 }
-.svc-arrow {
-  flex-shrink: 0;
-  width: clamp(22px, 2.4vw, 30px);
-  height: clamp(22px, 2.4vw, 30px);
-  color: #F7EFDB;
-  opacity: 0;
-  /* solo aparece (fundido), sin desplazarse */
-  transition: opacity 0.4s ease;
-}
-.svc-arrow svg { width: 100%; height: 100%; display: block; }
-
 /* descripción que se despliega (truco grid-template-rows 0fr → 1fr, animable) */
 .svc-reveal {
   display: grid;
@@ -572,20 +544,19 @@ img, video {
 }
 
 /* ── HOVER (solo dispositivos con puntero) ──
-   Nada se desliza: la fila se ilumina, el nombre aclara color, aparece la flecha
-   y SOLO se abre la descripción. */
+   La fila se desplaza un poco, el nombre aclara color, aparece la barra de
+   acento a la izquierda y se abre la descripción. */
 @media (hover: hover) {
-  /* la fila se ilumina y se desplaza un poco a la derecha (sin deslizar las palabras) */
-  .svc-row:hover { background: #0b0b0b; padding-left: 28px; }
+  /* la fila se desplaza un poco a la derecha y aparece la barra de acento a la izquierda */
+  .svc-row:hover { padding-left: 28px; }
+  .svc-row:hover::before { opacity: 1; transform: scaleY(1); }
   .svc-row:hover .svc-icon { opacity: 1; }
   .svc-row:hover .svc-name { color: #F7EFDB; }
-  .svc-row:hover .svc-arrow { opacity: 0.85; }
   .svc-row:hover .svc-reveal { grid-template-rows: 1fr; opacity: 1; }
 }
-/* En táctil no hay hover: descripción siempre visible, sin flecha */
+/* En táctil no hay hover: descripción siempre visible */
 @media (hover: none) {
   .svc-reveal { grid-template-rows: 1fr; opacity: 1; }
-  .svc-arrow { display: none; }
   .svc-name { color: #F7EFDB; }
 }
 
@@ -691,6 +662,24 @@ img, video {
   .proc-arrow:focus-visible { outline: none; border-color: #F7EFDB; box-shadow: 0 0 0 4px rgba(247, 239, 219, 0.14); }
 }
 
+/* PC: el resto de secciones (servicios, proyectos, testimonios) comparten el
+   MISMO inset lateral que "el proceso" → clamp(24px, 5vw, 88px). Así todos los
+   títulos quedan a la misma distancia de cada borde, con su contenido alineado. */
+@media (min-width: 769px) {
+  /* Servicios: la sección lleva el inset; cabecera y filas quedan a 0 para
+     alinear con él. El deslizamiento del hover se reajusta a +18px. */
+  .svc { padding-inline: clamp(24px, 5vw, 88px); }
+  .svc-head { padding-inline: 0; }
+  .svc-row { padding-inline: 0; }
+  .svc-row:hover { padding-left: 18px; }
+
+  /* Proyectos: título y mosaico al mismo inset. */
+  .works-head { padding-left: clamp(24px, 5vw, 88px); padding-right: clamp(24px, 5vw, 88px); }
+  .hs-works { padding-inline: clamp(24px, 5vw, 88px); }
+  /* (Testimonios se ajusta más abajo, tras su definición base, para que el
+     padding-inline gane al shorthand `padding` de `.tst`.) */
+}
+
 /* Móvil/tablet ≤768: sin pin — swipe horizontal nativo */
 @media (max-width: 768px) {
   .proc-h { padding: clamp(72px, 9vw, 120px) 0; }
@@ -756,7 +745,7 @@ img, video {
   font-family: "Montserrat", sans-serif;
   padding: clamp(72px, 9vw, 120px) 10px;
 }
-.tst-head { margin: 0 0 clamp(40px, 5vw, 64px); text-align: right; }
+.tst-head { margin: 0 0 clamp(40px, 5vw, 64px); text-align: left; }
 .tst-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -795,12 +784,19 @@ img, video {
 .tst-name { font-size: 15px; font-weight: 700; color: var(--ink); }
 .tst-role { font-size: 12px; letter-spacing: 0.03em; color: rgba(247, 239, 219, 0.5); }
 
+/* PC: testimonios al mismo inset lateral que "el proceso". Va aquí (tras la
+   base) para que `padding-inline` gane al shorthand `padding` de `.tst`. */
+@media (min-width: 769px) {
+  .tst { padding-inline: clamp(24px, 5vw, 88px); }
+  .tst-item:first-child { padding-left: 0; }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .tst-grid { grid-template-columns: 1fr; }
   .tst-item { border-left: none; border-top: 1px solid rgba(247, 239, 219, 0.14); padding: 28px 0 0; }
   .tst-item:first-child { border-top: none; padding: 0; }
-  .tst-head { text-align: right; }
+  .tst-head { text-align: left; }
 }
 @media (max-width: 600px) {
   /* Servicios: filas más compactas; nombre e icono centrados verticalmente */
@@ -808,7 +804,7 @@ img, video {
   .svc-name { font-size: clamp(26px, 8.5vw, 38px); }
   .svc-icon { width: 28px; height: 28px; }
   .svc-desc { margin-left: calc(28px + 16px); font-size: 14px; }
-  .works-head { text-align: right; }
+  .works-head { text-align: left; }
 
   /* El proceso en móvil: slide/carrusel de una tarjeta (autoplay + swipe + puntos) */
   .proc-dots {
