@@ -1048,6 +1048,28 @@ img, video {
   })();
 </script>
 
+<!-- ── Marquee de marcas: en Safari iOS la animación se "congela" y sale cortada
+     al salir de pantalla y volver (la capa de composición se descarta). La
+     reiniciamos cada vez que vuelve a entrar en viewport para repintar limpio. -->
+<script is:inline>
+  (function () {
+    var track = document.querySelector(".brandstrip-track");
+    if (!track) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        // Reinicio por reflow: vuelve a aplicar la animación del CSS desde 0.
+        track.style.animation = "none";
+        void track.offsetWidth;
+        track.style.animation = "";
+      });
+    }, { threshold: 0.01 });
+    io.observe(track);
+  })();
+</script>
+
 <!-- ── "Servicios": la cruz se dibuja + iconos pop + cascada (rejilla 2×2, PC) ── -->
 <script is:inline>
   (function () {
