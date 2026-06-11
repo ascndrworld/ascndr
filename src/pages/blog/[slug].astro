@@ -31,14 +31,24 @@ const fmt = (d: Date) =>
 const words = post.body?.trim().split(/\s+/).length ?? 0;
 const readingMin = Math.max(1, Math.round(words / 200));
 
-// Artículos relacionados: misma categoría primero, luego el resto. Máx 2.
-const all = (await getCollection("blog", ({ data }) => !data.draft))
-  .filter((p) => p.id !== post.id)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-const related = [
-  ...all.filter((p) => p.data.category === data.category),
-  ...all.filter((p) => p.data.category !== data.category),
-].slice(0, 2);
+// Artículos relacionados (máx 2). Reservamos 1 hueco para la MISMA categoría y
+// otro para una DISTINTA, así ningún artículo queda huérfano de enlaces internos
+// (clave para que Google lo indexe). El hueco cross-categoría se rellena con el
+// artículo más cercano en fecha, repartiendo los enlaces entre todas las categorías.
+const others = (await getCollection("blog", ({ data }) => !data.draft)).filter(
+  (p) => p.id !== post.id
+);
+const nearBy = (p) => Math.abs(p.data.pubDate.getTime() - data.pubDate.getTime());
+const byDateDesc = (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime();
+const sameCat = others.filter((p) => p.data.category === data.category).sort(byDateDesc);
+const otherCat = others
+  .filter((p) => p.data.category !== data.category)
+  .sort((a, b) => nearBy(a) - nearBy(b));
+// 1 de la misma categoría + 1 de otra; si falta alguno, se rellena con el resto.
+const seen = new Set();
+const related = [sameCat[0], otherCat[0], ...[...others].sort(byDateDesc)]
+  .filter((p) => p && !seen.has(p.id) && seen.add(p.id))
+  .slice(0, 2);
 
 // Enlaces para compartir
 const shareText = encodeURIComponent(data.title);

@@ -28,7 +28,7 @@ Así nació **Cónclave**: un nombre con carácter, fácil de recordar y con una
 
 ## De la idea al espacio: dirección creativa integral
 
-Con el concepto claro, lo aplicamos a todos los puntos de contacto del local para que el cliente viviera **la misma historia** en la calle, dentro del local y en redes sociales.
+Con el concepto claro empieza la [dirección creativa](/blog/que-es-la-direccion-creativa-de-un-evento): lo aplicamos a todos los puntos de contacto del local para que el cliente viviera **la misma historia** en la calle, dentro del local y en redes sociales.
 
 ### Identidad visual
 
@@ -40,7 +40,7 @@ Llevamos la marca al propio local con señalética y dirección creativa del esp
 
 ### Redes sociales
 
-Acompañamos el lanzamiento de la nueva etapa en redes, trasladando la identidad de Cónclave a un feed reconocible que comunicara la programación y la personalidad del local.
+Acompañamos el lanzamiento de la nueva etapa en redes, trasladando la identidad de Cónclave a un feed reconocible que comunicara la programación y la personalidad del local. Porque unas [redes que venden no son lo mismo que unas redes que solo decoran](/blog/redes-sociales-que-venden-vs-redes-que-decoran): el feed tenía que trabajar, no solo verse bien.
 
 ## El resultado
 

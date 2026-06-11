@@ -14,7 +14,7 @@ Es la primera pregunta que nos hace casi todo el mundo: **¿cuánto cuesta hacer
 
 ## Branding no es "un logo"
 
-El error más caro que comete un negocio es pensar que el branding es el logotipo. El logo es una pieza. El branding es **todo el sistema** que hace que tu negocio se reconozca y se recuerde: el nombre, los colores, las tipografías, el tono con el que hablas, cómo se ve tu Instagram, cómo se siente tu local al entrar.
+El error más caro que comete un negocio es pensar que el branding es el logotipo. El logo es una pieza. El branding es **todo el sistema** que hace que tu negocio se reconozca y se recuerde: el nombre, los colores, las tipografías, el tono con el que hablas, [cómo se ve (y cómo vende) tu Instagram](/blog/redes-sociales-que-venden-vs-redes-que-decoran), cómo se siente tu local al entrar.
 
 Cuando alguien te pide 50 € por "un logo", no te está vendiendo branding. Te está vendiendo un archivo. Y un archivo suelto, sin un sistema detrás, suele costar más caro a la larga: lo acabas rehaciendo.
 
@@ -24,7 +24,7 @@ Cuando alguien te pide 50 € por "un logo", no te está vendiendo branding. Te 
 
 Estos son los factores que mueven de verdad un presupuesto de branding:
 
-- **El alcance.** No cuesta lo mismo una identidad básica para arrancar que un rebranding integral con naming, dirección creativa del espacio y redes.
+- **El alcance.** No cuesta lo mismo una identidad básica para arrancar que un rebranding integral con naming, [dirección creativa](/blog/que-es-la-direccion-creativa-de-un-evento) del espacio y redes.
 - **El naming.** Si hay que crear el nombre desde cero (y comprobar que esté libre), es un trabajo estratégico en sí mismo.
 - **Las aplicaciones.** Cuántos soportes hay que diseñar: carta, cartelería, señalética del local, packaging, plantillas de redes, merchandising…
 - **El punto de partida.** No es lo mismo crear una marca nueva que reposicionar una existente que ya arrastra una percepción en el público.
