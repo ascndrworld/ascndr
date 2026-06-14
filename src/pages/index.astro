@@ -673,9 +673,10 @@ img, video {
   .svc-row { padding-inline: 0; }
   .svc-row:hover { padding-left: 18px; }
 
-  /* Proyectos: título y mosaico al mismo inset. */
+  /* Proyectos: el título mantiene el inset; el mosaico va a sangre (todo el
+     ancho de página), de borde a borde. */
   .works-head { padding-left: clamp(24px, 5vw, 88px); padding-right: clamp(24px, 5vw, 88px); }
-  .hs-works { padding-inline: clamp(24px, 5vw, 88px); }
+  .hs-works { padding-inline: 0; }
   /* (Testimonios se ajusta más abajo, tras su definición base, para que el
      padding-inline gane al shorthand `padding` de `.tst`.) */
 }
