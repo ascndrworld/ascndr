@@ -10,7 +10,7 @@ import Layout from "../../../layouts/Layout.astro";
 >
 
 <Fragment slot="head">
-  <link rel="preload" as="image" href="/images/eventsy/portada-carrusel.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/eventsy/portada-carrusel.webp" fetchpriority="high" />
   <script type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
@@ -57,7 +57,7 @@ import Layout from "../../../layouts/Layout.astro";
     min-height: 100dvh;
     overflow: hidden;
     color: #fff;
-    background: #1b0c2e url("/images/eventsy/portada-carrusel.png") center / cover no-repeat;
+    background: #1b0c2e url("/images/eventsy/portada-carrusel.webp") center / cover no-repeat;
   }
   .cs-header::after {
     content: "";
@@ -176,9 +176,9 @@ import Layout from "../../../layouts/Layout.astro";
   </section>
 
   <div class="cs-gallery">
-    <figure class="cs-shot cs-shot--lead"><img src="/images/eventsy/portada-eventsy.jpg" alt="Eventsy — registro y creación de evento en la app móvil" loading="lazy"/></figure>
-    <figure class="cs-shot cs-shot--zoom"><img src="/images/eventsy/moviles-app.jpg?v=3" alt="Aplicación móvil Eventsy — dashboard, escáner de entradas y métricas en tiempo real" loading="lazy"/></figure>
-    <figure class="cs-shot cs-shot--zoom3"><img src="/images/eventsy/paginas.jpg?v=4" alt="Página de venta de un evento en Eventsy — La Delicia Fest, compra de entradas desde el móvil" loading="lazy"/></figure>
+    <figure class="cs-shot cs-shot--lead"><img src="/images/eventsy/portada-eventsy.jpg" alt="Eventsy — registro y creación de evento en la app móvil" fetchpriority="high"/></figure>
+    <figure class="cs-shot cs-shot--zoom"><img src="/images/eventsy/moviles-app.webp?v=3" alt="Aplicación móvil Eventsy — dashboard, escáner de entradas y métricas en tiempo real" loading="lazy"/></figure>
+    <figure class="cs-shot cs-shot--zoom3"><img src="/images/eventsy/paginas.webp?v=4" alt="Página de venta de un evento en Eventsy — La Delicia Fest, compra de entradas desde el móvil" loading="lazy"/></figure>
   </div>
 
   <section class="cs-study">

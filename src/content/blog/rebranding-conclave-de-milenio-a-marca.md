@@ -4,7 +4,7 @@ description: "El caso real del rebranding de un pub: naming, identidad visual y 
 pubDate: 2026-04-21
 author: "Ascndr"
 category: "Branding"
-cover: "/images/conclave/portada-blog-conclave.png"
+cover: "/images/conclave/portada-blog-conclave.jpg"
 coverAlt: "Cónclave — Rebranding y dirección creativa de un pub por Ascndr"
 coverPosition: "center 26%"
 draft: false
